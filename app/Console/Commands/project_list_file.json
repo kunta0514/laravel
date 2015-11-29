@@ -1,0 +1,24 @@
+[
+  {
+    "project_name": "北京鸿坤",
+    "project_path": "F:\\laravel\\ProjectWorkflow\\北京鸿坤",
+    "workflow_path": [
+      "F:\\laravel\\ProjectWorkflow\\北京鸿坤\\WF3.5.3.20630\\Trunk\\Map\\MyWorkflow",
+      "F:\\laravel\\ProjectWorkflow\\北京鸿坤\\WF3.5.7.20630\\Trunk\\Map\\MyWorkflow"
+    ]
+  },
+  {
+    "project_name": "北京华远",
+    "project_path": "F:\\laravel\\ProjectWorkflow\\北京华远",
+    "workflow_path": [
+      "F:\\laravel\\ProjectWorkflow\\北京华远\\WF3.5.3\\Trunk\\Map\\MyWorkflow"
+    ]
+  },
+  {
+    "project_name": "北京中信",
+    "project_path": "F:\\laravel\\ProjectWorkflow\\北京中信",
+    "workflow_path": [
+      "F:\\laravel\\ProjectWorkflow\\北京中信\\Trunk\\WF3.5.3\\Map\\MyWorkflow"
+    ]
+  }
+]

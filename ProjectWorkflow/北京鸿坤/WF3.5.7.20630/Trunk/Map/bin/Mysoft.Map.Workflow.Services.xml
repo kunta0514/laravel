@@ -1,0 +1,537 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Mysoft.Map.Workflow.Services
+</name>
+</assembly>
+<members>
+<member name="M:Mysoft.Map.Workflow.Services.MobileProcessList.GetBusinessTypeGroup(System.String)">
+	<summary>
+ 1、根据工作流业务类型对待办流程分组，并显示分组中待办流程数量
+ </summary>
+	<param name="strUserGUID">用户GUID</param>
+	<returns>XML对象</returns>
+	<remarks>获取流程列表</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessList.GetProcessList(System.String,System.String)">
+	<summary>
+2、 获取流程列表
+ </summary>
+	<param name="strUserGUID"></param>
+	<param name="QueryXml"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessList.GetQueryProcessSql(System.String,System.String,System.String,System.String,System.String)">
+	<summary>
+ 获取流程列表查询的sql语句
+ </summary>
+	<param name="kindType"></param>
+	<param name="strUserGUID"></param>
+	<param name="Top"></param>
+	<param name="Num"></param>
+	<param name="strfilter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessList.GetQueryProcessCountSql(System.String,System.String,System.String)">
+	<summary>
+ 获取流程列表数量查询的sql语句
+ </summary>
+	<param name="kindType"></param>
+	<param name="strUserGUID"></param>
+	<param name="strfilter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessList.GetTodoProcessListSql(System.String,System.String)">
+	<summary>
+ 获取待办流程
+ </summary>
+	<param name="strUserGUID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessList.GetBusinessTypeGroupSql(System.String)">
+	<summary>
+ 获取待办流程分组的sql语句
+ </summary>
+	<param name="strUserGUID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessList.BusinessTypeSort(System.Xml.XmlDocument)">
+	<summary>
+ '按照工作流配置文件的业务类型顺序进行排序
+ </summary>
+	<param name="xml"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.ERPServices.CancelProcess(System.String,System.String)">
+	<summary>
+ 用于业务系统作废工作流引擎中的流程实例;
+ <para name=" Reason ">作废原因</para>
+		<para name="OperateName">执行作废操作的动作名称</para>
+	</summary>
+</member><member name="M:Mysoft.Map.Workflow.Services.ERPServices.CanModifyBusinessDataForReInitiate(System.String,System.String)">
+	<summary>
+ 重新发起时能否修改业务数据
+ </summary>
+	<param name="strBusinessGUID">业务GUID</param>
+	<param name="strBusinessType">业务类型</param>
+	<returns>能否修改业务数据</returns>
+	<remarks>
+ 能修改业务数据的情况如下:
+ 1、没有当前流程
+ 2、草稿/作废/中止,可以修改
+ 3、是重新发起步骤,且已校稿,可以修改
+ </remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.EventStation.ModifyStationName(System.String,System.Object[])">
+	<summary>
+ 更新岗位名称同步更新工作流责任人名称
+ </summary>
+	<param name="eventName">UpDateStationName</param>
+	<param name="eventArg">岗位guid;岗位名称</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.EventStation.DelStation(System.String,System.Object[])">
+	<summary>
+ 删除岗位，同步删除标准岗位与岗位关联表信息
+ </summary>
+	<param name="eventName">DelStation</param>
+	<param name="eventArg">岗位guid</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.EventUser.ModifyUserName(System.String,System.Object[])">
+	<summary>
+ 更新用户名称同步更新工作流责任人名称
+ </summary>
+	<param name="eventName">UpDateUserName</param>
+	<param name="eventArg">用户guid;用户名称</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.EventGlobalStation.ModifyGlobalStationName(System.String,System.Object[])">
+	<summary>
+ 更新通用岗位名称同步更新工作流责任人名称
+ </summary>
+	<param name="eventName">UpDateGlobalStationName</param>
+	<param name="eventArg">通用岗位guid;通用岗位名称</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessStepGuide.GetStepGuide(System.String,System.String,System.String)">
+	<summary>
+ 获取审批向导界面
+ </summary>
+	<param name="ApproveType">审批类型</param>
+	<param name="nodeGUID">节点GUID</param>
+	<param name="lastStationGUID">处理人岗位GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessStepGuide.GetApproveOrCounterSignNextStep(System.String,System.String)">
+	<summary>
+ 功能：获取审批同意、会签同意 下一步骤信息
+ </summary>
+	<param name="nodeGUID"></param>
+	<param name="lastStationGUID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessStepGuide.GetDisApproveRollBackStep(System.String,System.String)">
+	<summary>
+ 功能：不同意获取可打回步骤信息
+ </summary>
+	<param name="nodeGUID"></param>
+	<param name="lastStationGUID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessStepGuide.Calculate(System.String,System.String)">
+	<summary>
+  功能：计算流转条件表达式
+ </summary>
+	<param name="sExpStru">流转条件</param>
+	<param name="domainXml">domain域</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessStepGuide.FillProcessStep(System.String)">
+	<summary>
+ 填充需要的步骤信息变量
+ </summary>
+	<param name="nodeGUID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.EKPServices.GetBusinessGUIDSQL(System.String,Mysoft.Map.Workflow.Services.RequestType)">
+	<summary>
+ 为EKP系统提供与工作流数据表关联的SQL语句 
+ </summary>
+	<param name="BusinessTypeName"></param>
+	<param name="RequestType"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.EKPServices.GetProcessAuditors(System.String,System.String,Mysoft.Map.Workflow.Services.AuditorType)">
+	<summary>
+ 为EKP系统提供的取流程的责任人及处理人
+ </summary>
+	<param name="BusinessGUID"></param>
+	<param name="BusinessTypeName"></param>
+	<param name="AuditorType"></param>
+	<returns></returns>
+	<remarks>为EKP系统提供的取流程的责任人及处理人的服务</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileMessage.GetNewTodoProcessList(System.String,System.String)">
+	<summary>
+ 获取指定时间后待办流程的数量
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="LastDatetime">最后获取时间</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileMessage.GetTodoProcessMessage(System.String,System.String,System.Boolean)">
+	<summary>
+ 获取用户所有待办流程的数量和待办消息
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="LastDatetime">最后获取时间</param>
+	<param name="IsShowMessage">是否显示消息</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessDetail.GetProcessDetail(System.String,System.String)">
+	<summary>
+ 获取流程详情
+ </summary>
+	<param name="strUserGUID"></param>
+	<param name="NodeGUID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessDetail.GetProcessForm(System.String)">
+	<summary>
+ 获取流程表单信息
+ </summary>
+	<param name="NodeGUID">节点GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessDetail.GetProcessFileInfo(System.String,System.String)">
+	<summary>
+ 获取流程文档、附件信息
+ </summary>
+	<param name="DocGUID">节点GUID</param>
+	<param name="DocType">文档类型：word,file</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessDetail.ActiveNode(System.String,System.String,System.String,System.String)">
+	<summary>
+ 激活步骤和节点
+ </summary>
+	<param name="status"></param>
+	<param name="NodeGUID"></param>
+	<param name="bExtend"></param>
+	<param name="StepPathGUID"></param>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessDetail.GetApproveButton(System.String,System.String,System.String,System.String,System.String,System.String)">
+	<summary>
+ 获取审批按钮是否启用
+ </summary>
+	<param name="handletype"></param>
+	<param name="CanCancel"></param>
+	<param name="CanAssign"></param>
+	<param name="CanTransfer"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessDetail.GetUserStation(System.String,System.String,System.String)">
+	<summary>
+ 获取用户岗位信息
+ </summary>
+	<param name="strUserGUID">用户GUID</param>
+	<param name="strStepGUID">当前步骤GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessDetail.GetApproveForm(System.String,System.String,System.String)">
+	<summary>
+ 获取业务表单
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessDetail.GetAttachmentList(System.String)">
+	<summary>
+ 得到审批附件列表
+ </summary>
+	<param name="processGUID">流程GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobilePublic.GetApplicationByRightsMobile">
+	<summary>
+ 获取已授权移动审批的业务系统编号
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobilePublic.GetDataBaseTime">
+	<summary>
+ 获取当前数据库时间
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobilePublic.GetFilter(System.Xml.XmlDocument)">
+	<summary>
+ 解析过滤条件
+ </summary>
+	<param name="xmlfilter"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobilePublic.GetFileSize(System.Object)">
+	<summary>
+ 获取文件大小
+ </summary>
+	<param name="strFilePath">文件路径</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobilePublic.GetAuditor(System.String)">
+	<summary>
+ 取当前用户所代理的用户GUID串
+ </summary>
+	<param name="strUserGUID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.MyFilter.StartIndex">
+	<summary>
+ 开始条数
+ </summary>
+	<remarks></remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.MyFilter.EndIndex">
+	<summary>
+ 结束条数
+ </summary>
+	<remarks></remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.MyFilter.Filter">
+	<summary>
+ 过滤条件
+ </summary>
+	<remarks></remarks>
+</member><member name="T:Mysoft.Map.Workflow.Services.MyFilter">
+	<summary>
+ 过滤条件
+ </summary>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessHandle.ProcessHandle(System.String,System.String,System.String)">
+	<summary>
+ 流程处理
+ </summary>
+	<param name="strUserGUID"></param>
+	<param name="ApproveType"></param>
+	<param name="requestXml"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessHandle.Handle(System.Xml.XmlDocument,System.String,Mysoft.Map.Workflow.ProcessStep)">
+	<summary>
+ 审批、会签流程处理
+ </summary>
+	<param name="xml"></param>
+	<param name="NodeGUID"></param>
+	<param name="pStepInfo"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessHandle.GetDefaultHandleText(System.String,System.String)">
+	<summary>
+ 获取默认审批意见
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessHandle.GetIdeapBusinessDomain(System.Xml.XmlDocument,Mysoft.Map.Workflow.ProcessStep@)">
+	<summary>
+ 获取回填域
+ </summary>
+	<param name="xml"></param>
+	<param name="pStepInfo"></param>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessHandle.SetIdea(Mysoft.Map.Workflow.ProcessStep,System.String,System.String)">
+	<summary>
+ '设置业务域中的回填域
+ </summary>
+	<param name="pStepInfo"></param>
+	<param name="strHandleText"></param>
+	<param name="strHandlType"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileProcessHandle.GetIdea(System.String,System.String)">
+	<summary>
+ 获取回填的审批意见
+ </summary>
+	<param name="idea">审批意见</param>
+	<param name="strHandlType">审批类型</param>
+	<returns>回填域</returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetBusinessTypeGroup(System.String)">
+	<summary>
+ 根据工作流业务类型对待办流程分组，并显示分组中待办流程数量。
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<returns>XML对象</returns>
+	<remarks>获取流程列表</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetProcessList(System.String,System.String)">
+	<summary>
+ 根据指定的查询条件，获取对应的流程（待办、超时、已办、抄送、我发起的）列表。
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="QueryXml">查询条件</param>
+	<returns>XML对象</returns>
+	<remarks>获取流程列表</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetProcessDetail(System.String,System.String)">
+	<summary>
+ 根据流程节点GUID（NodeGUID），获取对应的流程详情。
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="NodeGUID">节点GUID</param>
+	<returns>XML对象</returns>
+	<remarks>获取流程节点详情</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetProcessFormInfo(System.String)">
+	<summary>
+ 获取流程表单信息
+ </summary>
+	<param name="NodeGUID">节点GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetProcessFileInfo(System.String,System.String)">
+	<summary>
+ 获取流程文档、附件信息
+ </summary>
+	<param name="DocGUID">节点GUID</param>
+	<param name="DocType">文档类型：word,file</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetStepGuide(System.String,System.String,System.String,System.String)">
+	<summary>
+ 根据处理类型、节点GUID、处理人选择岗位GUID，获取相应的审批向导信息。
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="ApproveType">审批处理类型</param>
+	<param name="NodeGUID">节点GUID</param>
+	<param name="LastStationGUID">岗位GUID</param>
+	<returns></returns>
+	<remarks>获取流程处理向导</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.ProcessHandle(System.String,System.String,System.String)">
+	<summary>
+ 根据处理类型和处理信息，执行流转处理。
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="ApproveType">审批处理类型</param>
+	<param name="HandleXml">处理数据</param>
+	<returns></returns>
+	<remarks>流程节点处理</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetUserList(System.String)">
+	<summary>
+ 根据指定的查询条件，返回对应的用户信息列表。
+ </summary>
+	<param name="QueryXml">查询条件</param>
+	<returns></returns>
+	<remarks>获取用户列表</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetNewTodoProcessList(System.String,System.String)">
+	<summary>
+ 获取指定时间后待办流程的数量
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="LastDatetime">最后获取时间</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetTodoProcessMessage(System.String,System.String,System.Boolean)">
+	<summary>
+ 获取用户所有待办流程的数量和待办消息
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="LastDatetime">最后获取时间</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetUserCommonOpinion(System.String,System.String)">
+	<summary>
+ 获取用户的常用审批意见
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<param name="oprType">审批操作</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileServices.GetResultXml(System.Exception,System.Boolean)">
+	<summary>
+ 获取返回值对象
+ </summary>
+	<param name="ex">消息</param>
+	<param name="result">是否成功</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:Mysoft.Map.Workflow.Services.MobileServices">
+	<summary>
+ 跨系统接口（移动审批接口）
+ </summary>
+	<remarks></remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.RequestType.Approve">
+	<summary>
+ 待审(需要我审批的新闻，不包含打回到发起人，由发起人重新发起的场景)
+ </summary>
+	<remarks>待审</remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.RequestType.Approving">
+	<summary>
+ 审批中(由我发起的目前处于审批中的新闻)
+ </summary>
+	<remarks>审批中</remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.RequestType.Approved">
+	<summary>
+ 已审(我已经审批过的新闻，不包括发起人发起和归档人归档的场景)
+ </summary>
+	<remarks>已审</remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.RequestType.RollbackToOwner">
+	<summary>
+ 驳回到发起人(由我发起的目前处于打回到发起人的新闻)
+ </summary>
+	<remarks>驳回到发起人</remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.RequestType.ApproveCancel">
+	<summary>
+ 审批作废(由我发起的目前处于审批作废状态的新闻)
+ </summary>
+	<remarks>审批作废</remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.RequestType.ApprovePassed">
+	<summary>
+ 审批通过(由我发起的目前处于审批归档状态的新闻)
+ </summary>
+	<remarks>审批通过（归档）</remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.AuditorType.All">
+	<summary>
+ 流程所有相关人（审批、会签、协商、抄送）
+ </summary>
+	<remarks>流程所有相关人</remarks>
+</member><member name="F:Mysoft.Map.Workflow.Services.AuditorType.Approve">
+	<summary>
+ 审批相关的处理人（审批、会签）
+ </summary>
+	<remarks>审批相关的处理人</remarks>
+</member><member name="T:Mysoft.Map.Workflow.Services.AuditorType">
+	<summary>
+ 提取的责任人类型
+ </summary>
+	<remarks>提取的责任人类型</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileUser.GetUserList(System.String)">
+	<summary>
+ 根据指定的查询条件，返回对应的用户信息列表。
+ </summary>
+	<param name="QueryXml">查询条件</param>
+	<returns></returns>
+	<remarks>获取用户列表</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileUser.GetUserCommonOpinion(System.String,System.String)">
+	<summary>
+ 获取用户的常用审批意见
+ </summary>
+	<param name="strUserGUID">用户GUID</param>
+	<param name="oprType">审批操作</param>
+	<returns></returns>
+	<remarks>获取用户列表</remarks>
+</member><member name="M:Mysoft.Map.Workflow.Services.MobileUser.GetUserGUID(System.String)">
+	<summary>
+ 根据用户代码获得用户GUID
+ </summary>
+	<param name="UserCode">用户代码</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:Mysoft.Map.Workflow.Services.My.Resources.Resources.ResourceManager">
+	<summary>
+  返回此类使用的缓存的 ResourceManager 实例。
+</summary>
+</member><member name="P:Mysoft.Map.Workflow.Services.My.Resources.Resources.Culture">
+	<summary>
+  使用此强类型资源类，为所有资源查找
+  重写当前线程的 CurrentUICulture 属性。
+</summary>
+</member><member name="T:Mysoft.Map.Workflow.Services.My.Resources.Resources">
+	<summary>
+  一个强类型的资源类，用于查找本地化的字符串等。
+</summary>
+</member>
+</members>
+</doc>

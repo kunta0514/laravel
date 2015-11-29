@@ -1,0 +1,2139 @@
+<?xml version="1.0" encoding="gb2312"?>
+<xml>
+  <path>
+    <name>WindowsTemp</name>
+    <type>windows</type>
+    <isfile>false</isfile>
+    <username>Administrators</username>
+    <description>Windows 文件夹</description>
+  </path>
+  <path>
+    <name>SysTemp</name>
+    <type>system</type>
+    <isfile>false</isfile>
+    <username>Guest</username>
+    <description>System 文件夹</description>
+  </path>
+  <path>
+    <name>Mysoft\TestFolder</name>
+    <type>programfiles</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>System 文件夹</description>
+  </path>
+  <path>
+    <name>.</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>.</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>ExceptionLog</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>ExceptionLog</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>ExceptionLog\History</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>ExceptionLog\History</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>mERP\MobilePublic\FileCache</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>UpFiles</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Cbgl\Templates</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Cbgl\Templates</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Cbgl\Pub</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Cbgl\Pub</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Cbgl\CWJK\dbf</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Cbgl\CWJK\dbf</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Slxt\XMZB</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt\XMZB</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Zlxt\XMZB\Excel</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Zlxt\XMZB\Excel</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Slxt\Print</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt\Print</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Slxt\Print\TempleteZip</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt\Print\TempleteZip</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Slxt\Print\demowebsite</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt\Print\demowebsite</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>XmlTemp</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Authenticated Users</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>TempFiles</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>TempFiles</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>PubProject\Question\Excels</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>PubProject\Question\Excels</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>PubProject\Question</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>PubProject\Question</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Slxt\XSZDH</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt\XSZDH</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Zlxt\CWGL</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Zlxt\CWGL</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Cbgl\TempSave</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Cbgl\TempSave</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Slxt\ChartTemplates</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt\ChartTemplates</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>PubProject\Activity\emailtemplateeditor</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>PubProject\Activity\emailtemplateeditor</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Zlxt\AutoTest\Excel</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Zlxt\AutoTest\Excel</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>CgZtb\PUB</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\PUB</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\Pub</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\Pub</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Web.config</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Web.config</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>MyWorkflow\Blank.doc</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>MyWorkflow\Blank.doc</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\04698f89-dede-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\04ba5c17-e9e2-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\054127eb-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\06a40849-dede-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\07aafc39-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\0cba5c17-e9e2-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\0ebad80a-dede-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\282b9248-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\2871b05a-dcde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\29aff721-e9e2-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\2a304a77-dcde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\2ba1e832-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\309cea84-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\32c79b7d-dcde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\332df71d-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\37eaa8c2-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\3859c816-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\4030e869-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\407ebc8b-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\4142e131-e9e2-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\417b5041-dede-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\483c0bde-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\5a141faf-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\5c260402-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\64822a0a-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\6742e131-e9e2-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\6c822a0a-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\6cb3b041-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\72a622c9-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\735a9140-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\80f584b6-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\88f7444f-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\90351a9a-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\9565d724-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\99f584b6-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\9dfa4734-dede-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\a795536a-dcde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\a8295e48-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\a861255c-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\b4fc85e2-dfde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\b6420e14-dede-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\b8bc00a2-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\bead10a9-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\bf4e503d-e9e2-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\c1c64a63-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\d24bbf09-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\d6547c53-dcde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\da5b3e03-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\dd406317-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\ec0910fb-dade-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\ee401be5-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\efafb791-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\efec8ed1-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0627\f54027eb-dbde-e211-85c3-00155d0ab82e.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\05ba03bb-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\0dba03bb-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\140a4a2b-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\232ec01e-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\2b2ec01e-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\31c93ce8-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\3961a613-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\39c93ce8-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\39c98dc8-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\4161a613-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\45723fdd-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\46659a3f-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\4b6293a7-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\4d723fdd-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\4e659a3f-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\50b105f8-fd24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\541dd801-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\556293a7-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\58b105f8-fd24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\5b8c20db-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\5c1dd801-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\638c20db-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\6ae9cfb6-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\6d9788ec-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\74f974a1-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\759788ec-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\763db10a-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\7ce9cfb6-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\803db10a-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\8674e6e5-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\a48d98f5-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\b10953ce-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\b90953ce-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\bb4dd7b1-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\c22275ef-fd24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\c3238a38-fe24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\c34dd7b1-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\c7bfe192-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\ca2275ef-fd24-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\cd8857c2-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\ce8a2dd1-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\cfbfe192-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\d39a1d88-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\db9a1d88-f124-e311-9423-00155d0ab831.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\eb55a3c4-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\f355a3c4-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\f3a005a9-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\0924\fba005a9-f924-e311-b36f-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\8a2aef7e-563d-e311-9433-00155d0ab834.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\9ab2b0eb-3d3d-e311-a9f9-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\25f32fe5-3d3d-e311-a9f9-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\92b2b0eb-3d3d-e311-a9f9-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\822aef7e-563d-e311-9433-00155d0ab834.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\bc73f761-473d-e311-a7b4-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\c573f761-473d-e311-a7b4-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\e9cf4b6c-473d-e311-a7b4-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1025\f80e6c86-563d-e311-9433-00155d0ab834.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\10230e92-8d5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\110149c1-8c5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\13bae1b4-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\195568a9-8c5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\1bbae1b4-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\2d2b92bd-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\30df19ee-a05d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\323e090d-a15d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\352b92bd-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\50ea17e4-a05d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\5bcecacb-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\5e51426e-8d5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\64f82feb-8d5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\66e10fa4-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\715e4f1a-8d5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\87c188f8-a05d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\882a5a8a-8c5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\8e69f332-a15d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\939794bf-8d5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\a10e009b-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\a995b3b4-8d5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\abd5d5c4-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\b3b884ac-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\b3d5d5c4-a65d-e311-93ed-00155d0ab838.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\bd106129-a15d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\c6f1ebeb-8c5d-e311-b857-005056c00008.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\cc67a202-a15d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\d4da0fdd-a05d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\d852b71f-a15d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程模板\2013\1205\e6113516-a15d-e311-ad63-00155d0ab801.htm</name>
+    <type>relative</type>
+    <isfile>true</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+
+  <path>
+    <name>UpFiles\WorkflowDoc\流程文档</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\流程文档</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\系统文档</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>UpFiles\WorkflowDoc\系统文档</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Cbgl\Templates\temp</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Cbgl\Templates\temp</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>PubProject\Activity\emailtemplateeditor\dialogs</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>PubProject\Activity\emailtemplateeditor\dialogs</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>PubProject\Activity\emailtemplateeditor\scripts</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>PubProject\Activity\emailtemplateeditor\scripts</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Xmjd\Temp</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Xmjd\Temp</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <!--256-SP2新增-->
+  <path>
+    <name>Xmjd\YYBG</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Xmjd\YYBG</name>
+    <type>relative</type>
+    <isfile>false</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Xmjd\YYBG\DQGSYYJBCurMonth.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Xmjd\YYBG\DQGSYYJBCurMonth.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Xmjd\YYBG\JTYYJBCurMonth.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Xmjd\YYBG\JTYYJBCurMonth.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Xmjd\YYBG\JTYYJBCurMonthResult.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Xmjd\YYBG\JTYYJBCurMonthResult.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <!--256-SP2新增-->
+  <!--257新增-->
+  <!--全面预算-->
+  <path>
+    <name>Qmys\DeptExpenseAnalyse.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\DeptExpenseAnalyse.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\DeptExpenseAnalyseCapita.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\DeptExpenseAnalyseCapita.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Fygl\YSFX\DeptExpenseAnalyse.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Fygl\YSFX\DeptExpenseAnalyse.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Fygl\YSFX\DeptExpenseAnalyseCapita.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Fygl\YSFX\DeptExpenseAnalyseCapita.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Fygl\FYYS\ProceedPlan_Export.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Fygl\FYYS\ProceedPlan_Export.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Fygl\FYYS\ProceedPlanAdjust_Export.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Fygl\FYYS\ProceedPlanAdjust_Export.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Fygl\FYYS\YS_DeptPeopleNumSet_Export.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Fygl\FYYS\YS_DeptPeopleNumSet_Export.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\TZYS\Excel导出模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\TZYS\Excel导出模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmjzys\Xmjzys_CP_Grid.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmjzys\Xmjzys_CP_Grid.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmjzys\Xmjzys_Bld_Grid.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmjzys\Xmjzys_Bld_Grid.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmjzys\Xmjzys_CPDF_Grid.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmjzys\Xmjzys_CPDF_Grid.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmlrxjlcs\Xmlrxjlcs.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmlrxjlcs\Xmlrxjlcs.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmlrxjlcs\Xmlrxjlcs_GJJD.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmlrxjlcs\Xmlrxjlcs_GJJD.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmlrxjlcs\Xmlrxjlcs_NoXMJD.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmlrxjlcs\Xmlrxjlcs_NoXMJD.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmlrxjlcs\Xmlrxjlcs_XJL.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\Xmlrxjlcs\Xmlrxjlcs_XJL.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\XMNDYSHZ\Excel导出模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\XMNDYSHZ\导出模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\XMNDYSHZ\现金流模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\XMNDYSHZ\现金流模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\XMQMYSHZ\Excel导出模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\XMQMYSHZ\Excel导出模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\XMQMYSHZ\关键节点模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\XMQMYSHZ\关键节点模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\XMQMYSHZ\现金流模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\XMQMYSHZ\现金流模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\XMSF\Excel导出模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\XMSF\Excel导出模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\XMYS\XmYsFj_Edit.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\XMSF\XmYsFj_Edit.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\GSRZYS\公司Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\GSRZYS\公司Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\GSRZYS\项目Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\GSRZYS\项目Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Slxt\XMXSYSBZ\Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt\XMXSYSBZ\Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Xmjd\XMSCJH\生产计划编制模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Xmjd\XMSCJH\生产计划编制模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\GSRZYS\公司Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\GSRZYS\公司Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <path>
+    <name>Qmys\GSRZYS\项目Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Qmys\GSRZYS\项目Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <!--售楼系统-->
+  <path>
+    <name>Slxt\XMXSYSBZ\Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Slxt\XMXSYSBZ\Excel模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <!--项目进度-->
+  <path>
+    <name>Xmjd\XMSCJH\生产计划编制模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>Xmjd\XMSCJH\生产计划编制模板.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>ASPNET</username>
+    <description>相对路径(用于windows2000)</description>
+  </path>
+  <!--采购招投标-->
+  <path>
+    <name>CgZtb\PUB\ProductQuoteXlsTemp.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\PUB\XlsTemp.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CGCGAnalysis\Analysis_ListExport.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CGCGAnalysis\Analysis_PricExport.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CZPlan\MonthPlanReviewTamplate.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CZPlan\MonthPlanVer_Grid_CompareTamplate.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CZPlan\MonthPlanVer_Grid_lookTamplate.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\Provider\CGContractPGAnalyse\CGContractPGAnalyseTamplate.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\PUB\ProductQuoteTemplete.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\PUB\ProductCgPlanTemplete.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CGCGAnalysis\Analysis_PricExport.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CZPlan\MonthPlanReviewTamplate.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CZPlan\MonthPlanVer_Grid_CompareTamplate.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\CGGC\CZPlan\MonthPlanVer_Grid_lookTamplate.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\Provider\CGContractPGAnalyse\CGContractPGAnalyseTamplate.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\PUB\ProductQuoteTemplete.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+  <path>
+    <name>CgZtb\PUB\ProductCgPlanTemplete.xls</name>
+    <type>relative</type>
+    <isfile>True</isfile>
+    <username>Network Service</username>
+    <description>相对路径(用于windows2003)</description>
+  </path>
+</xml>
