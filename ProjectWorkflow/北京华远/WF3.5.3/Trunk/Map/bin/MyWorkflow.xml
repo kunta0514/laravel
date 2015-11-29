@@ -1,0 +1,3493 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+MyWorkflow
+</name>
+</assembly>
+<members>
+<member name="F:MyWorkflow.WF_BusinessType_Edit1_Grid.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1_Grid.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1_Grid.txtDomainXml">
+	<summary>
+txtDomainXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.crmForm">
+	<summary>
+crmForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.txtUserGUID">
+	<summary>
+txtUserGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.txtIsAdmin">
+	<summary>
+txtIsAdmin 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.txtUserName">
+	<summary>
+txtUserName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.txtAgentName">
+	<summary>
+txtAgentName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.txtAgent">
+	<summary>
+txtAgent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.txtAgentBgnDate">
+	<summary>
+txtAgentBgnDate 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.txtAgentEndDate">
+	<summary>
+txtAgentEndDate 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.rdCut">
+	<summary>
+rdCut 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.rdCopy">
+	<summary>
+rdCopy 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.lbAlert">
+	<summary>
+lbAlert 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent_Set.btnSubmit">
+	<summary>
+btnSubmit 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_AllReply.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_AllReply.tdContent">
+	<summary>
+tdContent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="M:MyWorkflow.WF_XmlHTTP.GetEnsureNodeHasNotBeenWithdrawnInfo(System.String,System.String)">
+	<summary>
+ 获取撤回并发校验结果
+ </summary>
+	<param name="processGUID">流程GUID</param>
+	<param name="nodeGUID">节点GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_XmlHTTP.queryDomain(System.Xml.XmlDocument,System.Xml.XmlNode)">
+	<summary>
+ Update by fuxy
+ </summary>
+</member><member name="M:MyWorkflow.WF_XmlHTTP.GetProcessQueryDomain(System.String)">
+	<summary>
+ 根据ProcessGUID取得ProcessQueryDomain
+ </summary>
+	<returns></returns>
+	<remarks>Add by fuxy</remarks>
+</member><member name="F:MyWorkflow.DocumentRename.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.DocumentRename.tbName">
+	<summary>
+tbName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.DocumentRename.labExName">
+	<summary>
+labExName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Process_V2.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Process_V2.txtProcessGUID">
+	<summary>
+txtProcessGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Process_V2.txtProcessMode">
+	<summary>
+txtProcessMode 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Process_V2.txtProcessModuleXml">
+	<summary>
+txtProcessModuleXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Process_V2.txtDefaultProcessModuleXml">
+	<summary>
+txtDefaultProcessModuleXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Process_V2.txtopentype">
+	<summary>
+txtopentype 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Query.appFind">
+	<summary>
+appFind 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Query.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Query.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessKind.appLog">
+	<summary>
+appLog 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessKind.htmlSpanLevel">
+	<summary>
+htmlSpanLevel 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessKind.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessKind.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation_Edit_Station.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation_Edit_Station.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Desktop_MyInitProcess.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Desktop_MyInitProcess.Content">
+	<summary>
+Content 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Document_Edit.documentType">
+	<summary>
+documentType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Document_Edit.hidNewGUID">
+	<summary>
+hidNewGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Document_Edit.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Document_Edit.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCommonModule.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCommonModule.txtMyModules">
+	<summary>
+txtMyModules 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCommonModule.rep1">
+	<summary>
+rep1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCommonModule.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCommonModule.rep2">
+	<summary>
+rep2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined.htmlSpanLevel">
+	<summary>
+htmlSpanLevel 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined.appMenuGridProcessList">
+	<summary>
+appMenuGridProcessList 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_ShowHisVersion.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_ShowHisVersion.txtHistoryGUID">
+	<summary>
+txtHistoryGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_ShowHisVersion.txtProcessGUID">
+	<summary>
+txtProcessGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_ShowHisVersion.txtDocumentGUID">
+	<summary>
+txtDocumentGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_ShowHisVersion.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectDirectory.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectDirectory.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation.txtLocation">
+	<summary>
+txtLocation 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation.LinkButton1">
+	<summary>
+LinkButton1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation.sHtml">
+	<summary>
+sHtml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="P:MyWorkflow.WF_AuditorReplace.cBUGUID">
+	<summary>
+ 提供给页面脚本使用
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:MyWorkflow.WF_AuditorReplace_Guide.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AuditorReplace_Guide.lScript">
+	<summary>
+lScript 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentSysDir.appLog">
+	<summary>
+appLog 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentSysDir.htmlSpanLevel">
+	<summary>
+htmlSpanLevel 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentSysDir.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentSysDir.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="M:MyWorkflow.WF_ProcessAnalysis.ValidateUserInCompany(System.String,System.String)">
+	<summary>
+ 校验用户是否属于当前公司(用户是否拥有公司的岗位)
+ </summary>
+	<param name="companyGUID">公司GUID</param>
+	<param name="userGUID">用户GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtDomainXml">
+	<summary>
+txtDomainXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtEditBusinessDomain">
+	<summary>
+txtEditBusinessDomain 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtProcessName">
+	<summary>
+txtProcessName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtHtmlContent">
+	<summary>
+txtHtmlContent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.errMessage">
+	<summary>
+errMessage 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtHandleText">
+	<summary>
+txtHandleText 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.lblDocSave">
+	<summary>
+lblDocSave 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.DirectoryPath">
+	<summary>
+DirectoryPath 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtSaveFolder">
+	<summary>
+txtSaveFolder 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.trBlank">
+	<summary>
+trBlank 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.trSaveData">
+	<summary>
+trSaveData 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.lblDataSave">
+	<summary>
+lblDataSave 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtCCUserName">
+	<summary>
+txtCCUserName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtCCUserGUID">
+	<summary>
+txtCCUserGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.txtCCUserType">
+	<summary>
+txtCCUserType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.sendMail">
+	<summary>
+sendMail 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.sendSMS">
+	<summary>
+sendSMS 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Book.btnSubmit">
+	<summary>
+btnSubmit 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_History.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_History.liContent">
+	<summary>
+liContent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_Org.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_Org.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStandardStation.mytitle">
+	<summary>
+mytitle 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStandardStation.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStandardStation.txtLocation">
+	<summary>
+txtLocation 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStandardStation.sHtml">
+	<summary>
+sHtml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStandardStation.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStandardStation.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Form.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Form.txtCanChgBU">
+	<summary>
+txtCanChgBU 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Form.txtHadBoughtYDApp">
+	<summary>
+txtHadBoughtYDApp 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Form.hidNewGUID">
+	<summary>
+hidNewGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Form.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Form.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PadForm_DefaultPreview.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PadForm_DefaultPreview.isNew">
+	<summary>
+isNew 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PadForm_DefaultPreview.DocumentGUID">
+	<summary>
+DocumentGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PadForm_DefaultPreview.Content1">
+	<summary>
+Content1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessWatch_Grid.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessWatch_Grid.txtIsAdmin">
+	<summary>
+txtIsAdmin 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessWatch_Grid.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessWatch_Grid.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_All.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_All.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectBusiness.appFind">
+	<summary>
+appFind 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectBusiness.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectBusiness.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.txtMode">
+	<summary>
+txtMode 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.jd_CalendarType_0">
+	<summary>
+jd_CalendarType_0 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.jd_CalendarType_1">
+	<summary>
+jd_CalendarType_1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.jd_CalendarType_2">
+	<summary>
+jd_CalendarType_2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.jd_CalendarType_3">
+	<summary>
+jd_CalendarType_3 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.ok">
+	<summary>
+ok 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.btnSave">
+	<summary>
+btnSave 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.workhour_0">
+	<summary>
+workhour_0 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.workhour_1">
+	<summary>
+workhour_1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.workhour_2">
+	<summary>
+workhour_2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.workhour_3">
+	<summary>
+workhour_3 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.caltype">
+	<summary>
+caltype 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay.txtbuguid">
+	<summary>
+txtbuguid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.crmForm">
+	<summary>
+crmForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.lbnSubmit">
+	<summary>
+lbnSubmit 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.ForeAction">
+	<summary>
+ForeAction 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.ForePara">
+	<summary>
+ForePara 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.BackAction">
+	<summary>
+BackAction 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.BackPara">
+	<summary>
+BackPara 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.FkGUID">
+	<summary>
+FkGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.UserGUID">
+	<summary>
+UserGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.DocType">
+	<summary>
+DocType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.PageState">
+	<summary>
+PageState 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.appMenu">
+	<summary>
+appMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1.appNavBar">
+	<summary>
+appNavBar 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Coding.Head1">
+	<summary>
+Head1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Coding.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Coding.txtMyModules">
+	<summary>
+txtMyModules 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Coding.appGridMenu1">
+	<summary>
+appGridMenu1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Coding.appGridMenu2">
+	<summary>
+appGridMenu2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Coding.appGridMenu3">
+	<summary>
+appGridMenu3 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Coding.appGridMenu4">
+	<summary>
+appGridMenu4 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Print.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Print.liContent">
+	<summary>
+liContent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_SelectWithdrawnAssign.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_SelectWithdrawnAssign.txtIsAllowMulti">
+	<summary>
+txtIsAllowMulti 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_SelectWithdrawnAssign.txtStepType">
+	<summary>
+txtStepType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_SelectWithdrawnAssign.appMenu1">
+	<summary>
+appMenu1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_SelectWithdrawnAssign.tdCOntent">
+	<summary>
+tdCOntent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_SelectWithdrawnAssign.appMenu">
+	<summary>
+appMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.HidUserGUID">
+	<summary>
+HidUserGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.SelectHistory">
+	<summary>
+SelectHistory 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.HiddenHistory">
+	<summary>
+HiddenHistory 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.HiddenData">
+	<summary>
+HiddenData 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.drpProcessKind">
+	<summary>
+drpProcessKind 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.txtProcessName">
+	<summary>
+txtProcessName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.drpProcessStatus">
+	<summary>
+drpProcessStatus 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.txtProcessNo">
+	<summary>
+txtProcessNo 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.txtInitDateBgn">
+	<summary>
+txtInitDateBgn 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.txtInitDateEnd">
+	<summary>
+txtInitDateEnd 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessQuery.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.step_attribute_for_entity.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.step_attribute_for_entity.txtopentype">
+	<summary>
+txtopentype 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.step_attribute_for_entity.txtstepid">
+	<summary>
+txtstepid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="P:MyWorkflow.SelectAuditorSingle.ShowDisabledUser">
+	<summary>
+ 提供给页面脚本使用
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:MyWorkflow.SetPrintContent.Head1">
+	<summary>
+Head1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetPrintContent.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetPrintContent.txtMode">
+	<summary>
+txtMode 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetPrintContent.AppGridMenu1">
+	<summary>
+AppGridMenu1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="M:MyWorkflow.WF_BusinessType_Edit0_UploadXML.UpLoadXMLFile(System.String@,System.String)">
+	<summary>
+ 上传XML文件
+ </summary>
+	<param name="strDirPath">文件目录</param>
+	<param name="strTempFileName">文件名</param>
+	<returns>上传后XML文件全路径</returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_BusinessType_Edit0_UploadXML.CheckXML(System.Xml.XmlDocument)">
+	<summary>
+ 校验上传的XML文件是否符合业务对象文件格式
+ </summary>
+	<param name="xmlDoc"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_BusinessType_Edit0_UploadXML.CheckDomainNode(System.Xml.XmlNode)">
+	<summary>
+ 校验 Domain节点是否符合业务对象的格式
+ </summary>
+	<param name="childNode"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_BusinessType_Edit0_UploadXML.CheckSQLKeyWord(System.Xml.XmlNode)">
+	<summary>
+ 校验 SQL语句关键字，防止SQL注入
+ </summary>
+	<param name="childNode"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAnalysis_Grid.form2">
+	<summary>
+form2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAnalysis_Grid.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAnalysis_Grid.AppGridE1">
+	<summary>
+AppGridE1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumn.AppGridMenuSelecTable">
+	<summary>
+AppGridMenuSelecTable 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumn.AppGridMenuSelecedTable">
+	<summary>
+AppGridMenuSelecedTable 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Rights_Company.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Rights_Company.Label1">
+	<summary>
+Label1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Rights_Company.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Rights_Company.Label2">
+	<summary>
+Label2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessEntity_Modify.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessEntity_Modify.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessEntity_Modify.txtProcessGUID">
+	<summary>
+txtProcessGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessEntity_Modify.txtProcessMode">
+	<summary>
+txtProcessMode 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessEntity_Modify.txtProcessModuleXml">
+	<summary>
+txtProcessModuleXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessEntity_Modify.txtopentype">
+	<summary>
+txtopentype 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessEntity_Modify.txtDocument">
+	<summary>
+txtDocument 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtBusinessGUID">
+	<summary>
+txtBusinessGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.ExtendFormUrl">
+	<summary>
+ExtendFormUrl 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtDocumentDiscuss">
+	<summary>
+txtDocumentDiscuss 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtDocumentType">
+	<summary>
+txtDocumentType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtDocumentGUID">
+	<summary>
+txtDocumentGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtBusinessTypeGUID">
+	<summary>
+txtBusinessTypeGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtStepGUID">
+	<summary>
+txtStepGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtCanDocModify">
+	<summary>
+txtCanDocModify 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtCanDocNumber">
+	<summary>
+txtCanDocNumber 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtCanUserModify">
+	<summary>
+txtCanUserModify 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtDomainXML">
+	<summary>
+txtDomainXML 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtDispBusinessDomain">
+	<summary>
+txtDispBusinessDomain 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtEditBusinessDomain">
+	<summary>
+txtEditBusinessDomain 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtCanChildBU">
+	<summary>
+txtCanChildBU 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtInterfaceStyle">
+	<summary>
+txtInterfaceStyle 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtNameCodingRule">
+	<summary>
+txtNameCodingRule 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtCodeCodingRule">
+	<summary>
+txtCodeCodingRule 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtIdeapBusinessDomain">
+	<summary>
+txtIdeapBusinessDomain 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtProcessCompareDomain">
+	<summary>
+txtProcessCompareDomain 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtNum">
+	<summary>
+txtNum 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtMonth">
+	<summary>
+txtMonth 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtYear">
+	<summary>
+txtYear 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtBUCode">
+	<summary>
+txtBUCode 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_lr.txtStepSpStatus">
+	<summary>
+txtStepSpStatus 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectCompany.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectCompany.repLD">
+	<summary>
+repLD 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectCompany.Literal1">
+	<summary>
+Literal1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectAuditorSingle.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectAuditorSingle.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectAuditorSingle.code">
+	<summary>
+code 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectAuditorSingle.txtIsOnlyShowUserBUs">
+	<summary>
+txtIsOnlyShowUserBUs 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectProcessEntity.appFind">
+	<summary>
+appFind 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectProcessEntity.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectProcessEntity.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent.appFind">
+	<summary>
+appFind 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAgent.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhoneForm_DefaultPreview.Head1">
+	<summary>
+Head1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhoneForm_DefaultPreview.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhoneForm_DefaultPreview.div_Form">
+	<summary>
+div_Form 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhoneForm_DefaultPreview.txtPCFormContent">
+	<summary>
+txtPCFormContent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_Table.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessOwner_Grid.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessOwner_Grid.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_UserCommonOpinion.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessRelations_Grid.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessRelations_Grid.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="M:MyWorkflow.WF_AuditorReplace_Grid.BindDataModule(System.String,System.String)">
+	<summary>
+ 绑定模板标签页数据,设置过滤条件
+ </summary>
+	<param name="oldAuditorGUID">原责任人GUID</param>
+	<param name="cUser">当前用户GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_AuditorReplace_Grid.BindDataEntity(System.String)">
+	<summary>
+ 绑定实例标签页数据,设置过滤条件
+ </summary>
+	<param name="oldAuditorGUID">原责任人GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_AuditorReplace_Grid.BindDataDraft(System.String)">
+	<summary>
+ 绑定草稿标签页数据,设置过滤条件
+ </summary>
+	<param name="oldAuditorGUID">原责任人GUID</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0.appNavBar">
+	<summary>
+appNavBar 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0_Grid.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0_Grid.txtDomainXml">
+	<summary>
+txtDomainXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1_Grid_Expression.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1_Grid_Expression.txtExp">
+	<summary>
+txtExp 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1_Grid_Expression.lblAlert">
+	<summary>
+lblAlert 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit1_Grid_Expression.btnSubmit">
+	<summary>
+btnSubmit 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_ResetAuditor.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_ResetAuditor.txtAuditorXML">
+	<summary>
+txtAuditorXML 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_ResetAuditor.txtNewAuditorXML">
+	<summary>
+txtNewAuditorXML 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_ResetAuditor.ok">
+	<summary>
+ok 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="M:MyWorkflow.WF_ProcessQuery.FilterSelectHistory">
+	<summary>
+ 填充历史查询条件
+ </summary>
+	<remarks></remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.ddlNextStep">
+	<summary>
+ddlNextStep 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.txtNextStationGUID">
+	<summary>
+txtNextStationGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.txtNextAuditorNames">
+	<summary>
+txtNextAuditorNames 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.txtNextAuditors">
+	<summary>
+txtNextAuditors 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.trNotice">
+	<summary>
+trNotice 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.sendMail">
+	<summary>
+sendMail 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.sendSMS">
+	<summary>
+sendSMS 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.btnSubmit">
+	<summary>
+btnSubmit 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.txtNextStepXml">
+	<summary>
+txtNextStepXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.txtProcessGUID">
+	<summary>
+txtProcessGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.txtBusinessGUID">
+	<summary>
+txtBusinessGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.txtBusinessType">
+	<summary>
+txtBusinessType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_Process_AutoInitiate.txtStationGUID">
+	<summary>
+txtStationGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectAuditorData.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectBusinessTypeForLookUp.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectBusinessTypeForLookUp.repLD">
+	<summary>
+repLD 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetInterfaceStyle.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetInterfaceStyle.txtMode">
+	<summary>
+txtMode 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetInterfaceStyle.AppGridMenu1">
+	<summary>
+AppGridMenu1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AuditorReplace_Grid.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AuditorReplace_Grid.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AuditorReplace_Grid.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentSysDir_Form.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentSysDir_Form.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.dv1">
+	<summary>
+dv1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.File1">
+	<summary>
+File1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.ddlCompany">
+	<summary>
+ddlCompany 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.ddlImportStyle">
+	<summary>
+ddlImportStyle 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.lblAlert">
+	<summary>
+lblAlert 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.btnNext">
+	<summary>
+btnNext 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.dv2">
+	<summary>
+dv2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.chkBusinessType">
+	<summary>
+chkBusinessType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.chkBaseInfo">
+	<summary>
+chkBaseInfo 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.chkRights">
+	<summary>
+chkRights 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.chkForm">
+	<summary>
+chkForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.chkStep">
+	<summary>
+chkStep 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Import.btnSubmit">
+	<summary>
+btnSubmit 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="M:MyWorkflow.WF_ProcessDefined_PhonePadForm_XmlHTTP.GetMobileVersion">
+	<summary>
+ 获取移动审批的版本 104/103/102
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_ProcessDefined_PhonePadForm_XmlHTTP.GetWorkflowSiteUrl">
+	<summary>
+ 获取工作流系统对应的站点地址
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_ProcessDefined_PhonePadForm_XmlHTTP.GetSiteUrlByApplicationId(System.String)">
+	<summary>
+ 获取业务系统对应的站点地址
+ </summary>
+	<param name="appId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:MyWorkflow.WF_ProcessEntity_Modify.GetOriginal(System.String)">
+	<summary>
+ 获取流程实例的原稿文档（取HTML中的超链接）
+ </summary>
+	<param name="strProcessGUID"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:MyWorkflow.WF_ProcessOwner_ALL.appFind">
+	<summary>
+appFind 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessOwner_ALL.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessOwner_ALL.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_ApproveGuide.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_ApproveGuide.ddlNextStep">
+	<summary>
+ddlNextStep 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_ApproveGuide.txtNextAuditorNames">
+	<summary>
+txtNextAuditorNames 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_ApproveGuide.txtNextAuditors">
+	<summary>
+txtNextAuditors 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_ApproveGuide.txtCCUserName">
+	<summary>
+txtCCUserName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_ApproveGuide.txtCCUserGUID">
+	<summary>
+txtCCUserGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_ApproveGuide.lScript">
+	<summary>
+lScript 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.step_attribute.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.step_attribute.txtopentype">
+	<summary>
+txtopentype 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.step_attribute.txtstepid">
+	<summary>
+txtstepid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.txtStationGUIDList">
+	<summary>
+txtStationGUIDList 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.txtCurBUCode">
+	<summary>
+txtCurBUCode 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.txtMultiSelect">
+	<summary>
+txtMultiSelect 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.Label1">
+	<summary>
+Label1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.appGridTree1">
+	<summary>
+appGridTree1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.chbTeam">
+	<summary>
+chbTeam 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.appMenu2">
+	<summary>
+appMenu2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.appGrid2">
+	<summary>
+appGrid2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectStation_Multiple.btnOk">
+	<summary>
+btnOk 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_lr.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_lr.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_lr.WFForm">
+	<summary>
+WFForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_lr.txtStepSpStatus">
+	<summary>
+txtStepSpStatus 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_lr.txtNextStepType">
+	<summary>
+txtNextStepType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessHandle_Form_lr.txtUserGUID">
+	<summary>
+txtUserGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectProcessAuditors.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SelectProcessAuditors.repLD">
+	<summary>
+repLD 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAnalysis_Step.form2">
+	<summary>
+form2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAnalysis_Step.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAnalysis_Step.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAnalysis_Step.AppGridE1">
+	<summary>
+AppGridE1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Rights.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_Rights.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_StandardStation.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_StandardStation.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_StandardStation.DefaultCodeChild">
+	<summary>
+DefaultCodeChild 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_StandardStation.DefaultCode">
+	<summary>
+DefaultCode 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentComment.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentComment.txtDomainXml">
+	<summary>
+txtDomainXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_MobileFormDetect.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_MobileFormDetect.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_MobileFormDetect.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_MobileFormDetect.txtBuGUIDs">
+	<summary>
+txtBuGUIDs 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_MobileFormDetect.btnSubmit">
+	<summary>
+txtBuGUIDs 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_MobileFormDetect.txtFilter">
+	<summary>
+txtBuGUIDs 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_SelectNextStep_SelectStepBand.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_SelectNextStep_SelectStepBand.txtIsAllowMulti">
+	<summary>
+txtIsAllowMulti 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_SelectNextStep_SelectStepBand.txtStepType">
+	<summary>
+txtStepType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_SelectNextStep_SelectStepBand.appMenu1">
+	<summary>
+appMenu1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_SelectNextStep_SelectStepBand.tdCOntent">
+	<summary>
+tdCOntent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessInitiate_Form_SelectNextStep_SelectStepBand.appMenu">
+	<summary>
+appMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectDomain.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectDomain.txtDomainXml">
+	<summary>
+txtDomainXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.DocumentUpFile_WF.mytitle">
+	<summary>
+mytitle 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.DocumentUpFile_WF.erpForm">
+	<summary>
+erpForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation_Edit.mytitle">
+	<summary>
+mytitle 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation_Edit.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation_Edit.appNavBar">
+	<summary>
+appNavBar 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.StandardStation_Edit.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumnPreview.Head1">
+	<summary>
+Head1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumnPreview.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumnPreview.div_Form">
+	<summary>
+div_Form 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumnPreview.txtBTDomainXml">
+	<summary>
+txtBTDomainXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumnPreview.txtFormDomainXml">
+	<summary>
+txtFormDomainXml 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumnPreview.txtShowNameWidth">
+	<summary>
+txtShowNameWidth 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_SingleColumnPreview.txtFormType">
+	<summary>
+txtFormType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessDefined_PhonePadForm_XmlHTTP.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_ToBeSelected.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor_ToBeSelected.repLD">
+	<summary>
+repLD 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectStationOrAuditor.appGridTree1">
+	<summary>
+appGridTree1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_BizSys.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_BizSys.txtProcessEntityGUID">
+	<summary>
+txtProcessEntityGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_BizSys.txtHandleText">
+	<summary>
+txtHandleText 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_BizSys.btnSubmit">
+	<summary>
+btnSubmit 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="M:MyWorkflow.SelectAuditorData.GetUserData(System.String,System.Boolean,System.String)">
+	<summary>
+ 返回所有符合条件的用户
+ </summary>
+	<param name="sShowDisabledUser">是否包含禁用用户</param>
+	<param name="searchValue">查询值</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay_Edit.mytitle">
+	<summary>
+mytitle 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay_Edit.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay_Edit.txtBUGUID">
+	<summary>
+txtBUGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay_Edit.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.SetSpecialDay_Edit.appForm">
+	<summary>
+appForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AttachMent_Word.appFormMenu">
+	<summary>
+appFormMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_AuditorReplace.appLog">
+	<summary>
+appLog 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0_UploadXML.form1">
+	<summary>
+form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0_UploadXML.lbnSubmit">
+	<summary>
+lbnSubmit 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0_UploadXML.ok">
+	<summary>
+ok 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0_UploadXML.ForeAction">
+	<summary>
+ForeAction 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0_UploadXML.ForePara">
+	<summary>
+ForePara 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_BusinessType_Edit0_UploadXML.fImport">
+	<summary>
+fImport 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentManage.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentManage.txtDelProcessDoc">
+	<summary>
+txtDelProcessDoc 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentManage.appTreeMenu">
+	<summary>
+appTreeMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentManage.appGridTree">
+	<summary>
+appGridTree 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentManage.appFind">
+	<summary>
+appFind 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentManage.appGridMenu">
+	<summary>
+appGridMenu 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_DocumentManage.appGrid">
+	<summary>
+appGrid 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAnalysis.appLog">
+	<summary>
+appLog 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAssign_Guide.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAssign_Guide.txtAssignedUsers">
+	<summary>
+txtAssignedUsers 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAssign_Guide.txtAssignUserName">
+	<summary>
+txtAssignUserName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAssign_Guide.txtAssignUserGUID">
+	<summary>
+txtAssignUserGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessAssign_Guide.lScript">
+	<summary>
+lScript 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_Guide.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_Guide.txtCCUserName">
+	<summary>
+txtCCUserName 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_Guide.txtCCUserGUID">
+	<summary>
+txtCCUserGUID 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_Guide.txtCCUserType">
+	<summary>
+txtCCUserType 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_ProcessCancel_Guide.lScript">
+	<summary>
+lScript 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor.mapForm">
+	<summary>
+mapForm 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor.tdContent">
+	<summary>
+tdContent 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor.appGridMenu1">
+	<summary>
+appGridMenu1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_SelectAuditor.appGridMenu2">
+	<summary>
+appGridMenu2 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member><member name="F:MyWorkflow.WF_XmlHTTP.Form1">
+	<summary>
+Form1 控件。
+</summary>
+	<remarks>
+自动生成的字段。
+若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+</remarks>
+</member>
+</members>
+</doc>

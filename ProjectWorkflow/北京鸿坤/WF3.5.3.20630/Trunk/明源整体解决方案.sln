@@ -1,0 +1,109 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Mysoft.Map.Workflow", "Mysoft.Map.Workflow\Mysoft.Map.Workflow.vbproj", "{661074B7-F7A7-401C-8ACD-0C1D8E015B97}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Mysoft.PubProject.Business", "Mysoft.PubProject.Business\Mysoft.PubProject.Business.vbproj", "{4618E399-FDF5-41F6-A1AA-0D78C627E280}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PubProject", "Map\PubProject\PubProject.vbproj", "{B5715D74-2D50-4570-A233-6A45E6899097}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Map", "Map\Map.vbproj", "{BAEC5A68-6D02-42B8-88D0-C3B867466394}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MyWorkflow", "Map\MyWorkflow\MyWorkflow.vbproj", "{E58CF620-940C-4575-9014-F9D995FEECF3}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Mysoft.Map.Workflow.Services", "Mysoft.Map.Workflow.Services\Mysoft.Map.Workflow.Services.vbproj", "{01A5AB64-366B-4821-911F-0A2EF995C9A9}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://10.5.10.46:8080/tfs/projectworkflow
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Map\\Map.vbproj
+		SccProjectName1 = Map
+		SccLocalPath1 = Map
+		SccProjectUniqueName2 = Map\\MyWorkflow\\MyWorkflow.vbproj
+		SccProjectName2 = Map/MyWorkflow
+		SccLocalPath2 = Map\\MyWorkflow
+		SccProjectUniqueName3 = Map\\PubProject\\PubProject.vbproj
+		SccProjectName3 = Map/PubProject
+		SccLocalPath3 = Map\\PubProject
+		SccProjectUniqueName4 = Mysoft.Map.Workflow.Services\\Mysoft.Map.Workflow.Services.vbproj
+		SccProjectName4 = Mysoft.Map.Workflow.Services
+		SccLocalPath4 = Mysoft.Map.Workflow.Services
+		SccProjectUniqueName5 = Mysoft.Map.Workflow\\Mysoft.Map.Workflow.vbproj
+		SccProjectName5 = Mysoft.Map.Workflow
+		SccLocalPath5 = Mysoft.Map.Workflow
+		SccProjectUniqueName6 = Mysoft.PubProject.Business\\Mysoft.PubProject.Business.vbproj
+		SccProjectName6 = Mysoft.PubProject.Business
+		SccLocalPath6 = Mysoft.PubProject.Business
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Debug|.NET.Build.0 = Debug|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Release|.NET.ActiveCfg = Release|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Release|.NET.Build.0 = Release|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{661074B7-F7A7-401C-8ACD-0C1D8E015B97}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4618E399-FDF5-41F6-A1AA-0D78C627E280}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{4618E399-FDF5-41F6-A1AA-0D78C627E280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4618E399-FDF5-41F6-A1AA-0D78C627E280}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4618E399-FDF5-41F6-A1AA-0D78C627E280}.Release|.NET.ActiveCfg = Release|Any CPU
+		{4618E399-FDF5-41F6-A1AA-0D78C627E280}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4618E399-FDF5-41F6-A1AA-0D78C627E280}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B5715D74-2D50-4570-A233-6A45E6899097}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{B5715D74-2D50-4570-A233-6A45E6899097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5715D74-2D50-4570-A233-6A45E6899097}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B5715D74-2D50-4570-A233-6A45E6899097}.Release|.NET.ActiveCfg = Release|Any CPU
+		{B5715D74-2D50-4570-A233-6A45E6899097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5715D74-2D50-4570-A233-6A45E6899097}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BAEC5A68-6D02-42B8-88D0-C3B867466394}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{BAEC5A68-6D02-42B8-88D0-C3B867466394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAEC5A68-6D02-42B8-88D0-C3B867466394}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BAEC5A68-6D02-42B8-88D0-C3B867466394}.Release|.NET.ActiveCfg = Release|Any CPU
+		{BAEC5A68-6D02-42B8-88D0-C3B867466394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAEC5A68-6D02-42B8-88D0-C3B867466394}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Debug|.NET.Build.0 = Debug|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Debug|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Debug|Mixed Platforms.Build.0 = Release|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Release|.NET.ActiveCfg = Release|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Release|.NET.Build.0 = Release|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E58CF620-940C-4575-9014-F9D995FEECF3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Debug|.NET.Build.0 = Debug|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Release|.NET.ActiveCfg = Release|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Release|.NET.Build.0 = Release|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{01A5AB64-366B-4821-911F-0A2EF995C9A9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

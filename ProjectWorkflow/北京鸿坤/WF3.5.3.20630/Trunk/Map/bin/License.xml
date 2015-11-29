@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="gb2312"?>
+<license version="3">
+  <data>
+    <product name="ERP253" version="ERP253" productguid="41dce3b5-2e3f-4229-be2c-d955e9442658" producttype="te" licensemode="3" erpusercount="-1" companycount="-1" projectcount="-1" normalusercount="-1" slusercount="-1" dogid="1941717647" dogpos="16" group="0000,0001,0002,0003,0004,0005,0006,0007,0008,0009,0010,0011,0012,0013,0014,0015,0016,0017,0018,0019,0020,0021,0022,0023,0024,0026,0027,0028,0029,0030">
+      <dbconns>
+        <dbconn appname="Default" regname="erp303sp4_beijing_bjhk" />
+        <dbconn appname="SaleSystem" regname="ERP303_DEV" />
+        <dbconn appname="Erp" regname="ERP303_DEV" />
+        <dbconn appname="Lms" regname="ERP303_DEV" />
+      </dbconns>
+      <system name="预算与决策分析" code="03" enabled="1">
+        <subsystem name="全面预算管理" code="0205" version="5.0.1.30415" dllname="Qmys.dll" enabled="1">
+          <function code="020501" level="0" enabled="1" />
+          <function code="02050101" level="1" enabled="1" />
+          <function code="02050102" level="1" enabled="1" />
+          <function code="02050103" level="1" enabled="1" />
+          <function code="02050104" level="1" enabled="1" />
+          <function code="02050106" level="1" enabled="1" />
+          <function code="02050105" level="1" enabled="1" />
+          <function code="02050109" level="1" enabled="1" />
+          <function code="020502" level="0" enabled="1" />
+          <function code="02050204" level="1" enabled="1" />
+          <function code="02050201" level="1" enabled="1" />
+          <function code="02050202" level="1" enabled="1" />
+          <function code="02050203" level="1" enabled="1" />
+          <function code="02050405" level="1" enabled="1" />
+          <function code="02050501" level="1" enabled="1" />
+          <function code="020503" level="0" enabled="1" />
+          <function code="02050301" level="1" enabled="1" />
+          <function code="02050302" level="1" enabled="1" />
+          <function code="02050303" level="1" enabled="1" />
+          <function code="02050304" level="1" enabled="1" />
+          <function code="020504" level="0" enabled="1" />
+          <function code="02050401" level="1" enabled="1" />
+          <function code="02050402" level="1" enabled="1" />
+          <function code="02050404" level="1" enabled="1" />
+          <function code="02050403" level="1" enabled="1" />
+          <function code="020505" level="0" enabled="1" />
+          <function code="02050502" level="1" enabled="1" />
+          <function code="02050503" level="1" enabled="1" />
+          <function code="02050504" level="1" enabled="1" />
+          <function code="02050505" level="1" enabled="1" />
+          <function code="02050506" level="1" enabled="1" />
+          <function code="02050507" level="1" enabled="1" />
+          <function code="02050508" level="1" enabled="1" />
+          <function code="02050509" level="1" enabled="1" />
+          <function code="02050510" level="1" enabled="1" />
+          <function code="020506" level="0" enabled="1" />
+          <function code="02050601" level="1" enabled="1" />
+          <function code="02050602" level="1" enabled="1" />
+          <function code="02050603" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="费用管理" code="0206" version="5.0.0.20205" dllname="Qmys.dll" enabled="1">
+          <function code="020601" level="0" enabled="1" />
+          <function code="02060102" level="1" enabled="1" />
+          <function code="02060103" level="1" enabled="1" />
+          <function code="02060105" level="1" enabled="1" />
+          <function code="02060106" level="1" enabled="1" />
+          <function code="02060104" level="1" enabled="1" />
+          <function code="02060107" level="1" enabled="1" />
+          <function code="020602" level="0" enabled="1" />
+          <function code="02060201" level="1" enabled="1" />
+          <function code="02060202" level="1" enabled="1" />
+          <function code="02060203" level="1" enabled="1" />
+          <function code="02060204" level="1" enabled="1" />
+          <function code="02060205" level="1" enabled="1" />
+          <function code="020603" level="0" enabled="1" />
+          <function code="02060301" level="1" enabled="1" />
+          <function code="02060302" level="1" enabled="1" />
+          <function code="02060303" level="1" enabled="1" />
+          <function code="02060304" level="1" enabled="1" />
+          <function code="02060305" level="1" enabled="1" />
+          <function code="02060306" level="1" enabled="1" />
+          <function code="02060307" level="1" enabled="1" />
+          <function code="020604" level="0" enabled="1" />
+          <function code="02060401" level="1" enabled="1" />
+          <function code="02060402" level="1" enabled="1" />
+          <function code="02060403" level="1" enabled="1" />
+          <function code="020619" level="0" enabled="1" />
+          <function code="02061999" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="企业运营门户" code="0301" version="5.0.0.20205" dllname="GlJsc.dll" enabled="1">
+          <function code="030101" level="0" isincrement="1" enabled="1" />
+          <function code="03010101" level="1" isincrement="1" enabled="1" />
+          <function code="03010104" level="1" isincrement="1" enabled="1" />
+          <function code="03010105" level="1" isincrement="1" enabled="1" />
+          <function code="030102" level="0" isincrement="1" enabled="1" />
+          <function code="03010201" level="1" isincrement="1" enabled="1" />
+          <function code="03010202" level="1" isincrement="1" enabled="1" />
+        </subsystem>
+      </system>
+      <system name="项目运营管理(POM)" code="02" enabled="1">
+        <subsystem name="投资分析" code="0203" version="5.0.1.31023" dllname="Tzfx.dll" enabled="1">
+          <function code="020301" level="0" enabled="1" />
+          <function code="02030101" level="1" enabled="1" />
+          <function code="02030103" level="1" enabled="1" />
+          <function code="02030104" level="1" enabled="1" />
+          <function code="02030105" level="1" enabled="1" />
+          <function code="02030110" level="1" enabled="1" />
+          <function code="020302" level="0" enabled="1" />
+          <function code="02030201" level="1" enabled="1" />
+          <function code="02030202" level="1" enabled="1" />
+          <function code="02030204" level="1" enabled="1" />
+          <function code="02030205" level="1" enabled="1" />
+          <function code="02030206" level="1" enabled="1" />
+          <function code="020303" level="0" enabled="1" />
+          <function code="02030301" level="1" enabled="1" />
+          <function code="02030302" level="1" enabled="1" />
+          <function code="02030303" level="1" enabled="1" />
+          <function code="020304" level="0" enabled="1" />
+          <function code="02030401" level="1" enabled="1" />
+          <function code="02030402" level="1" enabled="1" />
+          <function code="02030403" level="1" enabled="1" />
+          <function code="020319" level="0" enabled="1" />
+          <function code="02031999" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="项目计划管理" code="0202" version="5.0.4.30930" dllname="Xmjd.dll" enabled="1">
+          <function code="020201" level="0" enabled="1" />
+          <function code="02020101" level="1" enabled="1" />
+          <function code="02020102" level="1" enabled="1" />
+          <function code="02020105" level="1" enabled="1" />
+          <function code="02020107" level="1" enabled="1" />
+          <function code="02020205" level="1" enabled="1" />
+          <function code="02020103" level="1" enabled="1" />
+          <function code="02020106" level="1" isincrement="1" enabled="1" />
+          <function code="020202" level="0" enabled="1" />
+          <function code="02020211" level="1" enabled="1" />
+          <function code="02020215" level="1" enabled="1" />
+          <function code="02020213" level="1" enabled="1" />
+          <function code="020204" level="1" enabled="1" />
+          <function code="02020201" level="1" enabled="1" />
+          <function code="02020207" level="1" enabled="1" />
+          <function code="02020206" level="1" enabled="1" />
+          <function code="02020210" level="1" enabled="1" />
+          <function code="02020202" level="1" enabled="1" />
+          <function code="02020204" level="1" enabled="1" />
+          <function code="02020216" level="1" enabled="1" />
+          <function code="020205" level="1" enabled="1" />
+          <function code="02020501" level="1" enabled="1" />
+          <function code="02020212" level="1" enabled="1" />
+          <function code="02020217" level="1" enabled="1" />
+          <function code="020203" level="0" enabled="1" />
+          <function code="02020304" level="1" enabled="1" />
+          <function code="02020301" level="1" enabled="1" />
+          <function code="02020218" level="1" enabled="1" />
+          <function code="02020302" level="1" enabled="1" />
+          <function code="02020303" level="1" enabled="1" />
+          <function code="020219" level="0" enabled="1" />
+          <function code="02020603" level="1" enabled="1" />
+          <function code="02020604" level="1" enabled="1" />
+          <function code="02021999" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="采购招投标管理" code="0204" version="5.0.1.40402" dllname="CgZtb.dll" enabled="1">
+          <function code="020401" level="0" enabled="1" />
+          <function code="02040101" level="1" enabled="1" />
+          <function code="020402" level="0" enabled="1" />
+          <function code="02040201" level="1" enabled="1" />
+          <function code="02040202" level="1" enabled="1" />
+          <function code="02040203" level="1" enabled="1" />
+          <function code="02040204" level="1" enabled="1" />
+          <function code="02040208" level="1" isincrement="1" enabled="1" />
+          <function code="020403" level="0" enabled="1" />
+          <function code="02040301" level="1" enabled="1" />
+          <function code="02040302" level="1" enabled="1" />
+          <function code="02040303" level="1" enabled="1" />
+          <function code="020404" level="0" enabled="1" />
+          <function code="02040401" level="1" enabled="1" />
+          <function code="02040402" level="1" enabled="1" />
+          <function code="02040403" level="1" enabled="1" />
+          <function code="02040404" level="1" enabled="1" />
+          <function code="02040405" level="1" enabled="1" />
+          <function code="02040406" level="1" enabled="1" />
+          <function code="020405" level="0" enabled="1" />
+          <function code="02040501" level="1" enabled="1" />
+          <function code="02040502" level="1" enabled="1" />
+          <function code="02040503" level="1" enabled="1" />
+          <function code="02040505" level="1" enabled="1" />
+          <function code="020406" level="0" enabled="1" />
+          <function code="02040601" level="1" enabled="1" />
+          <function code="020419" level="0" enabled="1" />
+          <function code="02041999" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="成本管理" code="0201" version="5.0.6.40205" dllname="Cbgl.dll" enabled="1">
+          <function code="020101" level="0" enabled="1" />
+          <function code="02010207" level="1" enabled="1" />
+          <function code="02010201" level="1" enabled="1" />
+          <function code="02010202" level="1" enabled="1" />
+          <function code="02010301" level="1" enabled="1" />
+          <function code="02010303" level="1" enabled="1" />
+          <function code="02010302" level="1" enabled="1" />
+          <function code="02010206" level="1" enabled="1" />
+          <function code="02010108" level="1" isincrement="1" enabled="1" />
+          <function code="02010210" level="1" enabled="1" />
+          <function code="020102" level="0" enabled="1" />
+          <function code="02010204" level="1" enabled="1" />
+          <function code="02010205" level="1" enabled="1" />
+          <function code="020110" level="0" enabled="1" />
+          <function code="02010309" level="1" enabled="1" />
+          <function code="02010311" level="1" enabled="1" />
+          <function code="02010312" level="1" enabled="1" />
+          <function code="02010313" level="1" enabled="1" />
+          <function code="02010305" level="1" enabled="1" />
+          <function code="020103" level="0" enabled="1" />
+          <function code="02010304" level="1" enabled="1" />
+          <function code="02010306" level="1" enabled="1" />
+          <function code="02010307" level="1" enabled="1" />
+          <function code="02010308" level="1" enabled="1" />
+          <function code="020104" level="0" enabled="1" />
+          <function code="02010401" level="1" enabled="1" />
+          <function code="02010402" level="1" enabled="1" />
+          <function code="02010403" level="1" enabled="1" />
+          <function code="02010404" level="1" enabled="1" />
+          <function code="020109" level="0" enabled="1" />
+          <function code="02010400" level="1" enabled="1" />
+          <function code="02010405" level="1" enabled="1" />
+          <function code="02010412" level="1" enabled="1" />
+          <function code="02010408" level="1" enabled="1" />
+          <function code="02010705" level="1" isincrement="1" enabled="1" />
+          <function code="02010706" level="1" isincrement="1" enabled="1" />
+          <function code="020105" level="0" enabled="1" />
+          <function code="02010501" level="1" enabled="1" />
+          <function code="02010502" level="1" enabled="1" />
+          <function code="020113" level="0" enabled="1" />
+          <function code="02010504" level="1" enabled="1" />
+          <function code="02010505" level="1" enabled="1" />
+          <function code="02010506" level="1" enabled="1" />
+          <function code="020106" level="0" enabled="1" />
+          <function code="02010601" level="1" enabled="1" />
+          <function code="02010603" level="1" enabled="1" />
+          <function code="02010703" level="1" enabled="1" />
+          <function code="02010604" level="1" enabled="1" />
+          <function code="02010605" level="1" enabled="1" />
+          <function code="020112" level="0" enabled="1" />
+          <function code="02010208" level="1" enabled="1" />
+          <function code="02010209" level="1" enabled="1" />
+          <function code="02010704" level="1" enabled="1" />
+          <function code="020119" level="0" enabled="1" />
+          <function code="02011999" level="1" enabled="1" />
+        </subsystem>
+      </system>
+      <system name="客户关系管理(CRM)" code="01" enabled="1">
+        <subsystem name="销售管理" code="0101" version="5.0.8.40205" dllname="Slxt.dll" enabled="1">
+          <function code="010101" level="0" enabled="1" />
+          <function code="01010102" level="1" enabled="1" />
+          <function code="01010104" level="1" enabled="1" />
+          <function code="01010105" level="1" enabled="1" />
+          <function code="01010111" level="1" enabled="1" />
+          <function code="01010106" level="1" enabled="1" />
+          <function code="01010107" level="1" enabled="1" />
+          <function code="01010108" level="1" enabled="1" />
+          <function code="01010110" level="1" enabled="1" />
+          <function code="01010112" level="1" isincrement="1" enabled="1" />
+          <function code="01010604" level="1" enabled="1" />
+          <function code="010106" level="0" isincrement="1" enabled="1" />
+          <function code="01010601" level="1" isincrement="1" enabled="1" />
+          <function code="01010602" level="1" isincrement="1" enabled="1" />
+          <function code="01010603" level="1" isincrement="1" enabled="1" />
+          <function code="01010605" level="1" isincrement="1" enabled="1" />
+          <function code="010102" level="0" enabled="1" />
+          <function code="01010201" level="1" enabled="1" />
+          <function code="01010208" level="1" enabled="1" />
+          <function code="01010202" level="1" enabled="1" />
+          <function code="01010203" level="1" enabled="1" />
+          <function code="01010204" level="1" enabled="1" />
+          <function code="01010205" level="1" enabled="1" />
+          <function code="01010206" level="1" enabled="1" />
+          <function code="01010207" level="1" enabled="1" />
+          <function code="010103" level="0" enabled="1" />
+          <function code="01010301" level="1" enabled="1" />
+          <function code="01010302" level="1" enabled="1" />
+          <function code="01010311" level="1" enabled="1" />
+          <function code="01010303" level="1" enabled="1" />
+          <function code="01010304" level="1" enabled="1" />
+          <function code="01010308" level="1" enabled="1" />
+          <function code="01010305" level="1" enabled="1" />
+          <function code="01010306" level="1" enabled="1" />
+          <function code="01010310" level="1" enabled="1" />
+          <function code="01010309" level="1" enabled="1" />
+          <function code="01010315" level="1" isincrement="1" enabled="1" />
+          <function code="010104" level="0" enabled="1" />
+          <function code="01010407" level="1" enabled="1" />
+          <function code="01010408" level="1" enabled="1" />
+          <function code="01010401" level="1" enabled="1" />
+          <function code="01010402" level="1" enabled="1" />
+          <function code="01010403" level="1" enabled="1" />
+          <function code="01010404" level="1" enabled="1" />
+          <function code="01010406" level="1" enabled="1" />
+          <function code="010105" level="0" enabled="1" />
+          <function code="01010506" level="1" enabled="1" />
+          <function code="01010501" level="1" enabled="1" />
+          <function code="01010502" level="1" enabled="1" />
+          <function code="01010503" level="1" enabled="1" />
+          <function code="01010507" level="1" enabled="1" />
+          <function code="01010509" level="1" enabled="1" />
+          <function code="01010510" level="1" isincrement="1" enabled="1" />
+          <function code="01010512" level="1" isincrement="1" enabled="1" />
+          <function code="010110" level="0" enabled="1" />
+          <function code="01011999" level="1" enabled="1" />
+          <function code="01011901" level="1" enabled="1" />
+          <function code="010115" level="0" isincrement="1" enabled="1" />
+        </subsystem>
+        <subsystem name="租赁管理" code="0104" version="5.0.2.30531" dllname="Zlxt.dll" enabled="1">
+          <function code="010401" level="0" enabled="1" />
+          <function code="01040101" level="1" enabled="1" />
+          <function code="01040102" level="1" enabled="1" />
+          <function code="01040103" level="1" enabled="1" />
+          <function code="01040104" level="1" enabled="1" />
+          <function code="01040106" level="1" enabled="1" />
+          <function code="01040105" level="1" enabled="1" />
+          <function code="01040110" level="1" enabled="1" />
+          <function code="010407" level="0" enabled="1" />
+          <function code="01040701" level="1" enabled="1" />
+          <function code="01040702" level="1" enabled="1" />
+          <function code="01040703" level="1" enabled="1" />
+          <function code="010403" level="0" enabled="1" />
+          <function code="01040304" level="1" enabled="1" />
+          <function code="01040301" level="1" enabled="1" />
+          <function code="01040302" level="1" enabled="1" />
+          <function code="01040303" level="1" enabled="1" />
+          <function code="01040305" level="1" enabled="1" />
+          <function code="01040306" level="1" enabled="1" />
+          <function code="010404" level="0" enabled="1" />
+          <function code="01040401" level="1" enabled="1" />
+          <function code="01040402" level="1" enabled="1" />
+          <function code="01040403" level="1" enabled="1" />
+          <function code="01040404" level="1" enabled="1" />
+          <function code="01040406" level="1" enabled="1" />
+          <function code="010405" level="0" enabled="1" />
+          <function code="01040501" level="1" enabled="1" />
+          <function code="01040502" level="1" enabled="1" />
+          <function code="01040503" level="1" enabled="1" />
+          <function code="01040504" level="1" enabled="1" />
+          <function code="010406" level="0" enabled="1" />
+          <function code="01040601" level="1" enabled="1" />
+          <function code="01040602" level="1" enabled="1" />
+          <function code="01040603" level="1" enabled="1" />
+          <function code="01040604" level="1" enabled="1" />
+          <function code="01040605" level="1" enabled="1" />
+          <function code="010419" level="0" enabled="1" />
+          <function code="01041999" level="1" enabled="1" />
+          <function code="01041901" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="客户服务管理" code="0102" version="5.0.5.40402" dllname="Kfxt.dll" enabled="1">
+          <function code="010202" level="0" enabled="1" />
+          <function code="01020202" level="1" enabled="1" />
+          <function code="01020203" level="1" enabled="1" />
+          <function code="01020204" level="1" enabled="1" />
+          <function code="01020205" level="1" enabled="1" />
+          <function code="01020206" level="1" enabled="1" />
+          <function code="01020207" level="1" enabled="1" />
+          <function code="01020209" level="1" enabled="1" />
+          <function code="01020210" level="1" enabled="1" />
+          <function code="010203" level="0" enabled="1" />
+          <function code="01020301" level="1" enabled="1" />
+          <function code="01020302" level="1" enabled="1" />
+          <function code="01020303" level="1" enabled="1" />
+          <function code="01020304" level="1" enabled="1" />
+          <function code="010204" level="0" isincrement="1" enabled="1" />
+          <function code="01020403" level="1" isincrement="1" enabled="1" />
+          <function code="010205" level="0" enabled="1" />
+          <function code="01020502" level="1" enabled="1" />
+          <function code="01020504" level="1" enabled="1" />
+          <function code="01020503" level="1" enabled="1" />
+          <function code="01020501" level="1" enabled="1" />
+          <function code="01020505" level="1" enabled="1" />
+          <function code="010219" level="0" enabled="1" />
+          <function code="01021999" level="1" enabled="1" />
+          <function code="01021901" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="会员管理" code="0103" version="5.0.6.30531" dllname="Hyxt.dll" enabled="1">
+          <function code="010302" level="0" enabled="1" />
+          <function code="01030203" level="1" enabled="1" />
+          <function code="01030201" level="1" enabled="1" />
+          <function code="01030202" level="1" enabled="1" />
+          <function code="01030204" level="1" enabled="1" />
+          <function code="01030404" level="1" enabled="1" />
+          <function code="010303" level="0" enabled="1" />
+          <function code="01030301" level="1" enabled="1" />
+          <function code="01030302" level="1" enabled="1" />
+          <function code="01030303" level="1" enabled="1" />
+          <function code="01030304" level="1" enabled="1" />
+          <function code="010304" level="0" enabled="1" />
+          <function code="01030401" level="1" enabled="1" />
+          <function code="01030402" level="1" enabled="1" />
+          <function code="01030403" level="1" enabled="1" />
+          <function code="01030405" level="1" enabled="1" />
+          <function code="010305" level="0" enabled="1" />
+          <function code="01030501" level="1" enabled="1" />
+          <function code="010306" level="0" enabled="1" />
+          <function code="01030601" level="1" enabled="1" />
+          <function code="010319" level="0" enabled="1" />
+          <function code="01031999" level="1" enabled="1" />
+          <function code="01031901" level="1" enabled="1" />
+          <function code="01031918" level="0" isincrement="1" enabled="1" />
+        </subsystem>
+      </system>
+      <system name="协同办公平台" code="10" enabled="1">
+        <subsystem name="工作流管理" code="1001" version="3.5.1.10430" dllname="MySoft.Map.Workflow.dll" enabled="1">
+          <function code="100101" level="0" isincrement="1" enabled="1" />
+          <function code="10010101" level="1" isincrement="1" enabled="1" />
+          <function code="10010102" level="1" isincrement="1" enabled="1" />
+          <function code="10010103" level="1" isincrement="1" enabled="1" />
+          <function code="10010107" level="1" isincrement="1" enabled="1" />
+          <function code="10010104" level="1" isincrement="1" enabled="1" />
+          <function code="10010105" level="1" isincrement="1" enabled="1" />
+          <function code="10010106" level="1" isincrement="1" enabled="1" />
+          <function code="10010108" level="1" isincrement="1" enabled="1" />
+          <function code="10010109" level="1" isincrement="1" enabled="1" />
+          <function code="100102" level="0" isincrement="1" enabled="1" />
+          <function code="10010201" level="1" isincrement="1" enabled="1" />
+          <function code="10010204" level="1" isincrement="1" enabled="1" />
+          <function code="10010202" level="1" isincrement="1" enabled="1" />
+          <function code="10010205" level="1" isincrement="1" enabled="1" />
+          <function code="10010206" level="1" isincrement="1" enabled="1" />
+        </subsystem>
+      </system>
+      <system name="系统管理" code="00" enabled="1">
+        <subsystem name="系统设置" code="0000" version="3.0.1.10430" dllname="Mysoft.Map.Core.dll" enabled="1">
+          <function code="000001" level="0" enabled="1" />
+          <function code="00000101" level="1" enabled="1" />
+          <function code="00000102" level="1" enabled="1" />
+          <function code="00000103" level="1" enabled="1" />
+          <function code="00000104" level="1" enabled="1" />
+          <function code="00000105" level="1" enabled="1" />
+          <function code="00000106" level="1" enabled="1" />
+          <function code="00000107" level="1" enabled="1" />
+          <function code="00000111" level="1" enabled="1" />
+          <function code="00000112" level="1" enabled="1" />
+          <function code="00000113" level="1" enabled="1" />
+          <function code="00000114" level="1" enabled="1" />
+          <function code="00000120" level="1" enabled="1" />
+          <function code="000002" level="0" enabled="1" />
+          <function code="00000201" level="1" enabled="1" />
+          <function code="0000029902" level="2" enabled="1" />
+          <function code="00000203" level="1" enabled="1" />
+          <function code="00000202" level="1" enabled="1" />
+          <function code="000015" level="0" isincrement="1" enabled="1" />
+        </subsystem>
+      </system>
+      <system name="企业知识门户(EKP)" code="20" enabled="1">
+        <subsystem name="协同办公" code="2002" version="2.0.0.11013" dllname="EKP.dll" enabled="1">
+          <function code="200201" level="0" enabled="1" />
+          <function code="20020101" level="1" enabled="1" />
+          <function code="20020105" level="1" enabled="1" />
+          <function code="20020106" level="1" enabled="1" />
+          <function code="20020107" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="知识管理" code="2003" version="2.0.0.11013" dllname="EKP.dll" enabled="1">
+          <function code="200301" level="0" enabled="1" />
+          <function code="20030101" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="门户管理" code="2001" version="2.0.0.11013" dllname="EKP.dll" enabled="1">
+          <function code="200101" level="0" enabled="1" />
+          <function code="20010101" level="1" enabled="1" />
+          <function code="20010102" level="1" enabled="1" />
+          <function code="20010103" level="1" enabled="1" />
+          <function code="20010104" level="1" enabled="1" />
+          <function code="20010105" level="1" enabled="1" />
+          <function code="200102" level="0" enabled="1" />
+          <function code="20010201" level="1" enabled="1" />
+          <function code="20010210" level="1" enabled="1" />
+          <function code="200100" level="0" enabled="1" />
+          <function code="200190" level="0" isincrement="1" enabled="1" />
+          <function code="200191" level="0" isincrement="1" enabled="1" />
+          <function code="200199" level="0" isincrement="1" enabled="1" />
+        </subsystem>
+      </system>
+      <system name="移动ERP" code="30" enabled="1">
+        <subsystem name="移动销售" code="3001" version="2.0.2.11130" dllname="MobileSale.dll" enabled="1">
+          <function code="300101" level="0" enabled="1" />
+          <function code="30010101" level="1" enabled="1" />
+          <function code="300102" level="0" enabled="1" />
+          <function code="30010201" level="1" enabled="1" />
+          <function code="30010202" level="1" enabled="1" />
+          <function code="300103" level="0" enabled="1" />
+          <function code="30010301" level="1" enabled="1" />
+          <function code="30010302" level="1" enabled="1" />
+        </subsystem>
+        <subsystem name="移动审批" code="3002" version="1.0.2.21130" dllname="Mysoft.MobileWorkflow.Business.dll" enabled="1">
+          <function code="300201" level="0" enabled="1" />
+          <function code="30020101" level="1" enabled="1" />
+        </subsystem>
+      </system>
+    </product>
+  </data>
+  <signature>KUqf9rfz87l2ucLBpgkNZBGcmjKZRg6leVD5TGazW9d4fa92RsKfHllOhHY9jUyXNbeq8aAHV063VqGRCwVCLZ5d/HuecejsovrpCswNuBTaWNOeS4XAFjgnZxPze0Q9khlfopcqZ0dmUYTPdJQYr7EacuiZdJ/8A0hJJ6bkd5A=</signature>
+</license>
