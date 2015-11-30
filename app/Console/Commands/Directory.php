@@ -54,7 +54,7 @@
 //}
 
 
-$dir = 'F:\laravel\ProjectWorkflow';
+$target_dir = 'F:\mygit\laravel\ProjectWorkflow';
 $list = [];
 $project_list = [];
 
@@ -107,30 +107,87 @@ function find_workflow_dir($dir,&$project_array){
     }
 }
 
+
+/**
+ * 取文件最后$n行
+ * @param string $filename 文件路径
+ * @param int $n 最后几行
+ * @return mixed false表示有错误，成功则返回字符串
+ */
+function FileLastLines($filename,$n){
+    if(!$fp=fopen($filename,'r')){
+        echo "打开文件失败，请检查文件路径是否正确，路径和文件名不要包含中文";
+        return false;
+    }
+    $pos=-2;
+    $eof="";
+    $str="";
+    while($n>0){
+        while($eof!="\n"){
+            if(!fseek($fp,$pos,SEEK_END)){
+                $eof=fgetc($fp);
+                $pos--;
+            }else{
+                break;
+            }
+        }
+        $str.=fgets($fp);
+        $eof="";
+        $n--;
+    }
+    return $str;
+}
+
+function get_assemblyInfo_match($pattern,$context)
+{
+    /*PHP正则提取图片img标记中的任意属性*/
+    //$str = '<center><img src="/uploads/images/20100516000.jpg" height="120" width="120"><br />PHP正则提取或更改图片img标记中的任意属性</center>';
+
+    //$match = 'AssemblyVersion.*\)';
+    //1、取整个图片代码
+
+    $pattern = '/'.$pattern.'/';
+
+    preg_match($pattern,$context,$matches);
+    if(!empty($matches)) {
+        return $matches[0];
+    }
+    else{
+        return null;
+    }
+}
+
 function get_assemblyInfo($dir,$name)
 {
-    $file_handle = fopen($dir."\\AssemblyInfo.vb", "r");
-    $contents = fread($file_handle,filesize($dir."\\AssemblyInfo.vb"));
+//    $last = FileLastLines($dir."\\".$name,1);
+    $file_handle = fopen($dir."\\".$name, "r");
+    $context = fread($file_handle,filesize($dir."\\AssemblyInfo.vb"));
     fclose($file_handle);
-    echo $contents;
-    die;
+
+    $pattern_version = 'AssemblyVersion.*\)';
+    $pattern_file_version = 'AssemblyFileVersion.*\)';
+
+    $version = [
+        'AssemblyVersion' => get_assemblyInfo_match($pattern_version,$context),
+        'AssemblyFileVersion' => get_assemblyInfo_match($pattern_file_version,$context)
+    ];
+    return $version;
 }
 
 $assemblyInfo = "AssemblyInfo.vb";
 //scan_dir($dir);
 //第一层，找到所有项目名称
-scan_project_dir($dir);
+scan_project_dir($target_dir);
 //第二层，找到项目对应的MyWorkflow
 foreach($project_list as $k=>$project)
 {
     find_workflow_dir($project['project_path'],$project);
-
-
     foreach($project['workflow_path'] as $val)
     {
         //读取AssemblyInfo，拿出版本号并记录
-//        get_assemblyInfo($val."\\.$assemblyInfo);
+        $version = get_assemblyInfo($val,$assemblyInfo);
         $project['assemblyInfo_path'][] = $val."\\".$assemblyInfo;
+        $project['assemblyInfo'][] = $version;
     }
     $project_list[$k] = $project;
 
