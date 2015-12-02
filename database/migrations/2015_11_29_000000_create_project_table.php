@@ -28,6 +28,7 @@ class CreateProjectTable extends Migration
             $table->string('bin_path')->nullable();
             $table->string('assemblyInfo_path')->nullable();
             $table->string('assemblyInfo')->nullable();
+            $table->string('assemblyFileInfo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

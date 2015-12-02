@@ -21,14 +21,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()
     Route::resource('pages', 'PagesController');
 });
 
-Route::get('/test', function () {
-    return "hello world";
-});
-
+//Route::get('/test', function () {
+//    return "hello world!!!!!";
+//});
+//
 Route::group(['prefix' => 'mywork', 'namespace' => 'Mywork'], function()
 {
-    Route::get('/', 'WorkController@index');
-    Route::resource('pages', 'PagesController');
+    Route::get('/', 'ProjectController@index');
+    Route::resource('project', 'ProjectController');
 });
 
 

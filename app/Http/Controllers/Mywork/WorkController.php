@@ -99,13 +99,13 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
-        //return view('mywork.index');
-        //echo 'ffff';
-        $dir = 'E:\mygit\test';
-        $arr = $this->deepScanDir($dir);
-        //print_r($arr);
-        var_dump($this->wfArr);
+//        //
+//        //return view('mywork.index');
+//        //echo 'ffff';
+//        $dir = 'E:\mygit\test';
+//        $arr = $this->deepScanDir($dir);
+//        //print_r($arr);
+//        var_dump($this->wfArr);
     }
 
     /**
