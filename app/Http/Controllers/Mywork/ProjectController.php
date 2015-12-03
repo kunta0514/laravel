@@ -12,6 +12,26 @@ use DB;
 class ProjectController extends Controller
 {
     /**
+     * 单个扫描整个目录，直到找到为止
+     * @param $dir 扫描地址
+     */
+    public function scan_dir($dir,&$file_array)
+    {
+        $array = scandir($dir);
+        foreach ($array as $val){
+            if($val!="." && $val!=".." && is_dir($dir."\\".$val)){
+                $this->scan_dir($dir."\\".$val,$file_array);
+            }
+            else{
+                if($val == 'AssemblyInfo.vb')
+                {
+                    $file_array[] = $dir."\\".$val;
+                }
+            }
+        }
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -24,8 +44,12 @@ class ProjectController extends Controller
 //        print_r($result);
         foreach($result as $project)
         {
+            $x = [];
             $path = $project->path;
-            print_r($path);
+            //中文目录必须要转码
+            $path = iconv("utf-8","gb2312//IGNORE",$path);
+            $this->scan_dir($path,$x);
+            print_r($x);
             die;
         }
 //        print_r($result);
