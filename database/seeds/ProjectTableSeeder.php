@@ -29,27 +29,32 @@ class ProjectTableSeeder extends Seeder {
         foreach($project_list_array as $project)
         {
             $i = 0;
-            if(isset($project['workflow_path']))
-            {
-                foreach($project['workflow_path'] as $work_path)
-                    Project::create([
-                        'name' => $project['project_name'],
-                        'path' => $project['project_path'],
-                        'workflow_path' => $work_path,
-                        'assemblyInfo_path' => $project['assemblyInfo_path'][$i],
-                        'assemblyInfo' => $project['assemblyInfo'][$i]['AssemblyVersion'],
-                        'assemblyFileInfo' => $project['assemblyInfo'][$i]['AssemblyFileVersion'],
-                    ]);
-                $i++;
-            }
-            else
-            {
-                Project::create([
-                    'name' => $project['project_name'],
-                    'path' => $project['project_path']
+            Project::create([
+                'name' => $project['project_name'],
+                'path' => $project['project_path']
 
-                ]);
-            }
+            ]);
+//            if(isset($project['workflow_path']))
+//            {
+//                foreach($project['workflow_path'] as $work_path)
+//                    Project::create([
+//                        'name' => $project['project_name'],
+//                        'path' => $project['project_path'],
+//                        'workflow_path' => $work_path,
+//                        'assemblyInfo_path' => $project['assemblyInfo_path'][$i],
+//                        'assemblyInfo' => $project['assemblyInfo'][$i]['AssemblyVersion'],
+//                        'assemblyFileInfo' => $project['assemblyInfo'][$i]['AssemblyFileVersion'],
+//                    ]);
+//                $i++;
+//            }
+//            else
+//            {
+//                Project::create([
+//                    'name' => $project['project_name'],
+//                    'path' => $project['project_path']
+//
+//                ]);
+//            }
         }
 
     }
