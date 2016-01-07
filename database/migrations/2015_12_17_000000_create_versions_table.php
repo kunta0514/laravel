@@ -10,7 +10,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProject2WorkflowTable extends Migration
+class CreateVersionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,15 +19,9 @@ class CreateProject2WorkflowTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects2workflow', function(Blueprint $table)
+        Schema::create('versions', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('project_name');
-            $table->string('path')->nullable();
-            $table->string('workflow_path')->nullable();
-            $table->string('assemblyInfo_path')->nullable();
-            $table->string('assemblyInfo')->nullable();
-            $table->string('assemblyFileInfo')->nullable();
             $table->string('workflow_version')->nullable();
             $table->string('erp_version')->nullable();
             $table->rememberToken();
@@ -42,6 +36,6 @@ class CreateProject2WorkflowTable extends Migration
      */
     public function down()
     {
-        Schema::drop('projects');
+        Schema::drop('versions');
     }
 }

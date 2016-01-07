@@ -35,6 +35,7 @@ class SycnWorkflowProject extends Command
 
 
     protected $target_filename = 'AssemblyInfo.vb';
+    protected $target_dir =  'H:\Project';
     /**
      * @param $dir 文件目录
      */
@@ -81,107 +82,252 @@ class SycnWorkflowProject extends Command
      */
     public function handle()
     {
-//        $this->del_project();
-//        $this->get_project_dir();
-//        print_r(DB::table('projects')->get());
-        $this->get_workflow_dir();
-//        echo 111;
+//        $this->init_project();
+//
+//        $this->get_workflow_dir_step_1();
+//        $this->get_workflow_dir_step_2();
+//        $this->get_workflow_dir_step_3();
+        $this->get_task();
     }
 
-    protected function get_workflow_dir()
+    protected function get_task()
     {
-        $dir = 'F:\Project\北京鸿坤';
-        $dir = iconv("utf-8","gbk",$dir);
-        $file_array = [];
-        $this->scan_dir_all($dir,$this->target_filename,$file_array);
-        print_r($file_array);
+        $task = DB::connection('sqlsrv')->select('select * from Task');
+
+        print_r($task);
+    }
+
+    /**
+     * 扫描F盘下的所有项目，记录版本文件地址
+     */
+    protected function get_workflow_dir_step_1()
+    {
+//        $dir = 'F:\Project\长城地产';
+//        $dir = iconv("utf-8","gbk",$dir);
+//        $file_array = [];
+//        $this->scan_dir_all($dir,$this->target_filename,$file_array);
+//        print_r($file_array);
 //        DB::table('projects2workflow')->truncate();
-//        $projects = DB::table('projects')->get();
-//        $c = 1;
-//        $fail = 0;
-//        foreach($projects as $project)
-//        {
-//            //$project->path 为更新条件
-//            $dir = $project->path;
-//            $dir = iconv("utf-8","gbk",$dir);
-//            $file_array = [];
-//            $this->scan_dir_all($dir,$this->target_filename,$file_array);
-//
-//            $description = '扫描到第'.$c.'个目的，扫描地址："'.$project->path.'"';
-//            echo iconv('utf-8','gbk',$description).chr(10);
-//
-//            if(!empty($file_array)){
-//                for($x = 0; $x < count($file_array['workflow_path']); $x++){
-//                    $workflow = new Workflow();
-//                    $workflow->project_name = $project->name;
-//                    $workflow->path = $project->path;
-//                    $workflow->workflow_path = iconv('gbk','utf-8',$file_array['workflow_path'][$x]);
-//                    $workflow->assemblyInfo_path = iconv('gbk','utf-8',$file_array['assemblyInfo_path'][$x]);
-//                    $workflow->save();
-//                }
-////                print_r($file_array);
-////                $workflow = new Workflow();
-////                $workflow->project_name = $project->name;
-////                $workflow->path = $project->path;
-////                $workflow->workflow_path = iconv('gbk','utf-8',$file_array['dir']);
-////                $workflow->assemblyInfo_path = iconv('gbk','utf-8',$file_array['file']);
-////                $workflow->save();
-//            }
-//            else{
-//                $fail++;
-//                $description = "失败：第 $c 个目录\" $project->path \"，未扫描到文件";
-//                echo iconv('utf-8','gbk',$description).chr(10);
-//            }
-//
-//            $c++;
-//            unset($file_array);
-//        }
-//
-//        $count = $c - 1;
-//        $success = $c - $fail - 1;
-//        $description = "本次共扫描 $count 个目录，成功 $success 次，失败 $fail 次";
-//        echo chr(10).iconv('utf-8','gbk',$description).chr(10);
+        $projects = DB::table('projects')->get();
+        $c = 1;
+        $fail = 0;
+        foreach($projects as $project)
+        {
+            //$project->path 为更新条件
+            $dir = $project->path;
+            $dir = iconv("utf-8","gbk",$dir);
+            $file_array = [];
+            $description = '扫描到第'.$c.'个目录，扫描地址："'.$project->path.'"';
+            echo iconv('utf-8','gbk',$description).chr(10);
+
+            if(is_dir($dir)){
+                $this->scan_dir_all($dir,$this->target_filename,$file_array);
+            }
+
+            if(!empty($file_array)){
+                for($x = 0; $x < count($file_array['workflow_path']); $x++){
+                    $workflow = new Workflow();
+                    $workflow->project_name = $project->name;
+                    $workflow->path = $project->path;
+                    $workflow->workflow_path = iconv('gbk','utf-8',$file_array['workflow_path'][$x]);
+                    $workflow->assemblyInfo_path = iconv('gbk','utf-8',$file_array['assemblyInfo_path'][$x]);
+                    $workflow->save();
+                }
+            }
+            else{
+                $fail++;
+                $description = "失败：第 $c 个目录\" $project->path \"，未扫描到文件";
+                echo iconv('utf-8','gbk',$description).chr(10);
+            }
+
+            $c++;
+            unset($file_array);
+        }
+
+        $count = $c - 1;
+        $success = $c - $fail - 1;
+        $description = "本次共扫描 $count 个目录，成功 $success 次，失败 $fail 次";
+        echo chr(10).iconv('utf-8','gbk',$description).chr(10);
+    }
+
+    /**
+     * 扫描H盘下的所有项目，记录版本文件地址
+     */
+    protected function get_workflow_dir_step_2()
+    {
+        $projects = DB::select('select * from projects where `name` not in (select project_name from projects2workflow) and source = 1');
+        $dir_root = 'H:\Project';
+        $c = 1;
+        $fail = 0;
+        foreach($projects as $project)
+        {
+            $dir = $dir_root.DIRECTORY_SEPARATOR.$project->name;
+            $dir_gbk = iconv("utf-8","gbk",$dir);
+//            echo $dir_gbk.chr(10);
+            $file_array = [];
+            $description = '扫描到第'.$c.'个目录，扫描地址："'.$dir.'"';
+            echo iconv('utf-8','gbk',$description).chr(10);
+
+            if(is_dir($dir_gbk)){
+                $this->scan_dir_all($dir_gbk,$this->target_filename,$file_array);
+            }
+
+            if(!empty($file_array)){
+                for($x = 0; $x < count($file_array['workflow_path']); $x++){
+//                    print_r($file_array);
+                    $workflow = new Workflow();
+                    $workflow->project_name = $project->name;
+                    $workflow->path = $dir;
+                    $workflow->workflow_path = iconv('gbk','utf-8',$file_array['workflow_path'][$x]);
+                    $workflow->assemblyInfo_path = iconv('gbk','utf-8',$file_array['assemblyInfo_path'][$x]);
+                    $workflow->save();
+                }
+            }
+            else{
+                $fail++;
+                $description = "失败：第 $c 个目录\" $dir \"，未扫描到文件";
+                echo iconv('utf-8','gbk',$description).chr(10);
+            }
+
+            $c++;
+            unset($file_array);
+        }
+        $count = $c - 1;
+        $success = $c - $fail - 1;
+        $description = "本次共扫描 $count 个目录，成功 $success 次，失败 $fail 次";
+        echo chr(10).iconv('utf-8','gbk',$description).chr(10);
+    }
+
+    /**
+     * 读取版本信息文件，记录版本号
+     */
+    protected function get_workflow_dir_step_3()
+    {
+//        $works = DB::table('projects2workflow')->get();
+        //TODO:会取出' <Assembly: AssemblyVersion("1.0.*")> 注释部分
+        $works = Workflow::all();
+        $pattern = 'AssemblyVersion.*\)';
+        $pattern_file = 'AssemblyFileVersion.*\)';
+        $c = 1;
+        $fail = 0;
+        foreach($works as $work){
+            $description = '扫描到第'.$c.'个目录，扫描地址："'.$work->workflow_path.'"';
+            echo iconv('utf-8','gbk',$description).chr(10);
+            $work->assemblyInfo = $this->get_assembly_info(iconv('utf-8','gbk',$work->assemblyInfo_path),$pattern);
+            $work->assemblyFileInfo = $this->get_assembly_info(iconv('utf-8','gbk',$work->assemblyInfo_path),$pattern_file);
+            $work->save();
+            $c++;
+        }
+        $count = $c - 1;
+        $success = $c - $fail - 1;
+        $description = "本次共扫描 $count 个目录，成功 $success 次，失败 $fail 次";
+        echo chr(10).iconv('utf-8','gbk',$description).chr(10);
+    }
+
+    protected function refresh_version()
+    {
+        //SQL更新版本数据
+//        update projects2workflow set workflow_version = REPLACE(workflow_version,'AssemblyVersion("','');
+//        update projects2workflow set workflow_version = REPLACE(workflow_version,'AssemblyFileVersion("','');
+//        update projects2workflow set workflow_version = REPLACE(workflow_version,'")','');
+        DB::update('update projects2workflow a inner join versions b ON a.workflow_version = b.workflow_version set a.erp_version = b.erp_version');
+    }
+
+    protected function get_assembly_info($file_full_name,$pattern)
+    {
+        $file_handle = fopen($file_full_name, "r");
+        $context = fread($file_handle,filesize($file_full_name));
+        fclose($file_handle);
+//        $pattern = 'AssemblyVersion.*\)';
+        $assembly_info = $this->get_assembly_info_match($pattern,$context);
+        return $assembly_info;
+    }
+    protected function get_assembly_info_match($pattern,$context)
+    {
+
+        $pattern = '/'.$pattern.'/';
+
+        preg_match($pattern,$context,$matches);
+        if(!empty($matches)) {
+            return $matches[0];
+        }
+        else{
+            return null;
+        }
     }
 
     protected function get_project_dir()
     {
-        $file_name = "app/Console/Commands/project_list_file.json";
-        $file_list = fopen($file_name, "r");
-        $project_list_json = fread($file_list,filesize($file_name));
-        fclose($file_list);
-
-        $project_list_array = json_decode($project_list_json,true);
-
-
-        //DB::table('projects')->truncate();
-        $description = "填充数据中...";
-        //echo $description;
-        //echo $description;
-
-        echo iconv('utf-8','gbk',$description).chr(10);
-        foreach($project_list_array as $val)
-        {
-            $project = new Project();
-            $project->name = $val['project_name'];
-            $project->path = $val['project_path'];
-            $project->save();
-        }
-        $description = "填充完毕！";
-        //echo $description;
-        //echo $description;
-
-        echo iconv('utf-8','gbk',$description).chr(10);
+        //文件结构读取屏蔽
+//        $file_name = "app/Console/Commands/project_list_file.json";
+//        $file_list = fopen($file_name, "r");
+//        $project_list_json = fread($file_list,filesize($file_name));
+//        fclose($file_list);
+//
+//        $project_list_array = json_decode($project_list_json,true);
+//
+//
+//        //DB::table('projects')->truncate();
+//        $description = "填充数据中...";
+//        //echo $description;
+//        //echo $description;
+//
+//        echo iconv('utf-8','gbk',$description).chr(10);
+//        foreach($project_list_array as $val)
+//        {
+//            $project = new Project();
+//            $project->name = $val['project_name'];
+//            $project->path = $val['project_path'];
+//            $project->save();
+//        }
+//        $description = "填充完毕！";
+//        //echo $description;
+//        //echo $description;
+//
+//        echo iconv('utf-8','gbk',$description).chr(10);
     }
 
-    protected function del_project()
+    protected function init_project()
     {
+        //1.清空项目信息
         //DB::table('projects')->get();
         DB::table('projects')->truncate();
-        $description = "清空projects中的数据！";
-        //echo $description;
-        //echo $description;
+        $this->print_log("清空projects中的数据！");
 
-        echo iconv('utf-8','gbk',$description).chr(10);
+        DB::table('projects2workflow')->truncate();
+        $this->print_log("清空projects2workflow中的数据！");
+
+        //2.初始化二开项目信息
+        $this->scan_project_dir($this->target_dir);
 
     }
+
+    //扫描项目根目录
+    protected function scan_project_dir($dir)
+    {
+        $this->print_log("创建项目数据");
+        $project_list = [];
+        $array = scandir($dir);
+        $project_info = [];
+        foreach ($array as $val){
+            if($val!="." && $val!=".." && is_dir($dir.DIRECTORY_SEPARATOR.$val) && $val!= iconv('utf-8','gbk','00 部门及项目公共管理') && $val != iconv('utf-8','gbk','mWF项目文档库') && $val != iconv('utf-8','gbk','WF项目文档库')){
+                $project = new Project();
+                $project->name = iconv('gbk','utf-8',$val);
+                $project->path =iconv('gbk','utf-8',$dir.DIRECTORY_SEPARATOR.$val);
+                $project->save();
+//                print_r($dir.DIRECTORY_SEPARATOR.$val);
+            }
+        }
+        $this->print_log("项目数据填充完毕");
+    }
+
+    protected function print_log($context)
+    {
+        echo iconv('utf-8','gbk',$context).chr(10);
+    }
+
+//    protected function exists_projects()
+//    {
+//
+//    }
 }

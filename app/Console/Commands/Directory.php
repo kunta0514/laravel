@@ -72,7 +72,6 @@ function scan_project_dir($dir)
             $project_list[] =  $project_info;
         }
     }
-
 }
 
 function gbk2utf8($data){
