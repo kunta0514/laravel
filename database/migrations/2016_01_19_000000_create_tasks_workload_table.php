@@ -10,7 +10,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksVersionTable extends Migration
+class CreateTasksWorkloadTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,11 +19,13 @@ class CreateTasksVersionTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_version', function(Blueprint $table)
+        Schema::create('tasks_workload', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('SycnUser');
-            $table->dateTime('GetSqlDBTime');
+            $table->tinyInteger('type');
+            $table->string('name');
+            $table->float('time');
+            $table->integer('taskid');
             $table->rememberToken();
             $table->timestamps();
         });

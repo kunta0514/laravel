@@ -66,11 +66,6 @@ class SycnWorkflowProject extends Command
 
                     $this->scan_dir_all($cur_dir,$target_filename,$file_array);
                 }
-//                else if($val{0} == '.') {
-//                    print_r($array);
-//                    echo $dir.PHP_EOL;
-//                    echo $val;
-//                }
             }
         }
     }
@@ -87,14 +82,8 @@ class SycnWorkflowProject extends Command
 //        $this->get_workflow_dir_step_1();
 //        $this->get_workflow_dir_step_2();
 //        $this->get_workflow_dir_step_3();
-        $this->get_task();
-    }
-
-    protected function get_task()
-    {
-        $task = DB::connection('sqlsrv')->select('select * from Task');
-
-        print_r($task);
+//        $this->init_task();
+        echo 'ok';
     }
 
     /**
@@ -118,7 +107,7 @@ class SycnWorkflowProject extends Command
             $dir = iconv("utf-8","gbk",$dir);
             $file_array = [];
             $description = '扫描到第'.$c.'个目录，扫描地址："'.$project->path.'"';
-            echo iconv('utf-8','gbk',$description).chr(10);
+            $this->print_log($description);
 
             if(is_dir($dir)){
                 $this->scan_dir_all($dir,$this->target_filename,$file_array);
@@ -137,7 +126,7 @@ class SycnWorkflowProject extends Command
             else{
                 $fail++;
                 $description = "失败：第 $c 个目录\" $project->path \"，未扫描到文件";
-                echo iconv('utf-8','gbk',$description).chr(10);
+                $this->print_log($description);
             }
 
             $c++;
@@ -147,7 +136,7 @@ class SycnWorkflowProject extends Command
         $count = $c - 1;
         $success = $c - $fail - 1;
         $description = "本次共扫描 $count 个目录，成功 $success 次，失败 $fail 次";
-        echo chr(10).iconv('utf-8','gbk',$description).chr(10);
+        $this->print_log($description);
     }
 
     /**
@@ -166,7 +155,7 @@ class SycnWorkflowProject extends Command
 //            echo $dir_gbk.chr(10);
             $file_array = [];
             $description = '扫描到第'.$c.'个目录，扫描地址："'.$dir.'"';
-            echo iconv('utf-8','gbk',$description).chr(10);
+            $this->print_log($description);
 
             if(is_dir($dir_gbk)){
                 $this->scan_dir_all($dir_gbk,$this->target_filename,$file_array);
@@ -186,7 +175,7 @@ class SycnWorkflowProject extends Command
             else{
                 $fail++;
                 $description = "失败：第 $c 个目录\" $dir \"，未扫描到文件";
-                echo iconv('utf-8','gbk',$description).chr(10);
+                $this->print_log($description);
             }
 
             $c++;
@@ -195,7 +184,7 @@ class SycnWorkflowProject extends Command
         $count = $c - 1;
         $success = $c - $fail - 1;
         $description = "本次共扫描 $count 个目录，成功 $success 次，失败 $fail 次";
-        echo chr(10).iconv('utf-8','gbk',$description).chr(10);
+        $this->print_log($description);
     }
 
     /**
@@ -212,7 +201,7 @@ class SycnWorkflowProject extends Command
         $fail = 0;
         foreach($works as $work){
             $description = '扫描到第'.$c.'个目录，扫描地址："'.$work->workflow_path.'"';
-            echo iconv('utf-8','gbk',$description).chr(10);
+            $this->print_log($description);
             $work->assemblyInfo = $this->get_assembly_info(iconv('utf-8','gbk',$work->assemblyInfo_path),$pattern);
             $work->assemblyFileInfo = $this->get_assembly_info(iconv('utf-8','gbk',$work->assemblyInfo_path),$pattern_file);
             $work->save();
@@ -221,7 +210,7 @@ class SycnWorkflowProject extends Command
         $count = $c - 1;
         $success = $c - $fail - 1;
         $description = "本次共扫描 $count 个目录，成功 $success 次，失败 $fail 次";
-        echo chr(10).iconv('utf-8','gbk',$description).chr(10);
+        $this->print_log($description);
     }
 
     protected function refresh_version()
@@ -254,37 +243,6 @@ class SycnWorkflowProject extends Command
         else{
             return null;
         }
-    }
-
-    protected function get_project_dir()
-    {
-        //文件结构读取屏蔽
-//        $file_name = "app/Console/Commands/project_list_file.json";
-//        $file_list = fopen($file_name, "r");
-//        $project_list_json = fread($file_list,filesize($file_name));
-//        fclose($file_list);
-//
-//        $project_list_array = json_decode($project_list_json,true);
-//
-//
-//        //DB::table('projects')->truncate();
-//        $description = "填充数据中...";
-//        //echo $description;
-//        //echo $description;
-//
-//        echo iconv('utf-8','gbk',$description).chr(10);
-//        foreach($project_list_array as $val)
-//        {
-//            $project = new Project();
-//            $project->name = $val['project_name'];
-//            $project->path = $val['project_path'];
-//            $project->save();
-//        }
-//        $description = "填充完毕！";
-//        //echo $description;
-//        //echo $description;
-//
-//        echo iconv('utf-8','gbk',$description).chr(10);
     }
 
     protected function init_project()
@@ -326,8 +284,15 @@ class SycnWorkflowProject extends Command
         echo iconv('utf-8','gbk',$context).chr(10);
     }
 
-//    protected function exists_projects()
-//    {
-//
-//    }
+    protected function init_task()
+    {
+        $tasks = DB::connection('sqlsrv')->select('select * from Task');
+        $count = 1;
+        foreach ($tasks as $task) {
+            echo $task->TaskTitle.'<br>';
+            $count++;
+        }
+        echo $count;
+    }
+
 }

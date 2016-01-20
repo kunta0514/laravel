@@ -10,7 +10,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreateTasksVersionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,25 +19,11 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function(Blueprint $table)
+        Schema::create('task_version', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('TaskNo');
-            $table->string('TaskTitle');
-            $table->string('CustomerName');
-            $table->string('ErpVersion');
-            $table->string('MapVersion');
-            $table->string('AbuPM');
-            $table->dateTime('CreateTime');
-            $table->dateTime('datetime');
-            $table->dateTime('ExpectEnd');
-            $table->dateTime('ActualEnd');
-            $table->tinyInteger('Status');
-            $table->string('Comment');
-            $table->string('TaskType');
-            $table->string('WorkflowVersion');
-            $table->tinyInteger('IsExceedSLA');
-            $table->tinyInteger('IsSensitive');
+            $table->string('SycnUser');
+            $table->dateTime('GetSqlDBTime');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -50,6 +36,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tasks');
+        Schema::drop('task_version');
     }
 }

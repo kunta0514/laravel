@@ -24,6 +24,8 @@ class ProjectController extends Controller
         $tasks = DB::connection('sqlsrv')->select('select * from Task');
         $count = 1;
         foreach ($tasks as $task) {
+            print_r($task);
+            die;
             echo $task->TaskTitle.'<br>';
             $count++;
         }
