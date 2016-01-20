@@ -10,7 +10,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTask_last_updateTable extends Migration
+class CreateTasksVersionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,11 +19,11 @@ class CreateTask_last_updateTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_last_update', function(Blueprint $table)
+        Schema::create('task_version', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->dateTime('update_date');
-            $table->string('user');
+            $table->string('SycnUser');
+            $table->dateTime('GetSqlDBTime');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -36,6 +36,6 @@ class CreateTask_last_updateTable extends Migration
      */
     public function down()
     {
-        Schema::drop('versions');
+        Schema::drop('task_version');
     }
 }

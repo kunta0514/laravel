@@ -10,7 +10,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaskTable extends Migration
+class CreateTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateTaskTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_last_update', function(Blueprint $table)
+        Schema::create('tasks', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('TaskNo');
@@ -50,6 +50,6 @@ class CreateTaskTable extends Migration
      */
     public function down()
     {
-        Schema::drop('versions');
+        Schema::drop('tasks');
     }
 }
