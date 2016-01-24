@@ -39,7 +39,7 @@ class Spider extends Command
     public function handle()
     {
 //        $this->ADDomain();
-        $this->soapLogin();
+        $this->demo();
     }
 
     protected function ADDomain()
@@ -157,5 +157,45 @@ class Spider extends Command
 //        var_dump($a);
 
     }
+
+    protected function demo()
+    {
+//        $html = str_get_html('<div id="hello">Hello</div><div id="world">World</div>');
+//
+//        print_r($html->find('div[id=hello]',1)->plaintext);
+
+//        echo $html;
+//        //$html = file_get_contents( 'F:\laravel\app\Console\Commands\task.html');
+        $html = file_get_html( 'F:\laravel\app\Console\Commands\task.html');
+//        //print_r($html);
+//        $div = $html->find('div[class=singleRequirementCard fn-clear h_105]',0)->plaintext;
+//        print_r( iconv('utf-8','gbk',$div).chr(10));
+
+        foreach($html->find('div[class=singleRequirementCard fn-clear h_105]') as $val)
+        {
+            foreach($val->find('div[class=title w_880]') as $no)
+            {
+                print_r(iconv('utf-8','gbk',$no->children(0)->innertext).chr(10));
+                print_r(iconv('utf-8','gbk',$no->children(1)->innertext).chr(10));
+                die;
+            }
+
+        }
+
+//        print_r($div[0]->parent ());
+//        die;
+//        foreach($div as $val)
+//        {
+//
+//            $taskno = $val->find('div[class=title w_880]');
+//            foreach($taskno as $no)
+//            {
+//                $no->children(1);
+//                die;
+//            }
+//        }
+//        var_dump($div);
+    }
+
 
 }
