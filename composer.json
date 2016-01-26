@@ -2,11 +2,11 @@
 	"repositories": [
         {   
             "packagist": false
-        },  
-        {   
-            "type": "composer", 
+        },
+        {
+            "type": "composer",
             "url": "http://packagist.cn"
-        }   
+        }
     ],
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
@@ -15,7 +15,8 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+		"twbs/bootstrap": "^3.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

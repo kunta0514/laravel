@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//prefix表示URL前缀
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()
 {
     Route::get('/', 'AdminHomeController@index');
@@ -30,6 +32,13 @@ Route::group(['prefix' => 'mywork', 'namespace' => 'Mywork'], function()
     Route::get('/', 'ProjectController@index');
     Route::resource('project', 'ProjectController');
 });
+
+Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
+{
+    Route::get('/', 'TaskController@index');
+    Route::resource('task','TaskController');
+});
+
 
 
 

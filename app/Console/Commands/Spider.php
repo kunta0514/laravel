@@ -39,7 +39,7 @@ class Spider extends Command
     public function handle()
     {
 //        $this->ADDomain();
-        $this->demo();
+        $this->soapLogin();
     }
 
     protected function ADDomain()
@@ -118,7 +118,16 @@ class Spider extends Command
     protected function soapLogin()
     {
 
-        $url = 'http://pd.mysoft.net.cn/AjaxRequirement/GetAllRequirementList.cspx';
+
+        $url = 'http://pd.mysoft.net.cn/AjaxRequirement/GetAllRequirementList.cspx?KeyValue=&ManagerName=&TeamMembers=&Status=0%2C1%2C2%2C3%2C4%2C5&Source=&XqType=&CustomerType=&CustomerArea=&HandlerToRequirementType=&CreatedOnType=&DevelopEndTimeType=&TechReLmtType=&TaskDoneLmtType=&OrderSeq=';
+        $pm = '万堃';
+        $cur_page = 1;
+        $params = "&PMName=$pm&PageIndex=$cur_page";
+        $url = $url .$params;
+
+//        print_r($url);
+//        die;
+
         $method = 'GET';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -135,66 +144,57 @@ class Spider extends Command
 //            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
         }
         $result = curl_exec($ch);
-
+//        print_r($result);
+//        die;
         $j = json_decode($result);
 
-
+        $total_count = $j->TotalCount;
         $html = $j->html;
         $html = str_get_html($html);
-        $div = $html->find('div[class=singleRequirementCard fn-clear h_105]');
-
-        foreach($div as $val)
+        foreach($html->find('div[class*=singleRequirementCard]') as $task_node)
         {
-            print_r($val);
-            die;
+            $task_no = $task_node->find('div[class*=title]',0)->children(0)->plaintext;
+            $str = ['【','】'];
+            $task_no = str_replace($str,"",$task_no);
+            $task_title = $task_node->find('div[class*=title]',0)->children(1)->plaintext;
+            $task_cst_name = $task_node->find('li[title=客户名称]',0)->plaintext;
+            $task_type = $task_node->find('li[title=需求类型]',0)->plaintext;
+            $task_apu_pm = $task_node->find('li[title=需求负责人]',0)->plaintext;
+            $task_status = $task_node->find('div[class*=status]',0)->plaintext;
+
+            print_r(iconv('utf-8','gbk',$task_no).chr(10));
+            print_r(iconv('utf-8','gbk',$task_title).chr(10));
+            print_r(iconv('utf-8','gbk',$task_cst_name).chr(10));
+            print_r(iconv('utf-8','gbk',$task_type).chr(10));
+            print_r(iconv('utf-8','gbk',$task_apu_pm).chr(10));
+            print_r(iconv('utf-8','gbk',$task_status).chr(10));
         }
-
-
-
-//        var_dump($j);
-//        $html = str_get_html($result);
-//        $a = $html->find('[class=status]');
-//        var_dump($a);
-
     }
 
     protected function demo()
     {
-//        $html = str_get_html('<div id="hello">Hello</div><div id="world">World</div>');
-//
-//        print_r($html->find('div[id=hello]',1)->plaintext);
+        $html = file_get_html( 'G:\laravel\app\Console\Commands\task.html');
 
-//        echo $html;
-//        //$html = file_get_contents( 'F:\laravel\app\Console\Commands\task.html');
-        $html = file_get_html( 'F:\laravel\app\Console\Commands\task.html');
-//        //print_r($html);
-//        $div = $html->find('div[class=singleRequirementCard fn-clear h_105]',0)->plaintext;
-//        print_r( iconv('utf-8','gbk',$div).chr(10));
-
-        foreach($html->find('div[class=singleRequirementCard fn-clear h_105]') as $val)
+        foreach($html->find('div[class*=singleRequirementCard]') as $task_node)
         {
-            foreach($val->find('div[class=title w_880]') as $no)
-            {
-                print_r(iconv('utf-8','gbk',$no->children(0)->innertext).chr(10));
-                print_r(iconv('utf-8','gbk',$no->children(1)->innertext).chr(10));
-                die;
-            }
+            $task_no = $task_node->find('div[class*=title]',0)->children(0)->plaintext;
+            $str = ['【','】'];
+            $task_no = str_replace($str,"",$task_no);
+            $task_title = $task_node->find('div[class*=title]',0)->children(1)->plaintext;
+            $task_cst_name = $task_node->find('li[title=客户名称]',0)->plaintext;
+            $task_type = $task_node->find('li[title=需求类型]',0)->plaintext;
+            $task_apu_pm = $task_node->find('li[title=需求负责人]',0)->plaintext;
+            $task_status = $task_node->find('div[class*=status]',0)->plaintext;
+
+            print_r(iconv('utf-8','gbk',$task_no).chr(10));
+            print_r(iconv('utf-8','gbk',$task_title).chr(10));
+            print_r(iconv('utf-8','gbk',$task_cst_name).chr(10));
+            print_r(iconv('utf-8','gbk',$task_type).chr(10));
+            print_r(iconv('utf-8','gbk',$task_apu_pm).chr(10));
+            print_r(iconv('utf-8','gbk',$task_status).chr(10));
 
         }
 
-//        print_r($div[0]->parent ());
-//        die;
-//        foreach($div as $val)
-//        {
-//
-//            $taskno = $val->find('div[class=title w_880]');
-//            foreach($taskno as $no)
-//            {
-//                $no->children(1);
-//                die;
-//            }
-//        }
-//        var_dump($div);
     }
 
 
