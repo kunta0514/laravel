@@ -23,10 +23,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()
     Route::resource('pages', 'PagesController');
 });
 
-//Route::get('/test', function () {
-//    return "hello world!!!!!";
-//});
-//
 Route::group(['prefix' => 'mywork', 'namespace' => 'Mywork'], function()
 {
     Route::get('/', 'ProjectController@index');
@@ -36,7 +32,9 @@ Route::group(['prefix' => 'mywork', 'namespace' => 'Mywork'], function()
 Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
 {
     Route::get('/', 'TaskController@index');
-    Route::resource('task','TaskController');
+    Route::resource('details/{id}', 'TaskController@details');
+    Route::resource('show/{id}','TaskController@show');
+    Route::post('store', 'TaskController@store');
 });
 
 

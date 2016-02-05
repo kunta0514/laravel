@@ -47,32 +47,32 @@ class SycnTask extends Command
 
     protected function init_task()
     {
-//        $tasks = DB::connection('sqlsrv')->select('select * from Task');
-//        $count = 1;
-//        echo $this->print_log("开始导入任务...请不要关闭程序！");
-//        foreach ($tasks as $task) {
-//            $mysql_task = new Task();
-//            $mysql_task->TaskNo = $task->TaskNo;
-//            $mysql_task->TaskTitle = $task->TaskTitle;
-//            $mysql_task->CustomerName = $task->CustomerName;
-//            $mysql_task->ErpVersion = $task->ErpVersion;
-//            $mysql_task->MapVersion = $task->MapVersion;
-//            $mysql_task->AbuPM = $task->AbuPM;
-//            $mysql_task->CreateTime = $task->CreateTime;
-//            $mysql_task->Start = $task->Start;
-//            $mysql_task->ExpectEnd = $task->ExpectEnd;
-//            $mysql_task->ActualEnd = $task->ActualEnd;
-//            $mysql_task->Status = $task->Status;
-//            $mysql_task->Comment = $task->Comment;
-//            $mysql_task->TaskType = $task->TaskType;
-//            $mysql_task->WorkflowVersion = $task->WorkflowVersion;
-//            $mysql_task->IsExceedSLA = $task->IsExceedSLA;
-//            $mysql_task->IsSensitive = $task->IsSensitive;
-//            $mysql_task->save();
-////            echo $task->TaskTitle.'<br>';
-//            $count++;
-//        }
-//        echo $this->print_log("本次导入任务 $count 个");
+        $tasks = DB::connection('sqlsrv')->select('select * from Task');
+        $count = 1;
+        echo $this->print_log("开始导入任务...请不要关闭程序！");
+        foreach ($tasks as $task) {
+            $mysql_task = new Task();
+            $mysql_task->TaskNo = $task->TaskNo;
+            $mysql_task->TaskTitle = $task->TaskTitle;
+            $mysql_task->CustomerName = $task->CustomerName;
+            $mysql_task->ErpVersion = $task->ErpVersion;
+            $mysql_task->MapVersion = $task->MapVersion;
+            $mysql_task->AbuPM = $task->AbuPM;
+            $mysql_task->CreateTime = $task->CreateTime;
+            $mysql_task->Start = $task->Start;
+            $mysql_task->ExpectEnd = $task->ExpectEnd;
+            $mysql_task->ActualEnd = $task->ActualEnd;
+            $mysql_task->Status = $task->Status;
+            $mysql_task->Comment = $task->Comment;
+            $mysql_task->TaskType = $task->TaskType;
+            $mysql_task->WorkflowVersion = $task->WorkflowVersion;
+            $mysql_task->IsExceedSLA = $task->IsExceedSLA;
+            $mysql_task->IsSensitive = $task->IsSensitive;
+            $mysql_task->save();
+//            echo $task->TaskTitle.'<br>';
+            $count++;
+        }
+        echo $this->print_log("本次导入任务 $count 个");
 
         $task_workloads = DB::connection('sqlsrv')->select('select * from Workload');
         $count_workload = 1;
