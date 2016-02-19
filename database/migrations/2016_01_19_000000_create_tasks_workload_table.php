@@ -25,7 +25,7 @@ class CreateTasksWorkloadTable extends Migration
             $table->tinyInteger('type');
             $table->string('name');
             $table->float('time');
-            $table->integer('taskid');
+            $table->integer('task_id');
             $table->rememberToken();
             $table->timestamps();
         });

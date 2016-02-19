@@ -30,6 +30,18 @@ class TaskController extends Controller
         return view('task.details');
     }
 
+    public function get_details($id)
+    {
+        $tasks = DB::table('tasks')->where('id',$id)->first();
+        return json_encode($tasks,JSON_UNESCAPED_UNICODE);
+//        print_r($tasks) ;
+    }
+
+    public function aa()
+    {
+        echo 'Ok';
+    }
+
 
     /**
      * Show the form for creating a new resource.

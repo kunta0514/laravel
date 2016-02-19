@@ -52,24 +52,25 @@ class SycnTask extends Command
         echo $this->print_log("开始导入任务...请不要关闭程序！");
         foreach ($tasks as $task) {
             $mysql_task = new Task();
-            $mysql_task->TaskNo = $task->TaskNo;
-            $mysql_task->TaskTitle = $task->TaskTitle;
-            $mysql_task->CustomerName = $task->CustomerName;
-            $mysql_task->ErpVersion = $task->ErpVersion;
-            $mysql_task->MapVersion = $task->MapVersion;
-            $mysql_task->AbuPM = $task->AbuPM;
-            $mysql_task->CreateTime = $task->CreateTime;
-            $mysql_task->Start = $task->Start;
-            $mysql_task->ExpectEnd = $task->ExpectEnd;
-            $mysql_task->ActualEnd = $task->ActualEnd;
-            $mysql_task->Status = $task->Status;
-            $mysql_task->Comment = $task->Comment;
-            $mysql_task->TaskType = $task->TaskType;
-            $mysql_task->WorkflowVersion = $task->WorkflowVersion;
-            $mysql_task->IsExceedSLA = $task->IsExceedSLA;
-            $mysql_task->IsSensitive = $task->IsSensitive;
+            $mysql_task->task_no = $task->TaskNo;
+            $mysql_task->task_title = $task->TaskTitle;
+            $mysql_task->customer_name = $task->CustomerName;
+            $mysql_task->erp_version = $task->ErpVersion;
+            $mysql_task->map_version = $task->MapVersion;
+            $mysql_task->abu_pm = $task->AbuPM;
+            $mysql_task->ekp_create_date = $task->CreateTime;
+            $mysql_task->start = $task->Start;
+            $mysql_task->ekp_expect = $task->ExpectEnd;
+            $mysql_task->actual_finish_date = $task->ActualEnd;
+            $mysql_task->status = $task->Status;
+            $mysql_task->comment = $task->Comment;
+            $mysql_task->task_type = $task->TaskType;
+            $mysql_task->workflow_version = $task->WorkflowVersion;
+            $mysql_task->is_sla = $task->IsExceedSLA;
+            $mysql_task->is_sensitive = $task->IsSensitive;
             $mysql_task->save();
 //            echo $task->TaskTitle.'<br>';
+            echo $this->print_log("任务： $task->TaskNo 同步中");
             $count++;
         }
         echo $this->print_log("本次导入任务 $count 个");
@@ -82,8 +83,9 @@ class SycnTask extends Command
             $mysql_task_workload->type = $task_workload->type;
             $mysql_task_workload->name = $task_workload->name;
             $mysql_task_workload->time = $task_workload->time;
-            $mysql_task_workload->taskid = $task_workload->TaskId;
+            $mysql_task_workload->task_id = $task_workload->TaskId;
             $mysql_task_workload->save();
+            echo $this->print_log("任务明细： $mysql_task_workload->task_id 同步中...");
             $count_workload++;
         }
         echo $this->print_log("开始导入任务明细 $count_workload 个");
