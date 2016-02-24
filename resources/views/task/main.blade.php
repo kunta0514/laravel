@@ -68,6 +68,10 @@
                             <label for="task-title">需求标题:</label>
                             <input type="text" class="form-control" id="task-title" >
                         </div>
+                        <div class="form-group">
+                            <label for="task-title">截止时间:</label>
+                            <input type="text" class="form-control" id="task-expect" >
+                        </div>
 
                         按下 ESC 按钮退出。
 
@@ -86,75 +90,28 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <p>日期：<input type="text" id="datepicker"></p>
 
-
-    <div class="form-group">
-        <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
-        <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-            <input class="form-control" size="16" type="text" value="" readonly>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-        </div>
-        <input type="hidden" id="dtp_input1" value="" /><br/>
-    </div>
-    <div class="form-group">
-        <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
-        <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-            <input class="form-control" size="16" type="text" value="" readonly>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-        </div>
-        <input type="hidden" id="dtp_input2" value="" /><br/>
-    </div>
-    <div class="form-group">
-        <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
-        <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-            <input class="form-control" size="16" type="text" value="" readonly>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-        </div>
-        <input type="hidden" id="dtp_input3" value="" /><br/>
-    </div>
-
-    <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker-standalone.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-
-    <div class="container">
-        <div class="row">
-            <div class='col-sm-6'>
-                <div class="form-group">
-                    <div class='input-group date' id='datetimepicker2'>
-                        <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#datetimepicker2').datetimepicker({
-                        locale: 'ru'
-                    });
-                });
-            </script>
-        </div>
-    </div>
     <script>
-        //TODO：页面对象与model对象合并
-        (function() {
 
-            window.task = {};
-        })();
+        $(function() {
+            $.datepicker.regional["zh-CN"] = { closeText: "关闭", prevText: "&#x3c;上月", nextText: "下月&#x3e;", currentText: "今天", monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"], monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"], dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"], dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"], dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"], weekHeader: "周", dateFormat: "yy-mm-dd", firstDay: 1, isRTL: !1, showMonthAfterYear: !0, yearSuffix: "年" }
+            $.datepicker.setDefaults($.datepicker.regional["zh-CN"]);
+
+            var datePicker = $("#ctl00_BodyMain_txtDate").datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true
+            });
+            $( "#task-expect" ).datepicker();
+        });
 
         $('.details').on('click',function(){
             //1.根据ID获取详细（get）
             console.info($(this).attr('rel'));
 
             $.ajax({
-                type:'GET',
-                url:'/task/get_details/'+ $(this).attr('rel'),
+                        type:'GET',
+                        url:'/task/get_details/'+ $(this).attr('rel'),
                 dataType:'json',
                 success:function(data){
                     console.info(data);
@@ -168,47 +125,6 @@
 //            $('#myModal').modal('show')
             //3.绑定保存事件
         });
-
-        $('.form_datetime').datetimepicker({
-            //language:  'fr',
-            weekStart: 1,
-            todayBtn:  1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 2,
-            forceParse: 0,
-            showMeridian: 1
-        });
-        $('.form_date').datetimepicker({
-            language:  'fr',
-            weekStart: 1,
-            todayBtn:  1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 2,
-            minView: 2,
-            forceParse: 0
-        });
-        $('.form_time').datetimepicker({
-            language:  'fr',
-            weekStart: 1,
-            todayBtn:  1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 1,
-            minView: 0,
-            maxView: 1,
-            forceParse: 0
-        });
-
-//        $(function () {
-//            $('#myModal').modal('hide')
-//        });
-    </script>
-    <script>
-//        $(function () { $('#myModal').on('hide.bs.modal', function () {
-//            alert('嘿，我听说您喜欢模态框...');})
-//        });
     </script>
 
 @stop
