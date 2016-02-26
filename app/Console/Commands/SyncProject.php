@@ -7,14 +7,14 @@ use App\Project;
 use App\Workflow;
 use Illuminate\Support\Facades\DB;
 
-class SycnWorkflowProject extends Command
+class SyncProject extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:sycnwork';
+    protected $signature = 'command:sync_work';
 
     /**
      * The console command description.

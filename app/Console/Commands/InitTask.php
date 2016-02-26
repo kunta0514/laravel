@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\DB;
 use App\Task;
 use App\TaskWorkload;
 
-class SycnTask extends Command
+class InitTask extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:sycntask';
+    protected $signature = 'command:init_task';
 
     /**
      * The console command description.
