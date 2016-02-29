@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>Teambition</title>
 
     <link href="/css/app.css" rel="stylesheet">
 
@@ -21,15 +21,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Learn Laravel 5</a>
+            <a class="navbar-brand" href="/admin">Teambition</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/admin">后台首页</a></li>
+                <li><a href="/task">任务系统</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="/admin/comments">管理评论</a></li>
+                <li><a href="/setting">系统设置</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

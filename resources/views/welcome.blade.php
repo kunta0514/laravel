@@ -34,11 +34,16 @@
                 font-size: 96px;
             }
         </style>
+        <script type="text/javascript">
+            setTimeout(function(){
+                window.location.href='/task';
+            },3000);
+        </script>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Workflow</div>
             </div>
         </div>
     </body>
