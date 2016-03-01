@@ -203,17 +203,15 @@
 <div class="container">
     <div class="divtab">
         <ul class="nav nav-tabs" id="myTab">
-           <li><a href="#" status="1" data-toggle="tab">待处理</a></li>
-           <li><a href="#" status="2" data-toggle="tab">进行中</a></li>
-           <li><a href="#" status="3" data-toggle="tab">已完成</a></li>
-           <li><a href="#" status="4" data-toggle="tab">全部</a></li>
-           <li><a href="#" status="5" data-toggle="tab">我的待处理</a></li>
+            @foreach(config('params.task_status') as $k=>$val)
+                <li><a href="#" status={{$k}} data-toggle="tab">{{$val}}</a></li>
+            @endforeach
         </ul>
     </div>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th title="序号">#</th>
+                <th title="序号">序号</th>
                 {{--<th></th>--}}
                 <th style="min-width: 120px">任务编号</th>
                 <th>任务标题</th>
@@ -227,23 +225,24 @@
             </tr>
         </thead>
         <tbody>
-        @for($i=0;$i<count($tasks);$i++)
+
+        @foreach($tasks as $k=>$task)
             <tr>
-                <th scope="row">{{$i+1}}</th>
+                <th scope="row">{{$k+1}}</th>
                 {{--<td style="padding: 5px 10px;"><input class="chk_finlish" type="checkbox" rel="{{$tasks[$i]->task_id}}" title="标记完成"/></td>--}}
-                <td><a href="#" onclick="oprViewOnEKP('{{$tasks[$i]->task_id}}')">{{$tasks[$i]->task_no}}</a></td>
-                <td class="details" rel={{$tasks[$i]->id}}>{{$tasks[$i]->task_title}}</td>
-                <td>{{$tasks[$i]->customer_name}}</td>
-                <td>{{$tasks[$i]->abu_pm}}</td>
-                <td>{{$tasks[$i]->Devors}}</td>
-                <td>{{$tasks[$i]->Testors}}</td>
-                <td>@if($tasks[$i]->ekp_expect) {{substr($tasks[$i]->ekp_expect,0,10)}} @endif</td>
-                <td data-toggle="tooltip" data-placement="top" title="{{$tasks[$i]->comment}}" class="details">
-                    @if(mb_strlen($tasks[$i]->comment)>10) {{mb_substr($tasks[$i]->comment,0,10)}}...@else {{$tasks[$i]->comment}} @endif
+                <td><a href="#" onclick="oprViewOnEKP('{{$task->task_id}}')">{{$task->task_no}}</a></td>
+                <td class="details" rel={{$task->id}}>{{$task->task_title}}</td>
+                <td>{{$task->customer_name}}</td>
+                <td>{{$task->abu_pm}}</td>
+                <td></td>
+                <td></td>
+                <td>@if($task->ekp_expect) {{substr($task->ekp_expect,0,10)}} @endif</td>
+                <td data-toggle="tooltip" data-placement="top" title="{{$task->comment}}" class="details">
+                    @if(mb_strlen($task->comment)>10) {{mb_substr($task->comment,0,10)}}...@else {{$task->comment}} @endif
                 </td>
-                    <td><span name="chk_finlish" data-toggle="tooltip" data-placement="top" class="glyphicon glyphicon-ok-circle chk_finlish" title="标记" onclick="onMarks('{{$tasks[$i]->id}}')"></span></td>
+                <td><span name="chk_finlish" data-toggle="tooltip" data-placement="top" class="glyphicon glyphicon-ok-circle chk_finlish" title="标记" onclick="onMarks('{{$task->id}}')"></span></td>
             </tr>
-        @endfor
+        @endforeach
         <tr>
             <td colspan="10">
                 <?php echo '共有: '.$tasks->total().' 条记录,当前页显示: '.$tasks->count().' 条';?>
@@ -388,7 +387,7 @@
 
         var datePicker = $("#ctl00_BodyMain_txtDate").datepicker({
             showOtherMonths: true,
-            selectOtherMonths: true,
+            selectOtherMonths: true
         });
         $( "#task_expect" ).datepicker();
 
@@ -415,58 +414,58 @@
             success:function(data){
                 console.info(data);
 
-                $('#task-no').val(data.task.task_no);
-                $('#task-title').val(data.task.task_title);
-                $('#myModalLabel').html(data.task.task_title+"<small> [<a href='#' onclick=oprViewOnEKP("+"'"+data.task.task_id+"')>"+data.task.task_no+"</a>]</small>");
-                $("#task_id").val(data.task.id);
-                $("#remark").val(data.task.comment);
+                $('#task-no').val(data.task_no);
+                $('#task-title').val(data.task_title);
+                $('#myModalLabel').html(data.task_title+"<small> [<a href='#' onclick=oprViewOnEKP("+"'"+data.task_id+"')>"+data.task_no+"</a>]</small>");
+                $("#task_id").val(data.id);
+                $("#remark").val(data.comment);
                 var ekp_expect;
-                if(data.task.ekp_expect)
+                if(data.ekp_expect)
                 {
-                    ekp_expect=data.task.ekp_expect.substr(0,10);
+                    ekp_expect=data.ekp_expect.substr(0,10);
                 }
                 $("#task_expect").val(ekp_expect);//截至日期
-
-                //绑定数据到select
-                var devors= $.grep(data.userlist,function(value,n){
-                    return value.user_type=="开发";
-                });
-                var testors= $.grep(data.userlist,function(value,n){
-                    return value.user_type=="测试";
-                });
-
-                var curdevor= $.grep(data.workload,function(value,n){
-                    return value.work_type=="开发";
-                });
-                var curtestors= $.grep(data.workload,function(value,n){
-                    return value.work_type=="测试";
-                });
-
-                var curdevor_id,curtestor_id;
-                if(curdevor.length>0)
-                {
-                    curdevor_id=curdevor[0].user_id;
-                }
-                if(curtestors.length>0)
-                {
-                    curtestor_id=curtestors[0].user_id;
-                }
-
-                binddata2select('sel_dev',devors,curdevor_id);
-                binddata2select('sel_test',testors,curtestor_id);
-                //绑定数据到select
-
-                if (curdevor_id)
-                {
-                    $("#sel_dev_name").val(curdevor[0].user_name);
-                }
-                if (curtestor_id)
-                {
-                    $("#sel_test_name").val(curtestors[0].user_name);
-                }
-
-                //任务状态
-                $("#sel_task_status option[value='" + data.task.status + "']:eq(0)").attr('selected','selected');
+//
+//                //绑定数据到select
+//                var devors= $.grep(data.userlist,function(value,n){
+//                    return value.user_type=="开发";
+//                });
+//                var testors= $.grep(data.userlist,function(value,n){
+//                    return value.user_type=="测试";
+//                });
+//
+//                var curdevor= $.grep(data.workload,function(value,n){
+//                    return value.work_type=="开发";
+//                });
+//                var curtestors= $.grep(data.workload,function(value,n){
+//                    return value.work_type=="测试";
+//                });
+//
+//                var curdevor_id,curtestor_id;
+//                if(curdevor.length>0)
+//                {
+//                    curdevor_id=curdevor[0].user_id;
+//                }
+//                if(curtestors.length>0)
+//                {
+//                    curtestor_id=curtestors[0].user_id;
+//                }
+//
+//                binddata2select('sel_dev',devors,curdevor_id);
+//                binddata2select('sel_test',testors,curtestor_id);
+//                //绑定数据到select
+//
+//                if (curdevor_id)
+//                {
+//                    $("#sel_dev_name").val(curdevor[0].user_name);
+//                }
+//                if (curtestor_id)
+//                {
+//                    $("#sel_test_name").val(curtestors[0].user_name);
+//                }
+//
+//                //任务状态
+//                $("#sel_task_status option[value='" + data.task.status + "']:eq(0)").attr('selected','selected');
 
 
                 $('#myModal').modal('toggle');

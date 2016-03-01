@@ -25,3 +25,22 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+
+### 注意最基本的编码规范，帮助你我阅读代码
+
+数据库：
+1、数据库修改请先在migrations中执行通过
+2、表命名注意复数形式的使用，正确表达其含义，如users，tasks，task_details等
+3、数据库字段全小写，单词用_分割，如:task_id
+4、参数类数据可以不在数据库中key->value存储，直接在config中记录，数据库中可以只存key
+
+前端：
+1、事件绑定统一在加载时绑定，不要在dom中写死，加载统一使用$(function(){})
+2、系统事件、自定义事件都遵从系统定义规则，全部小写，不要高大小写,简单来说，除了前端model对象，尽量全小写，单词直接用_分割。
+3、
+
+
+后台：
+1、文件/文件夹，尽量保证一个单词命名，文件首字母大写，多个单词，首字母大写，如Task，TaskDetail。（resources文件除外，全小写命名，资源文件方便引用）
+2、

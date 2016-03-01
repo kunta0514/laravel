@@ -20,21 +20,17 @@ class TaskController extends Controller
      * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function index($id=2)
+    public function index($status=2)
     {
         //使用的Laravel的blade模版,{{ $var }}会转义html语义的
-        $normal=array(1,2,3);
-        if(in_array($id,$normal))
-        {
-            $tasks=Task::where('status','=',$id)->orderBy('ekp_create_date')->paginate(12);
-        }elseif($id==4)//全部任务
-        {
+//        config('params.task_status');
+        //根据配置的状态选择不同的查询
+        if(config('params.gander')[$status] == '全部'){
             $tasks=Task::paginate(12);
-        }else//我的待处理
-        {
-            $tasks=Task::where('status','=','-1')->orderBy('ekp_create_date')->paginate(12);
+        }else{
+            $tasks=Task::where('status','=',$status)->orderBy('ekp_create_date')->paginate(12);
         }
-        return view('task.main',['theme' => 'default','tasks' => $tasks,'task_status'=>$id]);
+        return view('task.main',['theme' => 'default','tasks' => $tasks,'task_status'=>$status]);
     }
 
     /**
@@ -46,13 +42,17 @@ class TaskController extends Controller
      */
     public function get_details($id)
     {
+//        echo 'no';
+//        die;
         $task=Task::find($id);
-        $taskInfo=array(
-            'task'=>$task->toArray(),
-            'userlist'=>User::all(['id as key','name as text','user_type'])->toArray(),
-            'workload'=>$task->get_workloads()->get()->toArray()
-        );
-        return response()->json($taskInfo);
+
+//        $taskInfo=array(
+//            'task'=>$task->toArray(),
+////            'userlist'=>User::all(['id as key','name as text','user_type'])->toArray(),
+////            'workload'=>$task->get_workloads()->get()->toArray()
+//        );
+        return json_encode($task,JSON_UNESCAPED_UNICODE);
+//        return response()->json_encode();
     }
 
 

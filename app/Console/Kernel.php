@@ -14,6 +14,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\InitProject::class,
+        \App\Console\Commands\InitTask::class,
+        \App\Console\Commands\SyncProject::class,
         \App\Console\Commands\SyncTask::class,
     ];
 
@@ -27,7 +30,6 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
-
         $schedule->command('command:sync_task')->everyMinute();
     }
 }

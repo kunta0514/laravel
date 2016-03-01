@@ -10,7 +10,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksWorkloadTable extends Migration
+class CreateTaskDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateTasksWorkloadTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks_workload', function(Blueprint $table)
+        Schema::create('task_details', function(Blueprint $table)
         {
             $table->increments('id');
             $table->tinyInteger('type');
@@ -38,6 +38,6 @@ class CreateTasksWorkloadTable extends Migration
      */
     public function down()
     {
-        Schema::drop('task_version');
+        Schema::drop('task_details');
     }
 }
