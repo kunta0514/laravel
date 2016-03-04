@@ -24,9 +24,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('code')->nullable();
             $table->string('name')->nullable();
+            $table->Integer('user_role')->nullable();
             $table->tinyInteger('admin')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -90,6 +90,7 @@ class SyncTask extends Command
             $task_no = $task_node->find('div[class*=title]',0)->children(0)->plaintext;
             $str = ['【','】'];
             $task_no = str_replace($str,"",$task_no);
+            $ekp_oid='';
 
             $task_title = $task_node->find('div[class*=title]',0)->children(1)->plaintext;
             $task_cst_name = $task_node->find('li[title=客户名称]',0)->plaintext;
@@ -106,6 +107,7 @@ class SyncTask extends Command
                 $mysql_task->task_no = $task_no;
                 $mysql_task->task_title = $task_title;
                 $mysql_task->customer_name = $task_cst_name;
+                $mysql_task->ekp_oid=$ekp_oid;
 
                 $mysql_task->abu_pm = $task_apu_pm;
                 $mysql_task->ekp_create_date = date("y-m-d",time());

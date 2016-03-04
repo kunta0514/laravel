@@ -22,10 +22,12 @@ class CreateTaskDetailsTable extends Migration
         Schema::create('task_details', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->tinyInteger('type');
-            $table->string('name');
-            $table->float('time');
             $table->integer('task_id');
+            $table->integer('task_type');
+            $table->tinyInteger('work_type');
+            $table->string('user_id');
+            $table->string('user_name');
+            $table->float('time');
             $table->rememberToken();
             $table->timestamps();
         });

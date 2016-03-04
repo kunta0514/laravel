@@ -23,6 +23,7 @@ class CreateTasksTable extends Migration
         {
             $table->increments('id');
             $table->string('task_no');
+            $table->string('ekp_oid');
             $table->string('task_title');
             $table->string('customer_name');
             $table->string('erp_version');
