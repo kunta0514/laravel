@@ -1,46 +1,49 @@
-## Laravel PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## EFFS是做什么的
+帮助我们高效处理任何事情，只要能想到的、有趣的、提高效率的任何功能，我们都在这里实现，帮助我们快乐学习、生活、工作。
+让我们解放双手！
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
-
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+## 现在我们想做什么
+* 项目任务、JIRA、TFS各种系统各种任务，各种汇报，各种统计，汇报完了还要写日志、周志、总结，能不能化整为零，在日常汇报中把总结、日志什么的一次搞定。
+* 今天做的任务差了半天没搞定，结果一问旁边的哥们，原来处理过，瞬间解决，怎么把知识共享，任务关联，快速解决问题，让我轻松工作？
+* 每周项目周报，策划会、回顾会，开完会还要发邮件，写总结，好心塞。
+* 手机、微信进化这么快，什么时候才能跟上时代步伐，怎么利用新时代工具帮助我们。
 
 
-### 注意最基本的编码规范，帮助你我阅读代码
 
-数据库：
-1、数据库修改请先在migrations中执行通过
-2、表命名注意复数形式的使用，正确表达其含义，如users，tasks，task_details等
-3、数据库字段全小写，单词用_分割，如:task_id
-4、参数类数据可以不在数据库中key->value存储，直接在config中记录，数据库中可以只存key
+## 先试试看，我们能做什么改变
 
-前端：
-1、事件绑定统一在加载时绑定，不要在dom中写死，加载统一使用$(function(){})
-2、系统事件、自定义事件都遵从系统定义规则，全部小写，不要高大小写,简单来说，除了前端model对象，尽量全小写，单词直接用_分割。
-3、
+先来个任务管理模块，看板式，列表式管理所有系统的项目需求和任务，再把需求关联知识库，试试看能不能解放日常任务。
+
+我们的任务的分类？
+* 日常
+* 稀有
+* 传说
+* 史诗
+
+任务管理需要什么功能？
+* 帮助日常项目任务刷新、汇报、记录等工作。
+* 帮助分析每周、每月项目数据，快速生成项目周报。
+* 常见任务快速进行知识库关联，在处理前先关联知识库，帮助处理者快速定位
 
 
-后台：
-1、文件/文件夹，尽量保证一个单词命名，文件首字母大写，多个单词，首字母大写，如Task，TaskDetail。（resources文件除外，全小写命名，资源文件方便引用）
-2、
+
+## 我们需要的代码规范是什么？
+最最基本的，我们的代码要看着舒服，便于理解，然后有点点逼格，所以不要写些我们不顺眼的代码，所以下列的一些注意事项，你一定要了解
+
+
+#### 数据库
+* 数据库修改请先在migrations中执行通过
+* 表命名注意复数形式的使用，正确表达其含义，如users，tasks，task_details等
+* 数据库字段全小写，单词用_分割，如:task_id
+* 参数类数据可以不在数据库中key->value存储，直接在config中记录，数据库中可以只存key
+
+#### 前端：
+* 事件绑定统一在加载时绑定，不要在dom中写死，加载统一使用$(function(){})
+* 系统事件、自定义事件都遵从系统定义规则，全部小写，不要高大小写,简单来说，除了前端model对象，尽量全小写，单词直接用_分割。
+*
+
+
+#### 后台：
+* 文件/文件夹，尽量保证一个单词命名，文件首字母大写，多个单词，首字母大写，如Task，TaskDetail。（resources文件除外，全小写命名，资源文件方便引用）
+*
