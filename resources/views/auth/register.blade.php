@@ -38,7 +38,15 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">User Type</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="user_type" value="{{ old('user_type') }}">
+								<select name="user_type" id="user_type">
+									@foreach(config('params.user_type') as $k=>$val)
+										<option  status={{$k}} data-toggle="tab">{{$val}}</option>
+									@endforeach
+									{{--@foreach(config('params.task_type') as $k=>$value)--}}
+										{{--<option value="{{$k}}">{{$value}}</option>--}}
+									{{--@endforeach--}}
+								</select>
+								{{--<input type="text" class="form-control" name="user_type" value="{{ old('user_type') }}">--}}
 							</div>
 						</div>
 

@@ -28,7 +28,6 @@ class ProjectTableSeeder extends Seeder {
 
         foreach($project_list_array as $project)
         {
-            $i = 0;
             Project::create([
                 'name' => $project['project_name'],
                 'path' => $project['project_path']
