@@ -40,6 +40,14 @@ Route::group(['prefix' => 'mywork', 'namespace' => 'Mywork'], function()
     Route::resource('project', 'ProjectController');
 });
 
+Route::group(['prefix' => 'project', 'namespace' => 'Project'], function()
+{
+    Route::resource('project', 'ProjectController@index');
+    //get、post等按顺序，按分组些，不能穿插写
+    Route::get('/', 'ProjectController@index');
+
+});
+
 Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
 {
     Route::resource('task', 'TaskController@index');
@@ -53,6 +61,14 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
 
     Route::post('edit', 'TaskController@edit');
 
+});
+
+Route::group(['prefix' => 'wx', 'namespace' => 'Wx'], function()
+{
+    Route::resource('wx', 'WxController@index');
+    Route::resource('qy', 'QyController@index');
+    //get、post等按顺序，按分组些，不能穿插写
+    Route::get('/', 'WxController@index');
 
 
 });

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6d99fa059d35637c57061dd1c20de683",
-    "content-hash": "d1cffbb97faf25e7fc0e43d155d2436e",
+    "hash": "733532e88f05ec2cb4765520032dfadc",
+    "content-hash": "c280c4e2f56908196c30a1f318c10cb4",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -116,6 +116,29 @@
                 "utils"
             ],
             "time": "2015-07-23 00:54:12"
+        },
+        {
+            "name": "datatables/datatables",
+            "version": "1.10.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataTables/DataTables.git",
+                "reference": "d0163e24a0735ef3c0f04886be301baba67482e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataTables/DataTables/zipball/d0163e24a0735ef3c0f04886be301baba67482e1",
+                "reference": "d0163e24a0735ef3c0f04886be301baba67482e1",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "http://packagist.cn/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, which will add advanced interaction controls to any HTML table.",
+            "homepage": "http://www.datatables.net/",
+            "time": "2016-02-11 14:30:12"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -792,6 +815,90 @@
                 "php"
             ],
             "time": "2015-12-04 15:28:43"
+        },
+        {
+            "name": "overtrue/laravel-pinyin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-pinyin.git",
+                "reference": "1ca6f16fb0fec61f4183533dcb278f72f9711dc0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-pinyin/zipball/1ca6f16fb0fec61f4183533dcb278f72f9711dc0",
+                "reference": "1ca6f16fb0fec61f4183533dcb278f72f9711dc0",
+                "shasum": ""
+            },
+            "require": {
+                "overtrue/pinyin": ">=2.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelPinyin\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "http://packagist.cn/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "Chinese to Pinyin translator.",
+            "keywords": [
+                "Chinese",
+                "Pinyin",
+                "laravel",
+                "overtrue"
+            ],
+            "time": "2016-01-12 03:24:41"
+        },
+        {
+            "name": "overtrue/pinyin",
+            "version": "2.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/pinyin.git",
+                "reference": "787cf837192ac8bd97386200fc66d513c0de7657"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/pinyin/zipball/787cf837192ac8bd97386200fc66d513c0de7657",
+                "reference": "787cf837192ac8bd97386200fc66d513c0de7657",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\": "src/"
+                }
+            },
+            "notification-url": "http://packagist.cn/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carlos",
+                    "homepage": "http://github.com/overtrue"
+                }
+            ],
+            "description": "Chinese to pinyin translator.",
+            "homepage": "https://github.com/overtrue/pinyin",
+            "keywords": [
+                "Chinese",
+                "Pinyin",
+                "cn2pinyin"
+            ],
+            "time": "2016-01-19 06:57:04"
         },
         {
             "name": "paragonie/random_compat",
@@ -3153,7 +3260,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "overtrue/laravel-pinyin": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

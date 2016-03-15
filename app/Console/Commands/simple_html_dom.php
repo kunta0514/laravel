@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Website: http://sourceforge.net/projects/simplehtmldom/
- * Additional projects that may be used: http://sourceforge.net/projects/debugobject/
- * Acknowledge: Jose Solorzano (https://sourceforge.net/projects/php-html/)
+ * Website: http://sourceforge.net/project/simplehtmldom/
+ * Additional project that may be used: http://sourceforge.net/project/debugobject/
+ * Acknowledge: Jose Solorzano (https://sourceforge.net/project/php-html/)
  * Contributions by:
  *	 Yousuke Kumakura (Attribute filters)
  *	 Vadim Voituk (Negative indexes supports of "find" method)

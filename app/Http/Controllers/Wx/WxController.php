@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Project;
+namespace App\Http\Controllers\Wx;
 
-use App\Workflow;
-use App\Project;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ProjectController extends Controller
+class WxController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +17,6 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        $projects = Workflow::all();
-
-        return view('project.main',['theme' => 'default','projects' => $projects]);
     }
 
     /**

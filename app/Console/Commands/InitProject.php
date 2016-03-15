@@ -14,7 +14,7 @@ class InitProject extends Command
      *
      * @var string
      */
-    protected $signature = 'command:init_work';
+    protected $signature = 'command:init_project';
 
     /**
      * The console command description.
@@ -77,11 +77,12 @@ class InitProject extends Command
      */
     public function handle()
     {
-//        $this->init_project();
-//
-//        $this->get_workflow_dir_step_1();
-//        $this->get_workflow_dir_step_2();
-//        $this->get_workflow_dir_step_3();
+        echo 'what fuck!!';
+        $this->init_project();
+
+        $this->get_workflow_dir_step_1();
+        $this->get_workflow_dir_step_2();
+        $this->get_workflow_dir_step_3();
         echo 'ok';
     }
 
@@ -96,7 +97,7 @@ class InitProject extends Command
 //        $this->scan_dir_all($dir,$this->target_filename,$file_array);
 //        print_r($file_array);
 //        DB::table('projects2workflow')->truncate();
-        $projects = DB::table('projects')->get();
+        $projects = DB::table('project')->get();
         $c = 1;
         $fail = 0;
         foreach($projects as $project)
@@ -143,7 +144,7 @@ class InitProject extends Command
      */
     protected function get_workflow_dir_step_2()
     {
-        $projects = DB::select('select * from projects where `name` not in (select project_name from projects2workflow) and source = 1');
+        $projects = DB::select('select * from project where `name` not in (select project_name from projects2workflow) and source = 1');
         $dir_root = 'H:\Project';
         $c = 1;
         $fail = 0;
@@ -215,10 +216,27 @@ class InitProject extends Command
     protected function refresh_version()
     {
         //SQL更新版本数据
+//        update projects2workflow set workflow_version = case when assemblyFileInfo is  NULL then assemblyInfo  else assemblyFileInfo end
 //        update projects2workflow set workflow_version = REPLACE(workflow_version,'AssemblyVersion("','');
 //        update projects2workflow set workflow_version = REPLACE(workflow_version,'AssemblyFileVersion("','');
 //        update projects2workflow set workflow_version = REPLACE(workflow_version,'")','');
+//        select * from projects2workflow where workflow_version = '1.0.*'
         DB::update('update projects2workflow a inner join versions b ON a.workflow_version = b.workflow_version set a.erp_version = b.erp_version');
+
+//        所有1.0的都是3.5.3.20630的主动修复版本
+//        佛山海骏达	3.5.3.20630	ERP3.0.3
+//        福建新华都	3.5.3.20630	ERP3.0.3
+//        福建新华都	3.5.8.40930	ERP3.0.7SP3
+//        江苏中南建设	3.5.1.10824	ERP3.0.1SP1
+//        江苏中南建设	3.5.3.20630	ERP3.0.3
+//        南京中新	3.5.5.30704	ERP3.0.5
+//        南京中新	3.5.3.20630	ERP3.0.3
+//        南京中新	3.5.6.40213	ERP3.0.6
+//        南宁市地产业	3.5.3.20630	ERP3.0.3
+//        深圳泰富华	3.5.3.20630	ERP3.0.3
+//        深圳星河	3.0.8.50415	ERP2.5.6
+//        深圳星河	3.0.8.50415	ERP2.5.6
+//        深圳星河	3.5.3.20630	ERP3.0.3
     }
 
     protected function get_assembly_info($file_full_name,$pattern)
@@ -247,8 +265,10 @@ class InitProject extends Command
     protected function init_project()
     {
         //1.清空项目信息
-        //DB::table('projects')->get();
-        DB::table('projects')->truncate();
+        //DB::table('project')->get();
+
+//        echo 'fuck!!';
+        DB::table('project')->truncate();
         $this->print_log("清空projects中的数据！");
 
         DB::table('projects2workflow')->truncate();

@@ -47,3 +47,8 @@
 #### 后台：
 * 文件/文件夹，尽量保证一个单词命名，文件首字母大写，多个单词，首字母大写，如Task，TaskDetail。（resources文件除外，全小写命名，资源文件方便引用）
 *
+
+
+
+## composer 说明
+拼音库：https://github.com/overtrue/laravel-pinyin

@@ -42,6 +42,6 @@ class CreateProject2WorkflowTable extends Migration
      */
     public function down()
     {
-        Schema::drop('projects');
+        Schema::drop('project');
     }
 }

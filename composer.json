@@ -16,7 +16,9 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-		"twbs/bootstrap": "^3.3"
+		"twbs/bootstrap": "^3.3",
+		"datatables/datatables": "^1.10",
+		"overtrue/laravel-pinyin": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -97,7 +97,7 @@ class SyncProject extends Command
 //        $this->scan_dir_all($dir,$this->target_filename,$file_array);
 //        print_r($file_array);
 //        DB::table('projects2workflow')->truncate();
-        $projects = DB::table('projects')->get();
+        $projects = DB::table('project')->get();
         $c = 1;
         $fail = 0;
         foreach($projects as $project)
@@ -144,7 +144,7 @@ class SyncProject extends Command
      */
     protected function get_workflow_dir_step_2()
     {
-        $projects = DB::select('select * from projects where `name` not in (select project_name from projects2workflow) and source = 1');
+        $projects = DB::select('select * from project where `name` not in (select project_name from projects2workflow) and source = 1');
         $dir_root = 'H:\Project';
         $c = 1;
         $fail = 0;
@@ -248,8 +248,8 @@ class SyncProject extends Command
     protected function init_project()
     {
         //1.清空项目信息
-        //DB::table('projects')->get();
-        DB::table('projects')->truncate();
+        //DB::table('project')->get();
+        DB::table('project')->truncate();
         $this->print_log("清空projects中的数据！");
 
         DB::table('projects2workflow')->truncate();

@@ -24,7 +24,7 @@ class ProjectTableSeeder extends Seeder {
 
         print_r($project_list_array);
 
-        DB::table('projects')->truncate();
+        DB::table('project')->truncate();
 
         foreach($project_list_array as $project)
         {
