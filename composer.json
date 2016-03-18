@@ -5,7 +5,7 @@
         },
         {
             "type": "composer",
-            "url": "http://packagist.cn"
+            "url": "https://packagist.phpcomposer.com"
         }
     ],
     "name": "laravel/laravel",
@@ -18,7 +18,8 @@
         "laravel/framework": "5.1.*",
 		"twbs/bootstrap": "^3.3",
 		"datatables/datatables": "^1.10",
-		"overtrue/laravel-pinyin": "dev-master"
+		"overtrue/laravel-pinyin": "dev-master",
+		"barryvdh/laravel-ide-helper": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

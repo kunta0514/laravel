@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
 
 
          $this->call('UserTableSeeder');
-         $this->call('VersionTableSeeder');
-         $this->call('ProjectTableSeeder');
+//         $this->call('VersionTableSeeder');
+//         $this->call('ProjectTableSeeder');
 
         Model::reguard();
     }

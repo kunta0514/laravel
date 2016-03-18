@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Task;
 use App\TaskDetail;
 use Redirect, Input, Auth;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -20,19 +21,25 @@ class TaskController extends Controller
      */
     public function index($status=2)
     {
-        if(config('params.task_tabs')[$status] == '全部'){
-            $tasks=Task::paginate(12);
-//            $tasks=DB::select('SELECT a.*,CASE b.work_type when 0 then user_name end as dev,CASE b.work_type when 1 then user_name end as testor from tasks a left JOIN task_details b on a.id=b.task_id where status = ? GROUP BY id',[$status]);
-        }elseif(config('params.task_tabs')[$status] == '进行中'){
-//            $tasks=DB::select('SELECT a.*,CASE b.work_type when 0 then user_name end as dev,CASE b.work_type when 1 then user_name end as testor from tasks a left JOIN task_details b on a.id=b.task_id where status = ? GROUP BY id ORDER BY ekp_create_date',[$status]);
-//            dd(config('params.task_status'));die;
-            $tasks=Task::whereIn('status',[1,2])->orderBy('ekp_create_date')->paginate(12);
-        }else
-        {
-            $tasks=Task::where('status','=',$status)->orderBy('ekp_create_date')->paginate(12);
-        }
-//        dd($tasks);die;
-        return view('task.main',['theme' => 'default','tasks' => $tasks,'task_status'=>$status]);
+//        if(config('params.task_tabs')[$status] == '全部'){
+//            $tasks=Task::paginate(12);
+////            $tasks=DB::select('SELECT a.*,CASE b.work_type when 0 then user_name end as dev,CASE b.work_type when 1 then user_name end as testor from tasks a left JOIN task_details b on a.id=b.task_id where status = ? GROUP BY id',[$status]);
+//        }elseif(config('params.task_tabs')[$status] == '进行中'){
+////            $tasks=DB::select('SELECT a.*,CASE b.work_type when 0 then user_name end as dev,CASE b.work_type when 1 then user_name end as testor from tasks a left JOIN task_details b on a.id=b.task_id where status = ? GROUP BY id ORDER BY ekp_create_date',[$status]);
+////            dd(config('params.task_status'));die;
+//            $tasks=Task::whereIn('status',[1,2])->orderBy('ekp_create_date')->paginate(12);
+//        }else
+//        {
+//            $tasks=Task::where('status','=',$status)->orderBy('ekp_create_date')->paginate(12);
+//        }
+////        dd($tasks);die;
+
+        $tasks = DB::select('SELECT a.*,CASE b.`type` when 0 then b.`name` end as dev,CASE b.`type` when 1 then b.`name` end as test from tasks a left JOIN tasks_workload b on a.id=b.task_id where a.status in (0,1,2) GROUP BY a.id desc ');
+
+        //TODO::改为缓存读取
+        $developers = User::where('role',1)->get();
+        $testers = User::where('role',2)->get();
+        return view('task.main',['theme' => 'default','tasks' => $tasks,'task_status'=>$status,'developers'=>$developers,'testers'=>$testers]);
     }
 
     /**
@@ -44,14 +51,18 @@ class TaskController extends Controller
      */
     public function get_details($id)
     {
-        $task=Task::find($id);
 
-        $taskInfo=array(
-            'task'=>$task->toArray(),
-            'user_list'=>User::all(['id as key','name as text','user_role'])->toArray(),
-            'workload'=>$task->get_workloads()->get()->toArray()
-        );
-        return json_encode($taskInfo,JSON_UNESCAPED_UNICODE);
+        $tasks = DB::select('SELECT a.*,CASE b.`type` when 0 then b.`name` end as dev,CASE b.`type` when 1 then b.`name` end as test from tasks a left JOIN tasks_workload b on a.id=b.task_id where a.id=:id GROUP BY a.id desc ',[$id]);
+
+//        print_r($tasks);
+//        $task=Task::find($id);
+
+//        $taskInfo=array(
+//            'task'=>$task->toArray(),
+//            'user_list'=>User::all(['id as key','name as text','user_role'])->toArray(),
+//            'workload'=>$task->get_workloads()->get()->toArray()
+//        );
+        return json_encode($tasks,JSON_UNESCAPED_UNICODE);
     }
 
 

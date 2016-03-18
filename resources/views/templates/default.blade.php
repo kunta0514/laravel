@@ -14,6 +14,9 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css" rel="stylesheet">
     <link href="{{asset('vendor/css/datatables.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/css/datepicker.css')}}" rel="stylesheet">
+    {{--<link href="{{asset('vendor/css/select2.css')}}" rel="stylesheet">--}}
+
 
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -21,6 +24,9 @@
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script src="{{asset('vendor/js/datatables.js')}}"></script>
+    <script src="{{asset('vendor/js/datepicker.js')}}"></script>
+    {{--<script src="{{asset('vendor/js/select2.js')}}"></script>--}}
+
     <![endif]-->
     <style type="text/css">
         @media screen and (min-width: 1200px){.mycontainer {width: 95%;}}
@@ -30,14 +36,9 @@
 </head>
 <body>
     @include('templates.nav')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                @yield('content')
-            </div>
-        </div>
+    @yield('content')
 
 
-    </div>
+
 {{--    @include('templates.footer')--}}
 </body>

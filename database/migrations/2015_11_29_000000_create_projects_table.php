@@ -24,7 +24,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('path')->nullable();
-            $table->integer('source');
+            $table->integer('source');      //是否包含源代码（只有TFS，没创建源代码的不需要统计）
             $table->rememberToken();
             $table->timestamps();
         });

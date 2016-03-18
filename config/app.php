@@ -149,6 +149,7 @@ return [
          *  vendor Providers
          */
         Overtrue\LaravelPinyin\ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 

@@ -18,32 +18,32 @@ class UserTableSeeder extends Seeder {
                'code'=>'zhuangsd',
                'admin'=>0,
                'email'=>'zhuangsd@mysoft.com.cn',
-               'password'=>'$2y$10$sbUbMp4ophCVgPZrIj/9E.rc2jlRe4vEYUF3kQouDNms07zy4oEZu',
-               'user_type'=>'0'
+               'password'=>'',
+               'role'=>1
            ],
            [
                'username'=>'随波',
                'code'=>'suib',
                'admin'=>0,
                'email'=>'suib@mysoft.com.cn',
-               'password'=>'$2y$10$sbUbMp4ophCVgPZrIj/9E.rc2jlRe4vEYUF3kQouDNms07zy4oEZu',//123456
-               'user_type'=>'1'
+               'password'=>'',
+               'role'=>1
            ],
            [
                'username'=>'季家龙',
                'code'=>'jijl',
                'admin'=>0,
                'email'=>'jijl@mysoft.com.cn',
-               'password'=>'$2y$10$sbUbMp4ophCVgPZrIj/9E.rc2jlRe4vEYUF3kQouDNms07zy4oEZu',
-               'user_type'=>'0'
+               'password'=>'',
+               'role'=>1
            ],
            [
                'username'=>'沈金龙',
                'code'=>'shenjl',
                'admin'=>0,
                'email'=>'shenjl@mysoft.com.cn',
-               'password'=>'$2y$10$sbUbMp4ophCVgPZrIj/9E.rc2jlRe4vEYUF3kQouDNms07zy4oEZu',
-               'user_type'=>'1'
+               'password'=>'',
+               'role'=>1
            ],
 
        ];
@@ -59,7 +59,7 @@ class UserTableSeeder extends Seeder {
                 'admin' => $val['admin'],
                 'email' => $val['email'],
                 'password' => $val['password'],
-                'user_role' => $val['user_type'],
+                'role' => $val['role'],
             ]);
         }
     }

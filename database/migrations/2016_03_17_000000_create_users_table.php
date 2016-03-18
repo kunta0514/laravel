@@ -22,13 +22,13 @@ class CreateUsersTable extends Migration
         Schema::create('users', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('code')->nullable();
+            $table->string('code');
+            $table->string('password');
             $table->string('name')->nullable();
-            $table->Integer('user_role')->nullable();
-            $table->tinyInteger('admin')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('password');
+            $table->tinyInteger('role')->nullable();    //角色
+            $table->tinyInteger('admin')->nullable();   //是否系统管理员
             $table->rememberToken();
             $table->timestamps();
         });

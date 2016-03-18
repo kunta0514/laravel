@@ -40,6 +40,14 @@ Route::group(['prefix' => 'mywork', 'namespace' => 'Mywork'], function()
     Route::resource('project', 'ProjectController');
 });
 
+Route::group(['prefix' => 'report', 'namespace' => 'Report'], function()
+{
+    Route::resource('report', 'ReportController@index');
+    //get、post等按顺序，按分组些，不能穿插写
+    Route::get('/', 'ReportController@index');
+
+});
+
 Route::group(['prefix' => 'project', 'namespace' => 'Project'], function()
 {
     Route::resource('project', 'ProjectController@index');
