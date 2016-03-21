@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/task"><span class="glyphicon glyphicon-queen"></span> Teambition
+            <a class="navbar-brand" href="/task"><span class="glyphicon glyphicon-queen"></span> TaskManager
             </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -33,6 +33,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#">同步任务</a></li>
                 <li class="dropdown"><a href="/task/5">我的任务</a></li>
                 <li><a href="#">任务查询</a></li>
                 <li><a href="#">统计报表</a></li>

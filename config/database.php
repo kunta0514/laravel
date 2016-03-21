@@ -57,7 +57,7 @@ return [
             'host'      => env('DB_HOST', 'localhost'),
             'database'  => env('DB_DATABASE', 'task'),
             'username'  => env('DB_USERNAME', 'root'),
-            'password'  => env('DB_PASSWORD', ''),  //数据库文件在seeds中，不要在改配置了
+            'password'  => env('DB_PASSWORD', 'root'),  //数据库文件在seeds中，不要在改配置了
             'charset'   => 'utf8',
             'collation' => 'utf8_general_ci',
             'prefix'    => '',

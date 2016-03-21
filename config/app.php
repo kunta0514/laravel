@@ -151,6 +151,9 @@ return [
         Overtrue\LaravelPinyin\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        'Stevenyangecho\UEditor\UEditorServiceProvider',
+        'YuanChao\Editor\EndaEditorServiceProvider'
+
     ],
 
     /*
@@ -200,5 +203,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Pinyin'    => 'Overtrue\Pinyin\Pinyin',
+        'EndaEditor' => 'YuanChao\Editor\Facade\EndaEditorFacade',
     ],
 ];

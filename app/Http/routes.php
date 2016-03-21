@@ -71,6 +71,19 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
 
 });
 
+Route::group(['prefix' => 'solution', 'namespace' => 'Solution'], function()
+{
+    Route::get('/', 'SolutionController@index');
+    Route::get('show/{id}', 'SolutionController@show');
+    Route::get('create', 'SolutionController@create');
+    Route::get('mobile/{func?}/{key?}', 'SolutionController@mobile_tools');
+    Route::get('markdown/{id?}', 'SolutionController@markdown');
+    Route::post('mobile', 'SolutionController@mobile_tools');
+    Route::post('upload', 'SolutionController@upload');
+    Route::post('markdown_save', 'SolutionController@markdown_save');
+    Route::resource('solution', 'SolutionController');
+});
+
 Route::group(['prefix' => 'wx', 'namespace' => 'Wx'], function()
 {
     Route::resource('wx', 'WxController@index');

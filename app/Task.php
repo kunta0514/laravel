@@ -44,17 +44,17 @@ class Task extends Model
      */
     public function get_workloads()
     {
-        return $this->hasMany('App\TaskDetail');
+        return $this->hasMany('App\TaskWorkload');
     }
 
     protected function get_Dev()
     {
-        return $this->hasMany('App\TaskDetail')->where('work_type','=',0)->lists('user_name');
+        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',0)->lists('name');
     }
 
     protected function get_Test()
     {
-        return $this->hasMany('App\TaskDetail')->where('work_type','=',1)->lists('user_name');
+        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('name');
     }
 
 

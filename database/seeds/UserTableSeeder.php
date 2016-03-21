@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder {
                'admin'=>0,
                'email'=>'zhuangsd@mysoft.com.cn',
                'password'=>'',
-               'role'=>1
+               'role'=>0
            ],
            [
                'username'=>'随波',
@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder {
                'admin'=>0,
                'email'=>'jijl@mysoft.com.cn',
                'password'=>'',
-               'role'=>1
+               'role'=>0
            ],
            [
                'username'=>'沈金龙',
@@ -43,7 +43,7 @@ class UserTableSeeder extends Seeder {
                'admin'=>0,
                'email'=>'shenjl@mysoft.com.cn',
                'password'=>'',
-               'role'=>1
+               'role'=>0
            ],
 
        ];
