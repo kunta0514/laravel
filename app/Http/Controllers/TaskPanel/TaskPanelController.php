@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\TaskPanel;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\TaskPanel;
+use App\TaskWorkload;
+use App\Task;
+use Redirect, Input, Auth;
 
 class TaskPanelController extends Controller
 {
@@ -15,16 +17,31 @@ class TaskPanelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    private $taskpanel;
+
+    public function __construct()
     {
-        //
-        $task_panel="Hello World";
-        return view('taskpanel.main', ['theme' => 'default', 'task_panel' => $task_panel]);
+        $this->taskpanel = new TaskPanel();
     }
 
-    /**
-     *
-     */
+    public function index()
+    {
+        //处理中&已完成
+        $tasks = array(
+            'tasks_ing' => $this->taskpanel->get_task_all(),
+            'tasks_done' => $this->taskpanel->get_task_done()
+        );
+
+        //开发&测试
+        $users = array(
+            'developers' => $this->taskpanel->get_dev_all(),
+            'testers' => $this->taskpanel->get_test_all()
+        );
+
+        return view('taskpanel.main', ['theme' => 'default', 'tasks' => $tasks, 'users' => $users]);
+    }
+
     public function get_personal_page()
     {
         return view('taskpanel.personal',['theme' => 'default']);
@@ -32,18 +49,54 @@ class TaskPanelController extends Controller
 
     public function get_all_info()
     {
-        $obj = new TaskPanel();
-        $tasks = $obj->get_all_info();
-        //var_dump($tasks);
-        return $tasks;
+//        $tasks = $this->taskpanel->get_all_info();
+//        return $tasks;
     }
 
     public function get_personal_info($id)
     {
-        $obj=new TaskPanel();
-        $tasks=$obj->get_personal_info($id);
-        return $tasks;
+//        $tasks=$this->taskpanel->get_personal_info($id);
+//        return $tasks;
     }
+
+    /**获取任务详情
+     * @param $id
+     * @return string
+     */
+    public function get_detail($id)
+    {
+        $task_detail=$this->taskpanel->get_detail($id);
+        return $task_detail;
+    }
+
+    /**快速操作
+     * @param $id 任务ID
+     * @return bool|string
+     */
+    public function fast_handle($id)
+    {
+
+        $key=$_GET["key"];
+        $value=$_GET["value"];
+
+        if($key==null||$key==""||$key=="id")
+        {
+            return 'false';
+        }
+
+        $task=Task::find($id);
+
+        if($task!=null)
+        {
+            $task->$key =$value;
+        }
+        else
+        {
+            return 'false';
+        }
+        return ($task->save()) ? 'ok':'false';
+    }
+
 
 
     /**
@@ -84,9 +137,40 @@ class TaskPanelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+
+//        var_dump($_POST);
+        $task_id = $_POST["task_id"];
+        $task = Task::find($task_id);
+        $task->actual_finish_date = $_POST["date"];
+        $task->comment = $_POST["comment"];
+        $task->priority = $_POST["priority"];
+
+//        var_dump($task->priority);
+//        var_dump($_POST["priority"]);
+
+        //先删除
+        $old_work_details =TaskWorkload::where('task_id','=',$task_id);
+        $old_work_details->delete();
+
+        //新增开发
+        $work_details_dev =new TaskWorkload();
+        $work_details_dev->task_id=$task->id;
+        $work_details_dev->type=0;
+        $work_details_dev->name=$_POST["dev"];
+
+        //新增测试
+        $work_details_test =new TaskWorkload();
+        $work_details_test->task_id=$task->id;
+        $work_details_test->name=$_POST["test"];
+        $work_details_test->type=1;
+
+        if ($task->save() && $work_details_dev->save() && $work_details_test->save()) {
+            return Redirect::to('task_panel');
+        } else {
+            return Redirect::back()->withInput()->withErrors('保存失败！');
+        }
     }
 
     /**

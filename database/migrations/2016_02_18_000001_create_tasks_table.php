@@ -39,6 +39,7 @@ class CreateTasksTable extends Migration
             $table->string('workflow_version');
             $table->tinyInteger('is_sla');
             $table->tinyInteger('is_sensitive');
+            $table->tinyInteger('priority');
             $table->rememberToken();
             $table->timestamps();
         });

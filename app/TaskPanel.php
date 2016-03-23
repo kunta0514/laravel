@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Connection;
 use Illuminate\Support\Facades\DB;
+use App\Task;
+use App\User;
 
 class TaskPanel extends Model{
 
@@ -24,17 +26,60 @@ class TaskPanel extends Model{
         return $array;
     }
 
+    public function get_detail($id)
+    {
+        //$task_detail = DB::select('SELECT a.*,CASE b.`type` when 0 then b.`name` end as dev,CASE b.`type` when 1 then b.`name` end as test from tasks a left JOIN tasks_workload b on a.id=b.task_id where a.id=:id GROUP BY a.id desc ',[$id]);
+
+        //$task_detail=Task::where('id','=',$id)->get();
+
+        $task_detail=Task::find($id);
+        return json_encode($task_detail,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function get_task_all()
+    {
+        $tasks=Task::where('status','<','3')->get();
+        return $tasks;
+    }
+
+    public function get_dev_all()
+    {
+        return User::where('role',0)->get();
+    }
+
+    public function get_test_all()
+    {
+        return User::where('role',1)->get();
+    }
+
+
+
+    public function get_task_done()
+    {
+        $tasks=Task::where('status','=','3')->orderBy('actual_finish_date','desc')->take(5)->get();
+        return $tasks;
+    }
+
+    public function get_task_todo()
+    {
+        $tasks=Task::where('status','=','0')->get();
+        return $tasks;
+    }
+
+    public function get_task_doing()
+    {
+        $tasks=Task::where('status','=','1')->get();
+        return $tasks;
+    }
+
+    public function get_task_verify()
+    {
+        $tasks=Task::where('status','=','2')->get();
+        return $tasks;
+    }
+
     public function get_personal_info($id)
     {
-        $userid = "4";
-
-        $strSql = <<<EOT
-        SELECT * FROM tasks a
-        LEFT JOIN task_details b ON a . task_no = b . task_id
-        LEFT JOIN users c ON b . user_id = c . id
-        WHERE b . user_id = '4' and a . `status` = 1
-EOT;
-
 
     }
 
@@ -85,9 +130,4 @@ EOT;
 
     }
 
-    public function getTaskDetail($id)
-    {
-        $task=DB::select('select * from tasks where task_no='.$id);
-        return json_encode($task, JSON_UNESCAPED_UNICODE);
-    }
 }
