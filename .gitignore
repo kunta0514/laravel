@@ -1,9 +1,0 @@
-/vendor
-/node_modules
-/.idea
-Homestead.yaml
-Homestead.json
-.env
-/.idea/workspce.xml
-/config
-/database
