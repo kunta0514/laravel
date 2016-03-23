@@ -11,7 +11,8 @@
             cursor: pointer;
         }
         .or_doing{
-            background-color:rgb(251, 243, 145);
+            /*background-color:rgb(251, 243, 145);*/
+            background-color: rgb(166, 220, 163);
         }
     </style>
 
@@ -27,16 +28,17 @@
                 <th>PM</th>
                 <th>开发</th>
                 <th>测试</th>
-                {{--<th>期望时间</th>--}}
-                <th><span class="glyphicon glyphicon-pencil" title="标记"></span></th>
+                <th>倒计时(h)</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
 
         @foreach($tasks as $k=>$task)
             <tr rel="{{$task->id}}" >
-                <th scope="row" class="@if($task->status <3 && $task->status >0) tr_doing @endif">{{$k+1}}</th>
-                <td><a href="#" name="view_on_erp" rel="{{$task->ekp_oid}}">{{$task->task_no}}</a></td>
+                {{--class="@if($task->status <3 && $task->status >0) tr_doing @endif"--}}
+                <th scope="row" >{{$k+1}}</th>
+                <td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
                 <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
                     <a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>23) {{mb_substr($task->task_title,0,23)}}...@else {{$task->task_title}} @endif
                 </td>
@@ -44,9 +46,11 @@
                 <td>{{$task->abu_pm}}</td>
                 <td class="@if($task->status=='1')or_doing @endif">{{$task->dev}}</td>
                 <td class="@if($task->status=='2')or_doing @endif">{{$task->test}}</td>
-                {{--<td>@if($task->ekp_expect) {{substr($task->ekp_expect,0,10)}} @endif</td>--}}
+{{--                <td>@if($task->actual_finish_date) {{substr($task->actual_finish_date,0,10)}} @endif</td>deadline--}}
+                <td>{{$task->deadline}}</td>
                 <td>
-                    <span name="chk_finish" data-toggle="tooltip" data-placement="top" class="glyphicon glyphicon-ok-circle chk_finish"
+                    <span name="chk_finish" data-toggle="tooltip" data-placement="top"
+                          class="glyphicon chk_finish @if($task->status == 1) glyphicon-pushpin @elseif($task->status == 2) glyphicon-check @else glyphicon-flag @endif"
                           title="标记为{{config('params.task_status')[$task->status+1] }}..." rel="{{$task->id}}" status="{{$task->status}}">
                     </span>
                 </td>
@@ -63,7 +67,6 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"></h4>
                 </div>
-
                 <div class="modal-body">
                     <form method="post" action="{{ URL('task/edit') }}" role="form" id="form_task">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -85,10 +88,24 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="btn-group">
+                                <label for="select-status">状态</label>
+                                <select class="form-control" id="select-status" name="status">
+                                    @foreach(Config('params.task_status') as $key=>$value)
+                                        @if($key<4)
+                                        <option value="{{$key}}">{{$value}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="select-date">完成日期</label>
+                            <label for="select-date">预计完成日期</label>
                             <input type="text" name="date" id="select-date" class="form-control" placeholder="选择日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="package_name">更新包名称</label>
+                            <input type="text" id="package_name" class="form-control" value="" placeholder="更新包名称">
                         </div>
 
                         <div class="form-group">
@@ -144,18 +161,25 @@
                 url:'/task/get_details/'+ $(this).attr('rel'),
                 dataType:'json',
                 success:function(data){
-                    console.info(data);
+//                    console.info(data);
                     var my_model=$('#myModal');
                     my_model.find('.modal-title').text(data[0].task_title);
+                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data[0].task_no + "]"));
                     my_model.find('#select-date').val(data[0].actual_finish_date);
                     my_model.find('#task_id').val(data[0].id);
                     my_model.find('#comment').val(data[0].comment);
+                    var thisTime=(new Date()).getFullYear() +""+ ((new Date()).getMonth()+1)+(new Date()).getDate();;
+                    my_model.find('#package_name').val(data[0].customer_name+"工作流("+data[0].task_no+")_" + thisTime + "第一次");
                     $.each($("#select-dev option"),function(n,value){
                         if(value.text==data[0].dev){$(value).attr("selected","selected");}
                     });
                     $.each($("#select-test option"),function(n,value){
                         if(value.text==data[0].test){$(value).attr("selected","selected");}
                     });
+                    $.each($("#select-status option"),function(n,value){
+                        if(value.value==data[0].status){$(value).attr("selected","selected");}
+                    });
+                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data[0].task_no)});
                     my_model.modal('toggle');
                 }
             });
@@ -189,7 +213,42 @@
             return false;
         });
 
-    } );
+        $("a[name='view_on_erp']").unbind('click').bind('click',function(){
+//            console.info($(this).attr("rel"));
+            oprViewOnEKP($(this).attr("rel"));
+            return false;
+        });
 
+        //sync_task
+        $("a[name='sync_task']").unbind('click').bind("click", function () {
+            $.ajax({
+                type:'GET',
+                url:'/task/sync_task/',
+                dataType:'json',
+                success:function(data) {
+                    alert("本次同步"+data+"条任务。")
+                    location.reload();
+                },
+                error:function(){
+                    location.reload();
+                }
+            });
+        });
+
+    } );
+function oprViewOnEKP(obj)
+{
+    $.ajax({
+        type:'GET',
+        url:'/task/view_pd/'+obj,
+        success:function(data) {
+            console.info("http://pd.mysoft.net.cn"+data);
+            window.open("http://pd.mysoft.net.cn"+data) ;
+        },
+        error:function(data){
+            console.info(data);
+        }
+        });
+}
 </script>
 @stop

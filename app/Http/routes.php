@@ -61,11 +61,15 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     Route::resource('task', 'TaskController@index');
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/', 'TaskController@index');
-    Route::get('/{status}', 'TaskController@index');
     Route::get('/get_details/{id}','TaskController@get_details');
     Route::get('/wonder4/{id}','TaskController@wonder4');
     Route::get('/edit/{id}', 'TaskController@edit');
     Route::get('/fast_handle/{id}', 'TaskController@fast_handle');
+    Route::get('/view_pd/{task_no}', 'TaskController@view_pd');
+    Route::get('/sync_task',function(){
+        $result=Artisan::call('command:sync_task', []);
+        return $result;
+    });
 
     Route::post('edit', 'TaskController@edit');
 

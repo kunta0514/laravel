@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Task;
 
+use App\Http\Controllers\Solution\SolutionController;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class TaskController extends Controller
     {
 //        $tasks = DB::select('SELECT a.*,CASE b.`type` when 1 then b.`name` end as dev,CASE b.`type` when 0 then b.`name` end as test from tasks a left JOIN tasks_workload b on a.id=b.task_id where a.status in (0,1,2) GROUP BY a.id desc ');
 
-        $tasks=Task::where('status','<',3)->get();
+        $tasks=Task::where('status','<',3)->orderBy('task_no')->get();
 
         //TODO::改为缓存读取
         $developers = User::where('role',0)->get();
@@ -39,7 +40,6 @@ class TaskController extends Controller
      */
     public function get_details($id)
     {
-
         $tasks = DB::select('SELECT a.*,CASE b.`type` when 0 then b.`name` end as dev,CASE b.`type` when 1 then b.`name` end as test from tasks a left JOIN tasks_workload b on a.id=b.task_id where a.id=:id GROUP BY a.id desc ',[$id]);
 
         //TODO::改为打开新的页面
@@ -66,32 +66,6 @@ class TaskController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-//        $this->validate($request, [
-//            'title' => 'required|unique:pages,title|max:255',
-//            'body' => 'required',
-//        ]);
-//        var_dump($request);
-        echo "ok";
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * 任务指派功能
@@ -105,6 +79,8 @@ class TaskController extends Controller
         $task = Task::find($task_id);
         $task->actual_finish_date=$request->input("date");
         $task->comment=$request->input("comment");
+        $task->status=$request->input("status");
+
         //先删除
         $old_work_details =TaskWorkload::where('task_id','=',$task_id);
         $old_work_details->delete();
@@ -128,28 +104,6 @@ class TaskController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -172,10 +126,13 @@ class TaskController extends Controller
 
 
     /**
-     *同步任务
+     * @param $task_no
+     * @return mixed
      */
-    public function sync_task()
+    public function view_pd($task_no)
     {
-
+        $solution=new SolutionController();
+        return str_replace('\"','',$solution->view_pd($task_no)[0]->attr['href']);
     }
+
 }

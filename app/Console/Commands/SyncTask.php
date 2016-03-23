@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Task;
+
 include 'simple_html_dom.php';
 
 class SyncTask extends Command
@@ -41,7 +42,7 @@ class SyncTask extends Command
     public function handle()
     {
         //
-        $this->sync_task();
+        return $this->sync_task();
 //        echo 'ok';
     }
 
@@ -83,7 +84,7 @@ class SyncTask extends Command
 
 //        print_r($html);
 //        die;
-
+        $count=0;
         $html = str_get_html($html);
         foreach($html->find('div[class*=singleRequirementCard]') as $task_node)
         {
@@ -118,6 +119,7 @@ class SyncTask extends Command
 //            $mysql_task->map_version = $task->MapVersion;
 //            $mysql_task->workflow_version = $task->WorkflowVersion;
                 $mysql_task->save();
+                $count++;
 
                 print_r(iconv('utf-8','gbk',$task_no).chr(10));
                 print_r(iconv('utf-8','gbk',$task_title).chr(10));
@@ -127,6 +129,7 @@ class SyncTask extends Command
                 print_r(iconv('utf-8','gbk',$task_status).chr(10));
             }
         }
+        return $count;
     }
 
 
