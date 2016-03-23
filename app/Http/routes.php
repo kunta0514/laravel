@@ -99,5 +99,18 @@ Route::group(['prefix' => 'wx', 'namespace' => 'Wx'], function()
 });
 
 
+Route::group(['prefix' => 'task_panel', 'namespace' => 'TaskPanel'], function()
+{
+    Route::resource('task_panel', 'TaskPanelController@index');
+    //get、post等按顺序，按分组写，不能穿插写
+    Route::get('/', 'TaskPanelController@index');
+    Route::get('/personal','TaskPanelController@get_personal_page');
+
+    //获取值
+    Route::get('/get_all_info','TaskPanelController@get_all_info');
+    Route::get('/get_personal_info/{id}','TaskPanelController@get_personal_info');
+});
+
+
 
 
