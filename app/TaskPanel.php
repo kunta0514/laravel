@@ -18,71 +18,30 @@ use App\User;
 class TaskPanel extends Model{
 
 
-    protected $task_panel = 'task_panel';
+    //指定自定义表名
+    protected $table = "tasks";
 
-    public function get()
-    {
-        $array = array('name'=>'Shenjl','age'=>18);
-        return $array;
-    }
+    /**
+     * 追加到模型数组表单的访问属性
+     *
+     * @var array
+     */
+    protected $appends = ['dev','test','deadline'];
 
+
+    /** 获取任务详情 DB
+     * @param $id
+     */
     public function get_detail($id)
     {
         //$task_detail = DB::select('SELECT a.*,CASE b.`type` when 0 then b.`name` end as dev,CASE b.`type` when 1 then b.`name` end as test from tasks a left JOIN tasks_workload b on a.id=b.task_id where a.id=:id GROUP BY a.id desc ',[$id]);
-
-        //$task_detail=Task::where('id','=',$id)->get();
-
-        $task_detail=Task::find($id);
-        return json_encode($task_detail,JSON_UNESCAPED_UNICODE);
     }
 
-    public function get_task_all()
-    {
-        $tasks=Task::where('status','<','3')->get();
-        return $tasks;
-    }
-
-    public function get_dev_all()
-    {
-        return User::where('role',0)->get();
-    }
-
-    public function get_test_all()
-    {
-        return User::where('role',1)->get();
-    }
-
-
-
-    public function get_task_done()
-    {
-        $tasks=Task::where('status','=','3')->orderBy('actual_finish_date','desc')->take(5)->get();
-        return $tasks;
-    }
-
-    public function get_task_todo()
-    {
-        $tasks=Task::where('status','=','0')->get();
-        return $tasks;
-    }
-
-    public function get_task_doing()
-    {
-        $tasks=Task::where('status','=','1')->get();
-        return $tasks;
-    }
-
-    public function get_task_verify()
-    {
-        $tasks=Task::where('status','=','2')->get();
-        return $tasks;
-    }
-
-    public function get_personal_info($id)
-    {
-
-    }
-
+    /**获取所有任务 DB
+     * @param $page 页
+     * @param $pagesize 页大小
+     * @return string
+*/
     public function get_all_info($page,$pagesize)
     {
         //Todo:分页取数
@@ -129,5 +88,95 @@ EOT;
 //        return json_encode($results);
 
     }
+
+    /**
+     * 获取任务的开发
+     *
+     * @return String
+     */
+    public function getDevAttribute()
+    {
+        return $this->attributes['dev'] =join(',',$this->get_Dev()->toArray());
+    }
+
+    /**
+     * 获取任务的测试
+     *
+     * @return String
+     */
+    public function getTestAttribute()
+    {
+        return $this->attributes['test'] =join(',',$this->get_Test()->toArray());
+    }
+
+//    /**
+//     * 获取任务的开发头像
+//     *
+//     * @return String
+//     */
+//    public function getDevPicAttribute()
+//    {
+//        return $this->attributes['dev_pic'] =join(',',$this->get_Dev_Pic()->toArray());
+//    }
+//
+//    /**
+//     * 获取任务的测试头像
+//     *
+//     * @return String
+//     */
+//    public function getTestPicAttribute()
+//    {
+//        return $this->attributes['test_pic'] =join(',',$this->get_Test_Pic()->toArray());
+//    }
+
+    /**
+     * 获取任务的剩余时间
+     *
+     * @return String
+     */
+    public function getDeadlineAttribute()
+    {
+        return $this->attributes['deadline'] =$this->get_DeadLine();
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function get_workloads()
+    {
+        return $this->hasMany('App\TaskWorkload');
+    }
+
+    protected function get_Dev()
+    {
+        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',0)->lists('name');
+    }
+
+    protected function get_Test()
+    {
+        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('name');
+    }
+
+//    protected function get_Dev_Pic()
+//    {
+//        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',0)->lists('user_pic');
+//    }
+//
+//    protected function get_Test_Pic()
+//    {
+//        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('user_pic');
+//    }
+
+    protected function get_DeadLine()
+    {
+        if(date_default_timezone_get() != "1Asia/Shanghai") date_default_timezone_set("Asia/Shanghai");
+        $task_expect=$this->actual_finish_date;
+        $hour=floor((strtotime($task_expect) - strtotime(date("y-m-d h:i:s")))%86400/3600);
+        return strtotime(date("y-m-d h:i:s"));
+    }
+
 
 }

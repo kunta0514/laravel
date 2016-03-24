@@ -81,7 +81,6 @@
             width: 24px;
             height: 24px;
             float: left;
-            background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});
             margin-top: -2px;
         }
 
@@ -288,16 +287,16 @@
                             <ul id="todo-foo" class="scrum-stage-tasks">
                                 @foreach($tasks["tasks_ing"] as $k=>$task)
                                     @if($task->status==0)
-                                        <li class="task" rel="{{$task->id}}">
+                                        <li class="task" rel="{{$task->id}}" data-id="{{$k}}">
                                             <div class="task-priority task-priority-{{$task->priority}}" rel="{{$task->priority}}">
                                                 <a class="task-priority-hint"></a>
                                             </div>
                                             <a class="check-box">
                                                 <span class="icon icon-tick"></span>
                                             </a>
-
                                             <div class="task-content-set">
-                                                <div class="task-content-pic">
+                                                {{--<div class="task-content-pic" style="background-image: url({{asset($task->user_pic)}});">--}}
+                                                <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">
                                                 </div>
                                                 <div class="task-content-wrapper">
                                                     <div class="task-content" rel="{{$task->id}}">
@@ -344,7 +343,7 @@
                                             </a>
 
                                             <div class="task-content-set">
-                                                <div class="task-content-pic">
+                                                <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">
                                                 </div>
                                                 <div class="task-content-wrapper">
                                                     <div class="task-content" rel="{{$task->id}}">
@@ -391,7 +390,7 @@
                                             </a>
 
                                             <div class="task-content-set">
-                                                <div class="task-content-pic">
+                                                <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">
                                                 </div>
                                                 <div class="task-content-wrapper">
                                                     <div class="task-content" rel="{{$task->id}}">
@@ -427,24 +426,6 @@
                     <div class="scrum-stage-wrap">
                         <section class="scrum-stage-content">
                             <ul id="done-foo" class="scrum-stage-tasks">
-                                {{--<li class="task" rel="0">--}}
-                                    {{--<div class="task-priority-0">--}}
-                                        {{--<a class="task-priority-hint"></a>--}}
-                                    {{--</div>--}}
-                                    {{--<a class="check-box-done">--}}
-                                        {{--<span class="icon icon-tick done"></span>--}}
-                                    {{--</a>--}}
-
-                                    {{--<div class="task-content-set">--}}
-                                        {{--<div class="task-content-pic">--}}
-                                        {{--</div>--}}
-                                        {{--<div class="task-content-wrapper">--}}
-                                            {{--<div class="task-content text-delete">--}}
-                                                {{--这是一条已完成的任务--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</li>--}}
                                 @foreach($tasks["tasks_done"] as $k=>$task)
                                         <li class="task" rel="{{$task->id}}">
                                             <div class="task-priority-0">
@@ -455,7 +436,7 @@
                                             </a>
 
                                             <div class="task-content-set">
-                                                <div class="task-content-pic">
+                                                <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">
                                                 </div>
                                                 <div class="task-content-wrapper">
                                                     <div class="task-content text-delete" rel="{{$task->id}}">
@@ -525,20 +506,6 @@
                                     <option value="2">非常紧急</option>
                                 </select>
                             </div>
-
-                            {{--<div class="dropdown">--}}
-                            {{--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">--}}
-                            {{--选择你喜欢的水果--}}
-                            {{--<span class="caret"></span>--}}
-                            {{--</button>--}}
-                            {{--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">--}}
-                            {{--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">苹果</a></li>--}}
-                            {{--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">香蕉</a></li>--}}
-                            {{--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">梨</a></li>--}}
-                            {{--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">桃</a></li>--}}
-                            {{--</ul>--}}
-                            {{--</div>--}}
-
                         </div>
                         <div class="form-group">
                             <label for="select-date">完成日期</label>
@@ -568,6 +535,7 @@
         <!-- /.modal -->
     </div>
 
+    {{--JS--}}
     <script type="text/javascript">
         //初始化
         $(document).ready(function () {
@@ -605,16 +573,17 @@
                         if (data) {
                             var my_model = $('#myModal');
                             //模态框赋值
-//                            my_model.find('.modal-title').text(data["task_title"]);
-                            var erp_link="<a href=\"#\" onclick=\"openErpWin(this)\" name=\"view_on_erp\" rel=\""+data["task_no"]+"\">["+data["task_no"]+"]</a>";
-                            my_model.find('.modal-title').html(data["task_title"]+"-"+erp_link);
-
+//                            var erp_link="<a href=\"#\" onclick=\"oprViewOnEKP(this)\" name=\"view_on_erp\" rel=\""+data["task_no"]+"\">["+data["task_no"]+"]</a>";
+//                            my_model.find('.modal-title').html(data["task_title"]+"-"+erp_link);
+                            my_model.find('.modal-title').text(data["task_title"]);
+                            my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data["task_no"] + "]"));
                             my_model.find('#select-date').val(data["actual_finish_date"]);
                             my_model.find('#task_id').val(data["id"]);
                             my_model.find('#comment').val(data["comment"]);
 
                             //默认选中
                             $.each($("#select-dev option"), function (n, value) {
+//                                console.info(data["dev"]);
                                 if (value.text == data["dev"]) {
                                     $(value).attr("selected", "selected");
                                 }
@@ -629,6 +598,7 @@
                                     $(value).attr("selected", "selected");
                                 }
                             });
+                            my_model.find(".modal-title a").click(function(){oprViewOnEKP(data["task_no"])});
                             my_model.modal('toggle');
                         }
                         else {
@@ -707,18 +677,18 @@
         //| 创建时间：2016-3-17 15:27:31
         //+----------------------------------------------------------------------
         function initToDoModule() {
-            $.ajax({
-                type: "get",
-                url: '/task_panel/get_all_info',
-                dataType: 'json',
-                async: false,
-                success: function (data) {
-                    $("#todo-foo").empty();
-                    for (var d = 0; d < data.length; d++) {
-
-                    }
-                }
-            });
+//            $.ajax({
+//                type: "get",
+//                url: '/task_panel/get_all_info',
+//                dataType: 'json',
+//                async: false,
+//                success: function (data) {
+//                    $("#todo-foo").empty();
+//                    for (var d = 0; d < data.length; d++) {
+//
+//                    }
+//                }
+//            });
         }
 
         //+----------------------------------------------------------------------  
@@ -729,6 +699,7 @@
         //| 创建人：沈金龙
         //| 创建时间：2016-3-17 15:27:31
         //+----------------------------------------------------------------------
+        var sortable1,sortable2,sortable3,sortable4;
         function initSortable() {
             var todo = document.getElementById('todo-foo');
             var doing = document.getElementById('doing-foo');
@@ -739,7 +710,7 @@
             //面板拖动
             Sortable.create(task_panel);
 
-            var sortable1 = Sortable.create(todo, {
+             sortable1 = Sortable.create(todo, {
                 group: 'shared',
                 onAdd: function (evt) {
                     $("#span-todo-num").text($("#todo-foo").find('li').length);
@@ -749,9 +720,12 @@
                 },
                 onRemove: function (/**Event*/evt) {
                     $("#span-todo-num").text($("#todo-foo").find('li').length);
+                },
+                onSort: function (/**Event*/evt) {
+                    //alert("sort");
                 }
             });
-            var sortable2 = Sortable.create(doing, {
+             sortable2 = Sortable.create(doing, {
                 group: 'shared',
                 onAdd: function (evt) {
                     $("#span-doing-num").text($("#doing-foo").find('li').length);
@@ -763,7 +737,7 @@
                     $("#span-doing-num").text($("#doing-foo").find('li').length);
                 }
             });
-            var sortable3 = Sortable.create(verify, {
+             sortable3 = Sortable.create(verify, {
                 group: 'shared',
                 onAdd: function (evt) {
                     $("#span-verify-num").text($("#verify-foo").find('li').length);
@@ -775,7 +749,7 @@
                     $("#span-verify-num").text($("#verify-foo").find('li').length);
                 }
             });
-            var sortable4 = Sortable.create(done, {
+             sortable4 = Sortable.create(done, {
                 group: {
                     name: 'shared',
                     pull: false,
@@ -803,10 +777,12 @@
                     if (data) {
                         //TODO：成功提示
                         alert(data);
+                        console.info(data);
                     }
                     else {
                         //TODO:提示：未找到对应的任务。
                         alert(data);
+                        console.info(data);
                     }
                 },
                 error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -825,14 +801,17 @@
         //| 创建人：沈金龙
         //| 创建时间：2016-3-17 15:27:31
         //+----------------------------------------------------------------------
-        function openErpWin(obj){
-            //任务编号
-            var task_id = $(obj).attr('rel');
-
-            //异步取任务oid
-            var erpOid = "";
-            //打开窗口
-            alert("开发中，请稍候~~");
+        function oprViewOnEKP(id){
+            $.ajax({
+                type:'GET',
+                url:'/task/view_pd/'+id,
+                success:function(data) {
+                    window.open("http://pd.mysoft.net.cn"+data) ;
+                },
+                error:function(data){
+                    console.info(data);
+                }
+            });
         }
 
         //+----------------------------------------------------------------------  
@@ -916,5 +895,34 @@
 
             $("#todo-foo").append(liObj);
         }
+    </script>
+
+    {{--测试--}}
+    <div class="panel panel-default test_panel">
+        <div class="panel-body">
+            <div class="btn-group">
+                <button type="button" id="btnTestSort" class="btn btn-default">测试排序</button>
+            </div>
+        </div>
+    </div>
+    <style>
+        .test_panel{
+            width:300px;
+            height:150px;
+            position: fixed;
+            right:20px;
+            top:50px;
+            z-index:999;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#btnTestSort").click(function(){
+                var order=sortable1.toArray();
+                //console.info(order); //["1","2","4","5","7","8","10"]
+                //console.info(order.reverse());
+                sortable1.sort(["2","1","4","5","7","8","10"]);
+            });
+        });
     </script>
 @stop

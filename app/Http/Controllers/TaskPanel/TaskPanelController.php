@@ -8,56 +8,48 @@ use App\Http\Controllers\Controller;
 use App\TaskPanel;
 use App\TaskWorkload;
 use App\Task;
+use App\User;
 use Redirect, Input, Auth;
 
 class TaskPanelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     private $taskpanel;
 
+    //构造函数
     public function __construct()
     {
         $this->taskpanel = new TaskPanel();
     }
 
+    //主页
     public function index()
     {
         //处理中&已完成
         $tasks = array(
-            'tasks_ing' => $this->taskpanel->get_task_all(),
-            'tasks_done' => $this->taskpanel->get_task_done()
+            'tasks_ing' => TaskPanel::where('status', '<', '3')->get(),
+            'tasks_done' => TaskPanel::where('status', '=', '3')->orderBy('actual_finish_date', 'desc')->take(5)->get()
         );
 
         //开发&测试
         $users = array(
-            'developers' => $this->taskpanel->get_dev_all(),
-            'testers' => $this->taskpanel->get_test_all()
+            'developers' => User::where('role', 0)->get(),
+            'testers' => User::where('role', 1)->get()
         );
 
         return view('taskpanel.main', ['theme' => 'default', 'tasks' => $tasks, 'users' => $users]);
     }
 
+//region 视图跳转
+
     public function get_personal_page()
     {
-        return view('taskpanel.personal',['theme' => 'default']);
+        return view('taskpanel.personal', ['theme' => 'default']);
     }
 
-    public function get_all_info()
-    {
-//        $tasks = $this->taskpanel->get_all_info();
-//        return $tasks;
-    }
+//endregion
 
-    public function get_personal_info($id)
-    {
-//        $tasks=$this->taskpanel->get_personal_info($id);
-//        return $tasks;
-    }
+//region 异步取数
 
     /**获取任务详情
      * @param $id
@@ -65,9 +57,10 @@ class TaskPanelController extends Controller
      */
     public function get_detail($id)
     {
-        $task_detail=$this->taskpanel->get_detail($id);
+        $task_detail = TaskPanel::find($id);
         return $task_detail;
     }
+
 
     /**快速操作
      * @param $id 任务ID
@@ -78,13 +71,14 @@ class TaskPanelController extends Controller
 
         $key=$_GET["key"];
         $value=$_GET["value"];
-
+//        dd($id);
+//        die;
         if($key==null||$key==""||$key=="id")
         {
             return 'false';
         }
 
-        $task=Task::find($id);
+        $task=TaskPanel::find($id);
 
         if($task!=null)
         {
@@ -97,7 +91,9 @@ class TaskPanelController extends Controller
         return ($task->save()) ? 'ok':'false';
     }
 
+//endregion
 
+//region 增删改查
 
     /**
      * Show the form for creating a new resource.
@@ -112,7 +108,7 @@ class TaskPanelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -123,7 +119,7 @@ class TaskPanelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -134,7 +130,7 @@ class TaskPanelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit()
@@ -142,7 +138,7 @@ class TaskPanelController extends Controller
 
 //        var_dump($_POST);
         $task_id = $_POST["task_id"];
-        $task = Task::find($task_id);
+        $task = TaskPanel::find($task_id);
         $task->actual_finish_date = $_POST["date"];
         $task->comment = $_POST["comment"];
         $task->priority = $_POST["priority"];
@@ -151,20 +147,20 @@ class TaskPanelController extends Controller
 //        var_dump($_POST["priority"]);
 
         //先删除
-        $old_work_details =TaskWorkload::where('task_id','=',$task_id);
+        $old_work_details = TaskWorkload::where('task_id', '=', $task_id);
         $old_work_details->delete();
 
         //新增开发
-        $work_details_dev =new TaskWorkload();
-        $work_details_dev->task_id=$task->id;
-        $work_details_dev->type=0;
-        $work_details_dev->name=$_POST["dev"];
+        $work_details_dev = new TaskWorkload();
+        $work_details_dev->task_id = $task->id;
+        $work_details_dev->type = 0;
+        $work_details_dev->name = $_POST["dev"];
 
         //新增测试
-        $work_details_test =new TaskWorkload();
-        $work_details_test->task_id=$task->id;
-        $work_details_test->name=$_POST["test"];
-        $work_details_test->type=1;
+        $work_details_test = new TaskWorkload();
+        $work_details_test->task_id = $task->id;
+        $work_details_test->name = $_POST["test"];
+        $work_details_test->type = 1;
 
         if ($task->save() && $work_details_dev->save() && $work_details_test->save()) {
             return Redirect::to('task_panel');
@@ -176,8 +172,8 @@ class TaskPanelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -188,11 +184,15 @@ class TaskPanelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
+
+
+//endregion
+
 }
