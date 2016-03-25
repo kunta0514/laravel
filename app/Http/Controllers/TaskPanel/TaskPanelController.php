@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\TaskPanel;
 use App\TaskWorkload;
-use App\Task;
 use App\User;
 use Redirect, Input, Auth;
 
@@ -31,6 +30,7 @@ class TaskPanelController extends Controller
             'tasks_done' => TaskPanel::where('status', '=', '3')->orderBy('actual_finish_date', 'desc')->take(5)->get()
         );
 
+        //TODO:可以放到点击详情的函数里面
         //开发&测试
         $users = array(
             'developers' => User::where('role', 0)->get(),
@@ -71,8 +71,7 @@ class TaskPanelController extends Controller
 
         $key=$_GET["key"];
         $value=$_GET["value"];
-//        dd($id);
-//        die;
+
         if($key==null||$key==""||$key=="id")
         {
             return 'false';

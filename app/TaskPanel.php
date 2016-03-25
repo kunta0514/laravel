@@ -17,7 +17,6 @@ use App\User;
 
 class TaskPanel extends Model{
 
-
     //指定自定义表名
     protected $table = "tasks";
 
@@ -26,8 +25,9 @@ class TaskPanel extends Model{
      *
      * @var array
      */
-    protected $appends = ['dev','test','deadline'];
+    protected $appends = ['dev','test','expect_finish_date','actual_finish_date'];
 
+//region DB数据库操作
 
     /** 获取任务详情 DB
      * @param $id
@@ -41,7 +41,7 @@ class TaskPanel extends Model{
      * @param $page 页
      * @param $pagesize 页大小
      * @return string
-*/
+     */
     public function get_all_info($page,$pagesize)
     {
         //Todo:分页取数
@@ -89,6 +89,10 @@ EOT;
 
     }
 
+//endregion
+
+//region 自定义属性
+
     /**
      * 获取任务的开发
      *
@@ -109,46 +113,47 @@ EOT;
         return $this->attributes['test'] =join(',',$this->get_Test()->toArray());
     }
 
-//    /**
-//     * 获取任务的开发头像
-//     *
-//     * @return String
-//     */
-//    public function getDevPicAttribute()
-//    {
-//        return $this->attributes['dev_pic'] =join(',',$this->get_Dev_Pic()->toArray());
-//    }
-//
-//    /**
-//     * 获取任务的测试头像
-//     *
-//     * @return String
-//     */
-//    public function getTestPicAttribute()
-//    {
-//        return $this->attributes['test_pic'] =join(',',$this->get_Test_Pic()->toArray());
-//    }
-
     /**
-     * 获取任务的剩余时间
+     * 获取任务的截止时间(期望完成时间)
      *
      * @return String
      */
-    public function getDeadlineAttribute()
+    public function getExpectFinishDateAttribute()
     {
-        return $this->attributes['deadline'] =$this->get_DeadLine();
+        return $this->attributes['expect_finish_date'] ="2016-03-09 00:00:00";
     }
-
 
     /**
-     * Display a listing of the resource.
+     * 获取任务的实际完成时间
      *
-     * @return \Illuminate\Http\Response
+     * @return String
      */
-    public function get_workloads()
+    public function getActualFinishDateAttribute()
     {
-        return $this->hasMany('App\TaskWorkload');
+        return $this->attributes['actual_finish_date'] ="2016-03-25 00:00:00";
     }
+
+    /**
+     * 获取任务的开发人员的头像
+     *
+     * @return String
+     */
+    public function getDevPicAttribute()
+    {
+        return $this->attributes['dev_pic'] ="/vendor/imgs/shenjl-s.png";
+    }
+
+    /**
+     * 获取任务的测试人员的头像
+     *
+     * @return String
+     */
+    public function getTestPicAttribute()
+    {
+        return $this->attributes['test_pic'] ="/vendor/imgs/shenjl-s.png";
+    }
+
+//endregion
 
     protected function get_Dev()
     {
@@ -160,23 +165,11 @@ EOT;
         return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('name');
     }
 
-//    protected function get_Dev_Pic()
+//    protected function get_DeadLine()
 //    {
-//        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',0)->lists('user_pic');
+//        if(date_default_timezone_get() != "1Asia/Shanghai") date_default_timezone_set("Asia/Shanghai");
+//        $task_expect=$this->actual_finish_date;
+//        $hour=floor((strtotime($task_expect) - strtotime(date("y-m-d h:i:s")))%86400/3600);
+//        return strtotime(date("y-m-d h:i:s"));
 //    }
-//
-//    protected function get_Test_Pic()
-//    {
-//        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('user_pic');
-//    }
-
-    protected function get_DeadLine()
-    {
-        if(date_default_timezone_get() != "1Asia/Shanghai") date_default_timezone_set("Asia/Shanghai");
-        $task_expect=$this->actual_finish_date;
-        $hour=floor((strtotime($task_expect) - strtotime(date("y-m-d h:i:s")))%86400/3600);
-        return strtotime(date("y-m-d h:i:s"));
-    }
-
-
 }

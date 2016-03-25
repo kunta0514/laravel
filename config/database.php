@@ -54,7 +54,7 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'wh-pc730'),
+            'host'      => env('DB_HOST', 'localhost'),
             'database'  => env('DB_DATABASE', 'task'),
             'username'  => env('DB_USERNAME', 'root'),
             'password'  => env('DB_PASSWORD', 'root'),  //数据库文件在seeds中，不要在改配置了

@@ -69,6 +69,17 @@
             border-radius: 3px;
         }
 
+        .check-box-fast-done{
+            float: left;
+            margin-top:3px;
+            margin-right: 5px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #b3b3b3;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
         .task-content-set {
             min-height: 40px;
             margin-right: 10px;
@@ -295,8 +306,8 @@
                                                 <span class="icon icon-tick"></span>
                                             </a>
                                             <div class="task-content-set">
-                                                {{--<div class="task-content-pic" style="background-image: url({{asset($task->user_pic)}});">--}}
-                                                <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">
+                                                <div class="task-content-pic" style="background-image: url({{asset($task->dev_pic)}});">
+{{--                                            <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">--}}
                                                 </div>
                                                 <div class="task-content-wrapper">
                                                     <div class="task-content" rel="{{$task->id}}">
@@ -343,7 +354,8 @@
                                             </a>
 
                                             <div class="task-content-set">
-                                                <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">
+                                                <div class="task-content-pic" style="background-image: url({{asset($task->dev_pic)}});">
+                                                {{--<div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">--}}
                                                 </div>
                                                 <div class="task-content-wrapper">
                                                     <div class="task-content" rel="{{$task->id}}">
@@ -390,7 +402,8 @@
                                             </a>
 
                                             <div class="task-content-set">
-                                                <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">
+                                                <div class="task-content-pic" style="background-image: url({{asset($task->dev_pic)}});">
+                                                {{--<div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">--}}
                                                 </div>
                                                 <div class="task-content-wrapper">
                                                     <div class="task-content" rel="{{$task->id}}">
@@ -436,7 +449,8 @@
                                             </a>
 
                                             <div class="task-content-set">
-                                                <div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">
+                                                <div class="task-content-pic" style="background-image: url({{asset($task->dev_pic)}});">
+                                                {{--<div class="task-content-pic" style="background-image: url({{asset('/vendor/imgs/shenjl-s.png')}});">--}}
                                                 </div>
                                                 <div class="task-content-wrapper">
                                                     <div class="task-content text-delete" rel="{{$task->id}}">
@@ -471,8 +485,11 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"></h4>
-                    {{--<a style="float: left" href="http://www.baidu.com" name="view_on_erp" rel="">[9527]</a>--}}
+                    <a class="check-box-fast-done">
+                        <span class="icon icon-tick"></span>
+                    </a>
+                    <h4 class="modal-title">
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <form method="post" action="{{ URL('task_panel/edit') }}" role="form" id="form_task">
@@ -575,11 +592,12 @@
                             //模态框赋值
 //                            var erp_link="<a href=\"#\" onclick=\"oprViewOnEKP(this)\" name=\"view_on_erp\" rel=\""+data["task_no"]+"\">["+data["task_no"]+"]</a>";
 //                            my_model.find('.modal-title').html(data["task_title"]+"-"+erp_link);
-                            my_model.find('.modal-title').text(data["task_title"]);
+                            my_model.find('.modal-title').text(data["task_title"]+"-");
                             my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data["task_no"] + "]"));
                             my_model.find('#select-date').val(data["actual_finish_date"]);
                             my_model.find('#task_id').val(data["id"]);
                             my_model.find('#comment').val(data["comment"]);
+                            my_model.find(".check-box-fast-done").attr("rel",data["id"]);
 
                             //默认选中
                             $.each($("#select-dev option"), function (n, value) {
@@ -632,6 +650,9 @@
                 doneTask($(this));
             });
 
+            $(".check-box-fast-done").click(function(){
+                doneTaskFast($(this));
+            });
             //点击恢复任务
             $(".check-box-done").click(function(){
                 recoverTask($(this));
@@ -836,6 +857,9 @@
         //| 创建时间：2016-3-17 15:27:31
         //+----------------------------------------------------------------------
         function doneTask(obj) {
+
+            //TODO:完成前的校验
+
             var liObj=$(obj).parent();
             var task_id = liObj.attr("rel");
 
@@ -859,6 +883,46 @@
             updateTaskStatus({"key": "status", "value":3},task_id );
 
             $("#done-foo").prepend(liObj);
+        }
+
+        //+----------------------------------------------------------------------  
+        //| 功能：快速完成选中任务(详情模式)   
+        //| 说明：
+        //| 参数：
+        //| 返回值：
+        //| 创建人：沈金龙
+        //| 创建时间：2016-3-25 11:56:55
+        //+----------------------------------------------------------------------
+        function doneTaskFast(obj){
+            //TODO：完成前的校验
+            var task_id=$(obj).attr('rel');
+            //找到对应ID的LI任务框
+            var liObj=$("li[rel="+task_id+"]");
+            //console.info($(liObj).find('.task-content').text());
+
+            $('#myModal').modal('hide');
+
+            //打钩
+            liObj.find('span').addClass('done');
+
+            //移除优先级
+            liObj.find('div:first').removeClass().addClass('task-priority-0');
+
+            //任务删除线
+            liObj.find('.task-content').addClass('text-delete');
+
+            //添加恢复任务事件
+            $(obj).click(function(){
+                recoverTask(obj);
+            });
+
+            //liObj.find('span').addClass('done'); //选中，延时移动
+
+            //更改任务状态为完成，status：3
+            updateTaskStatus({"key": "status", "value":3},task_id );
+
+            $("#done-foo").prepend(liObj);
+
         }
 
         //+----------------------------------------------------------------------  
