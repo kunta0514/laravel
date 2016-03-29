@@ -33,11 +33,11 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="/panel">面板模式</a></li>
+                <li class="dropdown"><a href="/task" name="sync_task">列表模式</a></li>
                 {{--<li class="dropdown"><a href="#" name="sync_task">同步任务</a></li>--}}
-                <li class="dropdown"><a href="/task/5">我的任务</a></li>
-                <li><a href="#">任务查询</a></li>
-                <li><a href="#">统计报表</a></li>
+                <li class="dropdown"><a href="/panel/my_task">我的任务</a></li>
+                <li><a href="#">历史任务</a></li>
+                {{--<li><a href="#">统计报表</a></li>--}}
             </ul>
         </div><!--/.nav-collapse -->
     </div>
