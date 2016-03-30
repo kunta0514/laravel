@@ -1,0 +1,4 @@
+/vendor
+/.idea/workspace.xml
+/config/database.php
+/config
