@@ -66,12 +66,14 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     Route::get('/edit/{id}', 'TaskController@edit');
     Route::get('/fast_handle/{id}', 'TaskController@fast_handle');
     Route::get('/view_pd/{task_no}', 'TaskController@view_pd');
+    Route::get('/tag', 'TaskController@tag');
     Route::get('/sync_task',function(){
         $result=Artisan::call('command:sync_task', []);
         return $result;
     });
-
     Route::post('edit', 'TaskController@edit');
+
+
 
 });
 

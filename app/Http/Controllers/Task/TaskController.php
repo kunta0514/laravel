@@ -135,4 +135,10 @@ class TaskController extends Controller
         return str_replace('\"','',$solution->view_pd($task_no)[0]->attr['href']);
     }
 
+    public function tag()
+    {
+//        echo '1';
+        //TODO：读取当前团队的标签，展示列表
+        return view('task.tag_add');
+    }
 }
