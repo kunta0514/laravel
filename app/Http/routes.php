@@ -71,6 +71,9 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
         $result=Artisan::call('command:sync_task', []);
         return $result;
     });
+    Route::get('/query', 'TaskController@query');
+    Route::get('/query_task', 'TaskController@query_task');
+
     Route::post('edit', 'TaskController@edit');
 
 
@@ -100,20 +103,22 @@ Route::group(['prefix' => 'wx', 'namespace' => 'Wx'], function()
 
 });
 
-Route::group(['prefix' => 'panel', 'namespace' => 'Panel'], function()
+Route::group(['prefix' => 'task_panel', 'namespace' => 'TaskPanel'], function()
 {
-    Route::resource('panel', 'PanelController@index');
+    Route::resource('task_panel', 'TaskPanelController@index');
 
     //访问页面
     //get、post等按顺序，按分组写，不能穿插写
-    Route::get('/', 'PanelController@index');
-    Route::get('/personal','PanelController@get_personal_page');
-    Route::get('/my_task','PanelController@get_my_task_page');
+    Route::get('/', 'TaskPanelController@index');
+    Route::get('/personal','TaskPanelController@get_personal_page');
+
     //获取值
-    Route::get('/get_detail/{id}','PanelController@get_detail');
-    Route::post('/edit', 'PanelController@edit');
-    Route::get('/fast_handle/{id}', 'PanelController@fast_handle');
-    Route::get('/done/{id}','PanelController@done');
+//    Route::get('/get_all_info','TaskPanelController@get_all_info');
+//    Route::get('/get_personal_info/{id}','TaskPanelController@get_personal_info');
+    Route::get('/get_detail/{id}','TaskPanelController@get_detail');
+    Route::post('/edit', 'TaskPanelController@edit');
+    Route::get('/fast_handle/{id}', 'TaskPanelController@fast_handle');
+
 });
 
 

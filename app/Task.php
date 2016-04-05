@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Task extends Model
 {
@@ -70,9 +71,7 @@ class Task extends Model
     protected function get_DeadLine()
     {
         if(date_default_timezone_get() != "1Asia/Shanghai") date_default_timezone_set("Asia/Shanghai");
-        $task_expect=$this->actual_finish_date;
-        $hour=floor((strtotime($task_expect) - strtotime(date("y-m-d h:i:s")))%86400/3600);
-        return strtotime(date("y-m-d h:i:s"));
+        return Carbon::parse($this->ekp_expect)->diffForHumans();
     }
 
 
