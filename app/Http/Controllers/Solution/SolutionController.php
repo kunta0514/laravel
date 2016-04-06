@@ -287,6 +287,33 @@ class SolutionController extends Controller
         }
     }
 
+    /**
+     * @param $task_no
+     * @return array
+     */
+    public function view_pd($task_no)
+    {
+        $url='http://pd.mysoft.net.cn/AjaxRequirement/GetAllRequirementList.cspx?Customerchn=&ManagerName=&PMName=&TeamMembers=&Status=&Source=&XqType=&CustomerType=&CustomerArea=&HandlerToRequirementType=&CreatedOnType=&RecordDateBegin=&RecordDateEnd=&DevelopEndTimeType=&FinishiDateBegin=&FinishiDateEnd=&TechReLmtType=&RechDateBegin=&RechDateEnd=&TaskDoneLmtType=&DcDateBegin=&DcDateEnd=&IsHaveTestDoc=&OrderSeq=&PageSize=100';
+        $user_cookie = '9da1e58d-cccb-4528-93d5-e93f40951b53={"MySettingID":"00000000-0000-0000-0000-000000000000","DefaultLoadPage":"MyPendingList","PendingShow":true,"PreSubmitShow":true,"MyAllShow":true,"AllShow":true,"DefaultPageSize":10,"DataMode":0,"UserGUID":null,"RealDataMode":0,"CreatedBy":null,"CreatedOn":null,"ModifiedBy":null,"ModifiedOn":null,"VersionNumber":0,"_DataState":0}; Login_User=UserCode=wank&SignTime=2016-01-21 15:59:27&UserSign=j6rLyJuRe2VCavJ0d2AgUsFwqRYmbmXuknAjL/cDzI2yDwFFAxKBOUzS+ht3lTKVC/1hJGbxB+R3AdeoW5y9S/T9GolzeEpIFszkxhBjcnhifUqqa0KT7gZuvrTbjnbH+TBg0h4E/3vJN0x4maACInOVXpHe58m+bsvyjCRW1Dc=';
+        $params='&KeyValue='.$task_no;
+
+//        echo $url.$params;
+
+        $content =  self::get_html_content($url,$params,$user_cookie);
+
+        $html = str_get_html($content);
+
+        $version_array = array();
+
+        if(count($html->find('div[class*=nodata]')) == 0) {
+            foreach ($html->find('div[class*=title]') as $key => $value) {
+                $version_array[] = $value->children(1);
+            }
+        }
+
+        return $version_array;
+    }
+
     public function mobile_check_fd()
     {
 
