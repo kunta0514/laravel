@@ -79,6 +79,7 @@
             $.get("/solution/mobile/check", { customer_name: customer_name },function(data){
                 var Json_data=eval("("+data+")");
                 var history_tasks=$("div[name='history_tasks']");
+                $("#current_id").val(Json_data.id);
                 $("div.panle4Check h4").html(Json_data.customer_name+" <small>"+Json_data.alias+"</small>");
                 history_tasks.html("");
                 if(Json_data.result)
@@ -109,6 +110,10 @@
                 $("#btnCheck").click();
             }
         });
+        //
+        $("input[name='is_valid']").on('click',function(){
+            $(this).attr("is_check")=="true"?$(this).attr("is_check","false"):$(this).attr("is_check","true")
+        });
 
         //搜索按钮 事件绑定
         $("#btnSearch").unbind("click").bind("click",function(){
@@ -116,6 +121,15 @@
             $.get("/solution/mobile/search", { KeyValue: txtSearch },function(data){
                 console.info(data);
             } );
+        });
+
+        //反馈按钮点击事件
+        $("button[name='btn_feedback']").on("click",function(){
+            var data=new Object();
+            data.id=$("#current_id").val()==""?0:$("#current_id").val();
+            data.result=$("input[name='is_valid']").attr("is_check");
+            console.info(data);
+//            alert("4323");
         });
     });
 
@@ -131,6 +145,7 @@
         <h1><span class="glyphicon glyphicon-queen"></span>小工具<small> By Wonder4</small></h1>
     </div>
     <div class="row">
+        <input type="hidden" name="current_id" id="current_id">
         <div class="col-lg-5" style="border-right: 1px dotted #ddd">
             <div class="input-group">
                 <input id="customer_name" type="text" class="form-control" placeholder="客户名称...">
@@ -171,6 +186,15 @@
                         <td class="border_r_1"><h5>备注：</h5></td>
                         <td><span class="remark"></span></td>
                     </tr>
+                    <tr>
+                        <td class="border_r_1"><h5>反馈：</h5></td>
+                        <td class="checkbox">
+                            <label>
+                                <input type="checkbox" name="is_valid" is_check="false">是否有效
+                            </label>
+                            <button name="btn_feedback" type="button" class="btn btn-default" style="float: right;">提交</button>
+                        </td>
+                    </tr>
                 </table>
                 <!-- Table -->
             </div>
@@ -207,7 +231,7 @@
                     <p style="font-size: 16px;">1.用户个性化检查数据源是任务系统，这里会过滤对应客户所有工作流相关的任务；下一版本会增加客户是否存在工作流个性化库判断维度[预计下周上线]！<br>2.移动审批常见问题集，暂时由我录入，后续版本会给出录入接口。</p>
                     <p style="font-size: 16px;"><strong>操作技巧：</strong><br>1.输入客户名称关键字可以更加准确，比如：重庆东原，输入"东原"...</p>
                     <p style="font-size: 16px;"><strong>彩蛋：</strong><br>手机访问试试？</p>
-                    <img src="http://wh-pc730:8883/uploads/images/site_code.png" alt="手机扫码试试">
+                    <img src="/uploads/images/site_code.png" alt="手机扫码试试">
                 </div>
             </fieldset>
         </div>

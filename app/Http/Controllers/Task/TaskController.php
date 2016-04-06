@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Task;
 
+use App\CheckPersonalize;
 use App\Http\Controllers\Solution\SolutionController;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,19 +32,6 @@ class TaskController extends Controller
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
         return view('task.main', ['theme' => 'default', 'tasks' => $task_list, 'developers' => Cache::get('developers'), 'testers' => Cache::get('testers')]);
 
-        //        $tasks = DB::select('SELECT a.*,CASE b.`type` when 1 then b.`name` end as dev,CASE b.`type` when 0 then b.`name` end as test from tasks a left JOIN tasks_workload b on a.id=b.task_id where a.status in (0,1,2) GROUP BY a.id desc ');
-
-        if (!Cache::has('developers')) {
-            Cache::forever('developers', User::where('role', 0)->get());
-        }
-        if (!Cache::has('testers')) {
-            Cache::forever('testers', User::where('role', 1)->get());
-        }
-
-        //TODO::改为缓存读取
-        $developers = User::where('role',0)->get();
-        $testers = User::where('role',1)->get();
-        return view('task.main',['theme' => 'default','tasks' => $tasks,'developers'=>$developers,'testers'=>$testers]);
     }
 
     /**
@@ -65,8 +53,14 @@ class TaskController extends Controller
     //get 测试功能方法
     public function wonder4($id)
     {
-        dd(config('params.task_status'));
+//        dd(config('params.task_status'));
 
+        $task=new CheckPersonalize();
+        $task->alias="wonder4";
+
+        dd($task->save());
+
+        dd($task->id);
     }
 
 
@@ -151,7 +145,6 @@ class TaskController extends Controller
 
     public function tag()
     {
-//        echo '1';
         //TODO：读取当前团队的标签，展示列表
         return view('task.tag_add');
     }

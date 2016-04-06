@@ -45,6 +45,30 @@ class UserTableSeeder extends Seeder {
                'password'=>'',
                'role'=>0
            ],
+           [
+               'username'=>'陈静',
+               'code'=>'chenj02',
+               'admin'=>0,
+               'email'=>'chenj02@mysoft.com.cn',
+               'password'=>'',
+               'role'=>0
+           ],
+           [
+               'username'=>'万堃',
+               'code'=>'wank',
+               'admin'=>0,
+               'email'=>'wank@mysoft.com.cn',
+               'password'=>'',
+               'role'=>0
+           ],
+           [
+               'username'=>'郭飞',
+               'code'=>'guof02',
+               'admin'=>0,
+               'email'=>'guof02@mysoft.com.cn',
+               'password'=>'',
+               'role'=>0
+           ],
 
        ];
 

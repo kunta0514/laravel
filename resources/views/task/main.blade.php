@@ -28,7 +28,7 @@
                 <th>PM</th>
                 <th>开发</th>
                 <th>测试</th>
-                <th>倒计时(h)</th>
+                <th>计划完成</th>
                 <th></th>
             </tr>
         </thead>
@@ -36,7 +36,6 @@
 
         @foreach($tasks as $k=>$task)
             <tr rel="{{$task->id}}" >
-                {{--class="@if($task->status <3 && $task->status >0) tr_doing @endif"--}}
                 <th scope="row" >{{$k+1}}</th>
                 <td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
                 <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
@@ -47,7 +46,7 @@
                 <td class="@if($task->status=='1')or_doing @endif">{{$task->dev}}</td>
                 <td class="@if($task->status=='2')or_doing @endif">{{$task->test}}</td>
 {{--                <td>@if($task->actual_finish_date) {{substr($task->actual_finish_date,0,10)}} @endif</td>deadline--}}
-                <td>{{$task->deadline}}</td>
+                <td>{{ $task->deadline}}</td>
                 <td>
                     <span name="chk_finish" data-toggle="tooltip" data-placement="top"
                           class="glyphicon chk_finish @if($task->status == 1) glyphicon-pushpin @elseif($task->status == 2) glyphicon-check @else glyphicon-flag @endif"
@@ -76,7 +75,7 @@
                                 <label for="select-dev">开发</label>
                                 <select class="form-control" id="select-dev" name="dev">
                                     @foreach($developers as $dev)
-                                        <option value="{{$dev->name}}">{{$dev->name}}</option>
+                                        <option value="{{$dev->name}}" code="{{$dev->code}}">{{$dev->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -84,7 +83,7 @@
                                 <label for="select-test">测试</label>
                                 <select class="form-control" id="select-test" name="test">
                                     @foreach($testers as $test)
-                                        <option value="{{$test->name}}">{{$test->name}}</option>
+                                        <option value="{{$test->name}}" code="{{$test->code}}">{{$test->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -128,7 +127,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(function() {
         $('#example').dataTable( {
             lengthMenu: [15,30, 50, 100],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
             paging: true,//分页
@@ -154,32 +153,28 @@
         } );
 
         $('#example tbody').on('click', 'tr', function () {
-            var data = $('#example').DataTable().row( this ).data();;
-            console.log($(this).attr('rel'));
             $.ajax({
                 type:'GET',
                 url:'/task/get_details/'+ $(this).attr('rel'),
                 dataType:'json',
                 success:function(data){
-//                    console.info(data);
                     var my_model=$('#myModal');
-                    my_model.find('.modal-title').text(data[0].task_title);
-                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data[0].task_no + "]"));
-                    my_model.find('#select-date').val(data[0].actual_finish_date);
-                    my_model.find('#task_id').val(data[0].id);
-                    my_model.find('#comment').val(data[0].comment);
-                    var thisTime=(new Date()).getFullYear() +""+ ((new Date()).getMonth()+1)+(new Date()).getDate();;
-                    my_model.find('#package_name').val(data[0].customer_name+"工作流("+data[0].task_no+")_" + thisTime + "第一次");
+                    my_model.find('.modal-title').text(data.task_title);
+                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data.task_no + "]"));
+                    my_model.find('#select-date').val(data.actual_finish_date);
+                    my_model.find('#task_id').val(data.id);
+                    my_model.find('#comment').val(data.comment);
+                    my_model.find('#package_name').val(getPageNameString(data));
                     $.each($("#select-dev option"),function(n,value){
-                        if(value.text==data[0].dev){$(value).attr("selected","selected");}
+                        if($(value).val()==data.dev){$(value).attr("selected","selected");}
                     });
                     $.each($("#select-test option"),function(n,value){
-                        if(value.text==data[0].test){$(value).attr("selected","selected");}
+                        if($(value).val()==data.test || (data.test=="" && $(value).val()=="请选择")){$(value).attr("selected","selected");}
                     });
                     $.each($("#select-status option"),function(n,value){
-                        if(value.value==data[0].status){$(value).attr("selected","selected");}
+                        if(value.value==data.status){$(value).attr("selected","selected");}
                     });
-                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data[0].task_no)});
+                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data.task_no)});
                     my_model.modal('toggle');
                 }
             });
@@ -213,8 +208,9 @@
             return false;
         });
 
-        $("a[name='view_on_erp']").unbind('click').bind('click',function(){
-//            console.info($(this).attr("rel"));
+        $('#example tbody').on('click',"td a[name='view_on_erp']",function(e){
+            e.stopPropagation();
+            e.preventDefault();
             oprViewOnEKP($(this).attr("rel"));
             return false;
         });
@@ -242,7 +238,6 @@ function oprViewOnEKP(obj)
         type:'GET',
         url:'/task/view_pd/'+obj,
         success:function(data) {
-            console.info("http://pd.mysoft.net.cn"+data);
             window.open("http://pd.mysoft.net.cn"+data) ;
         },
         error:function(data){
@@ -250,5 +245,12 @@ function oprViewOnEKP(obj)
         }
         });
 }
+    function getPageNameString(data)
+    {
+        var year=(new Date()).getFullYear();
+        var month=((new Date()).getMonth()+1)<10?"0"+((new Date()).getMonth()+1):(new Date()).getMonth()+1;
+        var day=(new Date()).getDate()<10?"0"+((new Date()).getDate()+1):(new Date()).getDate();
+        return "["+data.task_no+"]-"+data.customer_name+"-工作流-"+year+""+month+day+"-第1次";
+    }
 </script>
 @stop

@@ -114,6 +114,7 @@ class SyncTask extends Command
                 $mysql_task->ekp_create_date = date("y-m-d",time());
                 $mysql_task->status = $task_status;
                 $mysql_task->task_type = $task_type;
+                $mysql_task->ekp_expect=date("y-m-d",time());
                 //TODO：根据客户自动判断
 //            $mysql_task->erp_version = $task->ErpVersion;
 //            $mysql_task->map_version = $task->MapVersion;

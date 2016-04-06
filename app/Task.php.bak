@@ -60,12 +60,12 @@ class Task extends Model
 
     protected function get_Dev()
     {
-        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',0)->lists('nick');
+        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',0)->lists('name');
     }
 
     protected function get_Test()
     {
-        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('nick');
+        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('name');
     }
 
     protected function get_DeadLine()
