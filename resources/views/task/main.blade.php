@@ -161,7 +161,7 @@
                     var my_model=$('#myModal');
                     my_model.find('.modal-title').text(data.task_title);
                     my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data.task_no + "]"));
-                    my_model.find('#select-date').val(data.actual_finish_date);
+                    my_model.find('#select-date').val(data.ekp_expect);
                     my_model.find('#task_id').val(data.id);
                     my_model.find('#comment').val(data.comment);
                     my_model.find('#package_name').val(getPageNameString(data));
