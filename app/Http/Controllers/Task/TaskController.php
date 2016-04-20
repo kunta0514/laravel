@@ -55,12 +55,13 @@ class TaskController extends Controller
     {
 //        dd(config('params.task_status'));
 
-        $task=new CheckPersonalize();
-        $task->alias="wonder4";
-
-        dd($task->save());
-
-        dd($task->id);
+        // $task=new CheckPersonalize();
+        // $task->alias="wonder4";
+        //
+        // dd($task->save());
+        //
+        // dd($task->id);
+        echo date("Y-m-d",time());
     }
 
 

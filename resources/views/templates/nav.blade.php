@@ -19,8 +19,8 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="/auth/login">Login</a></li>
-                    <li><a href="/auth/register">Register</a></li>
+                    <li><a href="/auth/login">登陆</a></li>
+                    {{--<li><a href="/auth/register">Register</a></li>--}}
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
@@ -35,7 +35,22 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="/panel">面板模式</a></li>
                 <li class="dropdown"><a href="#" name="sync_task">同步任务</a></li>
-                <li class="dropdown"><a href="">我的任务</a></li>
+                <li class="dropdown hidden"><a href="">我的任务</a></li>
+                <li class="dropdown">
+                    <!-- Small button group -->
+                    <div class="btn-group" style="margin-top: 10px;">
+                        <button type="button" class="btn btn-default">常用URL</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach(config('params.common_urls') as $key=>$value)
+                                <li ><a href="{{$value}}" target="_blank">{{$key}}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
                 <li><a href="{{ URL('task/query') }}">任务查询</a></li>
 		<li><a href="#">统计报表</a></li>
             </ul>

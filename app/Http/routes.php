@@ -74,6 +74,7 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     Route::get('/query', 'TaskController@query');
     Route::get('/query_task', 'TaskController@query_task');
 
+
     Route::post('edit', 'TaskController@edit');
 
 
@@ -87,6 +88,7 @@ Route::group(['prefix' => 'solution', 'namespace' => 'Solution'], function()
     Route::get('create', 'SolutionController@create');
     Route::get('mobile/{func?}/{key?}', 'SolutionController@mobile_tools');
     Route::get('markdown/{id?}', 'SolutionController@markdown');
+    Route::get('faq','SolutionController@workflow_faq');
     Route::post('mobile', 'SolutionController@mobile_tools');
     Route::post('upload', 'SolutionController@upload');
     Route::post('markdown_save', 'SolutionController@markdown_save');
@@ -118,5 +120,3 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel'], function()
     Route::get('/fast_handle/{id}', 'PanelController@fast_handle');
     Route::get('/done/{id}','PanelController@done');
 });
-
-

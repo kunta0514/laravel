@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Solution;
 use Illuminate\Http\Request;
 use App\WF_Solution;
 use App\CheckPersonalize;
+use App\Version;
 
 
 use App\Http\Requests;
@@ -165,10 +166,11 @@ class SolutionController extends Controller
         $result['version_list']= self::get_configEn($customer_name);
 
         $checkModel=new CheckPersonalize();
-        $result['alias']=$checkModel->id;
+        //$result['alias']=$checkModel->id;
         $checkModel->customer_name=$result['customer_name'];
         $checkModel->alias=$result['alias'];
-        $checkModel->version=$result['version_list']->toJson();
+        $checkModel->version=serialize($result['version_list']);
+        $checkModel->history_tasks=serialize($result['task_list']);
         $checkModel->save();
 
         $end_time=time();
@@ -317,6 +319,17 @@ class SolutionController extends Controller
     public function mobile_check_fd()
     {
 
+    }
+
+    public function workflow_faq()
+    {
+      $pageData= array('version_contrast' =>array());
+
+      //dd(Version::where([])->orderBy('erp_version')->get());die;
+      //TODO:只需要取workflow_version erp_version；缓存
+      $pageData['version_contrast']=Version::where([])->orderBy('workflow_version')->get()->toArray();
+
+      return view('solution.freqQuestion',['pageData'=>$pageData]);
     }
 
 

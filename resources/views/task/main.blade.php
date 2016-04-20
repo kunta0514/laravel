@@ -231,6 +231,13 @@
             });
         });
 
+//自动同步
+ setInterval(function(){
+   $.ajax({
+       type:'GET',
+       url:'/task/sync_task/'
+     });
+ },1000*60*5);
     } );
 function oprViewOnEKP(obj)
 {
