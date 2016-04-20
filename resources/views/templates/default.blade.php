@@ -28,17 +28,9 @@
     {{--<script src="{{asset('vendor/js/select2.js')}}"></script>--}}
 
     <![endif]-->
-    <style type="text/css">
-        @media screen and (min-width: 1200px){.mycontainer {width: 95%;}}
-        @media screen and (min-width: 992px){.mycontainer {width: 970px;}}
-        @media screen and (min-width: 768px){} .mycontainer { width: 750px;}
-    </style>
 </head>
 <body>
     @include('templates.nav')
     @yield('content')
-
-
-
 {{--    @include('templates.footer')--}}
 </body>

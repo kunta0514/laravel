@@ -74,6 +74,7 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     Route::get('/query', 'TaskController@query');
     Route::get('/query_task', 'TaskController@query_task');
 
+
     Route::post('edit', 'TaskController@edit');
 
 
@@ -87,6 +88,7 @@ Route::group(['prefix' => 'solution', 'namespace' => 'Solution'], function()
     Route::get('create', 'SolutionController@create');
     Route::get('mobile/{func?}/{key?}', 'SolutionController@mobile_tools');
     Route::get('markdown/{id?}', 'SolutionController@markdown');
+    Route::get('faq','SolutionController@workflow_faq');
     Route::post('mobile', 'SolutionController@mobile_tools');
     Route::post('upload', 'SolutionController@upload');
     Route::post('markdown_save', 'SolutionController@markdown_save');
@@ -103,22 +105,18 @@ Route::group(['prefix' => 'wx', 'namespace' => 'Wx'], function()
 
 });
 
-Route::group(['prefix' => 'task_panel', 'namespace' => 'TaskPanel'], function()
+Route::group(['prefix' => 'panel', 'namespace' => 'Panel'], function()
 {
-    Route::resource('task_panel', 'TaskPanelController@index');
+    Route::resource('panel', 'PanelController@index');
 
     //访问页面
     //get、post等按顺序，按分组写，不能穿插写
-    Route::get('/', 'TaskPanelController@index');
-    Route::get('/personal','TaskPanelController@get_personal_page');
-
+    Route::get('/', 'PanelController@index');
+    Route::get('/personal','PanelController@get_personal_page');
+    Route::get('/my_task','PanelController@get_my_task_page');
     //获取值
-//    Route::get('/get_all_info','TaskPanelController@get_all_info');
-//    Route::get('/get_personal_info/{id}','TaskPanelController@get_personal_info');
-    Route::get('/get_detail/{id}','TaskPanelController@get_detail');
-    Route::post('/edit', 'TaskPanelController@edit');
-    Route::get('/fast_handle/{id}', 'TaskPanelController@fast_handle');
-
+    Route::get('/get_detail/{id}','PanelController@get_detail');
+    Route::post('/edit', 'PanelController@edit');
+    Route::get('/fast_handle/{id}', 'PanelController@fast_handle');
+    Route::get('/done/{id}','PanelController@done');
 });
-
-

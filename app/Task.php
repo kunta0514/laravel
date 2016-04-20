@@ -60,12 +60,12 @@ class Task extends Model
 
     protected function get_Dev()
     {
-        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',0)->lists('name');
+        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',0)->lists('nick');
     }
 
     protected function get_Test()
     {
-        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('name');
+        return $this->hasMany('App\TaskWorkload','task_id','id')->where('type','=',1)->lists('nick');
     }
 
     protected function get_DeadLine()
@@ -74,17 +74,11 @@ class Task extends Model
         return Carbon::parse($this->ekp_expect)->diffForHumans();
     }
 
-    //获取激活的任务
-    public function active_task($user=null)
+    public function set_status(int $status)
     {
-        //查询所有激活的任务
-        if(empty($user)){
-            $tasks = Task::where('status', '<', 3)->orderBy('task_no')->get();
+        dd(config('params.task_status')[$status]);
 
-        }else{
-            $tasks = Task::where('status', '<', 3)->orderBy('task_no')->get();
-        }
-        return $tasks;
     }
+
 
 }

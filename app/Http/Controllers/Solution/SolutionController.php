@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Solution;
 
 use Illuminate\Http\Request;
 use App\WF_Solution;
+use App\CheckPersonalize;
+use App\Version;
 
 
 use App\Http\Requests;
@@ -128,6 +130,7 @@ class SolutionController extends Controller
     {
         $start_time=time();
         $result=Array(
+            'id'=>'',
             'result'=>false,//false
             'customer_name'=>$customer_name,
             'alias'=>$customer_name,
@@ -161,6 +164,15 @@ class SolutionController extends Controller
         }
 
         $result['version_list']= self::get_configEn($customer_name);
+
+        $checkModel=new CheckPersonalize();
+        //$result['alias']=$checkModel->id;
+        $checkModel->customer_name=$result['customer_name'];
+        $checkModel->alias=$result['alias'];
+        $checkModel->version=serialize($result['version_list']);
+        $checkModel->history_tasks=serialize($result['task_list']);
+        $checkModel->save();
+
         $end_time=time();
         Log::info('个性化检测', ['CustomerName' => $customer_name,'Time'=>$end_time-$start_time,'Result'=>$result['result']]);
         return json_encode($result,JSON_UNESCAPED_UNICODE);
@@ -277,6 +289,10 @@ class SolutionController extends Controller
         }
     }
 
+    /**
+     * @param $task_no
+     * @return array
+     */
     public function view_pd($task_no)
     {
         $url='http://pd.mysoft.net.cn/AjaxRequirement/GetAllRequirementList.cspx?Customerchn=&ManagerName=&PMName=&TeamMembers=&Status=&Source=&XqType=&CustomerType=&CustomerArea=&HandlerToRequirementType=&CreatedOnType=&RecordDateBegin=&RecordDateEnd=&DevelopEndTimeType=&FinishiDateBegin=&FinishiDateEnd=&TechReLmtType=&RechDateBegin=&RechDateEnd=&TaskDoneLmtType=&DcDateBegin=&DcDateEnd=&IsHaveTestDoc=&OrderSeq=&PageSize=100';
@@ -299,5 +315,22 @@ class SolutionController extends Controller
 
         return $version_array;
     }
+
+    public function mobile_check_fd()
+    {
+
+    }
+
+    public function workflow_faq()
+    {
+      $pageData= array('version_contrast' =>array());
+
+      //dd(Version::where([])->orderBy('erp_version')->get());die;
+      //TODO:只需要取workflow_version erp_version；缓存
+      $pageData['version_contrast']=Version::where([])->orderBy('workflow_version')->get()->toArray();
+
+      return view('solution.freqQuestion',['pageData'=>$pageData]);
+    }
+
 
 }
