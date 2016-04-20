@@ -161,25 +161,25 @@
                 url:'/task/get_details/'+ $(this).attr('rel'),
                 dataType:'json',
                 success:function(data){
-//                    console.info(data);
+                    console.info(data);
                     var my_model=$('#myModal');
-                    my_model.find('.modal-title').text(data[0].task_title);
-                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data[0].task_no + "]"));
-                    my_model.find('#select-date').val(data[0].actual_finish_date);
-                    my_model.find('#task_id').val(data[0].id);
-                    my_model.find('#comment').val(data[0].comment);
+                    my_model.find('.modal-title').text(data.task_title);
+                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data.task_no + "]"));
+                    my_model.find('#select-date').val(data.actual_finish_date);
+                    my_model.find('#task_id').val(data.id);
+                    my_model.find('#comment').val(data.comment);
                     var thisTime=(new Date()).getFullYear() +""+ ((new Date()).getMonth()+1)+(new Date()).getDate();;
-                    my_model.find('#package_name').val(data[0].customer_name+"工作流("+data[0].task_no+")_" + thisTime + "第一次");
+                    my_model.find('#package_name').val(data.customer_name+"工作流("+data.task_no+")_" + thisTime + "第一次");
                     $.each($("#select-dev option"),function(n,value){
-                        if(value.text==data[0].dev){$(value).attr("selected","selected");}
+                        if(value.text==data.dev){$(value).attr("selected","selected");}
                     });
                     $.each($("#select-test option"),function(n,value){
-                        if(value.text==data[0].test){$(value).attr("selected","selected");}
+                        if(value.text==data.test){$(value).attr("selected","selected");}
                     });
                     $.each($("#select-status option"),function(n,value){
-                        if(value.value==data[0].status){$(value).attr("selected","selected");}
+                        if(value.value==data.status){$(value).attr("selected","selected");}
                     });
-                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data[0].task_no)});
+                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data.task_no)});
                     my_model.modal('toggle');
                 }
             });

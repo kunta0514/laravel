@@ -36,7 +36,7 @@
                 <li class="dropdown"><a href="/panel">面板模式</a></li>
                 {{--<li class="dropdown"><a href="#" name="sync_task">同步任务</a></li>--}}
                 <li class="dropdown"><a href="/task/5">我的任务</a></li>
-                <li><a href="#">任务查询</a></li>
+                <li><a href="/task/query">任务查询</a></li>
                 <li><a href="#">统计报表</a></li>
             </ul>
         </div><!--/.nav-collapse -->

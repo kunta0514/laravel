@@ -13,6 +13,7 @@ use App\TaskWorkload;
 use Redirect, Input, Auth;
 use Cache;
 use Carbon\Carbon;
+use DB;
 
 class TaskController extends Controller
 {
@@ -156,22 +157,49 @@ class TaskController extends Controller
         return view('task.tag_add');
     }
 
-    public function query(Request $request)
+    public function query()
     {
-        return view('task.query', ['theme' => 'default', 'developers' => Cache::get('developers')]);
+//        $tasks = $request;
+        $tasks = null;
+        return view('task.query', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
     }
 
+    //TODO:根据查询条件查询结果
     public function query_task(Request $request)
     {
-        $all_input = $request->all();
-        if (!$request->input("select_type")) {
-            $data = Task::where('status', '=', -1)->orderBy('task_no')->get();
-        } else {
+//        $draw = 1;
+//        $recordsTotal = 1;
+//        $recordsFiltered = 1;
+//        $tasks = Task::where('status', '<', 3)->take(10)->get();
+//        print_r($tasks);
+//        die;
+//        $data = $tasks->toArray();
+        $data = [];
+//        //查询条件为自带
+        $query = $request->input('search')['value'];
+        if(!empty($query)){
+//            $tasks = Task::where('task_no','=',$query)
+//                ->orWhere('customer_name','like',$query)
+//                ->get();
+            $tasks = DB::select("select t.*,max(case when tw.type = 0 then tw.name end) as dev,max(case when tw.type = 1 then tw.name end) as test from tasks t left join tasks_workload tw on t.id = tw.task_id  where t.task_no = '$query' or t.customer_name like '%$query%' GROUP BY t.id ");
 
-            $data = Task::where($all_input['select_type'], 'like', '%' . $all_input['task_key'] . '%')
-                ->orderBy('task_no')->get();
+//            print_r($tasks);
+//            die;
+            if(!empty($tasks)){
+                $data = $tasks;
+                $draw = 1;
+                $recordsTotal = count($data);
+                $recordsFiltered = $recordsTotal;
+            }
         }
-        return json_encode(array('data' => $data), JSON_UNESCAPED_UNICODE);
+
+        $ret=[
+            //'draw' => $draw,
+//            'recordsTotal' => $recordsTotal,
+//            'recordsFiltered' => $recordsFiltered,
+            'data' => $data,
+        ];
+        return json_encode($ret,JSON_UNESCAPED_UNICODE);
     }
 
 }

@@ -74,5 +74,17 @@ class Task extends Model
         return Carbon::parse($this->ekp_expect)->diffForHumans();
     }
 
+    //获取激活的任务
+    public function active_task($user=null)
+    {
+        //查询所有激活的任务
+        if(empty($user)){
+            $tasks = Task::where('status', '<', 3)->orderBy('task_no')->get();
+
+        }else{
+            $tasks = Task::where('status', '<', 3)->orderBy('task_no')->get();
+        }
+        return $tasks;
+    }
 
 }
