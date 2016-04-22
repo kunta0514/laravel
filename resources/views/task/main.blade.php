@@ -257,7 +257,7 @@ function oprViewOnEKP(obj)
         var year=(new Date()).getFullYear();
         var month=((new Date()).getMonth()+1)<10?"0"+((new Date()).getMonth()+1):(new Date()).getMonth()+1;
         var day=(new Date()).getDate()<10?"0"+((new Date()).getDate()+1):(new Date()).getDate();
-        return "["+data.task_no+"]-"+data.customer_name+"-工作流-"+year+""+month+day+"-第1次";
+        return "["+data.task_no.replace(" ","")+"]-"+data.customer_name+"-工作流-"+year+""+month+day+"-第1次";
     }
 </script>
 @stop

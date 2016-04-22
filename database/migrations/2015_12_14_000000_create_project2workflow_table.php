@@ -23,6 +23,7 @@ class CreateProject2WorkflowTable extends Migration
         {
             $table->increments('id');
             $table->string('project_name');
+            $table->string('alias');//别名
             $table->string('path')->nullable();
             $table->string('workflow_path')->nullable();
             $table->string('assemblyInfo_path')->nullable();

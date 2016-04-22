@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Solution;
 
+use App\Utility\PickHtml;
 use Illuminate\Http\Request;
 use App\WF_Solution;
 use App\CheckPersonalize;
 use App\Version;
+use Cache;
 
 
 use App\Http\Requests;
@@ -15,7 +17,7 @@ use EndaEditor;
 use Illuminate\Support\Facades\Input;
 use Log;
 
-include 'simple_html_dom.php';
+
 class SolutionController extends Controller
 {
     /**
@@ -128,138 +130,8 @@ class SolutionController extends Controller
      */
     private function is_customized($customer_name)
     {
-        $start_time=time();
-        $result=Array(
-            'id'=>'',
-            'result'=>false,//false
-            'customer_name'=>$customer_name,
-            'alias'=>$customer_name,
-            'version'=>'',
-            'version_list'=>Array(),
-            'task_list'=>Array(),
-            'message'=>''
-        );
-        $task_list=self::get_task_history($customer_name);
-
-        //TODO 智能判断
-        $return_array=array();
-        foreach(Config::get('params.customized_key') as $key=>$value)
-        {
-            foreach($task_list as $item=>$item_value)
-            {
-                if(strpos($item_value,$value) && !strpos($item_value,'升级微助手') && !strpos($item_value,'典型功能包') && !strpos($item_value,'移动审批'))
-                {
-                    $return_array[]=$item_value;
-                }
-            }
-        }
-        $result['task_list']=$return_array;
-        if($result['task_list'] && count($result['task_list'])>0)
-        {
-            $result['result']=false;
-            $result['message']='有历史个性化，需要重新制作更新包！';
-        }else{
-            $result['result'] = true;
-            $result['message']='';
-        }
-
-        $result['version_list']= self::get_configEn($customer_name);
-
-        $checkModel=new CheckPersonalize();
-        //$result['alias']=$checkModel->id;
-        $checkModel->customer_name=$result['customer_name'];
-        $checkModel->alias=$result['alias'];
-        $checkModel->version=serialize($result['version_list']);
-        $checkModel->history_tasks=serialize($result['task_list']);
-        $checkModel->save();
-
-        $end_time=time();
-        Log::info('个性化检测', ['CustomerName' => $customer_name,'Time'=>$end_time-$start_time,'Result'=>$result['result']]);
-        return json_encode($result,JSON_UNESCAPED_UNICODE);
+       return (new CheckPersonalize)->check_customized($customer_name);
     }
-
-
-    /**
-     * @param $key
-     * @return array
-     */
-    private function  get_task_history($key)
-    {
-        $user_cookie = '9da1e58d-cccb-4528-93d5-e93f40951b53={"MySettingID":"00000000-0000-0000-0000-000000000000","DefaultLoadPage":"MyPendingList","PendingShow":true,"PreSubmitShow":true,"MyAllShow":true,"AllShow":true,"DefaultPageSize":10,"DataMode":0,"UserGUID":null,"RealDataMode":0,"CreatedBy":null,"CreatedOn":null,"ModifiedBy":null,"ModifiedOn":null,"VersionNumber":0,"_DataState":0}; Login_User=UserCode=wank&SignTime=2016-01-21 15:59:27&UserSign=j6rLyJuRe2VCavJ0d2AgUsFwqRYmbmXuknAjL/cDzI2yDwFFAxKBOUzS+ht3lTKVC/1hJGbxB+R3AdeoW5y9S/T9GolzeEpIFszkxhBjcnhifUqqa0KT7gZuvrTbjnbH+TBg0h4E/3vJN0x4maACInOVXpHe58m+bsvyjCRW1Dc=';
-        $url = 'http://pd.mysoft.net.cn/AjaxRequirement/GetAllRequirementList.cspx?KeyValue=&ManagerName=&PMName=&TeamMembers=&Status=&Source=&XqType=&CustomerType=&CustomerArea=&HandlerToRequirementType=&CreatedOnType=&RecordDateBegin=&RecordDateEnd=&DevelopEndTimeType=&FinishiDateBegin=&FinishiDateEnd=&TechReLmtType=&RechDateBegin=&RechDateEnd=&TaskDoneLmtType=&DcDateBegin=&DcDateEnd=&IsHaveTestDoc=&OrderSeq=&PageSize=100';
-        $cur_page = 1;
-        $params = "&Customerchn=$key&PageIndex=$cur_page";
-
-        $content = json_decode( self::get_html_content($url,$params,$user_cookie));
-
-        $html = str_get_html($content->html);
-
-        $task_array = array();
-        if(count($html->find('div[class*=nodata]')) == 0) {
-            foreach ($html->find('div[class*=singleRequirementCard]') as $task_node) {
-                $task_title = $task_node->find('div[class*=title]', 0)->children(1)->plaintext;
-                $task_array[] = $task_title;
-            }
-        }
-        return $task_array;
-    }
-
-
-    /**
-     * @param $key
-     * @return array
-     */
-    private  function  get_configEn($key)
-    {
-        $url='http://pd.mysoft.net.cn/AjaxConfigLibList/GetConfigEnvironment.cspx?PageIndex=1&state=true';
-        $user_cookie = '9da1e58d-cccb-4528-93d5-e93f40951b53={"MySettingID":"00000000-0000-0000-0000-000000000000","DefaultLoadPage":"MyPendingList","PendingShow":true,"PreSubmitShow":true,"MyAllShow":true,"AllShow":true,"DefaultPageSize":10,"DataMode":0,"UserGUID":null,"RealDataMode":0,"CreatedBy":null,"CreatedOn":null,"ModifiedBy":null,"ModifiedOn":null,"VersionNumber":0,"_DataState":0}; Login_User=UserCode=wank&SignTime=2016-01-21 15:59:27&UserSign=j6rLyJuRe2VCavJ0d2AgUsFwqRYmbmXuknAjL/cDzI2yDwFFAxKBOUzS+ht3lTKVC/1hJGbxB+R3AdeoW5y9S/T9GolzeEpIFszkxhBjcnhifUqqa0KT7gZuvrTbjnbH+TBg0h4E/3vJN0x4maACInOVXpHe58m+bsvyjCRW1Dc=';
-        $params='&KeyValue='.$key;
-
-        $content =  self::get_html_content($url,$params,$user_cookie);
-
-        $html = str_get_html($content);
-
-        $version_array = array();
-
-        if(count($html->find('div[class*=nodata]')) == 0) {
-            foreach ($html->find('table[class*=tb] tr') as $key => $value) {
-                if ($key == 0) continue;
-                $version_array[] = '['.$value->children(1)->plaintext.']'.$value->children(2)->plaintext.'('.$value->children(3)->plaintext.')';
-            }
-        }
-
-        return $version_array;
-    }
-
-    /**
-     * @param $url
-     * @param $params
-     * @param $cookie
-     * @return mixed
-     */
-    public function get_html_content($url,$params,$cookie)
-    {
-        $url = $url . $params;
-
-        $method = 'GET';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        //模拟登录
-        curl_setopt($ch, CURLOPT_COOKIE, $cookie);
-        //模拟打开浏览器
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        if ($method === 'POST') {
-            curl_setopt($ch, CURLOPT_POST, true);
-        }
-        $result = curl_exec($ch);
-
-        return $result;
-
-    }
-
 
     public function  markdown($id='')
     {
@@ -301,9 +173,9 @@ class SolutionController extends Controller
 
 //        echo $url.$params;
 
-        $content =  self::get_html_content($url,$params,$user_cookie);
+        $content = PickHtml::get_html_content($url,$params,$user_cookie);
 
-        $html = str_get_html($content);
+        $html = PickHtml::str_get_html($content);
 
         $version_array = array();
 
@@ -324,11 +196,11 @@ class SolutionController extends Controller
     public function workflow_faq()
     {
       $pageData= array('version_contrast' =>array());
-
-      //dd(Version::where([])->orderBy('erp_version')->get());die;
       //TODO:只需要取workflow_version erp_version；缓存
-      $pageData['version_contrast']=Version::where([])->orderBy('workflow_version')->get()->toArray();
-
+        if (!Cache::has('workflow_version')) {
+            Cache::forever('workflow_version',Version::where([])->orderBy('workflow_version')->get()->lists('workflow_version','erp_version')->toArray());
+        }
+      $pageData['version_contrast']=Cache::get('workflow_version');
       return view('solution.freqQuestion',['pageData'=>$pageData]);
     }
 

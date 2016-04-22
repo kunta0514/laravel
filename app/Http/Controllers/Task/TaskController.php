@@ -62,7 +62,8 @@ class TaskController extends Controller
         // dd($task->save());
         //
         // dd($task->id);
-        echo date("Y-m-d",time());
+//        echo date("Y-m-d",time());
+        (new CheckPersonalize())->get_code_lib('东方置地');
     }
 
 
