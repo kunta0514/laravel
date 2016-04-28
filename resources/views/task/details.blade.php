@@ -1,44 +1,112 @@
+
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">{{$details[0]->task_title}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">{{$task->task_title}}</h4>
 </div>
 <div class="modal-body">
-    <form method="post" action="{{ URL('task/edit') }}" role="form" id="form_task">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="task_id" id="task_id" value="{{$details[0]->id}}">
+    <form method="post" role="form" id="form_task">
+        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+        <input type="hidden" name="id" value={{$task->id}}>
         <div class="form-group">
             <div class="btn-group">
                 <label for="select-dev">开发</label>
-                <select class="form-control" id="select-dev" defalut="{{$details[0]->dev}}">
+                <select class="form-control" id="select-dev" name="dev">
+                    <option value="" code="" >请选择</option>
                     @foreach($developers as $dev)
-                        <option value="{{$dev->code}}">{{$dev->name}}</option>
+                        <option value="{{$dev->name}}" code="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            {{--{{$task->developer}}--}}
+            <div class="btn-group">
+                <label for="select-test">测试</label>
+                <select class="form-control" id="select-test" name="test">
+                    <option value="" code="" >请选择</option>
+                    @foreach($testers as $test)
+                        <option value="{{$test->name}}" code="{{$test->code}}" @if ($dev->code === $task->tester) selected @endif>{{$test->name}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="btn-group">
-                <label for="select-test">测试</label>
-                <select class="form-control" id="select-test" defalut="{{$details[0]->test}}">
-                    @foreach($testers as $test)
-                        <option value="{{$test->code}}">{{$test->name}}</option>
+                <label for="select-status">状态</label>
+                <select class="form-control" id="select-status" name="status">
+                    @foreach(Config('params.task_status') as $key=>$value)
+                        @if($key<4)
+                            <option value="{{$key}}" @if ($key === $task->status) selected @endif>{{$value}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <label for="select-date">截止日期</label>
-            <input type="text" name="date" id="select-date" class="form-control" placeholder="选择日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true" defalut="{{$details[0]->actual_finish_date}}">        </div>
+        {{--<div class="form-group">--}}
+        {{--<label for="select-date">预计完成日期</label>--}}
+        {{--<input type="text" name="ekp_expect" {{$task->ekp_expect}} class="form-control" placeholder="选择日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">--}}
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+        {{--<label for="package_name">更新包名称</label>--}}
+        <input type="text" id="package_name" class="form-control" value="" placeholder="更新包名称" >
+        {{--</div>--}}
 
         <div class="form-group">
             <label for="select-date">备注/总结</label>
-            <textarea id="comment" class="form-control" rows="3" placeholder="请输入..">{{$details[0]->comment}}</textarea>
+            <textarea class="form-control" rows="3" placeholder="{{$task->comment}}" name="comment" id="comment">{{$task->comment}}</textarea>
         </div>
     </form>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default"
-                data-dismiss="modal">取消
-        </button>
-        <button type="button" class="btn btn-primary" >
-            确定
-        </button>
-    </div>
+</div><!-- /.modal-content -->
+<div class="modal-footer">
+    <button type="button" class="btn btn-default"
+            data-dismiss="modal">取消
+    </button>
+    <button type="button" class="btn btn-primary" id="btnSubmit" data-dismiss="modal">
+        确定
+    </button>
 </div>
+
+<script type="text/javascript">
+
+    var task_detail = {
+        getPageNameString:function(data){
+            var year = (new Date()).getFullYear();
+            var month = ((new Date()).getMonth() + 1) < 10 ? "0" + ((new Date()).getMonth() + 1) : (new Date()).getMonth() + 1;
+            var day = (new Date()).getDate() < 10 ? "0" + ((new Date()).getDate() + 1) : (new Date()).getDate();
+            return "[" + data.task_no + "]-" + data.customer_name + "-工作流-" + year + "" + month + day + "-第1次";
+        },
+        verify:function(data){
+
+        }
+    };
+
+    $('#btnSubmit').on('click',function(){
+        task.comment = $('#comment').val();
+        console.log(task);
+        //TODO::收集页面元素校验
+        $.ajax({
+            type:'POST',
+            data:task,
+            url:'/task/detail_edit',
+            success:function(data){
+                console.log(data);
+                $('#myModal').modal('hide');
+            }
+        })
+
+    });
+    var task = <?= $task ?>;
+
+    $('#package_name').val(getPageNameString(task));
+
+    function verify()
+    {
+
+    }
+
+    function getPageNameString(data) {
+        var year = (new Date()).getFullYear();
+        var month = ((new Date()).getMonth() + 1) < 10 ? "0" + ((new Date()).getMonth() + 1) : (new Date()).getMonth() + 1;
+        var day = (new Date()).getDate() < 10 ? "0" + ((new Date()).getDate() + 1) : (new Date()).getDate();
+        return "[" + data.task_no + "]-" + data.customer_name + "-工作流-" + year + "" + month + day + "-第1次";
+    }
+
+
+</script>

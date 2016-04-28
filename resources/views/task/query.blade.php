@@ -16,39 +16,11 @@
         }
     </style>
     <div class="container">
-       {{--<div class="query-form">--}}
-           {{--<form class="form-inline" method="get">--}}
-               {{--<div class="form-group">--}}
-                   {{--<label for="begin-date">任务完成时间：从</label>--}}
-                   {{--<input type="text" name="begin-date" id="begin-date" class="form-control" placeholder="选择时间" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">--}}
-               {{--</div>--}}
-               {{--<div class="form-group">--}}
-                   {{--<label for="end-date">到</label>--}}
-                   {{--<input type="text" name="end-date" id="end-date" class="form-control" placeholder="选择日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">--}}
-               {{--</div>--}}
-               {{--<div class="form-group">--}}
-                   {{--<label for="select-dev"> 开发</label>--}}
-                   {{--<select class="form-control" id="select-dev" name="select-dev">--}}
-                       {{--<option value=""></option>--}}
-                       {{--@foreach($developers as $dev)--}}
-                           {{--<option value="{{$dev->code}}">{{$dev->name}}</option>--}}
-                       {{--@endforeach--}}
-                   {{--</select>--}}
-               {{--</div>--}}
-               {{--<div class="form-group">--}}
-                   {{--<label for="exampleInputEmail2">状态</label>--}}
-                   {{--<input type="email" class="form-control" id="exampleInputEmail2" placeholder="状态">--}}
-               {{--</div>--}}
-               {{--<button type="submit" class="btn btn-default">查询任务</button>--}}
-           {{--</form>--}}
-       {{--</div>--}}
-        {{--<input type="text" id="myinput" class="form-control" placeholder="任务编号"> <input type="button" class="btn btn-default" value="查询" id="btn-search">--}}
-
         <div class="row">
             <div class="col-md-4">
                 <div class="input-group pull-left">
                     <form onsubmit="return false;">
-                        <input type="search" class="form-control search-form" placeholder="输入流程名称、发起人">
+                        <input type="search" class="form-control search-form" placeholder="输入需求编号、客户名称、需求标题">
                     </form>
                     <span class="input-group-btn">
                         <button class="btn btn-default btn-search" type="button"><i class="glyphicon glyphicon-search"></i></button>
@@ -63,17 +35,17 @@
         </div>
 
         <div class="list">
-            <table class="table table-bordered " id="example">
+            <table class="table table-bordered table-hover" id="example">
                 <thead>
                 <tr>
-                    {{--<th title="序号">#</th>--}}
+                    {{--<th title="ID" style="width: 15px">#</th>--}}
                     <th style="width: 100px">任务编号</th>
                     <th >任务标题</th>
-                    <th style="width: 50px">客户</th>
+                    <th style="width: 80px">客户</th>
                     <th style="width: 50px">PM</th>
                     <th style="width: 50px">开发</th>
                     <th style="width: 50px">测试</th>
-                    <th style="width: 100px">完成时间</th>
+                    {{--<th style="width: 100px">完成时间</th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -97,8 +69,9 @@
             </table>
         </div>
     </div>
-    <script type="text/javascript">
 
+
+    <script type="text/javascript">
         var tt = $('#example').DataTable({
                 lengthMenu: [15, 30, 50, 100],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
                 paging: false,//分页
@@ -134,6 +107,7 @@
                     },
                     dataSrc:function(json){
 //                        console.log(json);
+                        //获取数据源后绑定行事件？
                         return json.data
                     }
                 },
@@ -143,9 +117,9 @@
                     { "data": "task_title" },
                     { "data": "customer_name" },
                     { "data": "abu_pm" },
-                    { "data": "dev" },
-                    { "data": "test" },
-                    { "data": "actual_finish_date" }
+                    { "data": "developer" },
+                    { "data": "tester" },
+//                    { "data": "actual_finish_date" }
                 ]
             });
 
@@ -163,12 +137,73 @@
             tt.search(keyword).draw();
         });
 
+        $(document).on('click', '#example tr', function () {
+            var data = tt.row(this).data();
+//            if ($(this).hasClass('selected')) {
+//                $(this).removeClass('selected');
+//            }else{
+//                $(this).addClass('selected');
+//            }
+//            console.log(data.id);
+            $.modal({
+                keyboard: false,
+                width:598,
+                minHeight:233,
+                remote: '/task/detail/' + data.id,
+                okHide: function () {
+                    return true;
+                }
+            })
+
+//            $.ajax({
+//                type:'GET',
+//                url:'/task/get_details/'+ $(this).attr('rel'),
+//                dataType:'json',
+//                success:function(data){
+//                    var my_model=$('#myModal');
+//                    my_model.find('.modal-title').text(data.task_title);
+//                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data.task_no + "]"));
+//                    my_model.find('#select-date').val(data.ekp_expect);
+//                    my_model.find('#task_id').val(data.id);
+//                    my_model.find('#comment').val(data.comment);
+//                    my_model.find('#package_name').val(getPageNameString(data));
+//                    $.each($("#select-dev option"),function(n,value){
+//                        if($(value).val()==data.dev){$(value).attr("selected","selected");}
+//                    });
+//                    $.each($("#select-test option"),function(n,value){
+//                        if($(value).val()==data.test || (data.test=="" && $(value).val()=="请选择")){$(value).attr("selected","selected");}
+//                    });
+//                    $.each($("#select-status option"),function(n,value){
+//                        if(value.value==data.status){$(value).attr("selected","selected");}
+//                    });
+//                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data.task_no)});
+//                    my_model.modal('toggle');
+//                }
+//            });
+        } );
+
 //        $(document).on("click", ".btn-refresh", function () {
 //            tt.search('').draw();
 //        });
 
 
     </script>
-
+    {{--<button id="btn">click</button>--}}
+    {{--<script type="text/javascript">--}}
+        {{--function $(str){--}}
+            {{--return document.getElementById(str)--}}
+        {{--}--}}
+        {{--function CreateScript(src) {--}}
+            {{--var Scrip=document.createElement('script');--}}
+            {{--Scrip.src=src;--}}
+            {{--document.body.appendChild(Scrip);--}}
+        {{--}--}}
+        {{--function jsonpcallback(json) {--}}
+            {{--console.log(json);//Object { email="中国", email2="中国222"}--}}
+        {{--}--}}
+        {{--$('btn').onclick=function(){--}}
+            {{--CreateScript("http://61.144.36.122:9000/TaxHttpService/tax_openCard?callback=jsonpcallback")--}}
+        {{--}--}}
+    {{--</script>--}}
 
 @stop

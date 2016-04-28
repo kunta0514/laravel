@@ -41,6 +41,7 @@ class InitTask extends Command
     public function handle()
     {
         //
+//        echo '111';
         $this->init_task();
 //        echo 'ok';
     }
@@ -58,10 +59,10 @@ class InitTask extends Command
             $mysql_task->erp_version = $task->ErpVersion;
             $mysql_task->map_version = $task->MapVersion;
             $mysql_task->abu_pm = $task->AbuPM;
-            $mysql_task->ekp_create_date = $task->CreateTime;
+            $mysql_task->ekp_create_date = isset($task->CreateTime) ? $task->CreateTime:null;
             $mysql_task->start = $task->Start;
-            $mysql_task->ekp_expect = $task->ExpectEnd;
-            $mysql_task->actual_finish_date = $task->ActualEnd;
+            $mysql_task->ekp_expect = isset($task->ExpectEnd) ? $task->ExpectEnd:null;;
+            $mysql_task->actual_finish_date = isset($task->ActualEnd) ? $task->ActualEnd:null;
             $mysql_task->status = $task->Status;
             $mysql_task->comment = $task->Comment;
             $mysql_task->task_type = $task->TaskType;
@@ -79,16 +80,52 @@ class InitTask extends Command
         $count_workload = 1;
         echo $this->print_log("开始导入任务明细...请不要关闭程序！");
         foreach($task_workloads as $task_workload){
-            $mysql_task_workload = new TaskWorkload();
-            $mysql_task_workload->type = $task_workload->type;
-            $mysql_task_workload->name = $task_workload->name;
-            $mysql_task_workload->time = $task_workload->time;
-            $mysql_task_workload->task_id = $task_workload->TaskId;
-            $mysql_task_workload->save();
-            echo $this->print_log("任务明细： $mysql_task_workload->task_id 同步中...");
+            $mysql_task = Task::find($task_workload->TaskId);
+            if($task_workload->type == 0){
+                if(empty($mysql_task->developer)){
+                    $mysql_task->developer = $task_workload->name;
+                }
+                else{
+                    $mysql_task->developer = $mysql_task->developer . ',' . $task_workload->name;
+                }
+                if($mysql_task->developer_workload == 0){
+                    $mysql_task->developer_workload = $task_workload->time;
+                }
+                else{
+                    $mysql_task->developer_workload = $mysql_task->developer_workload + $task_workload->time;
+                }
+            }
+            else{
+                if(empty($mysql_task->tester)){
+                    $mysql_task->tester = $task_workload->name;
+                }
+                else{
+                    $mysql_task->tester = $mysql_task->tester . ',' . $task_workload->name;
+                }
+                if($mysql_task->tester_workload == 0){
+                    $mysql_task->tester_workload = $task_workload->time;
+                }
+                else{
+                    $mysql_task->tester_workload = $mysql_task->tester_workload + $task_workload->time;
+                }
+            }
+            $mysql_task->save();
+//            $mysql_task_workload = new TaskWorkload();
+//            $mysql_task_workload->type = $task_workload->type;
+//            $mysql_task_workload->name = $task_workload->name;
+//            $mysql_task_workload->time = $task_workload->time;
+//            $mysql_task_workload->task_id = $task_workload->TaskId;
+//            $mysql_task_workload->save();
+            echo $this->print_log("任务明细： $task_workload->TaskId 同步中...");
+//            die;
             $count_workload++;
         }
         echo $this->print_log("开始导入任务明细 $count_workload 个");
+    }
+
+    public function update_task()
+    {
+
     }
 
     protected function print_log($context)

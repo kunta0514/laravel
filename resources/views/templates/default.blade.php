@@ -7,6 +7,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>TaskManager</title>
 
@@ -15,6 +16,8 @@
     <link href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css" rel="stylesheet">
     <link href="{{asset('vendor/css/datatables.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/css/datepicker.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/css/modal.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/css/toast.css')}}" rel="stylesheet">
     {{--<link href="{{asset('vendor/css/select2.css')}}" rel="stylesheet">--}}
 
 
@@ -23,10 +26,13 @@
     <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="{{asset('vendor/js/underscore.js')}}"></script>
     <script src="{{asset('vendor/js/datatables.js')}}"></script>
     <script src="{{asset('vendor/js/datepicker.js')}}"></script>
+    <script src="{{asset('vendor/js/modal.js')}}"></script>
+    <script src="{{asset('vendor/js/toast.js')}}"></script>
     {{--<script src="{{asset('vendor/js/select2.js')}}"></script>--}}
-
+    <script src="{{asset('js/app.js')}}"></script>
     <![endif]-->
 </head>
 <body>

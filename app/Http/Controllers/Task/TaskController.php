@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Task;
+use App\Models\Task;
 use App\TaskWorkload;
 use Redirect, Input, Auth;
 use Cache;
@@ -172,18 +172,18 @@ class TaskController extends Controller
 //        //查询条件为自带
         $query = $request->input('search')['value'];
         if(!empty($query)){
-//            $tasks = Task::where('task_no','=',$query)
-//                ->orWhere('customer_name','like',$query)
-//                ->get();
-            $tasks = DB::select("select t.*,max(case when tw.type = 0 then tw.name end) as dev,max(case when tw.type = 1 then tw.name end) as test from tasks t left join tasks_workload tw on t.id = tw.task_id  where t.task_no = '$query' or t.customer_name like '%$query%' GROUP BY t.id ");
+            $tasks = Task::where('task_no','=',$query)
+                ->orWhere('customer_name','like',$query)
+                ->get();
+//            $tasks = DB::select("select t.*,max(case when tw.type = 0 then tw.name end) as dev,max(case when tw.type = 1 then tw.name end) as test from tasks t left join tasks_workload tw on t.id = tw.task_id  where t.task_no = '$query' or t.customer_name like '%$query%' GROUP BY t.id ");
 
 //            print_r($tasks);
 //            die;
             if(!empty($tasks)){
-                $data = $tasks;
-                $draw = 1;
-                $recordsTotal = count($data);
-                $recordsFiltered = $recordsTotal;
+                $data = $tasks->toArray();
+//                $draw = 1;
+//                $recordsTotal = count($data);
+//                $recordsFiltered = $recordsTotal;
             }
         }
 
@@ -196,4 +196,47 @@ class TaskController extends Controller
         return json_encode($ret,JSON_UNESCAPED_UNICODE);
     }
 
+    public function detail($id)
+    {
+//        Cache::forget('developers');
+        if (!Cache::has('developers')) {
+            Cache::forever('developers', User::where('role', 0)->get());
+        }
+        if (!Cache::has('testers')) {
+            Cache::forever('testers', User::where('role', 1)->get());
+        }
+//        $task_detail =  DB::select("select t.*,max(case when tw.type = 0 then tw.name end) as dev,max(case when tw.type = 1 then tw.name end) as test from tasks t left join tasks_workload tw on t.id = tw.task_id  where t.id = $id  GROUP BY t.id ");
+//        $task_detail2 = Task::find($id);
+//        var_dump($task_detail[0]);
+//
+//        print_r('<br>');
+//        print_r('<br>');
+//
+//        print_r( $task_detail[0]->task_title);
+//        print_r( $task_detail[0]->comment);
+//        print_r('<br>');
+//        print_r('<br>');
+//        var_dump($task_detail2);
+//        print_r(Task::find($id)->toSql());
+        $task_detail = Task::find($id);
+
+        return view('task.details', ['theme' => 'default', 'task' =>  $task_detail, 'developers' => Cache::get('developers'), 'testers' => Cache::get('testers')]);
+
+    }
+
+    public function detail_edit(Request $request)
+    {
+        //按需更新
+
+//            $task_id = $request->id;
+//            $task = Task::find($task_id);
+//            $task->comment = $request->comment;
+//            $task->status = $request->status;
+        if (!empty($request->path())) {
+//            DB::table('tasks')->where('id', $request->id)->update(['comment' => $request->comment]);
+            $result = DB::transaction(function () use ($request) {
+                DB::table('tasks')->where('id', $request->id)->update(['comment' => $request->comment,'status' => $request->status]);
+            });
+        }
+    }
 }
