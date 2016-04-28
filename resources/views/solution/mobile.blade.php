@@ -35,7 +35,7 @@
         margin-bottom: 0;
         text-align: center;
     }
-    div[name=history_tasks] li,div[name=history_tasks] li:hover,div[name=history_tasks] li:focus,div[name=version] li
+    div[name=history_tasks] li,div[name=history_tasks] li:hover,div[name=history_tasks] li:focus,div[name=version],div[name=code_lib] li
     {
         font-size: 13px;
         width: 100%;
@@ -99,6 +99,12 @@
                 $.each(Json_data.version_list,function(n,value){
                     version.append($("<li></li>").html( value));
                 });
+                var code_lib=$("div.code_lib");
+                code_lib.html("");
+                $.each(Json_data.code_lib,function(n,value){
+                    code_lib.append($("<li></li>").html(value.project_name+"("+value.workflow_version+")"));
+                });
+
                 $("span.remark").html(Json_data.message);
                 $("div[name='check_process_bar']").hide();
             } );
@@ -174,10 +180,14 @@
                         <td><div name="result" class="alert alert-success my_alert hidden" role="alert"></div></td>
                     </tr>
                     <tr>
-                        <td class="border_r_1"><h5>客户信息：</h5></td>
+                        <td class="border_r_1"><h5>ERP信息：</h5></td>
                         <td><div name="version" class="version"></div></td>
                     </tr>
-                    <tr class="hidden1">
+                    <tr>
+                        <td class="border_r_1"><h5>WF代码库：</h5></td>
+                        <td><div name="code_lib" class="code_lib"></div></td>
+                    </tr>
+                    <tr>
                         <td class="border_r_1"><h5>历史任务：</h5></td>
                         <td><div name="history_tasks" ></div></td>
                     </tr>
@@ -186,7 +196,7 @@
                         <td class="border_r_1"><h5>备注：</h5></td>
                         <td><span class="remark"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="hidden">
                         <td class="border_r_1"><h5>反馈：</h5></td>
                         <td class="checkbox">
                             <label>

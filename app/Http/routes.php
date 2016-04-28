@@ -90,6 +90,11 @@ Route::group(['prefix' => 'solution', 'namespace' => 'Solution'], function()
     Route::get('mobile/{func?}/{key?}', 'SolutionController@mobile_tools');
     Route::get('markdown/{id?}', 'SolutionController@markdown');
     Route::get('faq','SolutionController@workflow_faq');
+    //清理缓存
+    Route::get('deleteC',function(){
+        Cache::flush();
+    });
+
     Route::post('mobile', 'SolutionController@mobile_tools');
     Route::post('upload', 'SolutionController@upload');
     Route::post('markdown_save', 'SolutionController@markdown_save');
