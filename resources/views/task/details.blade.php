@@ -43,28 +43,26 @@
         {{--<label for="select-date">预计完成日期</label>--}}
         {{--<input type="text" name="ekp_expect" {{$task->ekp_expect}} class="form-control" placeholder="选择日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">--}}
         {{--</div>--}}
-        {{--<div class="form-group">--}}
-        {{--<label for="package_name">更新包名称</label>--}}
-        <input type="text" id="package_name" class="form-control" value="" placeholder="更新包名称" >
-        {{--</div>--}}
+        <div class="form-group">
+            <label for="package_name">更新包名称</label>
+            <input type="text" id="package_name" class="form-control" value="" placeholder="更新包名称" >
+        </div>
 
         <div class="form-group">
             <label for="select-date">备注/总结</label>
-            <textarea class="form-control" rows="3" placeholder="{{$task->comment}}" name="comment" id="comment">{{$task->comment}}</textarea>
+            <textarea class="form-control" rows="7" placeholder="{{$task->comment}}" name="comment" id="comment">{{$task->comment}}</textarea>
         </div>
     </form>
 </div><!-- /.modal-content -->
 <div class="modal-footer">
-    <button type="button" class="btn btn-default"
-            data-dismiss="modal">取消
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消
     </button>
-    <button type="button" class="btn btn-primary" id="btnSubmit" data-dismiss="modal">
+    <button type="button" class="btn btn-primary" id="btnSubmit" data-ok="modal">
         确定
     </button>
 </div>
 
 <script type="text/javascript">
-
     var task_detail = {
         getPageNameString:function(data){
             var year = (new Date()).getFullYear();
@@ -82,31 +80,14 @@
         console.log(task);
         //TODO::收集页面元素校验
         $.ajax({
-            type:'POST',
-            data:task,
-            url:'/task/detail_edit',
-            success:function(data){
-                console.log(data);
-                $('#myModal').modal('hide');
+            type: 'POST',
+            data: task,
+            url: '/task/detail_edit',
+            success: function (data) {
+//                console.log(data);
             }
         })
-
     });
     var task = <?= $task ?>;
-
-    $('#package_name').val(getPageNameString(task));
-
-    function verify()
-    {
-
-    }
-
-    function getPageNameString(data) {
-        var year = (new Date()).getFullYear();
-        var month = ((new Date()).getMonth() + 1) < 10 ? "0" + ((new Date()).getMonth() + 1) : (new Date()).getMonth() + 1;
-        var day = (new Date()).getDate() < 10 ? "0" + ((new Date()).getDate() + 1) : (new Date()).getDate();
-        return "[" + data.task_no + "]-" + data.customer_name + "-工作流-" + year + "" + month + day + "-第1次";
-    }
-
-
+    $('#package_name').val(task_detail.getPageNameString(task));
 </script>

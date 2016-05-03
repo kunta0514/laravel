@@ -151,7 +151,8 @@
                 minHeight:233,
                 remote: '/task/detail/' + data.id,
                 okHide: function () {
-                    return true;
+//                    alert(222);
+                   // return false;
                 }
             })
 
