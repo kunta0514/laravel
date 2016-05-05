@@ -156,42 +156,30 @@ class TaskController extends Controller
     {
 //        $tasks = $request;
         $tasks = null;
+//        $query = 1;
+//        $task = DB::table('tasks')->where('task_no','like',$query.'%')->get();
+//        print_r($task);
+//        $queries = DB::getQueryLog();
+//        print_r($queries);
         return view('task.query', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
     }
 
     //TODO:根据查询条件查询结果
     public function query_task(Request $request)
     {
-//        $draw = 1;
-//        $recordsTotal = 1;
-//        $recordsFiltered = 1;
-//        $tasks = Task::where('status', '<', 3)->take(10)->get();
-//        print_r($tasks);
-//        die;
-//        $data = $tasks->toArray();
         $data = [];
-//        //查询条件为自带
+        //查询条件为自带
         $query = $request->input('search')['value'];
         if(!empty($query)){
-            $tasks = Task::where('task_no','=',$query)
-                ->orWhere('customer_name','like',$query)
+            $tasks = Task::where('task_no','=',$query.'%')
+                ->orWhere('customer_name','like','%'.$query.'%')
+                ->orderBy('task_no', 'desc')
                 ->get();
-//            $tasks = DB::select("select t.*,max(case when tw.type = 0 then tw.name end) as dev,max(case when tw.type = 1 then tw.name end) as test from tasks t left join tasks_workload tw on t.id = tw.task_id  where t.task_no = '$query' or t.customer_name like '%$query%' GROUP BY t.id ");
-
-//            print_r($tasks);
-//            die;
             if(!empty($tasks)){
                 $data = $tasks->toArray();
-//                $draw = 1;
-//                $recordsTotal = count($data);
-//                $recordsFiltered = $recordsTotal;
             }
         }
-
         $ret=[
-            //'draw' => $draw,
-//            'recordsTotal' => $recordsTotal,
-//            'recordsFiltered' => $recordsFiltered,
             'data' => $data,
         ];
         return json_encode($ret,JSON_UNESCAPED_UNICODE);
@@ -239,5 +227,36 @@ class TaskController extends Controller
                 DB::table('tasks')->where('id', $request->id)->update(['comment' => $request->comment,'status' => $request->status]);
             });
         }
+    }
+
+    public function test_page()
+    {
+        $query = '20160330-1606';
+        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
+            ->orWhere('customer_name','like','%'.$query.'%')
+            ->get();
+
+        var_dump($tasks);
+
+//        $tasks = Task::where('task_no','=',$query.'%')
+//            ->orWhere('customer_name','like','%'.$query.'%')
+//            ->get();
+//            $tasks = DB::select("select t.*,max(case when tw.type = 0 then tw.name end) as dev,max(case when tw.type = 1 then tw.name end) as test from tasks t left join tasks_workload tw on t.id = tw.task_id  where t.task_no = '$query' or t.customer_name like '%$query%' GROUP BY t.id ");
+//            $queries = DB::getQueryLog();
+//            print_r($queries);
+//            print_r($tasks);
+//            die;
+        return view('task.test', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
+    }
+
+    public function test()
+    {
+        $query = '2014';
+        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
+            ->orWhere('customer_name','like','%'.$query.'%')
+            ->get();
+//        $queries = DB::getQueryLog();
+//        print_r($queries);
+        return view('task.test', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
     }
 }

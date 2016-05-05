@@ -22,14 +22,6 @@ class UserTableSeeder extends Seeder {
                'role'=>0
            ],
            [
-               'username'=>'随波',
-               'code'=>'suib',
-               'admin'=>0,
-               'email'=>'suib@mysoft.com.cn',
-               'password'=>'',
-               'role'=>1
-           ],
-           [
                'username'=>'季家龙',
                'code'=>'jijl',
                'admin'=>0,
@@ -66,6 +58,22 @@ class UserTableSeeder extends Seeder {
                'code'=>'guof02',
                'admin'=>0,
                'email'=>'guof02@mysoft.com.cn',
+               'password'=>'',
+               'role'=>0
+           ],
+           [
+               'username'=>'随波',
+               'code'=>'suib',
+               'admin'=>0,
+               'email'=>'suib@mysoft.com.cn',
+               'password'=>'',
+               'role'=>1
+           ],
+           [
+               'username'=>'项目ABU',
+               'code'=>'xmabu',
+               'admin'=>0,
+               'email'=>'xmabu@mysoft.com.cn',
                'password'=>'',
                'role'=>0
            ],
