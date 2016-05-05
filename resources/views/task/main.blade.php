@@ -34,27 +34,32 @@
         </thead>
         <tbody>
 
-        @foreach($tasks as $k=>$task)
-            <tr rel="{{$task->id}}" >
-                <th scope="row" >{{$k+1}}</th>
-                <td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
-                <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
-                    <a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>23) {{mb_substr($task->task_title,0,23)}}...@else {{$task->task_title}} @endif
-                </td>
-                <td>{{$task->customer_name}}</td>
-                <td>{{$task->abu_pm}}</td>
-                <td class="@if($task->status=='1')or_doing @endif">{{$task->dev}}</td>
-                <td class="@if($task->status=='2')or_doing @endif">{{$task->test}}</td>
-{{--                <td>@if($task->actual_finish_date) {{substr($task->actual_finish_date,0,10)}} @endif</td>deadline--}}
-                <td>{{ $task->deadline}}</td>
-                <td>
-                    <span name="chk_finish" data-toggle="tooltip" data-placement="top"
-                          class="glyphicon chk_finish @if($task->status == 1) glyphicon-pushpin @elseif($task->status == 2) glyphicon-check @else glyphicon-flag @endif"
-                          title="标记为{{config('params.task_status')[$task->status+1] }}..." rel="{{$task->id}}" status="{{$task->status}}">
-                    </span>
-                </td>
-            </tr>
-        @endforeach
+          @foreach($tasks as $k=>$task)
+              <tr rel="{{$task->id}}" >
+                  <th scope="row" >{{$k+1}}</th>
+                  <td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                  <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
+  		@if(stristr($task->task_type, 'BUG'))
+  		<span class="label label-danger">BUG</span>
+  		@else
+  		<span class="label label-success">{{mb_substr($task->task_type,0,4)}}</span>
+  		@endif
+                      <a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>21) {{mb_substr($task->task_title,0,21)}}...@else {{$task->task_title}} @endif
+                  </td>
+                  <td>{{$task->customer_name}}</td>
+                  <td>{{$task->abu_pm}}</td>
+                  <td class="@if($task->status=='1')or_doing @endif">{{$task->dev}}</td>
+                  <td class="@if($task->status=='2')or_doing @endif">{{$task->test}}</td>
+  {{--                <td>@if($task->actual_finish_date) {{substr($task->actual_finish_date,0,10)}} @endif</td>deadline--}}
+                  <td>{{ $task->deadline}}</td>
+                  <td>
+                      <span name="chk_finish" data-toggle="tooltip" data-placement="top"
+                            class="glyphicon chk_finish @if($task->status == 1) glyphicon-pushpin @elseif($task->status == 2) glyphicon-check @else glyphicon-flag @endif"
+                            title="标记为{{config('params.task_status')[$task->status+1] }}..." rel="{{$task->id}}" status="{{$task->status}}">
+                      </span>
+                  </td>
+              </tr>
+          @endforeach
         </tbody>
     </table>
 
