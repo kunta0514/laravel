@@ -90,10 +90,10 @@ class SyncTask extends Command
         {
             $task_no = $task_node->find('div[class*=title]',0)->children(0)->plaintext;
             $str = ['【','】'];
-            $task_no = str_replace($str,"",$task_no);
+            $task_no =trim(str_replace($str,"",$task_no));
             $ekp_oid='';
 
-            $task_title = $task_node->find('div[class*=title]',0)->children(1)->plaintext;
+            $task_title = trim($task_node->find('div[class*=title]',0)->children(1)->plaintext);
             $task_cst_name = $task_node->find('li[title=客户名称]',0)->plaintext;
             $task_type = $task_node->find('li[title=需求类型]',0)->plaintext;
             $task_apu_pm = $task_node->find('li[title=需求负责人]',0)->plaintext;

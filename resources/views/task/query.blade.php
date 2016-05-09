@@ -38,33 +38,15 @@
             <table class="table table-bordered table-hover" id="example">
                 <thead>
                 <tr>
-                    {{--<th title="ID" style="width: 15px">#</th>--}}
                     <th style="width: 100px">任务编号</th>
                     <th >任务标题</th>
                     <th style="width: 80px">客户</th>
                     <th style="width: 50px">PM</th>
                     <th style="width: 50px">开发</th>
                     <th style="width: 50px">测试</th>
-                    {{--<th style="width: 100px">完成时间</th>--}}
                 </tr>
                 </thead>
                 <tbody>
-
-                {{--@foreach($tasks as $k=>$task)--}}
-                    {{--<tr rel="{{$task->id}}" >--}}
-                        {{--<th scope="row" >{{$k+1}}</th>--}}
-                        {{--<td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>--}}
-                        {{--<td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">--}}
-                            {{--<a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>23) {{mb_substr($task->task_title,0,23)}}...@else {{$task->task_title}} @endif--}}
-                        {{--</td>--}}
-                        {{--<td>{{$task->customer_name}}</td>--}}
-                        {{--<td>{{$task->abu_pm}}</td>--}}
-                        {{--<td class="@if($task->status=='1')or_doing @endif">{{$task->dev}}</td>--}}
-                        {{--<td class="@if($task->status=='2')or_doing @endif">{{$task->test}}</td>--}}
-                        {{--                <td>@if($task->actual_finish_date) {{substr($task->actual_finish_date,0,10)}} @endif</td>deadline--}}
-                        {{--<td>{{ $task->actual_finish_date}}</td>--}}
-                    {{--</tr>--}}
-                {{--@endforeach--}}
                 </tbody>
             </table>
         </div>
@@ -117,8 +99,8 @@
                     { "data": "task_title" },
                     { "data": "customer_name" },
                     { "data": "abu_pm" },
-                    { "data": "developer" },
-                    { "data": "tester" },
+                    { "data": "dev_name" },
+                    { "data": "tester_name" },
 //                    { "data": "actual_finish_date" }
                 ]
             });
@@ -139,12 +121,6 @@
 
         $(document).on('click', '#example tr', function () {
             var data = tt.row(this).data();
-//            if ($(this).hasClass('selected')) {
-//                $(this).removeClass('selected');
-//            }else{
-//                $(this).addClass('selected');
-//            }
-//            console.log(data.id);
             $.modal({
                 keyboard: false,
                 width:598,
@@ -155,56 +131,6 @@
                    // return false;
                 }
             })
-
-//            $.ajax({
-//                type:'GET',
-//                url:'/task/get_details/'+ $(this).attr('rel'),
-//                dataType:'json',
-//                success:function(data){
-//                    var my_model=$('#myModal');
-//                    my_model.find('.modal-title').text(data.task_title);
-//                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data.task_no + "]"));
-//                    my_model.find('#select-date').val(data.ekp_expect);
-//                    my_model.find('#task_id').val(data.id);
-//                    my_model.find('#comment').val(data.comment);
-//                    my_model.find('#package_name').val(getPageNameString(data));
-//                    $.each($("#select-dev option"),function(n,value){
-//                        if($(value).val()==data.dev){$(value).attr("selected","selected");}
-//                    });
-//                    $.each($("#select-test option"),function(n,value){
-//                        if($(value).val()==data.test || (data.test=="" && $(value).val()=="请选择")){$(value).attr("selected","selected");}
-//                    });
-//                    $.each($("#select-status option"),function(n,value){
-//                        if(value.value==data.status){$(value).attr("selected","selected");}
-//                    });
-//                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data.task_no)});
-//                    my_model.modal('toggle');
-//                }
-//            });
         } );
-
-//        $(document).on("click", ".btn-refresh", function () {
-//            tt.search('').draw();
-//        });
-
-
     </script>
-    {{--<button id="btn">click</button>--}}
-    {{--<script type="text/javascript">--}}
-        {{--function $(str){--}}
-            {{--return document.getElementById(str)--}}
-        {{--}--}}
-        {{--function CreateScript(src) {--}}
-            {{--var Scrip=document.createElement('script');--}}
-            {{--Scrip.src=src;--}}
-            {{--document.body.appendChild(Scrip);--}}
-        {{--}--}}
-        {{--function jsonpcallback(json) {--}}
-            {{--console.log(json);//Object { email="中国", email2="中国222"}--}}
-        {{--}--}}
-        {{--$('btn').onclick=function(){--}}
-            {{--CreateScript("http://61.144.36.122:9000/TaxHttpService/tax_openCard?callback=jsonpcallback")--}}
-        {{--}--}}
-    {{--</script>--}}
-
 @stop

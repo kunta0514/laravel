@@ -1,20 +1,18 @@
-
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title">{{$task->task_title}}</h4>
+    <h4 class="modal-title">{{$task->task_title}}[<a href="#" rel="{{$task->task_no}}" onclick="oprViewOnEKP()">{{$task->task_no}}</a>]</h4>
 </div>
 <div class="modal-body">
     <form method="post" role="form" id="form_task">
-        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
         <input type="hidden" name="id" value={{$task->id}}>
         <div class="form-group">
             <div class="btn-group">
                 <label for="select-dev">开发</label>
                 <select class="form-control" id="select-dev" name="dev">
                     <option value="" code="" >请选择</option>
-                    @foreach($developers as $dev)
-                        <option value="{{$dev->name}}" code="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
+                    @foreach($developers as $dev=>$value)
+                        <option value="{{$dev}}" code="{{$dev}}" @if ($dev === $task->developer) selected @endif>{{$value}}</option>
                     @endforeach
                 </select>
             </div>
@@ -23,8 +21,8 @@
                 <label for="select-test">测试</label>
                 <select class="form-control" id="select-test" name="test">
                     <option value="" code="" >请选择</option>
-                    @foreach($testers as $test)
-                        <option value="{{$test->name}}" code="{{$test->code}}" @if ($dev->code === $task->tester) selected @endif>{{$test->name}}</option>
+                    @foreach($testers as $test=>$value)
+                        <option value="{{$test}}" code="{{$test}}" @if ($test === $task->tester) selected @endif>{{$value}}</option>
                     @endforeach
                 </select>
             </div>
@@ -39,13 +37,9 @@
                 </select>
             </div>
         </div>
-        {{--<div class="form-group">--}}
-        {{--<label for="select-date">预计完成日期</label>--}}
-        {{--<input type="text" name="ekp_expect" {{$task->ekp_expect}} class="form-control" placeholder="选择日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">--}}
-        {{--</div>--}}
         <div class="form-group">
             <label for="package_name">更新包名称</label>
-            <input type="text" id="package_name" class="form-control" value="" placeholder="更新包名称" >
+            <input type="text" id="package_name" class="form-control" value="{{$task->package_name}}" placeholder="更新包名称" >
         </div>
 
         <div class="form-group">
@@ -57,19 +51,13 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">取消
     </button>
-    <button type="button" class="btn btn-primary" id="btnSubmit" data-ok="modal">
+    <button type="button" class="btn btn-primary @if($task->status =="3") hidden @endif" id="btnSubmit" data-ok="modal">
         确定
     </button>
 </div>
 
 <script type="text/javascript">
     var task_detail = {
-        getPageNameString:function(data){
-            var year = (new Date()).getFullYear();
-            var month = ((new Date()).getMonth() + 1) < 10 ? "0" + ((new Date()).getMonth() + 1) : (new Date()).getMonth() + 1;
-            var day = (new Date()).getDate() < 10 ? "0" + ((new Date()).getDate() + 1) : (new Date()).getDate();
-            return "[" + data.task_no + "]-" + data.customer_name + "-工作流-" + year + "" + month + day + "-第1次";
-        },
         verify:function(data){
 
         }
@@ -77,17 +65,19 @@
 
     $('#btnSubmit').on('click',function(){
         task.comment = $('#comment').val();
-        console.log(task);
+        task.developer=$("#select-dev").val();
+        task.tester=$("#select-test").val();
+        task.status=$("#select-status").val();
+
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',
             data: task,
             url: '/task/detail_edit',
             success: function (data) {
-//                console.log(data);
+//               console.log(data);
             }
         })
     });
-    var task = <?= $task ?>;
-    $('#package_name').val(task_detail.getPageNameString(task));
+    var task =<?= $task ?>;
 </script>
