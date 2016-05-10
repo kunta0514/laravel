@@ -52,5 +52,7 @@ return [
         '需求列表'=>'http://pd.mysoft.net.cn/Requirement/MyPendingList.aspx?DataMode=Card',
         '知识库'=>'http://km.mysoft.net.cn:8111/CodeKnowledge/List.aspx',
         '老系统'=>'http://10.5.10.38:53537/Task/ActiveTask.aspx',
+        '移动小工具'=>'/solution/mobile',
+        '工作流FAQ'=>'/solution/faq',
     ],
 ];

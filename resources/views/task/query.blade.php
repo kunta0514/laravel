@@ -14,6 +14,9 @@
             line-height: inherit;
             vertical-align: middle;
         }
+        #example tr{
+            cursor: pointer;
+        }
     </style>
     <div class="container">
         <div class="row">
@@ -102,7 +105,7 @@
                     { "data": "dev_name" },
                     { "data": "tester_name" },
 //                    { "data": "actual_finish_date" }
-                ]
+                ],
             });
 
 
@@ -132,5 +135,19 @@
                 }
             })
         } );
+
+        function oprViewOnEKP(obj)
+        {
+            $.ajax({
+                type:'GET',
+                url:'/task/view_pd/'+obj,
+                success:function(data) {
+                    window.open("http://pd.mysoft.net.cn"+data) ;
+                },
+                error:function(data){
+                    console.info(data);
+                }
+            });
+        }
     </script>
 @stop

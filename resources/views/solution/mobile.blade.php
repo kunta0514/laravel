@@ -35,7 +35,7 @@
         margin-bottom: 0;
         text-align: center;
     }
-    div[name=history_tasks] li,div[name=history_tasks] li:hover,div[name=history_tasks] li:focus,div[name=version],div[name=code_lib] li
+    div[name=history_tasks] li,div[name=history_tasks] li:hover,div[name=history_tasks] li:focus,div[name=version] li,div[name=code_lib] li
     {
         font-size: 13px;
         width: 100%;
@@ -48,10 +48,7 @@
         width: 100%;
         margin-top: 10px;
     }
-    /*#myModal*/
-    /*{*/
-        /*display: block;*/
-    /*}*/
+
     .my_image
     {
         overflow-x: hidden;
@@ -209,7 +206,7 @@
                 <!-- Table -->
             </div>
         </div><!-- /.col-lg-4 -->
-        <div class="col-lg-7">
+        <div class="col-lg-7 hidden">
             <div class="input-group">
                 <input id="txtSearch" type="text" class="form-control" placeholder="输入问题关键字,逗号分隔...">
           <span class="input-group-btn">
@@ -231,21 +228,20 @@
             </div>
             <?php echo $solution_list->render(); ?>
         </div><!-- /.col-lg-8 -->
-    </div>
-    <div class="row">
-        <div class="col-lg-12" >
-            <fieldset>
-                <legend>Remark:</legend>
-                <div class="jumbotron" style="padding-top: 15px;padding-bottom: 15px;">
-                    <h3>Tips:</h3>
-                    <p style="font-size: 16px;">1.用户个性化检查数据源是任务系统，这里会过滤对应客户所有工作流相关的任务；下一版本会增加客户是否存在工作流个性化库判断维度[预计下周上线]！<br>2.移动审批常见问题集，暂时由我录入，后续版本会给出录入接口。</p>
-                    <p style="font-size: 16px;"><strong>操作技巧：</strong><br>1.输入客户名称关键字可以更加准确，比如：重庆东原，输入"东原"...</p>
-                    <p style="font-size: 16px;"><strong>彩蛋：</strong><br>手机访问试试？</p>
-                    <img src="/uploads/images/site_code.png" alt="手机扫码试试">
-                </div>
-            </fieldset>
+        <div class="col-lg-7">
+            <div class="" >
+                <fieldset>
+                    <legend>Tips:</legend>
+                    <div class="jumbotron">
+                        <p style="font-size: 16px;">①从通过<font color="red">历史任务</font>和<font color="red">工作流代码库</font>两个维度来分析该客户是否有个性化。<br>
+                            </p>
+                        <p style="font-size: 16px;"><strong>操作技巧：</strong><br>1.输入客户名称关键字可以更加准确，比如：重庆东原，输入"东原"...</p>
+                    </div>
+                </fieldset>
+            </div>
         </div>
     </div>
+
 </div>
 <!-- Modal -->
 <div class="modal fade my_image bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
