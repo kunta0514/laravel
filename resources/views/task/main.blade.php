@@ -37,7 +37,7 @@
           @foreach($tasks as $k=>$task)
               <tr rel="{{$task->id}}" >
                   <th scope="row" >{{$k+1}}</th>
-                  <td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                  <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
                   <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
                 		@if(stristr($task->task_type, 'BUG'))
                 		<span class="label label-danger">B</span>
@@ -131,7 +131,12 @@
         $('#example tbody').on('click',"td a[name='view_on_erp']",function(e){
             e.stopPropagation();
             e.preventDefault();
-            oprViewOnEKP($(this).attr("rel"));
+            if($(this).attr("href")!="")
+            {
+                window.open("http://pd.mysoft.net.cn"+$(this).attr("href"));
+            }else{
+                oprViewOnEKP($(this).attr("rel"));
+            }
             return false;
         });
 

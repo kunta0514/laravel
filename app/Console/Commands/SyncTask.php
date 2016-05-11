@@ -91,7 +91,7 @@ class SyncTask extends Command
             $task_no = $task_node->find('div[class*=title]',0)->children(0)->plaintext;
             $str = ['【','】'];
             $task_no =trim(str_replace($str,"",$task_no));
-            $ekp_oid='';
+            $ekp_oid=$task_node->find('div[class*=title]',0)->children(1)->attr['href'];
 
             $task_title = trim($task_node->find('div[class*=title]',0)->children(1)->plaintext);
             $task_cst_name = $task_node->find('li[title=客户名称]',0)->plaintext;
