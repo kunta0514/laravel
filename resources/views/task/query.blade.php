@@ -120,8 +120,8 @@
                     { "data": "task_title" },
                     { "data": "customer_name" },
                     { "data": "abu_pm" },
-                    { "data": "developer" },
-                    { "data": "tester" },
+                    { "data": "dev_name" },
+                    { "data": "tester_name" },
 //                    { "data": "actual_finish_date" }
                 ],
                 //隐藏ID
@@ -171,22 +171,4 @@
 
 
     </script>
-    {{--<button id="btn">click</button>--}}
-    {{--<script type="text/javascript">--}}
-        {{--function $(str){--}}
-            {{--return document.getElementById(str)--}}
-        {{--}--}}
-        {{--function CreateScript(src) {--}}
-            {{--var Scrip=document.createElement('script');--}}
-            {{--Scrip.src=src;--}}
-            {{--document.body.appendChild(Scrip);--}}
-        {{--}--}}
-        {{--function jsonpcallback(json) {--}}
-            {{--console.log(json);//Object { email="中国", email2="中国222"}--}}
-        {{--}--}}
-        {{--$('btn').onclick=function(){--}}
-            {{--CreateScript("http://61.144.36.122:9000/TaxHttpService/tax_openCard?callback=jsonpcallback")--}}
-        {{--}--}}
-    {{--</script>--}}
-
 @stop

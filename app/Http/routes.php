@@ -58,13 +58,11 @@ Route::group(['prefix' => 'project', 'namespace' => 'Project'], function()
 
 Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
 {
-    Route::resource('task', 'TaskController@index');
+
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/', 'TaskController@index');
     Route::get('/detail/{id}','TaskController@detail');
-    Route::get('/get_details/{id}','TaskController@get_details');
-    Route::get('/wonder4/{id}','TaskController@wonder4');
-    Route::get('/edit/{id}', 'TaskController@edit');
+    Route::get('/wonder4','TaskController@wonder4');
     Route::get('/fast_handle/{id}', 'TaskController@fast_handle');
     Route::get('/view_pd/{task_no}', 'TaskController@view_pd');
     Route::get('/tag', 'TaskController@tag');
@@ -74,14 +72,12 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     });
     Route::get('/query', 'TaskController@query');
     Route::get('/query_task', 'TaskController@query_task');
-
     Route::get('/test', 'TaskController@test');
     Route::get('/test_page', 'TaskController@test_page');
 
-    Route::post('edit', 'TaskController@edit');
     Route::post('/detail_edit','TaskController@detail_edit');
 
-
+    Route::resource('task', 'TaskController@index');
 });
 
 Route::group(['prefix' => 'solution', 'namespace' => 'Solution'], function()

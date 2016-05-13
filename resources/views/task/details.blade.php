@@ -1,8 +1,7 @@
-
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title">{{$task->task_title}}</h4>
+    <h4 class="modal-title">{{$task->task_title}}[<a href="#" rel="{{$task->task_no}}" onclick="oprViewOnEKP()">{{$task->task_no}}</a>]</h4>
 </div>
 <div class="modal-body">
     <form method="post" role="form" id="form_task" class="form-horizontal form-column form-bordered">
@@ -34,10 +33,10 @@
                 <div class="form-group">
                     <label for="select-test" class="control-label col-sm-2">测试</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="select-test" name="test">
+                        <select class="form-control" id="select-dev" name="dev">
                             <option value="" code="" >请选择</option>
-                            @foreach($testers as $test)
-                                <option value="{{$test->name}}" code="{{$test->code}}" @if ($test->code === $task->tester) selected @endif>{{$test->name}}</option>
+                            @foreach($testers as $dev)
+                                <option value="{{$dev->name}}" code="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
                             @endforeach
                         </select>
                     </div>

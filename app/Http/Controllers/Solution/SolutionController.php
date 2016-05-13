@@ -6,7 +6,7 @@ use App\Utility\PickHtml;
 use Illuminate\Http\Request;
 use App\WF_Solution;
 use App\CheckPersonalize;
-use App\Version;
+use App\Models\Version;
 use Cache;
 
 

@@ -8,7 +8,7 @@
 </style>
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">工作流 FAQ</h1>
+        <h1 style="text-align: center;">工作流 FAQ</h1>
     </div>
   <div class="col-xs-6 col-md-4">
   <blockquote>
