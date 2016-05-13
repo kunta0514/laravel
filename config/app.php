@@ -202,6 +202,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'UserHelper'   => App\Helpers\UserHelper::class,
         'Pinyin'    => 'Overtrue\Pinyin\Pinyin',
         'EndaEditor' => 'YuanChao\Editor\Facade\EndaEditorFacade',
     ],

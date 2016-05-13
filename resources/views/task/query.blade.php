@@ -14,6 +14,9 @@
             line-height: inherit;
             vertical-align: middle;
         }
+        #example tr{
+            cursor: pointer;
+        }
     </style>
     <div class="container">
         <div class="row">
@@ -38,7 +41,7 @@
             <table class="table table-bordered table-hover" id="example">
                 <thead>
                 <tr>
-                    {{--<th title="ID" style="width: 15px">#</th>--}}
+                    <th title="ID" style="width: 15px">ID</th>
                     <th style="width: 100px">任务编号</th>
                     <th >任务标题</th>
                     <th style="width: 80px">客户</th>
@@ -112,7 +115,7 @@
                     }
                 },
                 columns: [
-//                    { "data": "id" },
+                    { "data": "id" },
                     { "data": "task_no" },
                     { "data": "task_title" },
                     { "data": "customer_name" },
@@ -120,6 +123,14 @@
                     { "data": "developer" },
                     { "data": "tester" },
 //                    { "data": "actual_finish_date" }
+                ],
+                //隐藏ID
+                columnDefs:[
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    }
                 ]
             });
 
@@ -137,14 +148,9 @@
             tt.search(keyword).draw();
         });
 
-        $(document).on('click', '#example tr', function () {
-            var data = tt.row(this).data();
-//            if ($(this).hasClass('selected')) {
-//                $(this).removeClass('selected');
-//            }else{
-//                $(this).addClass('selected');
-//            }
-//            console.log(data.id);
+        $(document).on('click', '#example tbody tr', function () {
+            var data = tt.row(this).data()
+            console.log(data);
             $.modal({
                 keyboard: false,
                 width:598,
@@ -152,40 +158,16 @@
                 remote: '/task/detail/' + data.id,
                 okHide: function () {
 //                    alert(222);
-                   // return false;
+                    // return false;
                 }
             })
-
-//            $.ajax({
-//                type:'GET',
-//                url:'/task/get_details/'+ $(this).attr('rel'),
-//                dataType:'json',
-//                success:function(data){
-//                    var my_model=$('#myModal');
-//                    my_model.find('.modal-title').text(data.task_title);
-//                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data.task_no + "]"));
-//                    my_model.find('#select-date').val(data.ekp_expect);
-//                    my_model.find('#task_id').val(data.id);
-//                    my_model.find('#comment').val(data.comment);
-//                    my_model.find('#package_name').val(getPageNameString(data));
-//                    $.each($("#select-dev option"),function(n,value){
-//                        if($(value).val()==data.dev){$(value).attr("selected","selected");}
-//                    });
-//                    $.each($("#select-test option"),function(n,value){
-//                        if($(value).val()==data.test || (data.test=="" && $(value).val()=="请选择")){$(value).attr("selected","selected");}
-//                    });
-//                    $.each($("#select-status option"),function(n,value){
-//                        if(value.value==data.status){$(value).attr("selected","selected");}
-//                    });
-//                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data.task_no)});
-//                    my_model.modal('toggle');
-//                }
-//            });
         } );
-
-//        $(document).on("click", ".btn-refresh", function () {
-//            tt.search('').draw();
-//        });
+//
+        $(document).on('click', '#example tbody tr td:first ', function (event) {
+            var data = tt.row(this).data()
+            alert(22);
+            return false;
+        } );
 
 
     </script>

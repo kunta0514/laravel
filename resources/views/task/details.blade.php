@@ -5,52 +5,85 @@
     <h4 class="modal-title">{{$task->task_title}}</h4>
 </div>
 <div class="modal-body">
-    <form method="post" role="form" id="form_task">
+    <form method="post" role="form" id="form_task" class="form-horizontal form-column form-bordered">
         {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
         <input type="hidden" name="id" value={{$task->id}}>
-        <div class="form-group">
-            <div class="btn-group">
-                <label for="select-dev">开发</label>
-                <select class="form-control" id="select-dev" name="dev">
-                    <option value="" code="" >请选择</option>
-                    @foreach($developers as $dev)
-                        <option value="{{$dev->name}}" code="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
-                    @endforeach
-                </select>
+        <div class="row">
+            {{--左侧--}}
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="select-dev" class="control-label col-sm-2 center">开发</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="select-dev" name="dev">
+                            <option value="" code="" >请选择</option>
+                            @foreach($developers as $dev)
+                                <option value="{{$dev->name}}" code="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <label for="select-dev" class="control-label col-sm-2">工作量</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="developer_workload" class="form-control" placeholder="请输入" value="{{$task->developer_workload}}">
+                    </div>
+                </div>
             </div>
-            {{--{{$task->developer}}--}}
-            <div class="btn-group">
-                <label for="select-test">测试</label>
-                <select class="form-control" id="select-test" name="test">
-                    <option value="" code="" >请选择</option>
-                    @foreach($testers as $test)
-                        <option value="{{$test->name}}" code="{{$test->code}}" @if ($dev->code === $task->tester) selected @endif>{{$test->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="btn-group">
-                <label for="select-status">状态</label>
-                <select class="form-control" id="select-status" name="status">
-                    @foreach(Config('params.task_status') as $key=>$value)
-                        @if($key<4)
-                            <option value="{{$key}}" @if ($key === $task->status) selected @endif>{{$value}}</option>
-                        @endif
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        {{--<div class="form-group">--}}
-        {{--<label for="select-date">预计完成日期</label>--}}
-        {{--<input type="text" name="ekp_expect" {{$task->ekp_expect}} class="form-control" placeholder="选择日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">--}}
-        {{--</div>--}}
-        <div class="form-group">
-            <label for="package_name">更新包名称</label>
-            <input type="text" id="package_name" class="form-control" value="" placeholder="更新包名称" >
         </div>
 
-        <div class="form-group">
-            <label for="select-date">备注/总结</label>
-            <textarea class="form-control" rows="7" placeholder="{{$task->comment}}" name="comment" id="comment">{{$task->comment}}</textarea>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="select-test" class="control-label col-sm-2">测试</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="select-test" name="test">
+                            <option value="" code="" >请选择</option>
+                            @foreach($testers as $test)
+                                <option value="{{$test->name}}" code="{{$test->code}}" @if ($test->code === $task->tester) selected @endif>{{$test->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <label for="tester_workload" class="control-label col-sm-2">工作量</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="tester_workload" class="form-control" placeholder="请输入" value="{{$task->tester_workload}}" >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="select-status" class="control-label col-sm-2">状态</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="select-status" name="status">
+                            @foreach(Config('params.task_status') as $key=>$value)
+                                <option value="{{$key}}" @if ($key === $task->status) selected @endif>{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <label for="select-date" class="control-label col-sm-2">日期</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="ekp_expect" {{$task->ekp_expect}} class="form-control" placeholder="完成日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="package_name" class="control-label col-sm-2">更新包</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="package_name" class="form-control" value="" placeholder="更新包名称" >
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="select-date" class="control-label col-sm-2">备注/总结</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="7" placeholder="{{$task->comment}}" name="comment" id="comment">{{$task->comment}}</textarea>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div><!-- /.modal-content -->

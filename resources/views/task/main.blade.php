@@ -43,8 +43,8 @@
                 </td>
                 <td>{{$task->customer_name}}</td>
                 <td>{{$task->abu_pm}}</td>
-                <td class="@if($task->status=='1')or_doing @endif">{{$task->dev}}</td>
-                <td class="@if($task->status=='2')or_doing @endif">{{$task->test}}</td>
+                <td> {!! UserHelper::user_name($task->developer) !!}</td>
+                <td> {!! UserHelper::user_name($task->test) !!}</td>
 {{--                <td>@if($task->actual_finish_date) {{substr($task->actual_finish_date,0,10)}} @endif</td>deadline--}}
                 <td>{{ $task->deadline}}</td>
                 <td>
@@ -158,6 +158,7 @@
                 url:'/task/get_details/'+ $(this).attr('rel'),
                 dataType:'json',
                 success:function(data){
+//                    console.log(data);
                     var my_model=$('#myModal');
                     my_model.find('.modal-title').text(data.task_title);
                     my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data.task_no + "]"));

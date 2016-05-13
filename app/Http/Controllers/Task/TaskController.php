@@ -46,7 +46,7 @@ class TaskController extends Controller
     {
         $task_detail = Task::find($id);
         //TODO::改为打开新的页面
-        return json_encode($task_detail, JSON_UNESCAPED_UNICODE);
+        return $task_detail->toArray();
 //        return view('task.details',['details'=>$tasks]);
     }
 
@@ -187,30 +187,15 @@ class TaskController extends Controller
 
     public function detail($id)
     {
-//        Cache::forget('developers');
         if (!Cache::has('developers')) {
             Cache::forever('developers', User::where('role', 0)->get());
         }
         if (!Cache::has('testers')) {
             Cache::forever('testers', User::where('role', 1)->get());
         }
-//        $task_detail =  DB::select("select t.*,max(case when tw.type = 0 then tw.name end) as dev,max(case when tw.type = 1 then tw.name end) as test from tasks t left join tasks_workload tw on t.id = tw.task_id  where t.id = $id  GROUP BY t.id ");
-//        $task_detail2 = Task::find($id);
-//        var_dump($task_detail[0]);
-//
-//        print_r('<br>');
-//        print_r('<br>');
-//
-//        print_r( $task_detail[0]->task_title);
-//        print_r( $task_detail[0]->comment);
-//        print_r('<br>');
-//        print_r('<br>');
-//        var_dump($task_detail2);
-//        print_r(Task::find($id)->toSql());
         $task_detail = Task::find($id);
-
+        //TODO::人员下拉框可以提炼组件化
         return view('task.details', ['theme' => 'default', 'task' =>  $task_detail, 'developers' => Cache::get('developers'), 'testers' => Cache::get('testers')]);
-
     }
 
     public function detail_edit(Request $request)
@@ -231,12 +216,55 @@ class TaskController extends Controller
 
     public function test_page()
     {
-        $query = '20160330-1606';
-        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
-            ->orWhere('customer_name','like','%'.$query.'%')
-            ->get();
+//        $query = '20160330-1606';
+//        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
+//            ->orWhere('customer_name','like','%'.$query.'%')
+//            ->get();
 
-        var_dump($tasks);
+        $users = Cache::get('user',function(){
+            $users = DB::table('users')->select('code', 'name','role','admin')->get();
+            Cache::forever('user', $users);
+        });
+//        if (!Cache::has('user'))
+//        {
+//            Cache::forever('user',  DB::table('users')->select('code', 'name','role','admin')->get());
+//        }
+
+        $user_code = 'wank,zhuangsd';
+        if(!empty($user_code))
+        {
+            $arr_user_code = explode(',',$user_code);
+            $user_name = [];
+//            var_dump($users);
+            if(count($arr_user_code) > 1){
+                //循环数组，输出名字
+                foreach($arr_user_code as $val) {
+                    foreach($users as $user){
+                        if($user->code == $val){
+                            $user_name[$val] = $user->name;
+                        }
+                    }
+                    if(empty($user_name[$val])){
+                        $user_name[$val] = '未知';
+                    }
+                }
+            }
+            else{
+                foreach($users as $user) {
+                    if($user->code == $user_code) {
+                        $user_name[$user_code] = $user->name;
+                    }
+                }
+                if(empty($user_name[$user_code])){
+                    $user_name[$user_code] = '未知';
+                }
+            }
+            var_dump(join(',',$user_name));die;
+        }
+        else
+        {
+            echo '未知code';
+        }
 
 //        $tasks = Task::where('task_no','=',$query.'%')
 //            ->orWhere('customer_name','like','%'.$query.'%')
@@ -246,17 +274,36 @@ class TaskController extends Controller
 //            print_r($queries);
 //            print_r($tasks);
 //            die;
-        return view('task.test', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
+//        return view('task.test', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
     }
 
     public function test()
     {
-        $query = '2014';
+        $query = '20160414-0720';
         $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
             ->orWhere('customer_name','like','%'.$query.'%')
             ->get();
-//        $queries = DB::getQueryLog();
-//        print_r($queries);
+//        print_r($tasks);
+////        die;
+////        $queries = DB::getQueryLog();
+////        print_r($queries);
+//
+//        $tasks = Task::where('task_no','like',$query.'%')
+//            ->orWhere('customer_name','like','%'.$query.'%')
+//            ->get();
+//        print_r($tasks);
+//        die;
         return view('task.test', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
+    }
+
+    public function report()
+    {
+        //本周、本月，本季度，上周，上月，上季度
+
+        $bgn_date = null;
+        $end_date = null;
+
+        $tasks = DB::table('tasks')->whereBetween('ekp_create_date',[$bgn_date,$end_date]);
+
     }
 }
