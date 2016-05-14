@@ -41,15 +41,33 @@
             <table class="table table-bordered table-hover" id="example">
                 <thead>
                 <tr>
+                    <th title="ID" style="width: 15px">ID</th>
                     <th style="width: 100px">任务编号</th>
                     <th >任务标题</th>
                     <th style="width: 80px">客户</th>
                     <th style="width: 50px">PM</th>
                     <th style="width: 50px">开发</th>
                     <th style="width: 50px">测试</th>
+                    {{--<th style="width: 100px">完成时间</th>--}}
                 </tr>
                 </thead>
                 <tbody>
+
+                {{--@foreach($tasks as $k=>$task)--}}
+                    {{--<tr rel="{{$task->id}}" >--}}
+                        {{--<th scope="row" >{{$k+1}}</th>--}}
+                        {{--<td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>--}}
+                        {{--<td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">--}}
+                            {{--<a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>23) {{mb_substr($task->task_title,0,23)}}...@else {{$task->task_title}} @endif--}}
+                        {{--</td>--}}
+                        {{--<td>{{$task->customer_name}}</td>--}}
+                        {{--<td>{{$task->abu_pm}}</td>--}}
+                        {{--<td class="@if($task->status=='1')or_doing @endif">{{$task->dev}}</td>--}}
+                        {{--<td class="@if($task->status=='2')or_doing @endif">{{$task->test}}</td>--}}
+                        {{--                <td>@if($task->actual_finish_date) {{substr($task->actual_finish_date,0,10)}} @endif</td>deadline--}}
+                        {{--<td>{{ $task->actual_finish_date}}</td>--}}
+                    {{--</tr>--}}
+                {{--@endforeach--}}
                 </tbody>
             </table>
         </div>
@@ -97,7 +115,7 @@
                     }
                 },
                 columns: [
-//                    { "data": "id" },
+                    { "data": "id" },
                     { "data": "task_no" },
                     { "data": "task_title" },
                     { "data": "customer_name" },
@@ -106,6 +124,14 @@
                     { "data": "tester_name" },
 //                    { "data": "actual_finish_date" }
                 ],
+                //隐藏ID
+                columnDefs:[
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ]
             });
 
 
@@ -122,8 +148,9 @@
             tt.search(keyword).draw();
         });
 
-        $(document).on('click', '#example tr', function () {
-            var data = tt.row(this).data();
+        $(document).on('click', '#example tbody tr', function () {
+            var data = tt.row(this).data()
+            console.log(data);
             $.modal({
                 keyboard: false,
                 width:598,
@@ -131,23 +158,17 @@
                 remote: '/task/detail/' + data.id,
                 okHide: function () {
 //                    alert(222);
-                   // return false;
+                    // return false;
                 }
             })
         } );
+//
+        $(document).on('click', '#example tbody tr td:first ', function (event) {
+            var data = tt.row(this).data()
+            alert(22);
+            return false;
+        } );
 
-        function oprViewOnEKP(obj)
-        {
-            $.ajax({
-                type:'GET',
-                url:'/task/view_pd/'+obj,
-                success:function(data) {
-                    window.open("http://pd.mysoft.net.cn"+data) ;
-                },
-                error:function(data){
-                    console.info(data);
-                }
-            });
-        }
+
     </script>
 @stop

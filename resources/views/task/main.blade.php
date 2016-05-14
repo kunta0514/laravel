@@ -22,60 +22,119 @@
         <thead>
             <tr>
                 <th title="序号">#</th>
-                <th style="min-width: 80px;">任务编号</th>
+                <th>任务编号</th>
                 <th >任务标题</th>
                 <th>客户</th>
                 <th>PM</th>
                 <th>开发</th>
                 <th>测试</th>
                 <th>计划完成</th>
-                {{--<th></th>--}}
+                <th></th>
             </tr>
         </thead>
         <tbody>
 
-          @foreach($tasks as $k=>$task)
-              <tr rel="{{$task->id}}" >
-                  <th scope="row" >{{$k+1}}</th>
-                  <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
-                  <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
-                		@if(stristr($task->task_type, 'BUG'))
-                		<span class="label label-danger">B</span>
-                        @elseif(stristr($task->task_type, '咨询'))
-                          <span class="label label-info">咨</span>
-                        @elseif(stristr($task->task_type, '需求'))
-                          <span class="label label-success">需</span>
-                		@else
-                		<span class="label label-primary">{{mb_substr($task->task_type,0,1)}}</span>
-                		@endif
-                  <a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>21) {{mb_substr($task->task_title,0,21)}}...@else {{$task->task_title}} @endif
-                  </td>
-                  <td>{{$task->customer_name}}</td>
-                  <td>{{$task->abu_pm}}</td>
-                  <td class="@if($task->status=='1')or_doing @endif">{{$task->dev_name}}</td>
-                  <td class="@if($task->status=='2')or_doing @endif">{{$task->tester_name}}</td>
-                  <td>@if($task->ekp_expect) {{substr($task->ekp_expect,0,10)}} @endif</td>
-                  {{--<td>--}}
-                      {{--<span name="chk_finish" data-toggle="tooltip" data-placement="top"--}}
-                            {{--class="glyphicon chk_finish @if($task->status == 1) glyphicon-pushpin @elseif($task->status == 2) glyphicon-check @else glyphicon-flag @endif"--}}
-                            {{--title="标记为{{config('params.task_status')[$task->status+1] }}..." rel="{{$task->id}}" status="{{$task->status}}">--}}
-                      {{--</span>--}}
-                  {{--</td>--}}
-              </tr>
-          @endforeach
+        @foreach($tasks as $k=>$task)
+            <tr rel="{{$task->id}}" >
+                <th scope="row" >{{$k+1}}</th>
+                <td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
+                    <a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>23) {{mb_substr($task->task_title,0,23)}}...@else {{$task->task_title}} @endif
+                </td>
+                <td>{{$task->customer_name}}</td>
+                <td>{{$task->abu_pm}}</td>
+                <td> {!! UserHelper::user_name($task->developer) !!}</td>
+                <td> {!! UserHelper::user_name($task->test) !!}</td>
+{{--                <td>@if($task->actual_finish_date) {{substr($task->actual_finish_date,0,10)}} @endif</td>deadline--}}
+                <td>{{ $task->deadline}}</td>
+                <td>
+                    <span name="chk_finish" data-toggle="tooltip" data-placement="top"
+                          class="glyphicon chk_finish @if($task->status == 1) glyphicon-pushpin @elseif($task->status == 2) glyphicon-check @else glyphicon-flag @endif"
+                          title="标记为{{config('params.task_status')[$task->status+1] }}..." rel="{{$task->id}}" status="{{$task->status}}">
+                    </span>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
+
+    <!-- Modal -->
+    <div class="modal fade fixed" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{ URL('task/edit') }}" role="form" id="form_task">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="task_id" id="task_id" value="">
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <label for="select-dev">开发</label>
+                                <select class="form-control" id="select-dev" name="dev">
+                                    @foreach($developers as $dev)
+                                        <option value="{{$dev->name}}" code="{{$dev->code}}">{{$dev->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="btn-group">
+                                <label for="select-test">测试</label>
+                                <select class="form-control" id="select-test" name="test">
+                                    @foreach($testers as $test)
+                                        <option value="{{$test->name}}" code="{{$test->code}}">{{$test->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="btn-group">
+                                <label for="select-status">状态</label>
+                                <select class="form-control" id="select-status" name="status">
+                                    @foreach(Config('params.task_status') as $key=>$value)
+                                        @if($key<4)
+                                        <option value="{{$key}}">{{$value}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="select-date">预计完成日期</label>
+                            <input type="text" name="date" id="select-date" class="form-control" placeholder="选择日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="package_name">更新包名称</label>
+                            <input type="text" id="package_name" class="form-control" value="" placeholder="更新包名称">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="select-date">备注/总结</label>
+                            <textarea id="comment" class="form-control" rows="3" placeholder="请输入.." name="comment"></textarea>
+                        </div>
+                    </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">取消
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btnSubmit">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    </div>
 </div>
 
 <script type="text/javascript">
     $(function() {
-        var tt = $('#example').dataTable( {
-            lengthMenu: [30, 50, 100],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
+        $('#example').dataTable( {
+            lengthMenu: [15,30, 50, 100],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
             paging: true,//分页
             ordering: true,//是否启用排序
             searching: true,//搜索
             language: {
-                lengthMenu: '每页<select class="form-control input-xsmall">' + '<option value="30">30</option>' + '<option value="50">50</option>' + '<option value="100">100</option>' + '</select>条记录',//左上角的分页大小显示。
+                lengthMenu: '每页<select class="form-control input-xsmall">' + '<option value="15">15</option>' +  '<option value="30">30</option>' + '<option value="50">50</option>' + '<option value="100">100</option>' + '</select>条记录',//左上角的分页大小显示。
                 search: '搜索：',//右上角的搜索文本，可以写html标签
 
                 paginate: {//分页的样式内容。
@@ -93,50 +152,67 @@
             },
         } );
 
-        $(document).on('click', '#example tr', function () {
-            var data = $(this);
-            $.modal({
-                keyboard: false,
-                width:598,
-                minHeight:233,
-                remote: '/task/detail/' + data.attr("rel"),
-                okHide: function () {
-                    location.reload();
+        $('#example tbody').on('click', 'tr', function () {
+            $.ajax({
+                type:'GET',
+                url:'/task/get_details/'+ $(this).attr('rel'),
+                dataType:'json',
+                success:function(data){
+//                    console.log(data);
+                    var my_model=$('#myModal');
+                    my_model.find('.modal-title').text(data.task_title);
+                    my_model.find('.modal-title').append($("<a></a>").attr("href","#").text("[" + data.task_no + "]"));
+                    my_model.find('#select-date').val(data.ekp_expect);
+                    my_model.find('#task_id').val(data.id);
+                    my_model.find('#comment').val(data.comment);
+                    my_model.find('#package_name').val(getPageNameString(data));
+                    $.each($("#select-dev option"),function(n,value){
+                        if($(value).val()==data.dev){$(value).attr("selected","selected");}
+                    });
+                    $.each($("#select-test option"),function(n,value){
+                        if($(value).val()==data.test || (data.test=="" && $(value).val()=="请选择")){$(value).attr("selected","selected");}
+                    });
+                    $.each($("#select-status option"),function(n,value){
+                        if(value.value==data.status){$(value).attr("selected","selected");}
+                    });
+                    my_model.find(".modal-title a").click(function(){oprViewOnEKP(data.task_no)});
+                    my_model.modal('toggle');
                 }
-            })
+            });
         } );
 
+        //模态窗口按钮提交事件
+        $("#btnSubmit").unbind('click').bind('click',function(){
+            var modal_form=$("#form_task");
+            modal_form.submit();
+        });
 
         //标记按钮事件绑定
-//        $("span[name='chk_finish']").parent().unbind('click').bind('click',function(){
-//            var this_sapn=$(this).find("span:eq(0)");
-//            if(this_sapn.attr("status") == "2"){
-//                var value=confirm('确定要将**任务标记完成吗？');
-//                if(!value)return false;
-//            }
-//            $.ajax({
-//                type:'GET',
-//                url:'/task/fast_handle/'+this_sapn.attr("rel"),
-//                dataType:'json',
-//                success:function() {
-//                    location.reload();
-//                },
-//                error:function(){
-//                   location.reload();
-//                }
-//            });
-//            return false;
-//        });
+        $("span[name='chk_finish']").parent().unbind('click').bind('click',function(){
+//           alert( $(this).find("span:eq(0)").attr("rel"));
+            var this_sapn=$(this).find("span:eq(0)");
+            if(this_sapn.attr("status") == "2"){
+                var value=confirm('确定要将**任务标记完成吗？');
+                if(!value)return false;
+            }
+            $.ajax({
+                type:'GET',
+                url:'/task/fast_handle/'+this_sapn.attr("rel"),
+                dataType:'json',
+                success:function() {
+                    location.reload();
+                },
+                error:function(){
+                   location.reload();
+                }
+            });
+            return false;
+        });
 
         $('#example tbody').on('click',"td a[name='view_on_erp']",function(e){
             e.stopPropagation();
             e.preventDefault();
-            if($(this).attr("href")!="")
-            {
-                window.open("http://pd.mysoft.net.cn"+$(this).attr("href"));
-            }else{
-                oprViewOnEKP($(this).attr("rel"));
-            }
+            oprViewOnEKP($(this).attr("rel"));
             return false;
         });
 
@@ -147,6 +223,7 @@
                 url:'/task/sync_task/',
                 dataType:'json',
                 success:function(data) {
+                    alert("本次同步"+data+"条任务。")
                     location.reload();
                 },
                 error:function(){
@@ -155,27 +232,33 @@
             });
         });
 
-    //自动同步
-     setInterval(function(){
-       $.ajax({
-           type:'GET',
-           url:'/task/sync_task/'
-         });
-     },1000*60*5);
-        } );
-
-    function oprViewOnEKP(obj)
+//自动同步
+ setInterval(function(){
+   $.ajax({
+       type:'GET',
+       url:'/task/sync_task/'
+     });
+ },1000*60*5);
+    } );
+function oprViewOnEKP(obj)
+{
+    $.ajax({
+        type:'GET',
+        url:'/task/view_pd/'+obj,
+        success:function(data) {
+            window.open("http://pd.mysoft.net.cn"+data) ;
+        },
+        error:function(data){
+            console.info(data);
+        }
+        });
+}
+    function getPageNameString(data)
     {
-        $.ajax({
-            type:'GET',
-            url:'/task/view_pd/'+obj,
-            success:function(data) {
-                window.open("http://pd.mysoft.net.cn"+data) ;
-            },
-            error:function(data){
-                console.info(data);
-            }
-            });
+        var year=(new Date()).getFullYear();
+        var month=((new Date()).getMonth()+1)<10?"0"+((new Date()).getMonth()+1):(new Date()).getMonth()+1;
+        var day=(new Date()).getDate()<10?"0"+((new Date()).getDate()+1):(new Date()).getDate();
+        return "["+data.task_no.replace(" ","")+"]-"+data.customer_name+"-工作流-"+year+""+month+day+"-第1次";
     }
 </script>
 @stop

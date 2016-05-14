@@ -16,6 +16,7 @@
         }
     </style>
     <div class="container">
+        {{--<div class="row">{!! var_dump(UserHelper::user_name()) !!}</div>--}}
         <div class="row">
             <div class="col-md-4">
                 <div class="input-group pull-left">
@@ -57,10 +58,10 @@
                         </td>
                         <td>{{$task->customer_name}}</td>
                         <td>{{$task->abu_pm}}</td>
-                        <td>{{$task->developer}}</td>
-                        <td>{{$task->tester}}</td>
+                        <td>{!! UserHelper::user_name($task->developer) !!}</td>
+                        <td>{!! UserHelper::user_name($task->tester) !!}</td>
                         <td>
-
+                            
                         </td>
                     </tr>
                 @endforeach
@@ -96,6 +97,25 @@
             bAutoWidth:false,
         });
 
+        $(document).on('click', '#example tr', function () {
+//            var data = tt.row(this).data();
+//            if ($(this).hasClass('selected')) {
+//                $(this).removeClass('selected');
+//            }else{
+//                $(this).addClass('selected');
+//            }
+            console.log($(this).attr('rel'));
+            $.modal({
+                keyboard: false,
+                width:598,
+                minHeight:233,
+                remote: '/task/detail/' + $(this).attr('rel'),
+                okHide: function () {
+                    alert(222);
+                    // return false;
+                }
+            })
+        } );
     </script>
 
 
