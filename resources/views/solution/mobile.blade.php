@@ -33,7 +33,7 @@
         padding: 10px;
         font-size: 14px;;
         margin-bottom: 0;
-        text-align: center;
+        text-align: left;
     }
     div[name=history_tasks] li,div[name=history_tasks] li:hover,div[name=history_tasks] li:focus,div[name=version] li,div[name=code_lib] li
     {
@@ -75,21 +75,21 @@
             //异步请求
             $.get("/solution/mobile/check", { customer_name: customer_name },function(data){
                 var Json_data=eval("("+data+")");
-                var history_tasks=$("div[name='history_tasks']");
                 $("#current_id").val(Json_data.id);
+                console.info(Json_data);
                 $("div.panle4Check h4").html(Json_data.customer_name+" <small>"+Json_data.alias+"</small>");
-                history_tasks.html("");
-                if(Json_data.result)
+
+                if(Json_data.result==1)
                 {
                     $("div[name='result']").attr("class","").attr("class","alert alert-success my_alert");
                     $("div[name='result']").html("可以直接使用更新标准包...")
-                }else
+                }else if(Json_data.result==0)
                 {
                     $("div[name='result']").attr("class","").attr("class","alert alert-danger my_alert");
                     $("div[name='result']").html("需要升级任务给工作流团队...")
-                    $.each(Json_data.task_list,function(n,value){
-                        history_tasks.append($("<li></li>").html( value));
-                    });
+                }else{
+                    $("div[name='result']").attr("class","").attr("class","alert alert-warning my_alert");
+                    $("div[name='result']").html("臣妾判断不出来...")
                 }
                 var version=$("div.version");
                 version.html("");
@@ -101,7 +101,11 @@
                 $.each(Json_data.code_lib,function(n,value){
                     code_lib.append($("<li></li>").html(value.project_name+"("+value.workflow_version+")"));
                 });
-
+                var history_tasks=$("div[name='history_tasks']");
+                history_tasks.html("");
+                $.each(Json_data.task_list,function(n,value){
+                    history_tasks.append($("<li></li>").html( value));
+                });
                 $("span.remark").html(Json_data.message);
                 $("div[name='check_process_bar']").hide();
             } );
@@ -229,20 +233,30 @@
             <?php echo $solution_list->render(); ?>
         </div><!-- /.col-lg-8 -->
         <div class="col-lg-7">
-            <div class="" >
                 <fieldset>
                     <legend>Tips:</legend>
                     <div class="jumbotron">
-                        <p style="font-size: 16px;">①从通过<font color="red">历史任务</font>和<font color="red">工作流代码库</font>两个维度来分析该客户是否有个性化。<br>
+                        <p style="font-size: 16px;line-height: 28px;">
+                            ①从<font color="red">历史任务</font>和<font color="red">工作流代码库</font>两个维度来分析该客户是否有个性化。<br>
+                            ②输入客户名称关键字可以提高准确度，比如：重庆东原，输入"东原"...</p>
+                    </div>
+                </fieldset>
+            <div class="">
+                <fieldset>
+                    <legend>盖包注意事项:</legend>
+                    <div class="jumbotron">
+                        <p style="font-size: 16px;line-height: 28px;">
+                            ①ERP301以下（不包含301）版本，项目组需要编译MyWorkflow项目<br/>
+                            ②本次更新<font color="red">有新增文</font>；需要使用编辑器将新增文件包含到项目中，再编译<br>
+                            ③<font color="red">强烈建议</font>:先停用ERP再更新此更新包，是有血的教训的<br>
+                            ④可能需要配置小平台，请移步<a href="http://km.mysoft.net.cn:8111/CodeKnowledge/Detail-3cba059c-82d3-476e-8c22-adda1c248ec4.aspx">小平台ajax配置</a>
                             </p>
-                        <p style="font-size: 16px;"><strong>操作技巧：</strong><br>1.输入客户名称关键字可以更加准确，比如：重庆东原，输入"东原"...</p>
                     </div>
                 </fieldset>
             </div>
+            </div>
         </div>
     </div>
-
-</div>
 <!-- Modal -->
 <div class="modal fade my_image bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
