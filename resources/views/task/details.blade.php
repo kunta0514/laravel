@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="select_test" class="control-label col-sm-2">测试</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="select_dev" name="dev">
+                        <select class="form-control" id="select_test" name="dev">
                             <option value="" code="" >请选择</option>
                             @foreach($testers as $dev)
                                 <option value="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
