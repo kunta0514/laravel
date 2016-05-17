@@ -97,7 +97,7 @@
             bAutoWidth:false,
         });
 
-        $(document).on('click', '#example tr', function () {
+        $(document).on('click', '#example tbody tr', function () {
 //            var data = tt.row(this).data();
 //            if ($(this).hasClass('selected')) {
 //                $(this).removeClass('selected');
@@ -108,13 +108,28 @@
             $.modal({
                 keyboard: false,
                 width:598,
-                minHeight:233,
+                minHeight:518,
                 remote: '/task/detail/' + $(this).attr('rel'),
                 okHide: function () {
-                    alert(222);
                     // return false;
                 }
             })
+        } );
+
+        $(document).on('click', '#example tbody tr a[name=view_on_erp]', function () {
+            var task_no = $(this)[0].innerText;
+            $.ajax({
+                type:'GET',
+                url:'/task/view_pd/'+task_no,
+                success:function(data) {
+                    window.open("http://pd.mysoft.net.cn"+data) ;
+                },
+                error:function(data){
+                    console.info(data);
+                }
+            });
+            return false;
+
         } );
     </script>
 

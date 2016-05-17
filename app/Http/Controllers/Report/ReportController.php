@@ -17,7 +17,7 @@ class ReportController extends Controller
     public function index()
     {
         //
-        return view('report.main');
+        return view('report.main',['theme' => 'default']);
     }
 
     /**

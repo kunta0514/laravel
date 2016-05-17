@@ -632,7 +632,7 @@
         modal: function(content, title, okHidden, cancelHidden) {
             var defaults = {
                 type: 'confirm',
-                title: '提示',
+                title: '',  //默认打开标题
                 cancelbtn: '取消',
                 footer: true
             };

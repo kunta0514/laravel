@@ -45,6 +45,8 @@ class TaskController extends Controller
     public function get_details($id)
     {
         $task_detail = Task::find($id);
+        echo '123';
+        die;
         //TODO::改为打开新的页面
         return $task_detail->toArray();
 //        return view('task.details',['details'=>$tasks]);
@@ -209,7 +211,14 @@ class TaskController extends Controller
         if (!empty($request->path())) {
 //            DB::table('tasks')->where('id', $request->id)->update(['comment' => $request->comment]);
             $result = DB::transaction(function () use ($request) {
-                DB::table('tasks')->where('id', $request->id)->update(['comment' => $request->comment,'status' => $request->status]);
+                DB::table('tasks')->where('id', $request->id)->update(['comment' => $request->comment,
+                    'status' => $request->status,
+                    'developer' => $request->developer,
+                    'developer_workload' => $request->developer_workload,
+                    'tester' => $request->tester,
+                    'tester_workload' => $request->tester_workload,
+
+                ]);
             });
         }
     }
@@ -279,10 +288,10 @@ class TaskController extends Controller
 
     public function test()
     {
-        $query = '20160414-0720';
-        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
-            ->orWhere('customer_name','like','%'.$query.'%')
-            ->get();
+//        $query = '20160414-0720';
+//        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
+//            ->orWhere('customer_name','like','%'.$query.'%')
+//            ->get();
 //        print_r($tasks);
 ////        die;
 ////        $queries = DB::getQueryLog();
@@ -293,6 +302,10 @@ class TaskController extends Controller
 //            ->get();
 //        print_r($tasks);
 //        die;
+        $query = '201604';
+        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
+//            ->orWhere('customer_name','like','%'.$query.'%')
+            ->get();
         return view('task.test', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
     }
 

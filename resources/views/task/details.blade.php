@@ -11,16 +11,16 @@
             {{--左侧--}}
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="select-dev" class="control-label col-sm-2 center">开发</label>
+                    <label for="select_dev" class="control-label col-sm-2 center">开发</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="select-dev" name="dev">
+                        <select class="form-control" id="select_dev" name="dev">
                             <option value="" code="" >请选择</option>
                             @foreach($developers as $dev)
-                                <option value="{{$dev->name}}" code="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
+                                <option value="{{$dev->code}}"  @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <label for="select-dev" class="control-label col-sm-2">工作量</label>
+                    <label for="select_dev" class="control-label col-sm-2">工作量</label>
                     <div class="col-sm-4">
                         <input type="text" id="developer_workload" class="form-control" placeholder="请输入" value="{{$task->developer_workload}}">
                     </div>
@@ -31,12 +31,12 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="select-test" class="control-label col-sm-2">测试</label>
+                    <label for="select_test" class="control-label col-sm-2">测试</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="select-dev" name="dev">
+                        <select class="form-control" id="select_dev" name="dev">
                             <option value="" code="" >请选择</option>
                             @foreach($testers as $dev)
-                                <option value="{{$dev->name}}" code="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
+                                <option value="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -51,9 +51,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="select-status" class="control-label col-sm-2">状态</label>
+                    <label for="select_status" class="control-label col-sm-2">状态</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="select-status" name="status">
+                        <select class="form-control" id="select_status" name="status">
                             @foreach(Config('params.task_status') as $key=>$value)
                                 <option value="{{$key}}" @if ($key === $task->status) selected @endif>{{$value}}</option>
                             @endforeach
@@ -109,7 +109,13 @@
 
     $('#btnSubmit').on('click',function(){
         task.comment = $('#comment').val();
-        console.log(task);
+        task.developer = $('#select_dev').val();
+        task.developer_workload = $('#developer_workload').val();
+        task.tester =  $('#select_test').val();
+        task.tester_workload = $('#tester_workload').val();
+        task.status = $('#select_status').val();
+        console.log($('#select_dev'));
+        console.log($('#developer_workload').val());
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',
