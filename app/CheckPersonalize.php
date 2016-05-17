@@ -24,13 +24,13 @@ class CheckPersonalize extends Model
         if ($customer_name == "") return null;
         $result=Array(
             'id'=>'',
-            'result'=>false,//false
+            'result'=>0,//false
             'customer_name'=>$customer_name,
             'alias'=>$customer_name,
             'version'=>'',
             'version_list'=>Array(),
             'task_list'=>Array(),
-            'message'=>'',
+            'message'=>'有历史个性化，需要重新制作更新包！',
             'code_lib'=>Array()
         );
         $task_list=self::get_task_history($customer_name);
@@ -51,20 +51,21 @@ class CheckPersonalize extends Model
 
         $result['code_lib']=self::get_code_lib($customer_name);
 
-        if($result['task_list'] && count($result['task_list'])>0 or count($result['code_lib'])>0)
+        if(count($result['task_list'])== 0 && count($result['code_lib'])== 0)
         {
-            $result['result']=false;
-            $result['message']='有历史个性化，需要重新制作更新包！';
-        }else{
-            $result['result'] = true;
+            $result['result'] = 1;
             $result['message']='';
         }
+        if(count($result['task_list'])> 0 && count($result['code_lib'])== 0)
+        {
+            $result['result'] = 2;
+            $result['message']='有相关任务，无代码库，需要工作流团队确认！';
+        }
+
 
         $result['version_list']= self::get_configEn($customer_name);
 
-
         $checkModel=new CheckPersonalize();
-        //$result['alias']=$checkModel->id;
         $checkModel->customer_name=$result['customer_name'];
         $checkModel->alias=$result['alias'];
         $checkModel->version=serialize($result['version_list']);
