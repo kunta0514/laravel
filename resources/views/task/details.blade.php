@@ -1,7 +1,7 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title">{{$task->task_title}}[<a href="#" rel="{{$task->task_no}}" onclick="oprViewOnEKP()">{{$task->task_no}}</a>]</h4>
+    <h4 class="modal-title">{{$task->task_title}}[<a href="#" rel="{{$task->ekp_oid}}" onclick="oprViewOnEKP(this)">{{$task->task_no}}</a>]</h4>
 </div>
 <div class="modal-body">
     <form method="post" role="form" id="form_task" class="form-horizontal form-column form-bordered">

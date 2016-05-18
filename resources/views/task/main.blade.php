@@ -37,7 +37,7 @@
           @foreach($tasks as $k=>$task)
               <tr rel="{{$task->id}}" >
                   <th scope="row" >{{$k+1}}</th>
-                  <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                  <td><a href="#" name="view_on_erp" rel="{{$task->ekp_oid}}">{{$task->task_no}}</a></td>
                   <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
                 		@if(stristr($task->task_type, 'BUG'))
                 		<span class="label label-danger">B</span>
@@ -52,8 +52,8 @@
                   </td>
                   <td>{{$task->customer_name}}</td>
                   <td>{{$task->abu_pm}}</td>
-                  <td class="@if($task->status=='1')or_doing @endif">{{$task->dev_name}}</td>
-                  <td class="@if($task->status=='2')or_doing @endif">{{$task->tester_name}}</td>
+                  <td class="@if($task->status=='1')or_doing @endif">{!! UserHelper::user_name($task->developer) !!}</td>
+                  <td class="@if($task->status=='2')or_doing @endif">{!! UserHelper::user_name($task->tester) !!}</td>
                   <td>@if($task->ekp_expect) {{substr($task->ekp_expect,0,10)}} @endif</td>
                   {{--<td>--}}
                       {{--<span name="chk_finish" data-toggle="tooltip" data-placement="top"--}}
@@ -131,13 +131,7 @@
         $('#example tbody').on('click',"td a[name='view_on_erp']",function(e){
             e.stopPropagation();
             e.preventDefault();
-            if($(this).attr("href")!="")
-            {
-                window.open("http://pd.mysoft.net.cn"+$(this).attr("href"));
-            }else{
-                oprViewOnEKP($(this).attr("rel"));
-            }
-            return false;
+            oprViewOnEKP(this);
         });
 
         //sync_task
@@ -164,18 +158,22 @@
      },1000*60*5);
         } );
 
-    function oprViewOnEKP(obj)
-    {
-        $.ajax({
-            type:'GET',
-            url:'/task/view_pd/'+obj,
-            success:function(data) {
-                window.open("http://pd.mysoft.net.cn"+data) ;
-            },
-            error:function(data){
-                console.info(data);
-            }
-            });
+    function oprViewOnEKP(obj) {
+        if ($(obj).attr("rel") != "") {
+            window.open("http://pd.mysoft.net.cn" + $(obj).attr("rel"));
+        }
+//        else {
+//            $.ajax({
+//                type: 'GET',
+//                url: '/task/view_pd/' + $(obj).attr("rel"),
+//                success: function (data) {
+//                    window.open("http://pd.mysoft.net.cn" + data);
+//                },
+//                error: function (data) {
+//                    console.info(data);
+//                }
+//            });
+//        }
     }
 </script>
 @stop
