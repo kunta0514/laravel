@@ -38,9 +38,10 @@ class CreateTasksTable extends Migration
             $table->dateTime('ekp_create_date');    //ekp任务登记时间
             $table->dateTime('start');
             $table->dateTime('ekp_expect');         //期望完成时间（任务时限）
-            $table->dateTime('actual_finish_date'); //实际完成时间
+            $table->dateTime('actual_finish_date'); //实际
             $table->tinyInteger('status');
             $table->string('comment');
+            $table->string('ekp_task_type');    //ekp_task_type
             $table->string('task_type');
             $table->string('workflow_version');
             $table->Integer('PRI');         //优先级

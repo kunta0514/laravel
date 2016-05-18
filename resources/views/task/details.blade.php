@@ -36,7 +36,7 @@
                         <select class="form-control" id="select_test" name="dev">
                             <option value="" code="" >请选择</option>
                             @foreach($testers as $dev)
-                                <option value="{{$dev->code}}" @if ($dev->code === $task->developer) selected @endif>{{$dev->name}}</option>
+                                <option value="{{$dev->code}}" @if ($dev->code === $task->tester) selected @endif>{{$dev->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="row">
             <div class="col-sm-12">
@@ -114,8 +115,7 @@
         task.tester =  $('#select_test').val();
         task.tester_workload = $('#tester_workload').val();
         task.status = $('#select_status').val();
-        console.log($('#select_dev'));
-        console.log($('#developer_workload').val());
+        console.log(task);
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',

@@ -150,6 +150,7 @@ return [
          */
         Overtrue\LaravelPinyin\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         'Stevenyangecho\UEditor\UEditorServiceProvider',
         'YuanChao\Editor\EndaEditorServiceProvider'
@@ -203,6 +204,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'UserHelper'   => App\Helpers\UserHelper::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Pinyin'    => 'Overtrue\Pinyin\Pinyin',
         'EndaEditor' => 'YuanChao\Editor\Facade\EndaEditorFacade',
     ],

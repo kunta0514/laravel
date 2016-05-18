@@ -14,6 +14,9 @@
             line-height: inherit;
             vertical-align: middle;
         }
+        #example tr{
+            cursor: pointer;
+        }
     </style>
     <div class="container">
         {{--<div class="row">{!! var_dump(UserHelper::user_name()) !!}</div>--}}
@@ -52,7 +55,7 @@
 
                 @foreach($tasks as $k=>$task)
                     <tr rel="{{$task->id}}" >
-                        <td><a href="#" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                        <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
                         <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
                             {{$task->task_title}}
                         </td>
@@ -118,16 +121,20 @@
 
         $(document).on('click', '#example tbody tr a[name=view_on_erp]', function () {
             var task_no = $(this)[0].innerText;
-            $.ajax({
-                type:'GET',
-                url:'/task/view_pd/'+task_no,
-                success:function(data) {
-                    window.open("http://pd.mysoft.net.cn"+data) ;
-                },
-                error:function(data){
-                    console.info(data);
-                }
-            });
+            if($(this).attr("href")!="") {
+                window.open("http://pd.mysoft.net.cn"+ $(this).attr("href"));
+            }else{
+                $.ajax({
+                    type:'GET',
+                    url:'/task/view_pd/'+task_no,
+                    success:function(data) {
+                        window.open("http://pd.mysoft.net.cn"+data) ;
+                    },
+                    error:function(data){
+                        console.info(data);
+                    }
+                });
+            }
             return false;
 
         } );

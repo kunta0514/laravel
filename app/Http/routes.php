@@ -124,3 +124,14 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Panel'], function()
     Route::get('/fast_handle/{id}', 'PanelController@fast_handle');
     Route::get('/done/{id}','PanelController@done');
 });
+
+Route::group(['prefix' => 'excel', 'namespace' => 'Excel'], function()
+{
+//    echo "OK";
+    Route::resource('excel', 'ExcelController@index');
+//
+    Route::get('/','ExcelController@index');
+    Route::get('/export','ExcelController@index');
+//    Route::get('excel/import','ExcelController@import');
+});
+
