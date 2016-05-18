@@ -22,14 +22,14 @@
         <thead>
             <tr>
                 <th title="序号">#</th>
-                <th>任务编号</th>
+                <th style="min-width: 80px;">任务编号</th>
                 <th >任务标题</th>
                 <th>客户</th>
                 <th>PM</th>
                 <th>开发</th>
                 <th>测试</th>
                 <th>计划完成</th>
-                <th></th>
+                {{--<th></th>--}}
             </tr>
         </thead>
         <tbody>
