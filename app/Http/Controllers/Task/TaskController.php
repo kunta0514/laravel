@@ -174,7 +174,7 @@ class TaskController extends Controller
         //查询条件为自带
         $query = $request->input('search')['value'];
         if(!empty($query)){
-            $tasks = Task::where('task_no','=',$query.'%')
+            $tasks = Task::where('task_no','like',$query.'%')
                 ->orWhere('customer_name','like','%'.$query.'%')
                 ->orderBy('task_no', 'desc')
                 ->get();
@@ -192,12 +192,12 @@ class TaskController extends Controller
     {
         $developers = Cache::get('developers',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 0)->get();
-            Cache::forever('user', $users);
+            Cache::forever('developers', $users);
         });
 
         $testers = Cache::get('testers',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 1)->get();
-            Cache::forever('user', $users);
+            Cache::forever('testers', $users);
         });
 
         $task_detail = Task::find($id);
@@ -223,15 +223,33 @@ class TaskController extends Controller
                 $query['ekp_oid'] = str_replace('\"','',$solution->view_pd($request->task_no)[0]->attr['href']);
             }
 //            DB::table('tasks')->where('id', $request->id)->update(['comment' => $request->comment]);
-            $query['comment'] = $request->comment;
-            $query['status'] = $request->status;
-            $query['developer'] = $request->developer;
-            $query['developer_workload'] = $request->developer_workload;
-            $query['tester'] = $request->tester;
-            $query['tester_workload'] = $request->tester_workload;
-            $result = DB::transaction(function () use ($request,$query) {
-                DB::table('tasks')->where('id', $request->id)->update($query);
-            });
+            if(!empty($request->comment)){
+                $query['comment'] = $request->comment;
+            }
+            if(!empty($request->status)){
+                $query['status'] = $request->status;
+            }
+
+            if(!empty($request->developer)){
+                $query['developer'] = $request->developer;
+            }
+            if(!empty($request->developer_workload)){
+                $query['developer_workload'] = $request->developer_workload;
+            }
+            if(!empty($request->tester)){
+                $query['tester'] = $request->tester;
+            }
+            if(!empty($request->tester_workload)){
+                $query['tester_workload'] = $request->tester_workload;
+            }
+//            $query['developer_workload'] = $request->developer_workload;
+//            $query['tester'] = $request->tester;
+//            $query['tester_workload'] = $request->tester_workload;
+            if(!empty($query)){
+                $result = DB::transaction(function () use ($request,$query) {
+                    DB::table('tasks')->where('id', $request->id)->update($query);
+                });
+            }
         }
     }
 
@@ -276,25 +294,29 @@ class TaskController extends Controller
 //        {
 //            echo '未知code';
 //        }
-        $cellData = [
-            ['学号','姓名','成绩'],
-            ['10001','AAAAA','99'],
-            ['10002','BBBBB','92'],
-            ['10003','CCCCC','95'],
-            ['10004','DDDDD','89'],
-            ['10005','EEEEE','96'],
-        ];
-        Excel::create('学生成绩',function($excel) use ($cellData){
-            $excel->sheet('score', function($sheet) use ($cellData){
-                $sheet->rows($cellData);
-            });
-        })->export('xls');
+//        $cellData = [
+//            ['学号','姓名','成绩'],
+//            ['10001','AAAAA','99'],
+//            ['10002','BBBBB','92'],
+//            ['10003','CCCCC','95'],
+//            ['10004','DDDDD','89'],
+//            ['10005','EEEEE','96'],
+//        ];
+//        Excel::create('学生成绩',function($excel) use ($cellData){
+//            $excel->sheet('score', function($sheet) use ($cellData){
+//                $sheet->rows($cellData);
+//            });
+//        })->export('xls');
+
+        $s = $this->get_userName('chenj02');
+        echo $s;
+
 
     }
 
     public function test()
     {
-
+//        Cache::flush();
 //        $query = '20160414-0720';
 //        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
 //            ->orWhere('customer_name','like','%'.$query.'%')
@@ -309,21 +331,65 @@ class TaskController extends Controller
 //            ->get();
 //        print_r($tasks);
 //        die;
-        $query = '201605';
+        $query = '201601';
         $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
 //            ->orWhere('customer_name','like','%'.$query.'%')
             ->get();
-        return view('task.test', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
+        return view('task.test', ['theme' => 'default', 'tasks' => $tasks]);
     }
 
-    public function report()
+    public function history()
     {
         //本周、本月，本季度，上周，上月，上季度
+        $query = '2016';
 
-        $bgn_date = null;
-        $end_date = null;
+        $tasks = DB::table('tasks')
+//            ->where('developer_workload',0)
+            ->where('task_no','like',$query.'%')
+            ->get();
+        return view('task.history', ['theme' => 'default','tasks' => $tasks]);
+//        $bgn_date = null;
+//        $end_date = null;
+//
+//        $tasks = DB::table('tasks')->whereBetween('ekp_create_date',[$bgn_date,$end_date]);
 
-        $tasks = DB::table('tasks')->whereBetween('ekp_create_date',[$bgn_date,$end_date]);
+    }
 
+    private function get_userName($user_code)
+    {
+//        Cache::pull('user');
+        $users = Cache::get('user',function(){
+            $users = DB::table('users')->select('code', 'name','role','admin')->get();
+            Cache::forever('user', $users);
+        });
+
+        if(!empty($user_code)) {
+            $arr_user_code = explode(',',$user_code);
+            $user_name = [];
+            if(count($arr_user_code) > 1){
+                //循环数组，输出名字
+                foreach($arr_user_code as $val) {
+                    foreach($users as $user){
+                        if($user->code == $val){
+                            $user_name[$val] = $user->name;
+                        }
+                    }
+                    if(empty($user_name[$val])){
+                        $user_name[$val] = '未知1';
+                    }
+                }
+            }
+            else{
+                foreach($users as $user) {
+                    if($user->code == $user_code) {
+                        $user_name[$user_code] = $user->name;
+                    }
+                }
+                if(empty($user_name[$user_code])){
+                    $user_name[$user_code] = '未知2';
+                }
+            }
+            return join(',',$user_name);
+        }
     }
 }

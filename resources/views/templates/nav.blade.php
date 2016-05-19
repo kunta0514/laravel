@@ -34,25 +34,24 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"><a href="/panel">面板模式</a></li>
-                <li class="dropdown"><a href="#" name="sync_task">同步任务</a></li>
-                <li class="dropdown"><a href="/task/5">我的任务</a></li>
-                <li><a href="/task/query">任务查询</a></li>
-                <li><a href="#">统计报表</a></li>
                 <li class="dropdown">
-                    <!-- Small button group -->
-                    <div class="btn-group" style="margin-top: 10px;">
-                        <button type="button" class="btn btn-default">常用URL</button>
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            @foreach(config('params.common_urls') as $key=>$value)
-                                <li ><a href="{{$value}}" target="_blank">{{$key}}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">任务查询<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/task/query">需求查询</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/task/test">历史任务-本月</a></li>
+                        <li><a href="/task/history">历史任务-本年</a></li>
+                    </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">常用URL <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach(config('params.common_urls') as $key=>$value)
+                            <li ><a href="{{$value}}" target="_blank">{{$key}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="/cst">客户台账</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

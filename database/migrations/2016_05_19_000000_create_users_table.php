@@ -27,8 +27,9 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->tinyInteger('role')->nullable();    //角色
-            $table->tinyInteger('admin')->nullable();   //是否系统管理员
+            $table->tinyInteger('role')->default(0);    //角色
+            $table->tinyInteger('admin')->default(0);   //是否系统管理员
+            $table->tinyInteger('is_out')->default(0);   //是否不在组织
             $table->string('user_pic');//用户头像
             $table->rememberToken();
             $table->timestamps();

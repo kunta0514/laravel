@@ -116,7 +116,10 @@
                 },
                 columns: [
                     { "data": "id" },
-                    { "data": "task_no" },
+                    {
+                        "class" : "ekp_control",
+                        "data": "task_no"
+                    },
                     { "data": "task_title" },
                     { "data": "customer_name" },
                     { "data": "abu_pm" },
@@ -131,20 +134,32 @@
                         "visible": false,
                         "searchable": false
                     }
-                ]
+                ],
+                rowCallback:function(row, data){
+                    console.log(data);
+                    $('td:eq(0)', row).html('<a target="_blank" href=' + data.ekp_oid + ' name="view_on_erp" >' + data.task_no + '</a>');
+                }
             });
 
 
 
         $(document).on("keypress", '.search-form[type="search"]', function (e) {
             if (e.keyCode == "13") {
-                keyword = $(this).val();
+                var keyword = $(this).val();
+                if(keyword === '') {
+                    $.toast("请输入查找内容","info");
+                    return false;
+                }
                 tt.search(keyword).draw();
             }
         });
 
         $(document).on("click", ".btn-search", function (e) {
-            keyword = $('.search-form[type="search"]').val();
+            var keyword = $('.search-form[type="search"]').val();
+            if(keyword === '') {
+                $.toast("请输入查找内容","info");
+                return false;
+            }
             tt.search(keyword).draw();
         });
 
@@ -154,7 +169,7 @@
             $.modal({
                 keyboard: false,
                 width:598,
-                minHeight:233,
+                minHeight:518,
                 remote: '/task/detail/' + data.id,
                 okHide: function () {
 //                    alert(222);
@@ -163,9 +178,12 @@
             })
         } );
 //
-        $(document).on('click', '#example tbody tr td:first ', function (event) {
-            var data = tt.row(this).data()
-            alert(22);
+        //TODO::查询界面打开超链接还没有想到好办法
+        $(document).on('click', '#example tbody tr a[name=view_on_erp] ', function () {
+//            console.log($(this));
+            if($(this).attr("href")!="") {
+                window.open("http://pd.mysoft.net.cn"+ $(this).attr("href"));
+            }
             return false;
         } );
 

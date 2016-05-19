@@ -140,24 +140,19 @@ class SyncTask extends Command
 
     protected function sync_ekp_oid()
     {
-//        $query = '201603';//这之后的任务，没有用38服务器了
+//        $query = '201603';
         $tasks =  DB::table('tasks')->where('ekp_oid', '')
 //            ->where('task_no','like', $query.'%')
             ->orderBy('task_no','desc')->get();
         foreach($tasks as $task) {
             if(empty($task->ekp_oid))
             {
-//                print_r($task->task_no);
-//                $a = str_replace('\"','',$this->spider($task->task_no)[0]->attr['href']);
-//                print_r($this->spider($task->task_no));
                 if(!empty($task->task_no))
                 {
                     $ekp_oid = $this->spider($task->task_no);
-
                     DB::table('tasks')->where('id', $task->id)->update(['ekp_oid' => $ekp_oid]);
                     echo $this->print_log("任务 $task->task_no 同步中，访问地址： $ekp_oid ");
                 }
-//                die;
             }
         }
     }

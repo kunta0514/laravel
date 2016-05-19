@@ -29,12 +29,14 @@ class Task extends Model
 
     public function getDevNameAttribute()
     {
-        return $this->attributes['dev_name'] =self::get_userName('dev',$this->developer);
+//        return $this->attributes['dev_name'] =self::get_userName('dev',$this->developer);
+        return $this->attributes['dev_name'] = self::get_userName($this->developer);
     }
 
     public function getTesterNameAttribute()
     {
-        return $this->attributes['tester_name'] =self::get_userName('test',$this->tester);
+//        return $this->attributes['tester_name'] =self::get_userName('test',$this->tester);
+        return $this->attributes['tester_name'] = self::get_userName($this->tester);
     }
 
     /**
@@ -44,19 +46,40 @@ class Task extends Model
      * @param $user_code 用户编码
      * @return string
      */
-    private function get_userName($type,$user_code)
+    private function get_userName($user_code)
     {
-        $user_names='';
-        if ($user_code=='') {
-            return  $user_names;
-        }
-        foreach (explode(',',$user_code) as $value) {
-            if ($type=='dev') {
-                $user_names.=((array_key_exists($value,Cache::get('developers')))?Cache::get('developers')[$value]:$value).',';
-            }else {
-                $user_names.=((array_key_exists($value,Cache::get('testers')))?Cache::get('testers')[$value]:$value).',';
+        $users = Cache::get('user',function(){
+            $users = DB::table('users')->select('code', 'name','role','admin')->get();
+            Cache::forever('user', $users);
+        });
+
+        if(!empty($user_code)) {
+            $arr_user_code = explode(',',$user_code);
+            $user_name = [];
+            if(count($arr_user_code) > 1){
+                //循环数组，输出名字
+                foreach($arr_user_code as $val) {
+                    foreach($users as $user){
+                        if($user->code == $val){
+                            $user_name[$val] = $user->name;
+                        }
+                    }
+                    if(empty($user_name[$val])){
+                        $user_name[$val] = '未知(多人)';
+                    }
+                }
             }
+            else{
+                foreach($users as $user) {
+                    if($user->code == $user_code) {
+                        $user_name[$user_code] = $user->name;
+                    }
+                }
+                if(empty($user_name[$user_code])){
+                    $user_name[$user_code] = '未知(单人)';
+                }
+            }
+            return join(',',$user_name);
         }
-        return rtrim($user_names, ",");
     }
 }
