@@ -43,12 +43,13 @@
                 <thead>
                 <tr>
                     <th style="width: 100px">任务编号</th>
+                    <th style="width: 60px">状态</th>
                     <th >任务标题</th>
                     <th style="width: 100px">客户</th>
                     <th style="width: 40px">PM</th>
                     <th style="width: 60px">开发</th>
-                    <th style="width: 60px">测试</th>
-                    <th style="width: 260px">备注</th>
+                    <th style="width: 40px">测试</th>
+                    <th style="width: 200px">备注</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -56,15 +57,18 @@
                 @foreach($tasks as $k=>$task)
                     <tr rel="{{$task->id}}" >
                         <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                        <td>
+                            {{ Config('params.task_status')[$task->status] }}
+                        </td>
                         <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
-                            @if(stristr($task->task_type, 'BUG'))
+                            @if(stristr($task->ekp_task_type, 'BUG'))
                                 <span class="label label-danger">B</span>
-                            @elseif(stristr($task->task_type, '咨询'))
+                            @elseif(stristr($task->ekp_task_type, '咨询'))
                                 <span class="label label-info">咨</span>
-                            @elseif(stristr($task->task_type, '需求'))
+                            @elseif(stristr($task->ekp_task_type, '需求'))
                                 <span class="label label-success">需</span>
                             @else
-                                <span class="label label-primary">{{mb_substr($task->task_type,0,1)}}</span>
+                                <span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>
                             @endif
                             {{$task->task_title}}
                         </td>
@@ -144,7 +148,6 @@
                 });
             }
             return false;
-
         } );
 //        $(document).on('click','#export',function(){
 //            $.ajax({

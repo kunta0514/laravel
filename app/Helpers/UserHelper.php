@@ -71,4 +71,9 @@ class UserHelper
         });
         return $tester;
     }
+
+    public static function status_name($status)
+    {
+
+    }
 }

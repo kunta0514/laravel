@@ -39,11 +39,11 @@
                   <th scope="row" >{{$k+1}}</th>
                   <td><a href="#" name="view_on_erp" rel="{{$task->ekp_oid}}">{{$task->task_no}}</a></td>
                   <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
-                		@if(stristr($task->task_type, 'BUG'))
+                		@if(stristr($task->ekp_task_type, 'BUG'))
                 		<span class="label label-danger">B</span>
-                        @elseif(stristr($task->task_type, '咨询'))
+                        @elseif(stristr($task->ekp_task_type, '咨询'))
                           <span class="label label-info">咨</span>
-                        @elseif(stristr($task->task_type, '需求'))
+                        @elseif(stristr($task->ekp_task_type, '需求'))
                           <span class="label label-success">需</span>
                 		@else
                 		<span class="label label-primary">{{mb_substr($task->task_type,0,1)}}</span>
