@@ -96,6 +96,7 @@
             },
             showRowNumber:true,
             bAutoWidth:false,
+            order: [[ 0, "desc" ]]
         });
 
         $(document).on('click', '#example tbody tr', function () {
@@ -134,8 +135,8 @@
                 });
             }
             return false;
-
         } );
+
     </script>
 
 

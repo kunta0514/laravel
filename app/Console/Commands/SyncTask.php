@@ -43,11 +43,14 @@ class SyncTask extends Command
      */
     public function handle()
     {
-        //
-//        return $this->sync_task();
+        //sync
+        return $this->sync_task();
 //        echo 'ok';
-        return $this->sync_ekp_oid();
+//        return $this->sync_ekp_oid();
+//        return $this->sync_ekp_task_type();
 //        return $this->sync_workload();
+
+//        return $this->spider('20160506-0378');
     }
 
 
@@ -100,7 +103,7 @@ class SyncTask extends Command
 
             $task_title = trim($task_node->find('div[class*=title]',0)->children(1)->plaintext);
             $task_cst_name = $task_node->find('li[title=客户名称]',0)->plaintext;
-            $task_type = $task_node->find('li[title=需求类型]',0)->plaintext;
+            $ekp_task_type = $task_node->find('li[title=需求类型]',0)->plaintext;
             $task_apu_pm = $task_node->find('li[title=需求负责人]',0)->plaintext;
             $task_status = $task_node->find('div[class*=status]',0)->plaintext;
 
@@ -118,7 +121,7 @@ class SyncTask extends Command
                 $mysql_task->abu_pm = $task_apu_pm;
                 $mysql_task->ekp_create_date = date("y-m-d",time());
                 $mysql_task->status = $task_status;
-                $mysql_task->task_type = $task_type;
+                $mysql_task->ekp_task_type = $ekp_task_type;
                 $mysql_task->ekp_expect=date("y-m-d",time());
                 //TODO：根据客户自动判断
 //            $mysql_task->erp_version = $task->ErpVersion;
@@ -157,13 +160,25 @@ class SyncTask extends Command
         }
     }
 
+
+    protected function sync_ekp_task_type()
+    {
+        $query = '2016';
+        $tasks =  DB::table('tasks')->where('ekp_task_type', '')
+            ->where('task_no','like', $query.'%')
+            ->orderBy('task_no','desc')->get();
+        foreach($tasks as $task) {
+            $ekp_task_type = $this->spider(trim($task->task_no));
+            DB::table('tasks')->where('id', $task->id)->update(['ekp_task_type' => $ekp_task_type]);
+            echo $this->print_log("任务 $task->task_no 同步中，任务类型： $ekp_task_type ");
+        }
+    }
+
     protected function sync_workload()
     {
         $query = '20160503-0041';//这之后的任务，没有用38服务器了
         $tasks =  DB::table('tasks')->where('task_no','like', $query.'%')->get();
 
-//        print_r($tasks);
-//        die;
         foreach($tasks as $task)
         {
             $task_old =  DB::connection('sqlsrv')->select("select * from Task where TaskNo = '$task->task_no'");
@@ -204,9 +219,6 @@ class SyncTask extends Command
                 $mysql_task->save();
             }
             echo $this->print_log("任务 $task->task_no 同步中 ");
-//            print_r($task_old);
-//            print_r($task_old_workload);
-//            die;
         }
     }
 
@@ -240,16 +252,19 @@ class SyncTask extends Command
         $count=0;
         $html = str_get_html($html);
         $ekp_oid = '';
+        $ekp_task_type = '';
         foreach($html->find('div[class*=singleRequirementCard]') as $task_node) {
             $task_no_cur = $task_node->find('div[class*=title]',0)->children(0)->plaintext;
             $str = ['【','】'];
             $task_no_cur =trim(str_replace($str,"",$task_no_cur));
-
             if($task_no_cur == $task_no) {
-                $ekp_oid = $task_node->find('div[class*=title]', 0)->children(1)->attr['href'];
+//                $ekp_oid = $task_node->find('div[class*=title]', 0)->children(1)->attr['href'];
+                $ekp_task_type = $task_node->find('li[title=需求类型]',0)->plaintext;
+//                print_r($ekp_task_type);
             }
         }
-        return $ekp_oid;
+        return $ekp_task_type;
+//        return $ekp_task_type;
     }
 
 }

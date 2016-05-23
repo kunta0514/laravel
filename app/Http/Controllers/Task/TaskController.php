@@ -229,7 +229,6 @@ class TaskController extends Controller
             if(!empty($request->status)){
                 $query['status'] = $request->status;
             }
-
             if(!empty($request->developer)){
                 $query['developer'] = $request->developer;
             }
@@ -242,6 +241,10 @@ class TaskController extends Controller
             if(!empty($request->tester_workload)){
                 $query['tester_workload'] = $request->tester_workload;
             }
+            if(!empty($request->actual_finish_date)){
+                $query['actual_finish_date'] = $request->actual_finish_date;
+            }
+            print_r($query);
 //            $query['developer_workload'] = $request->developer_workload;
 //            $query['tester'] = $request->tester;
 //            $query['tester_workload'] = $request->tester_workload;
@@ -302,35 +305,27 @@ class TaskController extends Controller
 //            ['10004','DDDDD','89'],
 //            ['10005','EEEEE','96'],
 //        ];
-//        Excel::create('学生成绩',function($excel) use ($cellData){
-//            $excel->sheet('score', function($sheet) use ($cellData){
-//                $sheet->rows($cellData);
-//            });
-//        })->export('xls');
+        $query = '2016';
+        $title = ['任务编号	','任务标题','客户名称','PM','工作流版本','开发人员','测试人员','备注','开发人员','测试人员'];
+//        $tasks = DB::table('tasks')->select('task_no', 'task_title','customer_name','abu_pm','erp_version','developer','tester','comment')->where('task_no','like',$query.'%')->get();
+        $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
+            ->where('task_no','like',$query.'%')
+            ->orderBy('task_no')
+            ->get();
+        $cellData = [];
+        $cellData = $tasks->toArray();
+//        $cellData[] = $title;
 
-        $s = $this->get_userName('chenj02');
-        echo $s;
-
+        Excel::create('本年任务明细-2016-05',function($excel) use ($cellData){
+            $excel->sheet('score', function($sheet) use ($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls');
 
     }
 
     public function test()
     {
-//        Cache::flush();
-//        $query = '20160414-0720';
-//        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
-//            ->orWhere('customer_name','like','%'.$query.'%')
-//            ->get();
-//        print_r($tasks);
-////        die;
-////        $queries = DB::getQueryLog();
-////        print_r($queries);
-//
-//        $tasks = Task::where('task_no','like',$query.'%')
-//            ->orWhere('customer_name','like','%'.$query.'%')
-//            ->get();
-//        print_r($tasks);
-//        die;
         $query = '201601';
         $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
 //            ->orWhere('customer_name','like','%'.$query.'%')
@@ -338,22 +333,36 @@ class TaskController extends Controller
         return view('task.test', ['theme' => 'default', 'tasks' => $tasks]);
     }
 
-    public function history()
+    public function history($type)
     {
         //本周、本月，本季度，上周，上月，上季度
-        $query = '2016';
-
-        $tasks = DB::table('tasks')
+        $tasks = null;
+        $query = null;
+        switch($type)
+        {
+            case 'year':
+                $query = '2016';
+                $tasks = DB::table('tasks')
 //            ->where('developer_workload',0)
-            ->where('task_no','like',$query.'%')
-            ->get();
-        return view('task.history', ['theme' => 'default','tasks' => $tasks]);
-//        $bgn_date = null;
-//        $end_date = null;
-//
-//        $tasks = DB::table('tasks')->whereBetween('ekp_create_date',[$bgn_date,$end_date]);
+                    ->where('task_no','like',$query.'%')
+                    ->get();
+            case 'yd':
+                $query = '2016';
+                $tasks = DB::table('tasks')
+                    ->where('abu_pm','刘嵩')
+                    ->where('task_no','like',$query.'%')
+                    ->orderBy('task_no','DESC')
+                    ->get();
 
+        }
+//        $query = '2016';
+//        $tasks = DB::table('tasks')
+////            ->where('developer_workload',0)
+//            ->where('task_no','like',$query.'%')
+//            ->get();
+        return view('task.history', ['theme' => 'default','tasks' => $tasks]);
     }
+
 
     private function get_userName($user_code)
     {
@@ -391,5 +400,21 @@ class TaskController extends Controller
             }
             return join(',',$user_name);
         }
+    }
+
+    public function object_array($array)
+    {
+        if(is_object($array))
+        {
+            $array = (array)$array;
+        }
+        if(is_array($array))
+        {
+            foreach($array as $key=>$value)
+            {
+                $array[$key] = $this->object_array($value);
+            }
+        }
+        return $array;
     }
 }

@@ -60,9 +60,9 @@
                             @endforeach
                         </select>
                     </div>
-                    <label for="select-date" class="control-label col-sm-2">日期</label>
+                    <label for="select-date" class="control-label col-sm-2">完成时间</label>
                     <div class="col-sm-4">
-                        <input type="text" name="ekp_expect" {{$task->ekp_expect}} class="form-control" placeholder="完成日期" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
+                        <input type="text" id="actual_finish_date" value="{{ $task->actual_finish_date}}" class="form-control" placeholder="实际完成时间" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
                     </div>
                 </div>
             </div>
@@ -108,6 +108,15 @@
         }
     };
 
+    $('#select_status').on('change',function(){
+        if(this.value == '3' && $("#actual_finish_date").val() === ''){
+            $("#actual_finish_date").datepicker('setDate',new Date());
+
+        }
+        console.log(this.value);
+        console.log($("#actual_finish_date").val());
+    })
+
     $('#btnSubmit').on('click',function(){
         task.comment = $('#comment').val();
         task.developer = $('#select_dev').val();
@@ -115,6 +124,7 @@
         task.tester =  $('#select_test').val();
         task.tester_workload = $('#tester_workload').val();
         task.status = $('#select_status').val();
+        task.actual_finish_date = $("#actual_finish_date").val();
         console.log(task);
         //TODO::收集页面元素校验
         $.ajax({

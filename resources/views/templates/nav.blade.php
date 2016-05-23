@@ -40,7 +40,8 @@
                         <li><a href="/task/query">需求查询</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/task/test">历史任务-本月</a></li>
-                        <li><a href="/task/history">历史任务-本年</a></li>
+                        <li><a href="/task/history/year">历史任务-本年</a></li>
+                        <li><a href="/task/history/yd">历史任务-移动</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

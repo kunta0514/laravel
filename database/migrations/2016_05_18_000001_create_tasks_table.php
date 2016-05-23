@@ -41,7 +41,7 @@ class CreateTasksTable extends Migration
             $table->dateTime('actual_finish_date'); //实际
             $table->tinyInteger('status');
             $table->string('comment');
-            $table->string('ekp_task_type');    //ekp_task_type
+            $table->string('ekp_task_type');    //EKP任务类型
             $table->string('task_type');
             $table->string('workflow_version');
             $table->Integer('PRI');         //优先级
