@@ -93,7 +93,7 @@
             },
         } );
 
-        $(document).on('click', '#example tr', function () {
+        $(document).on('click', '#example tbody tr', function () {
             var data = $(this);
             $.modal({
                 keyboard: false,
