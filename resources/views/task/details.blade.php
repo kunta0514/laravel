@@ -60,6 +60,23 @@
                             @endforeach
                         </select>
                     </div>
+                    <label for="select_task_type" class="control-label col-sm-2">任务类型</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="select_task_type" name="task_type">
+                            <option value="" >请选择</option>
+                            @foreach(Config('params.task_type') as $value)
+                                <option value="{{$value}}" @if ($value === $task->task_type) selected @endif>{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+
                     <label for="select-date" class="control-label col-sm-2">完成时间</label>
                     <div class="col-sm-4">
                         <input type="text" id="actual_finish_date" value="{{ $task->actual_finish_date}}" class="form-control" placeholder="实际完成时间" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
@@ -125,6 +142,7 @@
         task.tester_workload = $('#tester_workload').val();
         task.status = $('#select_status').val();
         task.actual_finish_date = $("#actual_finish_date").val();
+        task.task_type = $("#select_task_type").val();
         console.log(task);
         //TODO::收集页面元素校验
         $.ajax({

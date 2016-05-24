@@ -24,6 +24,7 @@ class CreateVersionsTable extends Migration
             $table->increments('id');
             $table->string('workflow_version')->nullable();
             $table->string('erp_version')->nullable();
+            $table->string('erp_short')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

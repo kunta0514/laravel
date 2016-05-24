@@ -244,6 +244,9 @@ class TaskController extends Controller
             if(!empty($request->actual_finish_date)){
                 $query['actual_finish_date'] = $request->actual_finish_date;
             }
+            if(!empty($request->task_type)){
+                $query['task_type'] = $request->task_type;
+            }
             print_r($query);
 //            $query['developer_workload'] = $request->developer_workload;
 //            $query['tester'] = $request->tester;

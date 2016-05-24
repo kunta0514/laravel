@@ -90,10 +90,10 @@
                 info: "总共_PAGES_ 页，显示第_START_ 到第 _END_ ，筛选之后得到 _TOTAL_ 条，初始_MAX_ 条 ",//左下角的信息显示，大写的词为关键字。
                 infoEmpty: "0条记录",//筛选为空时左下角的显示。
                 infoFiltered: ""//筛选之后的左下角筛选提示，
-            },
-        } );
+            }
+        });
 
-        $(document).on('click', '#example tbody tr', function () {
+        $(document).on('click', '#example tr', function () {
             var data = $(this);
             $.modal({
                 keyboard: false,
