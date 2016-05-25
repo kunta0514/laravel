@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\InitTask::class,
         \App\Console\Commands\SyncProject::class,
         \App\Console\Commands\SyncTask::class,
+        \App\Console\Commands\SyncCustomer::class
     ];
 
     /**

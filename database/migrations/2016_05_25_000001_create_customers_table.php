@@ -2,15 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: wank
- * Date: 2015/12/14
- * Time: 21:43
+ * Date: 2016/5/25
+ * Time: 11:16
  */
 
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVersionsTable extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,13 +19,14 @@ class CreateVersionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('versions', function(Blueprint $table)
+        Schema::create('customers', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('workflow_version');
-            $table->string('erp_version');
-            $table->string('erp_short_name')->nullable();
-            $table->string('wf_short_name')->nullable();
+            $table->uuid('uuid');
+            $table->string('name');
+            $table->string('ekp_latest_name')->nullable();     //EKP最新的名字
+            $table->string('area')->nullable();     //区域
+            $table->string('path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -38,6 +39,6 @@ class CreateVersionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('versions');
+        Schema::drop('customers');
     }
 }

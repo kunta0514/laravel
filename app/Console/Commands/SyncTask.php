@@ -5,8 +5,6 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Task;
-use App\Http\Controllers\Solution\SolutionController;
-use App\Utility\PickHtml;
 
 include 'simple_html_dom.php';
 
@@ -127,15 +125,32 @@ class SyncTask extends Command
 //            $mysql_task->erp_version = $task->ErpVersion;
 //            $mysql_task->map_version = $task->MapVersion;
 //            $mysql_task->workflow_version = $task->WorkflowVersion;
+
+                //根据客户名称查询客户台账中的唯一用户
+                $customers = DB::table('customers')->where('name','like','%'.$task_cst_name.'%')
+                    ->orWhere('ekp_latest_name','like','%'.$task_cst_name.'%')
+                    ->get();
+                if(!empty($customers)){
+                    if(count($customers) == 1){
+                        $mysql_task->customer_uuid = $customers->uuid;
+                    }
+                    if(count($customers) > 1){
+                        foreach($customers as $val){
+                            $mysql_task->customer_uuid = $val->uuid;
+                            break;
+                        }
+                    }
+                }
+
                 $mysql_task->save();
                 $count++;
 
-                print_r(iconv('utf-8','gbk',$task_no).chr(10));
-                print_r(iconv('utf-8','gbk',$task_title).chr(10));
-                print_r(iconv('utf-8','gbk',$task_cst_name).chr(10));
-                print_r(iconv('utf-8','gbk',$task_type).chr(10));
-                print_r(iconv('utf-8','gbk',$task_apu_pm).chr(10));
-                print_r(iconv('utf-8','gbk',$task_status).chr(10));
+//                print_r(iconv('utf-8','gbk',$task_no).chr(10));
+//                print_r(iconv('utf-8','gbk',$task_title).chr(10));
+//                print_r(iconv('utf-8','gbk',$task_cst_name).chr(10));
+//                print_r(iconv('utf-8','gbk',$ekp_task_type).chr(10));
+//                print_r(iconv('utf-8','gbk',$task_apu_pm).chr(10));
+//                print_r(iconv('utf-8','gbk',$task_status).chr(10));
             }
         }
         return $count;

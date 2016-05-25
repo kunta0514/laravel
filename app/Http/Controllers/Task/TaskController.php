@@ -16,6 +16,8 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Excel;
+use Webpatser\Uuid\Uuid;
+use App\Models\CustomerDetail;
 
 class TaskController extends Controller
 {
@@ -308,22 +310,47 @@ class TaskController extends Controller
 //            ['10004','DDDDD','89'],
 //            ['10005','EEEEE','96'],
 //        ];
-        $query = '2016';
-        $title = ['任务编号	','任务标题','客户名称','PM','工作流版本','开发人员','测试人员','备注','开发人员','测试人员'];
-//        $tasks = DB::table('tasks')->select('task_no', 'task_title','customer_name','abu_pm','erp_version','developer','tester','comment')->where('task_no','like',$query.'%')->get();
-        $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
-            ->where('task_no','like',$query.'%')
-            ->orderBy('task_no')
-            ->get();
-        $cellData = [];
-        $cellData = $tasks->toArray();
-//        $cellData[] = $title;
+//        $query = '2016';
+//        $title = ['任务编号	','任务标题','客户名称','PM','工作流版本','开发人员','测试人员','备注','开发人员','测试人员'];
+////        $tasks = DB::table('tasks')->select('task_no', 'task_title','customer_name','abu_pm','erp_version','developer','tester','comment')->where('task_no','like',$query.'%')->get();
+//        $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
+//            ->where('task_no','like',$query.'%')
+//            ->orderBy('task_no')
+//            ->get();
+//        $cellData = [];
+//        $cellData = $tasks->toArray();
+////        $cellData[] = $title;
+//
+//        Excel::create('本年任务明细-2016-05',function($excel) use ($cellData){
+//            $excel->sheet('score', function($sheet) use ($cellData){
+//                $sheet->rows($cellData);
+//            });
+//        })->export('xls');
 
-        Excel::create('本年任务明细-2016-05',function($excel) use ($cellData){
-            $excel->sheet('score', function($sheet) use ($cellData){
-                $sheet->rows($cellData);
-            });
-        })->export('xls');
+//        $x = Uuid::generate();
+//        echo $x;
+        $customer_details = DB::table('customers')
+            ->join('projects2workflow','customers.name','=','projects2workflow.project_name')
+            ->select('customers.uuid','projects2workflow.*')
+            ->get();
+
+//        print_r($customer_details);
+
+        foreach($customer_details as $val) {
+            $customer_details = new CustomerDetail();
+            $customer_details->customer_uuid = $val->uuid;
+            $customer_details->customer_name = $val->project_name;
+            $customer_details->path = $val->path;
+            $customer_details->workflow_path = $val->workflow_path;
+            $customer_details->assemblyInfo_path = $val->assemblyInfo_path;
+            $customer_details->assemblyInfo = $val->assemblyInfo;
+            $customer_details->assemblyFileInfo = $val->assemblyFileInfo;
+            $customer_details->workflow_version = $val->workflow_version;
+            $customer_details->erp_version = $val->erp_version;
+            $customer_details->save();
+            die;
+//        print_r($customer);
+        }
 
     }
 

@@ -4,7 +4,9 @@
  * User: wank
  * Date: 2015/12/14
  * Time: 21:43
+ * http://laravel-china.org/docs/5.1/migrations  数据库版本操作方式详见此处
  */
+
 
 
 use Illuminate\Database\Schema\Blueprint;
@@ -25,6 +27,8 @@ class CreateTasksTable extends Migration
             $table->string('task_no');
             $table->string('ekp_oid');
             $table->string('task_title');
+
+            $table->uuid('customer_uuid');      //客户唯一标识 - 客户台账扩展
             $table->string('customer_name');
             $table->string('erp_version');
             $table->string('map_version');

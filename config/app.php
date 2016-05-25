@@ -152,6 +152,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+//        Webpatser\Uuid\Uuid::class,
+
         'Stevenyangecho\UEditor\UEditorServiceProvider',
         'YuanChao\Editor\EndaEditorServiceProvider'
 
@@ -205,6 +207,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'UserHelper'   => App\Helpers\UserHelper::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Uuid' => Webpatser\Uuid\Uuid::class,
         'Pinyin'    => 'Overtrue\Pinyin\Pinyin',
         'EndaEditor' => 'YuanChao\Editor\Facade\EndaEditorFacade',
     ],
