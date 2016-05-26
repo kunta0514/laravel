@@ -46,7 +46,7 @@
                         @elseif(stristr($task->ekp_task_type, '需求'))
                           <span class="label label-success">需</span>
                 		@else
-                		<span class="label label-primary">{{mb_substr($task->task_type,0,1)}}</span>
+                		<span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>
                 		@endif
                   <a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>21) {{mb_substr($task->task_title,0,21)}}...@else {{$task->task_title}} @endif
                   </td>

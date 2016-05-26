@@ -22,7 +22,8 @@
 		"barryvdh/laravel-ide-helper": "^2.1",
         "yuanchao/laravel-5-markdown-editor": "dev-master",
         "stevenyangecho/laravel-u-editor": "~1.1",
-		"maatwebsite/excel": "~2.0.0"
+		"maatwebsite/excel": "~2.0.0",
+		"webpatser/laravel-uuid": "2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

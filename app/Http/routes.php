@@ -136,3 +136,12 @@ Route::group(['prefix' => 'excel', 'namespace' => 'Excel'], function()
 //    Route::get('excel/import','ExcelController@import');
 });
 
+Route::group(['prefix' => 'customer', 'namespace' => 'Customer'], function()
+{
+//    echo "OK";
+    Route::resource('customer', 'CustomerController@index');
+//
+    Route::get('/','CustomerController@index');
+//    Route::get('excel/import','ExcelController@import');
+});
+
