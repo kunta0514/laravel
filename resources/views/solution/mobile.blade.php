@@ -76,7 +76,7 @@
             $.get("/solution/mobile/check", { customer_name: customer_name },function(data){
                 var Json_data=eval("("+data+")");
                 $("#current_id").val(Json_data.id);
-                console.info(Json_data);
+//                console.info(Json_data);
                 $("div.panle4Check h4").html(Json_data.customer_name+" <small>"+Json_data.alias+"</small>");
 
                 if(Json_data.result==1)
@@ -104,16 +104,15 @@
                 var history_tasks=$("div[name='history_tasks']");
                 history_tasks.html("");
                 $.each(Json_data.task_list,function(n,value){
-                    history_tasks.append($("<li></li>").html( value));
+                    history_tasks.append($("<li></li>").html("<a target='_blank' href='"+value.url+"'>"+value.name+"</a>"));
                 });
                 $("span.remark").html(Json_data.message);
                 $("div[name='check_process_bar']").hide();
             } );
         });
 
-        //检测按钮回车事件监听
-        $("#btnCheck").keydown(function(event){
-            if(event.keyCode == 13){
+        $(document).on("keypress", '#customer_name', function (e) {
+            if (e.keyCode == "13") {
                 $("#btnCheck").click();
             }
         });
@@ -139,7 +138,6 @@
 //            alert("4323");
         });
     });
-
     function oprClick_title(obj)
     {
         $("#myModalLabel").html($(obj).attr("s_title"));
@@ -247,9 +245,9 @@
                     <div class="jumbotron">
                         <p style="font-size: 16px;line-height: 28px;">
                             ①ERP301以下（不包含301）版本，项目组需要编译MyWorkflow项目<br/>
-                            ②本次更新<font color="red">有新增文</font>；需要使用编辑器将新增文件包含到项目中，再编译<br>
+                            ②本次更新<font color="red">有新增文</font>，需要使用编辑器将新增文件包含到项目中再编译<br>
                             ③<font color="red">强烈建议</font>:先停用ERP再更新此更新包，是有血的教训的<br>
-                            ④可能需要配置小平台，请移步<a href="http://km.mysoft.net.cn:8111/CodeKnowledge/Detail-3cba059c-82d3-476e-8c22-adda1c248ec4.aspx">小平台ajax配置</a>
+                            ④<font color="red">检查</font>是否配置小平台，请移步<a href="http://km.mysoft.net.cn:8111/CodeKnowledge/Detail-3cba059c-82d3-476e-8c22-adda1c248ec4.aspx">小平台ajax配置</a>
                             </p>
                     </div>
                 </fieldset>

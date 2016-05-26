@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Utility\PickHtml;
@@ -34,19 +34,20 @@ class CheckPersonalize extends Model
             'code_lib'=>Array()
         );
         $task_list=self::get_task_history($customer_name);
-
+//var_dump($task_list);die;
         //TODO 智能判断
         $return_array=array();
         foreach(Config::get('params.customized_key') as $key=>$value)
         {
             foreach($task_list as $item=>$item_value)
             {
-                if(strpos($item_value,$value) && !strpos($item_value,'升级微助手') && !strpos($item_value,'典型功能包') && !strpos($item_value,'移动审批'))
+                if(strpos($item_value["name"],$value) && !strpos($item_value["name"],'升级微助手') && !strpos($item_value["name"],'典型功能包') && !strpos($item_value["name"],'移动审批'))
                 {
                     $return_array[]=$item_value;
                 }
             }
         }
+//        var_dump($return_array);die;
         $result['task_list']=$return_array;
 
         $result['code_lib']=self::get_code_lib($customer_name);
@@ -93,7 +94,11 @@ class CheckPersonalize extends Model
         if(count($html->find('div[class*=nodata]')) == 0) {
             foreach ($html->find('div[class*=singleRequirementCard]') as $task_node) {
                 $task_title = $task_node->find('div[class*=title]', 0)->children(1)->plaintext;
-                $task_array[] = $task_title;
+                $ekp_oid="http://pd.mysoft.net.cn".$task_node->find('div[class*=title]',0)->children(1)->attr['href'];
+                $task_array[] = array(
+                    'url'=>$ekp_oid,
+                    'name'=>$task_title
+                );
             }
         }
         return $task_array;
