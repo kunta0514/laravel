@@ -27,6 +27,9 @@ class CreateCustomersTable extends Migration
             $table->string('ekp_latest_name')->nullable();     //EKP最新的名字
             $table->string('area')->nullable();     //区域
             $table->string('path')->nullable();
+            $table->string('is_update')->nullable();
+            $table->string('is_standard_update')->nullable();
+            $table->string('update_reason')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

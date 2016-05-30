@@ -18,7 +18,7 @@
             cursor: pointer;
         }
     </style>
-    <div class="container">
+    <div class="container-fluid">
         {{--<div class="row">{!! var_dump(UserHelper::user_name()) !!}</div>--}}
         <div class="row">
             <div class="col-md-4">
@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-8">
                 <div class="pull-right">
-                    <a href="/task/test_page" class="btn btn-default" id="export"><i class="glyphicon glyphicon-export"></i></a>
+                    <a href="/task/export/{{$type}}" class="btn btn-default" id="export"><i class="glyphicon glyphicon-export"></i></a>
                 </div>
             </div>
         </div>
@@ -45,11 +45,12 @@
                     <th style="width: 100px">任务编号</th>
                     <th style="width: 60px">状态</th>
                     <th >任务标题</th>
-                    <th style="width: 100px">客户</th>
+                    <th style="width: 80px">客户</th>
                     <th style="width: 40px">PM</th>
-                    <th style="width: 60px">开发</th>
-                    <th style="width: 40px">测试</th>
-                    <th style="width: 200px">备注</th>
+                    <th style="width: 80px">开发</th>
+                    <th style="width: 80px">测试</th>
+                    <th style="width: 800px">完成时间</th>
+                    <th style="width: 300px">备注</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,6 +77,14 @@
                         <td>{{$task->abu_pm}}</td>
                         <td>{!! UserHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
                         <td>{!! UserHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
+                        <td>
+                            @if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01')
+                                <span></span>
+                            @else
+                                <?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?>
+                            @endif
+
+                        </td>
                         <td>{{$task->comment}}</td>
                     </tr>
                 @endforeach

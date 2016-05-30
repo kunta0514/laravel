@@ -16,6 +16,17 @@ class Task extends Model
      */
     protected $appends = ['dev_name','tester_name'];
 
+    protected $dates = ['actual_finish_date'];
+
+//    protected $fillable = [
+//        'actual_finish_date'
+//    ];
+//
+//    public function setActualFinishDateAttribute($date)
+//    {
+//        $this->attributes['actual_finish_date'] = Carbon::createFromFormat('Y-m-d', $date);
+//    }
+
     /**
      * 功能：生成更新包名称
      * Date:2016年5月9日14:58:33

@@ -34,6 +34,12 @@
     {{--<script src="{{asset('vendor/js/select2.js')}}"></script>--}}
     <script src="{{asset('js/app.js')}}"></script>
     <![endif]-->
+    <style type="text/css">
+        .container-flex{
+            margin-left: 10px;
+            margin-right: 10px;;
+        }
+    </style>
 </head>
 <body>
     @include('templates.nav')

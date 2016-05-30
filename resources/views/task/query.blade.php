@@ -164,10 +164,10 @@
         });
 
         $(document).on('click', '#example tbody tr', function () {
-            var data = tt.row(this).data()
+            var data = tt.row(this).data();
             console.log(data);
             $.modal({
-                keyboard: false,
+                keyboard: true,
                 width:598,
                 minHeight:518,
                 remote: '/task/detail/' + data.id,

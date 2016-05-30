@@ -5,7 +5,7 @@
     <nav class="navbar navbar-default navbar-static-top">
 @endif
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -39,7 +39,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/task/query">需求查询</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/task/test">历史任务-本月</a></li>
+                        <li><a href="/task/history/month">历史任务-本月</a></li>
                         <li><a href="/task/history/year">历史任务-本年</a></li>
                         <li><a href="/task/history/yd">历史任务-移动</a></li>
                     </ul>

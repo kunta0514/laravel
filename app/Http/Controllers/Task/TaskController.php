@@ -310,57 +310,57 @@ class TaskController extends Controller
 //            ['10004','DDDDD','89'],
 //            ['10005','EEEEE','96'],
 //        ];
-//        $query = '2016';
-//        $title = ['任务编号	','任务标题','客户名称','PM','工作流版本','开发人员','测试人员','备注','开发人员','测试人员'];
-////        $tasks = DB::table('tasks')->select('task_no', 'task_title','customer_name','abu_pm','erp_version','developer','tester','comment')->where('task_no','like',$query.'%')->get();
-//        $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
-//            ->where('task_no','like',$query.'%')
-//            ->orderBy('task_no')
-//            ->get();
-//        $cellData = [];
-//        $cellData = $tasks->toArray();
-////        $cellData[] = $title;
-//
-//        Excel::create('本年任务明细-2016-05',function($excel) use ($cellData){
-//            $excel->sheet('score', function($sheet) use ($cellData){
-//                $sheet->rows($cellData);
-//            });
-//        })->export('xls');
+        $query = '2016';
+        $title = ['任务编号	','任务标题','客户名称','PM','工作流版本','开发人员','测试人员','备注','开发人员','测试人员'];
+//        $tasks = DB::table('tasks')->select('task_no', 'task_title','customer_name','abu_pm','erp_version','developer','tester','comment')->where('task_no','like',$query.'%')->get();
+        $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
+            ->where('task_no','like',$query.'%')
+            ->orderBy('task_no')
+            ->get();
+        $cellData = [];
+        $cellData = $tasks->toArray();
+//        $cellData[] = $title;
+
+        Excel::create('本年任务明细-2016-05',function($excel) use ($cellData){
+            $excel->sheet('score', function($sheet) use ($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls');
 
 //        $x = Uuid::generate();
 //        echo $x;
-        $customer_details = DB::table('customers')
-            ->join('projects2workflow','customers.name','=','projects2workflow.project_name')
-            ->select('customers.uuid','projects2workflow.*')
-            ->get();
-
-//        print_r($customer_details);
-
-        foreach($customer_details as $val) {
-            $customer_details = new CustomerDetail();
-            $customer_details->customer_uuid = $val->uuid;
-            $customer_details->customer_name = $val->project_name;
-            $customer_details->path = $val->path;
-            $customer_details->workflow_path = $val->workflow_path;
-            $customer_details->assemblyInfo_path = $val->assemblyInfo_path;
-            $customer_details->assemblyInfo = $val->assemblyInfo;
-            $customer_details->assemblyFileInfo = $val->assemblyFileInfo;
-            $customer_details->workflow_version = $val->workflow_version;
-            $customer_details->erp_version = $val->erp_version;
-            $customer_details->save();
-            die;
-//        print_r($customer);
-        }
+//        $customer_details = DB::table('customers')
+//            ->join('projects2workflow','customers.name','=','projects2workflow.project_name')
+//            ->select('customers.uuid','projects2workflow.*')
+//            ->get();
+//
+////        print_r($customer_details);
+//
+//        foreach($customer_details as $val) {
+//            $customer_details = new CustomerDetail();
+//            $customer_details->customer_uuid = $val->uuid;
+//            $customer_details->customer_name = $val->project_name;
+//            $customer_details->path = $val->path;
+//            $customer_details->workflow_path = $val->workflow_path;
+//            $customer_details->assemblyInfo_path = $val->assemblyInfo_path;
+//            $customer_details->assemblyInfo = $val->assemblyInfo;
+//            $customer_details->assemblyFileInfo = $val->assemblyFileInfo;
+//            $customer_details->workflow_version = $val->workflow_version;
+//            $customer_details->erp_version = $val->erp_version;
+//            $customer_details->save();
+////        print_r($customer);
+//        }
 
     }
 
     public function test()
     {
-        $query = '201601';
-        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
-//            ->orWhere('customer_name','like','%'.$query.'%')
-            ->get();
-        return view('task.test', ['theme' => 'default', 'tasks' => $tasks]);
+//        $query = '201601';
+//        $tasks = DB::table('tasks')->where('task_no','like',$query.'%')
+////            ->orWhere('customer_name','like','%'.$query.'%')
+//            ->get();
+//        return view('task.test', ['theme' => 'default', 'tasks' => $tasks]);
+        $this->my_time();
     }
 
     public function history($type)
@@ -371,11 +371,77 @@ class TaskController extends Controller
         switch($type)
         {
             case 'year':
-                $query = '2016';
+                $query_begin = date("Y",mktime(0,0,0,date("m"),1,date("Y")));
+                $query_end = null;
+                $tasks = DB::table('tasks')
+//            ->where('developer_workload',0)
+                    ->where('task_no','>',$query_begin)
+                    ->get();
+                break;
+            case 'month':
+                $query_begin = date("Ymd",mktime(0,0,0,date("m"),1,date("Y")));
+                $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
+                $tasks = DB::table('tasks')
+//            ->where('developer_workload',0)
+                    ->where('task_no','>',$query_begin)
+                    ->where('task_no','<',$query_end)
+                    ->get();
+                break;
+            case 'week':
+                $query_begin = date("Ymd",strtotime("-1 week Monday"));
+                $query_end = date("Ymd",strtotime("+0 week Monday"));
+                $tasks = DB::table('tasks')
+//            ->where('developer_workload',0)
+                    ->where('task_no','>',$query_begin)
+                    ->where('task_no','<',$query_end)
+                    ->get();
+                break;
+            case 'yd':
+//                $query = '2016';
+                $tasks = DB::table('tasks')
+                    ->where('abu_pm','刘嵩')
+//                    ->where('task_no','like',$query.'%')
+                    ->orderBy('task_no','DESC')
+                    ->get();
+                break;
+
+        }
+
+//echo $query_begin;
+//echo $query_end;
+        return view('task.history', ['theme' => 'default','tasks' => $tasks, 'type' => $type]);
+    }
+
+    public function export($type)
+    {
+        $tasks = null;
+        $query = null;
+        $title = ['任务编号	','任务标题','客户名称','PM','工作流版本','开发人员','测试人员','备注','开发人员','测试人员'];
+        switch($type)
+        {
+            case 'year':
+                $query_begin = '2016';
+                $tasks = DB::table('tasks')
+//            ->where('developer_workload',0)
+                    ->where('task_no','>',$query_begin)
+                    ->get();
+                break;
+            case 'month':
+                $query_begin = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),1,date("Y")));
+                $query_end = date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("t"),date("Y")));
+
+                $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
+                    ->where('task_no','>',$query_begin)
+                    ->where('task_no','<',$query_end)
+                    ->get();
+                break;
+            case 'week':
+                $query = '201605';
                 $tasks = DB::table('tasks')
 //            ->where('developer_workload',0)
                     ->where('task_no','like',$query.'%')
                     ->get();
+                break;
             case 'yd':
                 $query = '2016';
                 $tasks = DB::table('tasks')
@@ -383,14 +449,17 @@ class TaskController extends Controller
                     ->where('task_no','like',$query.'%')
                     ->orderBy('task_no','DESC')
                     ->get();
+                break;
 
         }
-//        $query = '2016';
-//        $tasks = DB::table('tasks')
-////            ->where('developer_workload',0)
-//            ->where('task_no','like',$query.'%')
-//            ->get();
-        return view('task.history', ['theme' => 'default','tasks' => $tasks]);
+        $cellData = [];
+        $cellData = $tasks->toArray();
+
+        Excel::create('本周任务明细-2016-05',function($excel) use ($cellData){
+            $excel->sheet('score', function($sheet) use ($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls');
     }
 
 
@@ -446,5 +515,46 @@ class TaskController extends Controller
             }
         }
         return $array;
+    }
+
+    protected function my_time()
+    {
+        echo date("Ymd",strtotime("now")), "\n";
+        echo date("Ymd",strtotime("-1 week Monday")), "\n";
+        echo date("Ymd",strtotime("-1 week Sunday")), "\n";
+        echo date("Ymd",strtotime("+0 week Monday")), "\n";
+        echo date("Ymd",strtotime("+0 week Sunday")), "\n";
+
+        echo "*********第几个月:";
+        echo date('n');
+        echo "*********本周周几:";
+        echo date("w");
+        echo "*********本月天数:";
+        echo date("t");
+        echo "*********";
+
+        echo '<br>上周起始时间:<br>';
+        echo date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1-7,date("Y"))),"\n";
+        echo date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7-7,date("Y"))),"\n";
+        echo '<br>本周起始时间:<br>';
+        echo date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y"))),"\n";
+        echo date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y"))),"\n";
+
+        echo '<br>上月起始时间:<br>';
+        echo date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m")-1,1,date("Y"))),"\n";
+        echo date("Y-m-d H:i:s",mktime(23,59,59,date("m") ,0,date("Y"))),"\n";
+        echo '<br>本月起始时间:<br>';
+        echo date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),1,date("Y"))),"\n";
+        echo date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("t"),date("Y"))),"\n";
+
+        $season = ceil((date('n'))/3);//当月是第几季度
+        echo '<br>本季度起始时间:<br>';
+        echo date('Y-m-d H:i:s', mktime(0, 0, 0,$season*3-3+1,1,date('Y'))),"\n";
+        echo date('Y-m-d H:i:s', mktime(23,59,59,$season*3,date('t',mktime(0, 0 , 0,$season*3,1,date("Y"))),date('Y'))),"\n";
+
+        $season = ceil((date('n'))/3)-1;//上季度是第几季度
+        echo '<br>上季度起始时间:<br>';
+        echo date('Y-m-d H:i:s', mktime(0, 0, 0,$season*3-3+1,1,date('Y'))),"\n";
+        echo date('Y-m-d H:i:s', mktime(23,59,59,$season*3,date('t',mktime(0, 0 , 0,$season*3,1,date("Y"))),date('Y'))),"\n";
     }
 }

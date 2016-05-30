@@ -17,18 +17,20 @@
     </style>
 
 
-<div class="container">
+<div class="container-fluid">
     <table class="table table-bordered table-hover" id="example">
         <thead>
             <tr>
                 <th title="序号">#</th>
                 <th style="min-width: 80px;">任务编号</th>
+                <th style="width: 60px">状态</th>
                 <th >任务标题</th>
-                <th>客户</th>
-                <th>PM</th>
-                <th>开发</th>
-                <th>测试</th>
-                <th>计划完成</th>
+                <th style="width: 80px">客户</th>
+                <th style="width: 60px">PM</th>
+                <th style="width: 80px">开发</th>
+                <th style="width: 80px">测试</th>
+                <th style="width: 80px">期望完成</th>
+                <th style="width: 300px">备注</th>
                 {{--<th></th>--}}
             </tr>
         </thead>
@@ -38,23 +40,27 @@
               <tr rel="{{$task->id}}" >
                   <th scope="row" >{{$k+1}}</th>
                   <td><a href="#" name="view_on_erp" rel="{{$task->ekp_oid}}">{{$task->task_no}}</a></td>
-                  <td class="details" rel={{$task->id}} data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
-                		@if(stristr($task->ekp_task_type, 'BUG'))
-                		<span class="label label-danger">B</span>
-                        @elseif(stristr($task->ekp_task_type, '咨询'))
+                  <td>
+                      {{ Config('params.task_status')[$task->status] }}
+                  </td>
+                  <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
+                      @if(stristr($task->ekp_task_type, 'BUG'))
+                          <span class="label label-danger">B</span>
+                      @elseif(stristr($task->ekp_task_type, '咨询'))
                           <span class="label label-info">咨</span>
-                        @elseif(stristr($task->ekp_task_type, '需求'))
+                      @elseif(stristr($task->ekp_task_type, '需求'))
                           <span class="label label-success">需</span>
-                		@else
-                		<span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>
-                		@endif
-                  <a href="{{URL('task/get_details')}}/{{$task->id}}"></a>@if(mb_strlen($task->task_title)>21) {{mb_substr($task->task_title,0,21)}}...@else {{$task->task_title}} @endif
+                      @else
+                          <span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>
+                      @endif
+                      {{$task->task_title}}
                   </td>
                   <td>{{$task->customer_name}}</td>
                   <td>{{$task->abu_pm}}</td>
                   <td class="@if($task->status=='1')or_doing @endif">{!! UserHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
                   <td class="@if($task->status=='2')or_doing @endif">{!! UserHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
                   <td>@if($task->ekp_expect) {{substr($task->ekp_expect,0,10)}} @endif</td>
+                  <td>{{$task->comment}}</td>
                   {{--<td>--}}
                       {{--<span name="chk_finish" data-toggle="tooltip" data-placement="top"--}}
                             {{--class="glyphicon chk_finish @if($task->status == 1) glyphicon-pushpin @elseif($task->status == 2) glyphicon-check @else glyphicon-flag @endif"--}}
@@ -93,7 +99,7 @@
             }
         });
 
-        $(document).on('click', '#example tr', function () {
+        $(document).on('click', '#example tbody tr', function () {
             var data = $(this);
             $.modal({
                 keyboard: false,

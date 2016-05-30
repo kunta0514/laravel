@@ -75,6 +75,7 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     Route::get('/test', 'TaskController@test');
     Route::get('/test_page', 'TaskController@test_page');
     Route::get('/history/{type}', 'TaskController@history');
+    Route::get('/export/{type}','TaskController@export');
 
     Route::post('/detail_edit','TaskController@detail_edit');
 
