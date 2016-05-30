@@ -49,7 +49,7 @@
                     <th style="width: 40px">PM</th>
                     <th style="width: 80px">开发</th>
                     <th style="width: 80px">测试</th>
-                    <th style="width: 800px">完成时间</th>
+                    <th style="width: 80px">完成时间</th>
                     <th style="width: 300px">备注</th>
                 </tr>
                 </thead>
