@@ -79,7 +79,8 @@
 
                     <label for="select-date" class="control-label col-sm-2">完成时间</label>
                     <div class="col-sm-4">
-                        <input type="text" id="actual_finish_date" value="{{ $task->actual_finish_date}}" class="form-control" placeholder="实际完成时间" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
+                        <input type="text" id="actual_finish_date" value="@if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '-0001-11-30' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1900-01-01' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01') @else <?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?> @endif"
+                               class="form-control" placeholder="实际完成时间" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
                     </div>
                 </div>
             </div>
@@ -125,13 +126,13 @@
         }
     };
 
+    //选到已完成，自动当前日期.
     $('#select_status').on('change',function(){
-        if(this.value == '3' && $("#actual_finish_date").val() === ''){
+        if(this.value == '3' && $("#actual_finish_date").val() == ' '){
             $("#actual_finish_date").datepicker('setDate',new Date());
-
         }
-        console.log(this.value);
-        console.log($("#actual_finish_date").val());
+//        console.log(this.value);
+//        console.log($("#actual_finish_date").val());
     })
 
     $('#btnSubmit').on('click',function(){

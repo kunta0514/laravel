@@ -4,7 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use App\Task;
+use App\Models\Task;
+use Log;
 
 include 'simple_html_dom.php';
 
@@ -130,9 +131,12 @@ class SyncTask extends Command
                 $customers = DB::table('customers')->where('name','like','%'.$task_cst_name.'%')
                     ->orWhere('ekp_latest_name','like','%'.$task_cst_name.'%')
                     ->get();
+
                 if(!empty($customers)){
                     if(count($customers) == 1){
-                        $mysql_task->customer_uuid = $customers->uuid;
+//                        print_r($customers[0]->uuid);
+//                        die;
+                        $mysql_task->customer_uuid = $customers[0]->uuid;
                     }
                     if(count($customers) > 1){
                         foreach($customers as $val){
@@ -141,7 +145,6 @@ class SyncTask extends Command
                         }
                     }
                 }
-
                 $mysql_task->save();
                 $count++;
 
@@ -153,6 +156,7 @@ class SyncTask extends Command
 //                print_r(iconv('utf-8','gbk',$task_status).chr(10));
             }
         }
+        Log::info('同步任务系统记录'.date("Y-m-d H:i:s",strtotime("now")));
         return $count;
     }
 

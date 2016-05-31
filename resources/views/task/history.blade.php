@@ -78,7 +78,7 @@
                         <td>{!! UserHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
                         <td>{!! UserHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
                         <td>
-                            @if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01')
+                            @if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '-0001-11-30' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1900-01-01' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01')
                                 <span></span>
                             @else
                                 <?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?>
@@ -170,6 +170,25 @@
 //                }
 //            });
 //        });
+        $(document).on("keypress", '.search-form[type="search"]', function (e) {
+            if (e.keyCode == "13") {
+                var keyword = $(this).val();
+//                if(keyword === '') {
+//                    $.toast("请输入查找内容","info");
+//                    return false;
+//                }
+                tt.search(keyword).draw();
+            }
+        });
+
+        $(document).on("click", ".btn-search", function (e) {
+            var keyword = $('.search-form[type="search"]').val();
+            if(keyword === '') {
+                $.toast("请输入查找内容","info");
+                return false;
+            }
+            tt.search(keyword).draw();
+        });
     </script>
 
 

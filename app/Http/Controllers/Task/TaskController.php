@@ -462,6 +462,12 @@ class TaskController extends Controller
         })->export('xls');
     }
 
+    public function sync_task()
+    {
+        $result=Artisan::call('command:sync_task', []);
+        return $result;
+    }
+
 
     private function get_userName($user_code)
     {
@@ -501,7 +507,7 @@ class TaskController extends Controller
         }
     }
 
-    public function object_array($array)
+    protected function object_array($array)
     {
         if(is_object($array))
         {
