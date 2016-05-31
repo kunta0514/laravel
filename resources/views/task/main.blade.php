@@ -98,7 +98,7 @@
             lengthMenu: [50, 100, "ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
             paging: false,//分页
             ordering: true,//是否启用排序
-            order: [ [ 0, 'desc' ]],
+//            order: [ [ 0, 'desc' ]],
 //                searching: true,//搜索
             dom: "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
             language: {
