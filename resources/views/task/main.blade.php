@@ -93,7 +93,7 @@
 </div>
 
 <script type="text/javascript">
-    $(function() {
+
         var tt = $('#example').dataTable( {
             lengthMenu: [50, 100, "ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
             paging: false,//分页
@@ -158,7 +158,10 @@
         $('#example tbody').on('click',"td a[name='view_on_erp']",function(e){
             e.stopPropagation();
             e.preventDefault();
-            oprViewOnEKP(this);
+//            console.log($(this).attr("rel"));
+            if ($(this).attr("rel") != "") {
+                window.open("http://pd.mysoft.net.cn" + $(this).attr("rel"));
+            }
         });
 
         //sync_task
@@ -181,31 +184,7 @@
             });
         });
 
-//    //自动同步
-//     setInterval(function(){
-//       $.ajax({
-//           type:'GET',
-//           url:'/task/sync_task/'
-//         });
-//     },1000*60*5);
-//        } );
 
-    function oprViewOnEKP(obj) {
-        if ($(obj).attr("rel") != "") {
-            window.open("http://pd.mysoft.net.cn" + $(obj).attr("rel"));
-        }
-//        else {
-//            $.ajax({
-//                type: 'GET',
-//                url: '/task/view_pd/' + $(obj).attr("rel"),
-//                success: function (data) {
-//                    window.open("http://pd.mysoft.net.cn" + data);
-//                },
-//                error: function (data) {
-//                    console.info(data);
-//                }
-//            });
-//        }
-    }
+
 </script>
 @stop
