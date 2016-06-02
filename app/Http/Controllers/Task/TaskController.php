@@ -563,4 +563,17 @@ class TaskController extends Controller
         echo date('Y-m-d H:i:s', mktime(0, 0, 0,$season*3-3+1,1,date('Y'))),"\n";
         echo date('Y-m-d H:i:s', mktime(23,59,59,$season*3,date('t',mktime(0, 0 , 0,$season*3,1,date("Y"))),date('Y'))),"\n";
     }
+
+    public function mobile()
+    {
+        if (!Cache::has('developers')) {
+            Cache::forever('developers', User::where('role', 0)->get());
+        }
+        if (!Cache::has('testers')) {
+            Cache::forever('testers', User::where('role', 1)->get());
+        }
+        $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
+        return view('task.index', ['theme' => 'default', 'tasks' => $task_list, 'developers' => Cache::get('developers'), 'testers' => Cache::get('testers')]);
+
+    }
 }
