@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Solution;
 use App\Utility\PickHtml;
 use Illuminate\Http\Request;
 use App\WF_Solution;
-use App\CheckPersonalize;
+use App\Models\CheckPersonalize;
 use App\Models\Version;
 use Cache;
 
