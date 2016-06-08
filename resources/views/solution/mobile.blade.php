@@ -60,90 +60,7 @@
 
     }
 </style>
-<script type="text/javascript">
-    $(function(){
-        //检测按钮 事件绑定
-        $("#btnCheck").unbind("click").bind("click",function(){
-            var customer_name= $.trim($("#customer_name").val());
-            if(customer_name.length==0)
-            {
-                $("div[name='divalert']").show();
-                return;
-            }
-            $("div[name='divalert']").hide();
-            $("div[name='check_process_bar']").show();
-            //异步请求
-            $.get("/solution/mobile/check", { customer_name: customer_name },function(data){
-                var Json_data=eval("("+data+")");
-                $("#current_id").val(Json_data.id);
-//                console.info(Json_data);
-                $("div.panle4Check h4").html(Json_data.customer_name+" <small>"+Json_data.alias+"</small>");
 
-                if(Json_data.result==1)
-                {
-                    $("div[name='result']").attr("class","").attr("class","alert alert-success my_alert");
-                    $("div[name='result']").html("可以直接使用更新标准包...")
-                }else if(Json_data.result==0)
-                {
-                    $("div[name='result']").attr("class","").attr("class","alert alert-danger my_alert");
-                    $("div[name='result']").html("需要升级任务给工作流团队...")
-                }else{
-                    $("div[name='result']").attr("class","").attr("class","alert alert-warning my_alert");
-                    $("div[name='result']").html("臣妾判断不出来...")
-                }
-                var version=$("div.version");
-                version.html("");
-                $.each(Json_data.version_list,function(n,value){
-                    version.append($("<li></li>").html( value));
-                });
-                var code_lib=$("div.code_lib");
-                code_lib.html("");
-                $.each(Json_data.code_lib,function(n,value){
-                    code_lib.append($("<li></li>").html(value.project_name+"("+value.workflow_version+")"));
-                });
-                var history_tasks=$("div[name='history_tasks']");
-                history_tasks.html("");
-                $.each(Json_data.task_list,function(n,value){
-                    history_tasks.append($("<li></li>").html("<a target='_blank' href='"+value.url+"'>"+value.name+"</a>"));
-                });
-                $("span.remark").html(Json_data.message);
-                $("div[name='check_process_bar']").hide();
-            } );
-        });
-
-        $(document).on("keypress", '#customer_name', function (e) {
-            if (e.keyCode == "13") {
-                $("#btnCheck").click();
-            }
-        });
-        //
-        $("input[name='is_valid']").on('click',function(){
-            $(this).attr("is_check")=="true"?$(this).attr("is_check","false"):$(this).attr("is_check","true")
-        });
-
-        //搜索按钮 事件绑定
-        $("#btnSearch").unbind("click").bind("click",function(){
-            var txtSearch= $.trim($("#txtSearch").val());
-            $.get("/solution/mobile/search", { KeyValue: txtSearch },function(data){
-                console.info(data);
-            } );
-        });
-
-        //反馈按钮点击事件
-        $("button[name='btn_feedback']").on("click",function(){
-            var data=new Object();
-            data.id=$("#current_id").val()==""?0:$("#current_id").val();
-            data.result=$("input[name='is_valid']").attr("is_check");
-            console.info(data);
-//            alert("4323");
-        });
-    });
-    function oprClick_title(obj)
-    {
-        $("#myModalLabel").html($(obj).attr("s_title"));
-        $("div.modal-body").html($(obj).attr("rel"));
-    }
-</script>
 
 <div class="container">
     <div class="page-header">
@@ -194,15 +111,6 @@
                     <tr>
                         <td class="border_r_1"><h5>备注：</h5></td>
                         <td><span class="remark"></span></td>
-                    </tr>
-                    <tr class="hidden">
-                        <td class="border_r_1"><h5>反馈：</h5></td>
-                        <td class="checkbox">
-                            <label>
-                                <input type="checkbox" name="is_valid" is_check="false">是否有效
-                            </label>
-                            <button name="btn_feedback" type="button" class="btn btn-default" style="float: right;">提交</button>
-                        </td>
                     </tr>
                 </table>
                 <!-- Table -->
@@ -255,19 +163,77 @@
             </div>
         </div>
     </div>
-<!-- Modal -->
-<div class="modal fade my_image bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+<script type="text/javascript">
+    $(function() {
+        var mobileToolPage = {
+            InputSearch: $("#customer_name"),
+            BtnSearch: $("#btnCheck"),
+            ProcessBar: $("div[name='check_process_bar']"),
+            EmptyAlert: $("div[name='divalert']"),
+            CustomerName: $("div.panle4Check h4"),
+            CheckResult: $("div[name='result']"),
+            ERPMsg: $("div[name='version']"),
+            WFLib: $("div[name='code_lib']"),
+            TaskHistory: $("div[name='history_tasks']"),
+            Remark: $("span.remark"),
+            InitPage: function () {
+                $(document).on("click", '#btnCheck', function (e) {
+                    this.DoSearch();
+                }.bind(this));
+
+            },
+            DoSearch: function () {
+                if(!this.Valid())
+                {
+                    return;
+                }
+                this.EmptyAlert.hide();
+                this.ProcessBar.show();
+                $.get("/solution/mobile/check", {customer_name: this.InputSearch.val()}, function (data) {
+                    var Json_data = eval("(" + data + ")");
+                    this.CustomerName.html(Json_data.customer_name + " <small>" + Json_data.alias + "</small>");
+                    switch (Json_data.result) {
+                        case 0:
+                            this.CheckResult.attr("class", "").attr("class", "alert alert-danger my_alert").html("需要升级任务给工作流团队...");
+                            break;
+                        case 1:
+                            this.CheckResult.attr("class", "").attr("class", "alert alert-success my_alert").html("可以直接使用更新标准包...");
+                            break;
+                        default :
+                            this.CheckResult.attr("class", "").attr("class", "alert alert-warning my_alert").html("臣妾判断不出来...");
+                            break;
+                    }
+                    this.ERPMsg.html("");
+                    $.each(Json_data.version_list, function (n, value) {
+                        this.ERPMsg.append($("<li></li>").html(value));
+                    }.bind(this));
+                    this.WFLib.html("");
+                    $.each(Json_data.code_lib, function (n, value) {
+                        this.WFLib.append($("<li></li>").html(value.project_name + "(" + value.workflow_version + ")"));
+                    }.bind(this));
+                    this.TaskHistory.html("");
+                    $.each(Json_data.task_list, function (n, value) {
+                        this.TaskHistory.append($("<li></li>").html("<a target='_blank' href='" + value.url + "'>" + value.name + "</a>"));
+                    }.bind(this));
+                    this.Remark.html(Json_data.message);
+                    this.ProcessBar.hide();
+                }.bind(this));
+            },
+            Valid:function(){
+                if($.trim(this.InputSearch.val()).length==0)
+                {
+                    this.EmptyAlert.show();
+                    return false;
+                }
+                return true;
+            },
+        };
+
+        $(document).on("keypress", '#customer_name', function (e) {
+            if (e.keyCode == "13") {
+                mobileToolPage.BtnSearch.click();
+            }
+        });
+        mobileToolPage.InitPage();
+    });
+</script>

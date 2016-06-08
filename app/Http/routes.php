@@ -62,6 +62,7 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/', 'TaskController@index');
     Route::get('/detail/{id}','TaskController@detail');
+    Route::get('/mobile','TaskController@mobile');
     Route::get('/wonder4','TaskController@wonder4');
     Route::get('/fast_handle/{id}', 'TaskController@fast_handle');
     Route::get('/view_pd/{task_no}', 'TaskController@view_pd');
