@@ -42,9 +42,11 @@ class SyncCustomer extends Command
     public function handle()
     {
         //
-        $this->sync_customer();
+//        $this->sync_customer();
+        $this->sync_customer_task();
     }
 
+    //刷新UUID
     protected function sync_customer()
     {
         $customer = DB::table('Projects')->get();
@@ -61,7 +63,7 @@ class SyncCustomer extends Command
             ->select('customers.uuid','projects2workflow.*')
             ->get();
 
-        print_r($customer_details);
+//        print_r($customer_details);
 
         foreach($customer_details as $val) {
             $customer_details = new CustomerDetail();
@@ -77,6 +79,45 @@ class SyncCustomer extends Command
             $customer_details->save();
 //        print_r($customer);
         }
+    }
 
+    protected function sync_customer_task()
+    {
+        $tasks = DB::table('tasks')
+//            ->where('developer_workload',0)
+            ->where('task_no','>','2016')
+            ->get();
+
+        foreach($tasks as $task)
+        {
+            $customers = DB::table('customers')->where('name','like','%'.$task->customer_name.'%')
+                ->orWhere('ekp_latest_name','like','%'.$task->customer_name.'%')
+                ->get();
+
+
+            if(!empty($customers)){
+                if(count($customers) == 1){
+//                        print_r($customers[0]->uuid);
+//                        die;
+                    $uuid = $customers[0]->uuid;
+                }
+                if(count($customers) > 1){
+                    foreach($customers as $val){
+                        $uuid = $val->uuid;
+                        break;
+                    }
+                }
+                DB::table('tasks')->where('id', $task->id)->update(['customer_uuid' => $uuid]);
+                echo $this->print_log("任务 $task->task_no 客户uuid同步中 $uuid ");
+            }
+
+        }
+
+
+    }
+
+    protected function print_log($context)
+    {
+        echo iconv('utf-8','gbk',$context).chr(10);
     }
 }

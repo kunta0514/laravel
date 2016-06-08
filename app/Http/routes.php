@@ -82,6 +82,16 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     Route::resource('task', 'TaskController@index');
 });
 
+Route::group(['prefix' => 'demand', 'namespace' => 'Demand'], function()
+{
+
+    //get、post等按顺序，按分组些，不能穿插写
+    Route::get('/', 'DemandController@index');
+    Route::get('/create', 'DemandController@create');
+    Route::resource('demand', 'DemandController@index');
+});
+
+
 Route::group(['prefix' => 'solution', 'namespace' => 'Solution'], function()
 {
     Route::get('/', 'SolutionController@index');
@@ -143,6 +153,9 @@ Route::group(['prefix' => 'customer', 'namespace' => 'Customer'], function()
     Route::resource('customer', 'CustomerController@index');
 //
     Route::get('/','CustomerController@index');
+    Route::get('/detail/{id}','CustomerController@detail');
+    Route::get('/mapped/{task_id}','CustomerController@mapped');
+
 //    Route::get('excel/import','ExcelController@import');
 });
 

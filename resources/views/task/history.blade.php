@@ -73,10 +73,10 @@
                             @endif
                             {{$task->task_title}}
                         </td>
-                        <td>{{$task->customer_name}}</td>
+                        <td><a name="view_on_cus" href="#" rel="{{$task->customer_uuid}}">{{$task->customer_name}}</a></td>
                         <td>{{$task->abu_pm}}</td>
-                        <td>{!! UserHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
-                        <td>{!! UserHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
+                        <td>{!! AppHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
+                        <td>{!! AppHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
                         <td>
                             @if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '-0001-11-30' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1900-01-01' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01')
                                 <span></span>
@@ -122,13 +122,7 @@
         });
 
         $(document).on('click', '#example tbody tr', function () {
-//            var data = tt.row(this).data();
-//            if ($(this).hasClass('selected')) {
-//                $(this).removeClass('selected');
-//            }else{
-//                $(this).addClass('selected');
-//            }
-            console.log($(this).attr('rel'));
+//            console.log($(this).attr('rel'));
             $.modal({
                 keyboard: true,
                 width:598,
@@ -138,6 +132,21 @@
                     // return false;
                 }
             })
+        } );
+
+        $(document).on('click', '#example tbody tr a[name=view_on_cus]', function () {
+            console.log($(this)[0].innerText);
+            console.log($(this).attr('rel'));
+            return false;
+//            $.modal({
+//                keyboard: true,
+//                width:598,
+//                minHeight:518,
+//                remote: '/customer/detail/' + $(this).attr('rel') + '?name=' + $(this)[0].innerText,
+//                okHide: function () {
+//                    // return false;
+//                }
+//            })
         } );
 
         $(document).on('click', '#example tbody tr a[name=view_on_erp]', function () {
@@ -158,18 +167,7 @@
             }
             return false;
         } );
-//        $(document).on('click','#export',function(){
-//            $.ajax({
-//                type:'GET',
-//                url:'/task/view_pd/'+task_no,
-//                success:function(data) {
-//                    window.open("http://pd.mysoft.net.cn"+data) ;
-//                },
-//                error:function(data){
-//                    console.info(data);
-//                }
-//            });
-//        });
+
         $(document).on("keypress", '.search-form[type="search"]', function (e) {
             if (e.keyCode == "13") {
                 var keyword = $(this).val();

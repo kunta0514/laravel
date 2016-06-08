@@ -39,6 +39,9 @@
             margin-left: 10px;
             margin-right: 10px;;
         }
+        html body{
+            font-family: Microsoft YaHei,Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif;
+        }
     </style>
 </head>
 <body>

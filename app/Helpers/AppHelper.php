@@ -11,7 +11,7 @@ namespace App\Helpers;
 use Cache;
 use DB;
 
-class UserHelper
+class AppHelper
 {
     public static function shout($string)
     {

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class CustomerController extends Controller
 {
@@ -61,6 +63,7 @@ class CustomerController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -84,5 +87,18 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function detail($id)
+    {
+        $customer = null;
+        if(!empty($id)){
+            $customer = Customer::find($id);
+
+            $customer_details = DB::table('customer_details')->where('customer_uuid',$customer->uuid)->get();
+        }
+//      print_r($customer_details);
+//      TODO::人员下拉框可以提炼组件化
+        return view('customer.details', ['theme' => 'default', 'customer' =>  $customer, 'customer_details' => $customer_details]);
     }
 }

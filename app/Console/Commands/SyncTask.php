@@ -63,9 +63,6 @@ class SyncTask extends Command
         $params = "&PMName=$pm&PageIndex=$cur_page";
         $url = $url .$params;
 
-//        print_r($url);
-//        die;
-
         $method = 'GET';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -79,18 +76,13 @@ class SyncTask extends Command
         if ($method === 'POST')
         {
             curl_setopt($ch, CURLOPT_POST, true );
-//            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
         }
         $result = curl_exec($ch);
-//        print_r($result);
-//        die;
         $j = json_decode($result);
 
         $total_count = $j->TotalCount;
         $html = $j->html;
 
-//        print_r($html);
-//        die;
         $count=0;
         $html = str_get_html($html);
         foreach($html->find('div[class*=singleRequirementCard]') as $task_node)
@@ -107,7 +99,6 @@ class SyncTask extends Command
             $task_status = $task_node->find('div[class*=status]',0)->plaintext;
 
             //判断任务是否已经存在，存在则不同步
-            //DB::table('users')->where('name', 'John')->pluck('name');
             $exits_task_no = DB::table('tasks')->where('task_no',$task_no)->pluck('task_no');
             if(empty($exits_task_no))
             {
@@ -134,8 +125,6 @@ class SyncTask extends Command
 
                 if(!empty($customers)){
                     if(count($customers) == 1){
-//                        print_r($customers[0]->uuid);
-//                        die;
                         $mysql_task->customer_uuid = $customers[0]->uuid;
                     }
                     if(count($customers) > 1){
@@ -147,13 +136,6 @@ class SyncTask extends Command
                 }
                 $mysql_task->save();
                 $count++;
-
-//                print_r(iconv('utf-8','gbk',$task_no).chr(10));
-//                print_r(iconv('utf-8','gbk',$task_title).chr(10));
-//                print_r(iconv('utf-8','gbk',$task_cst_name).chr(10));
-//                print_r(iconv('utf-8','gbk',$ekp_task_type).chr(10));
-//                print_r(iconv('utf-8','gbk',$task_apu_pm).chr(10));
-//                print_r(iconv('utf-8','gbk',$task_status).chr(10));
             }
         }
         Log::info('同步任务系统记录'.date("Y-m-d H:i:s",strtotime("now")));
@@ -162,7 +144,6 @@ class SyncTask extends Command
 
     protected function sync_ekp_oid()
     {
-//        $query = '201603';
         $tasks =  DB::table('tasks')->where('ekp_oid', '')
 //            ->where('task_no','like', $query.'%')
             ->orderBy('task_no','desc')->get();
@@ -277,13 +258,10 @@ class SyncTask extends Command
             $str = ['【','】'];
             $task_no_cur =trim(str_replace($str,"",$task_no_cur));
             if($task_no_cur == $task_no) {
-//                $ekp_oid = $task_node->find('div[class*=title]', 0)->children(1)->attr['href'];
                 $ekp_task_type = $task_node->find('li[title=需求类型]',0)->plaintext;
-//                print_r($ekp_task_type);
             }
         }
         return $ekp_task_type;
-//        return $ekp_task_type;
     }
 
 }

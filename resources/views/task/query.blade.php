@@ -18,7 +18,7 @@
             cursor: pointer;
         }
     </style>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
                 <div class="input-group pull-left">
@@ -48,7 +48,8 @@
                     <th style="width: 50px">PM</th>
                     <th style="width: 50px">开发</th>
                     <th style="width: 50px">测试</th>
-                    {{--<th style="width: 100px">完成时间</th>--}}
+                    <th style="width: 100px">完成时间</th>
+                    <th style="width: 300px">备注</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -125,7 +126,8 @@
                     { "data": "abu_pm" },
                     { "data": "dev_name" },
                     { "data": "tester_name" },
-//                    { "data": "actual_finish_date" }
+                    { "data": "actual_finish_date" },
+                    { "data": "comment" }
                 ],
                 //隐藏ID
                 columnDefs:[
@@ -138,6 +140,13 @@
                 rowCallback:function(row, data){
                     console.log(data);
                     $('td:eq(0)', row).html('<a target="_blank" href=' + data.ekp_oid + ' name="view_on_erp" >' + data.task_no + '</a>');
+                    var dd = data.actual_finish_date.substring(0,10);
+                    if(dd == '-0001-11-3' || dd == '1900-01-01'){
+                        $('td:eq(6)', row).html('');
+                    }else{
+                        $('td:eq(6)', row).html(dd);
+                    }
+
                 }
             });
 

@@ -75,8 +75,8 @@
                       </td>
                       <td>{{$task->customer_name}}</td>
                       <td>{{$task->abu_pm}}</td>
-                      <td class="@if($task->status=='1')or_doing @endif">{!! UserHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
-                      <td class="@if($task->status=='2')or_doing @endif">{!! UserHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
+                      <td class="@if($task->status=='1')or_doing @endif">{!! AppHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
+                      <td class="@if($task->status=='2')or_doing @endif">{!! AppHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
                       <td>@if($task->ekp_expect) {{substr($task->ekp_expect,0,10)}} @endif</td>
                       <td>{{$task->comment}}</td>
                       {{--<td>--}}

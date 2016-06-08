@@ -249,7 +249,7 @@ class TaskController extends Controller
             if(!empty($request->task_type)){
                 $query['task_type'] = $request->task_type;
             }
-            print_r($query);
+//            print_r($query);
 //            $query['developer_workload'] = $request->developer_workload;
 //            $query['tester'] = $request->tester;
 //            $query['tester_workload'] = $request->tester_workload;
@@ -374,15 +374,13 @@ class TaskController extends Controller
                 $query_begin = date("Y",mktime(0,0,0,date("m"),1,date("Y")));
                 $query_end = null;
                 $tasks = DB::table('tasks')
-//            ->where('developer_workload',0)
                     ->where('task_no','>',$query_begin)
                     ->get();
                 break;
             case 'month':
-                $query_begin = date("Ymd",mktime(0,0,0,date("m"),1,date("Y")));
+                $query_begin = date("Ymd",mktime(0,0,0,date("m")-1,1,date("Y")));
                 $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
                 $tasks = DB::table('tasks')
-//            ->where('developer_workload',0)
                     ->where('task_no','>',$query_begin)
                     ->where('task_no','<',$query_end)
                     ->get();
@@ -391,24 +389,18 @@ class TaskController extends Controller
                 $query_begin = date("Ymd",strtotime("-1 week Monday"));
                 $query_end = date("Ymd",strtotime("+0 week Monday"));
                 $tasks = DB::table('tasks')
-//            ->where('developer_workload',0)
                     ->where('task_no','>',$query_begin)
                     ->where('task_no','<',$query_end)
                     ->get();
                 break;
             case 'yd':
-//                $query = '2016';
                 $tasks = DB::table('tasks')
                     ->where('abu_pm','刘嵩')
-//                    ->where('task_no','like',$query.'%')
                     ->orderBy('task_no','DESC')
                     ->get();
                 break;
 
         }
-
-//echo $query_begin;
-//echo $query_end;
         return view('task.history', ['theme' => 'default','tasks' => $tasks, 'type' => $type]);
     }
 
@@ -420,15 +412,14 @@ class TaskController extends Controller
         switch($type)
         {
             case 'year':
-                $query_begin = '2016';
-                $tasks = DB::table('tasks')
-//            ->where('developer_workload',0)
+                $query_begin = date("Y",mktime(0,0,0,date("m"),1,date("Y")));
+                $tasks = DB::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
                     ->where('task_no','>',$query_begin)
                     ->get();
                 break;
             case 'month':
-                $query_begin = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),1,date("Y")));
-                $query_end = date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("t"),date("Y")));
+                $query_begin = date("Ymd",mktime(0,0,0,date("m")-1,1,date("Y")));
+                $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
 
                 $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
                     ->where('task_no','>',$query_begin)
@@ -436,17 +427,16 @@ class TaskController extends Controller
                     ->get();
                 break;
             case 'week':
-                $query = '201605';
-                $tasks = DB::table('tasks')
+                $query_begin = date("Ymd",strtotime("-1 week Monday"));
+                $query_end = date("Ymd",strtotime("+0 week Monday"));
+                $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
 //            ->where('developer_workload',0)
                     ->where('task_no','like',$query.'%')
                     ->get();
                 break;
             case 'yd':
-                $query = '2016';
-                $tasks = DB::table('tasks')
+                $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
                     ->where('abu_pm','刘嵩')
-                    ->where('task_no','like',$query.'%')
                     ->orderBy('task_no','DESC')
                     ->get();
                 break;
@@ -454,6 +444,7 @@ class TaskController extends Controller
         }
         $cellData = [];
         $cellData = $tasks->toArray();
+//        print_r($tasks);
 
         Excel::create('本周任务明细-2016-05',function($excel) use ($cellData){
             $excel->sheet('score', function($sheet) use ($cellData){

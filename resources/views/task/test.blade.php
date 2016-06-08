@@ -61,8 +61,8 @@
                         </td>
                         <td>{{$task->customer_name}}</td>
                         <td>{{$task->abu_pm}}</td>
-                        <td>{!! UserHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
-                        <td>{!! UserHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
+                        <td>{!! AppHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
+                        <td>{!! AppHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
                         <td>{{$task->comment}}</td>
                     </tr>
                 @endforeach

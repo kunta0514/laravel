@@ -205,7 +205,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'UserHelper'   => App\Helpers\UserHelper::class,
+        'AppHelper'   => App\Helpers\AppHelper::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Pinyin'    => 'Overtrue\Pinyin\Pinyin',
