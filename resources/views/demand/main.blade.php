@@ -14,7 +14,7 @@
             line-height: inherit;
             vertical-align: middle;
         }
-        #tb_demand tr{
+        tr{
             cursor: pointer;
         }
     </style>
@@ -50,37 +50,15 @@
                         <tbody>
 
                         @foreach($demands as $k=>$demand)
-                            {{--<tr rel="{{$task->id}}" >--}}
-                            {{--<td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>--}}
-                            {{--<td>--}}
-                            {{--{{ Config('params.task_status')[$task->status] }}--}}
-                            {{--</td>--}}
-                            {{--<td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">--}}
-                            {{--@if(stristr($task->ekp_task_type, 'BUG'))--}}
-                            {{--<span class="label label-danger">B</span>--}}
-                            {{--@elseif(stristr($task->ekp_task_type, '咨询'))--}}
-                            {{--<span class="label label-info">咨</span>--}}
-                            {{--@elseif(stristr($task->ekp_task_type, '需求'))--}}
-                            {{--<span class="label label-success">需</span>--}}
-                            {{--@else--}}
-                            {{--<span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>--}}
-                            {{--@endif--}}
-                            {{--{{$task->task_title}}--}}
-                            {{--</td>--}}
-                            {{--<td><a name="view_on_cus" href="#" rel="{{$task->customer_uuid}}">{{$task->customer_name}}</a></td>--}}
-                            {{--<td>{{$task->abu_pm}}</td>--}}
-                            {{--<td>{!! UserHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>--}}
-                            {{--<td>{!! UserHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>--}}
-                            {{--<td>--}}
-                            {{--@if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '-0001-11-30' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1900-01-01' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01')--}}
-                            {{--<span></span>--}}
-                            {{--@else--}}
-                            {{--<?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?>--}}
-                            {{--@endif--}}
-
-                            {{--</td>--}}
-                            {{--<td>{{$task->comment}}</td>--}}
-                            {{--</tr>--}}
+                            <tr rel="{{$demand->id}}" >
+                                <td>{{$demand->demand_no}}</td>
+                                <td>
+                                    {{ Config('params.task_status')[$demand->status] }}
+                                </td>
+                                <td data-toggle="tooltip" data-placement="top" title="{{$demand->demand_name}}">
+                                    {{$demand->demand_name}}
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -140,12 +118,7 @@
                     </table>
                 </div>
             </div>
-
         </div>
-        {{--<div class="row">{!! var_dump(UserHelper::user_name()) !!}</div>--}}
-
-
-
     </div>
 
 
@@ -182,43 +155,11 @@
                 keyboard: true,
                 width:598,
                 minHeight:518,
-                remote: '/task/detail/' + $(this).attr('rel'),
+                remote: '/demand/edit/' + $(this).attr('rel'),
                 okHide: function () {
                     // return false;
                 }
             })
-        } );
-
-        $(document).on('click', '#tb_demand tbody tr a[name=view_on_cus]', function () {
-            return false;
-            $.modal({
-                keyboard: true,
-                width:598,
-                minHeight:518,
-                remote: '/customer/detail/' + $(this).attr('rel') + '?name=' + $(this)[0].innerText,
-                okHide: function () {
-                    // return false;
-                }
-            })
-        } );
-
-        $(document).on('click', '#tb_demand tbody tr a[name=view_on_erp]', function () {
-            var task_no = $(this)[0].innerText;
-            if($(this).attr("href")!="") {
-                window.open("http://pd.mysoft.net.cn"+ $(this).attr("href"));
-            }else{
-                $.ajax({
-                    type:'GET',
-                    url:'/task/view_pd/'+task_no,
-                    success:function(data) {
-                        window.open("http://pd.mysoft.net.cn"+data) ;
-                    },
-                    error:function(data){
-                        console.info(data);
-                    }
-                });
-            }
-            return false;
         } );
 
         $(document).on('click','#demand-add',function(){

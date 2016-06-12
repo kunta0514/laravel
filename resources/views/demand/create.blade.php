@@ -8,8 +8,6 @@
 </style>
 <div class="modal-body">
     <form method="post" role="form" id="form_task" class="">
-        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-
         {{--<div class="row">--}}
             {{--<div class="col-sm-12">--}}
                 {{--<div class="form-group">--}}
@@ -44,6 +42,20 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="select_status" class="control-label">状态</label>
+                    <div>
+                        <select class="form-control" id="select_status" name="status">
+                            @foreach(Config('params.task_status') as $key=>$value)
+                                <option value="{{$key}}">{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div><!-- /.modal-content -->
 <div class="modal-footer">
@@ -53,7 +65,7 @@
         确定
     </button>
 </div>
-
+{{--<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>--}}
 <script type="text/javascript">
 
     $('#btnSubmit').on('click',function(){
@@ -61,15 +73,17 @@
             demand_name:$('#demand_name').val(),
             acceptance:$('#acceptance').val(),
             comment:$('#comment').val(),
+            status:$('#select_status').val()
         };
-
+        console.log(demand);
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',
             data: demand,
-            url: '/demand/create',
+            url: '/demand/store',
             success: function (data) {
 //                console.log(data);
+                location.reload();
             }
         })
     });

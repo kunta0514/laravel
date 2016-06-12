@@ -8,6 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Demand;
 use App\Models\Task;
+use App\Models\Serial;
+use DB;
+use Cache;
+use Log;
 
 class DemandController extends Controller
 {
@@ -36,6 +40,7 @@ class DemandController extends Controller
 //        $demand = Demand::where('id',0)->get();
 //        print_r($demand);
 //        die;
+
         return view('demand.create', ['theme' => 'default']);
     }
 
@@ -47,35 +52,47 @@ class DemandController extends Controller
      */
     public function store(Request $request)
     {
+//        echo "OK";
+//        die;
         //
         if (!empty($request->path())){
             $demand = new Demand();
-            if(empty($request->demand_name)){
-//                $query['demand_name'] = $request->demand_name;
-                $demand->demand_name = $request->demand_name;
-            }
-            if(empty($request->acceptance)){
-//                $query['acceptance'] = $request->acceptance;
-                $demand->acceptance = $request->acceptance;
-            }
-            if(empty($request->comment)){
-//                $query['comment'] = $request->comment;
-                $demand->comment = $request->comment;
-            }
             //需求编号需要一个生成规则，日期+流水号
-            $demand_no = date("Ymd",strtotime("now")).'-'.'A'.'001';
+//            $demand_no = date("Ymd",strtotime("now")).'-'.'A'.'001';
 
-            $demand_no = Cache::get('serial',function(){
-                $serial = [];
-                $cur_serial_key = date("Ymd",strtotime("now"));
-                $count = 1;
-                $serial[$cur_serial_key] = $count;
-                Cache::forever('serial', $serial);
-            });
+            $cur_serial_key = date("Ymd", strtotime("now"));
+            $cur_serial = DB::table('serial')->where('serial_key',$cur_serial_key )->get();
+            if(empty($cur_serial)){
+                $serial = new Serial();
+                $serial->serial_key = date("Ymd",strtotime("now"));
+                $serial->serial_value = 1;
+                $serial->save();
+                $demand_no = date("Ymd",strtotime("now")).'-'.'A'.'001';
+            }else{
+                $cur_serial_value = $cur_serial[0]->serial_value + 1;
+                if ($cur_serial_value < 10) {
+                    $cur_serial_value_str = 'A00' . $cur_serial_value;
+                }
+                if ($cur_serial_value >= 10 && $cur_serial_value < 100) {
+                    $cur_serial_value_str = 'A0' . $cur_serial_value;
+                }
+                if ($cur_serial_value > 100) {
+                    $cur_serial_value_str = 'A' . $cur_serial_value;
+                }
+                $demand_no = $cur_serial[0]->serial_key.'-'.$cur_serial_value_str;
+                Serial::where('id', $cur_serial[0]->id)
+                    ->update(['serial_value' => $cur_serial_value]);
+            }
 
             $demand->demand_no = $demand_no;
+            $demand->demand_name = $request->demand_name;
+            $demand->acceptance = $request->acceptance;
+            $demand->comment = $request->comment;
+            $demand->status = $request->status;
+//            print_r($demand->toArray());
+//            Log::info('执行'.$cur_serial_value);
             $demand->save();
-
+            die;
         }
     }
 
@@ -113,6 +130,23 @@ class DemandController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (!empty($request->path()) && !empty($id)) {
+            $query = [];
+            if(!empty($request->demand_name)){
+                $query['demand_name'] = $request->demand_name;
+            }
+            if(!empty($request->acceptance)){
+                $query['acceptance'] = $request->acceptance;
+            }
+            if(!empty($request->comment)){
+                $query['comment'] = $request->comment;
+            }
+            if(!empty($query)){
+                $result = DB::transaction(function () use ($id,$query) {
+                    DB::table('demands')->where('id', $id)->update($query);
+                });
+            }
+        }
     }
 
     /**
