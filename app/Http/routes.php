@@ -89,7 +89,10 @@ Route::group(['prefix' => 'demand', 'namespace' => 'Demand'], function()
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/', 'DemandController@index');
     Route::get('/create', 'DemandController@create');
-    Route::resource('demand', 'DemandController@index');
+    Route::get('/edit/{id}', 'DemandController@edit');
+    Route::post('/store', 'DemandController@store');
+    Route::post('/update/{id}', 'DemandController@update');
+//    Route::resource('demand', 'DemandController@index');
 });
 
 
