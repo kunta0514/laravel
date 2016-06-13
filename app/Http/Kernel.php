@@ -18,8 +18,8 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
 //        \App\Http\Middleware\VerifyCsrfToken::class,
-        \App\Http\Middleware\BeforMiddleware::class,
-        \App\Http\Middleware\AfterMiddleware::class,
+//        \App\Http\Middleware\BeforMiddleware::class,
+//        \App\Http\Middleware\AfterMiddleware::class,
     ];
 
     /**
@@ -31,7 +31,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'sql_begin' => \App\Http\Middleware\BeforMiddleware::class,
-        'sql_end' => \App\Http\Middleware\AfterMiddleware::class,
+//        'sql_begin' => \App\Http\Middleware\BeforMiddleware::class,
+//        'sql_end' => \App\Http\Middleware\AfterMiddleware::class,
     ];
 }

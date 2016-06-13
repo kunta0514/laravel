@@ -240,7 +240,7 @@ class TaskController extends Controller
             if(!empty($request->tester)){
                 $query['tester'] = $request->tester;
             }
-            if(!empty($request->tester_workload)){
+            if(!empty($request->tester_workload) || $request->tester_workload == 0){
                 $query['tester_workload'] = $request->tester_workload;
             }
             if(!empty($request->actual_finish_date)){

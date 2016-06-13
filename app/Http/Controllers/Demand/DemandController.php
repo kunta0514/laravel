@@ -52,9 +52,6 @@ class DemandController extends Controller
      */
     public function store(Request $request)
     {
-//        echo "OK";
-//        die;
-        //
         if (!empty($request->path())){
             $demand = new Demand();
             //需求编号需要一个生成规则，日期+流水号
@@ -90,9 +87,10 @@ class DemandController extends Controller
             $demand->comment = $request->comment;
             $demand->status = $request->status;
 //            print_r($demand->toArray());
-//            Log::info('执行'.$cur_serial_value);
+//            Log::info('执行'.time());
             $demand->save();
-            die;
+            return $demand->toJson();
+//            die;
         }
     }
 
@@ -141,6 +139,9 @@ class DemandController extends Controller
             if(!empty($request->comment)){
                 $query['comment'] = $request->comment;
             }
+            if(!empty($request->status)){
+                $query['status'] = $request->status;
+            }
             if(!empty($query)){
                 $result = DB::transaction(function () use ($id,$query) {
                     DB::table('demands')->where('id', $id)->update($query);
@@ -155,8 +156,23 @@ class DemandController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         //
+        $demand = new Demand();
+        $demand_no = 'test4';
+        $demand_name = 'test4';
+        $demand->demand_no = $demand_no;
+        $demand->demand_name = $demand_name;
+//            print_r($demand->toArray());
+//            Log::info('执行'.$cur_serial_value);
+        $demand->save();
+        Log::info('测试执行执行'.time());
+//        return $demand;
+    }
+
+    public function test()
+    {
+        return view('demand.test', ['theme' => 'default']);
     }
 }

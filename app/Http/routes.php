@@ -90,8 +90,11 @@ Route::group(['prefix' => 'demand', 'namespace' => 'Demand'], function()
     Route::get('/', 'DemandController@index');
     Route::get('/create', 'DemandController@create');
     Route::get('/edit/{id}', 'DemandController@edit');
+    Route::get('/test', 'DemandController@test');
+    Route::post('/destroy/{id}', 'DemandController@destroy');
     Route::post('/store', 'DemandController@store');
     Route::post('/update/{id}', 'DemandController@update');
+
 //    Route::resource('demand', 'DemandController@index');
 });
 
