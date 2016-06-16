@@ -152,7 +152,7 @@ Route::group(['prefix' => 'excel', 'namespace' => 'Excel'], function()
     Route::resource('excel', 'ExcelController@index');
 //
     Route::get('/','ExcelController@index');
-    Route::get('/export','ExcelController@index');
+    Route::get('/task/{type}','ExcelController@task');
 //    Route::get('excel/import','ExcelController@import');
 });
 

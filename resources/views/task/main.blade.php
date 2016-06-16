@@ -37,9 +37,9 @@
         <table class="table table-bordered table-hover" id="example">
             <thead>
                 <tr>
-                    <th title="序号">#</th>
                     <th style="min-width: 90px;">任务编号</th>
-                    <th style="width: 70px">状态(PRI)</th>
+                    <th >PRI</th>
+                    <th style="width: 70px">状态</th>
                     <th >任务标题</th>
                     <th style="width: 80px">客户</th>
                     <th style="width: 60px">PM</th>
@@ -53,10 +53,10 @@
             <tbody>
               @foreach($tasks as $k=>$task)
                   <tr rel="{{$task->id}}" >
-                      <th scope="row" >{{$k+1}}</th>
                       <td><a href="#" name="view_on_erp" rel="{{$task->ekp_oid}}">{{$task->task_no}}</a></td>
+                      <th scope="row" >{{$task->PRI}}</th>
                       <td>
-                          {{ Config('params.task_status')[$task->status] }}({{$task->PRI}})
+                          {{ Config('params.task_status')[$task->status] }}
                       </td>
                       <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
                           @if(stristr($task->ekp_task_type, 'BUG'))
@@ -95,7 +95,7 @@
         lengthMenu: [50, 100, "ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
         paging: false,//分页
         ordering: true,//是否启用排序
-//        order: [ [ 0, 'desc' ]],
+//        order: [ [ 0, 'asc' ]],
 //                searching: true,//搜索
         dom: "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         language: {
@@ -123,8 +123,8 @@
             $.modal({
                 keyboard: false,
                 width:598,
-                minHeight:233,
-                remote: '/task/detail/' + data.attr("rel"),
+                minHeight:518,
+                remote: '/task/edit/' + data.attr("rel"),
                 okHide: function () {
                     location.reload();
                 }

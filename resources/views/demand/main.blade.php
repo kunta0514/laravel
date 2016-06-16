@@ -43,7 +43,8 @@
                         <thead>
                         <tr>
                             <th style="width: 100px">需求编号</th>
-                            <th style="width: 70px">状态(PRI)</th>
+                            <th >PRI</th>
+                            <th style="width: 60px">状态</th>
                             <th >需求</th>
                         </tr>
                         </thead>
@@ -53,7 +54,10 @@
                             <tr rel="{{$demand->id}}" >
                                 <td>{{$demand->demand_no}}</td>
                                 <td>
-                                    {{ Config('params.task_status')[$demand->status] }}({{$demand->PRI}})
+                                    {{$demand->PRI}}
+                                </td>
+                                <td>
+                                    {{ Config('params.task_status')[$demand->status] }}
                                 </td>
                                 <td data-toggle="tooltip" data-placement="top" title="{{$demand->demand_name}}">
                                     {{$demand->demand_name}}
@@ -88,30 +92,35 @@
                         <thead>
                         <tr>
                             <th style="width: 100px">任务编号</th>
-                            <th style="width: 70px">状态(PRI)</th>
+                            <th >PRI</th>
+                            <th style="width: 60px">状态</th>
                             <th >任务</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         @foreach($tasks as $k=>$task)
-                            <tr rel="{{$task->id}}" >
-                            <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
-                            <td>
-                            {{ Config('params.task_status')[$task->status] }}({{$task->PRI}})
-                            </td>
-                            <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
-                            @if(stristr($task->ekp_task_type, 'BUG'))
-                            <span class="label label-danger">B</span>
-                            @elseif(stristr($task->ekp_task_type, '咨询'))
-                            <span class="label label-info">咨</span>
-                            @elseif(stristr($task->ekp_task_type, '需求'))
-                            <span class="label label-success">需</span>
-                            @else
-                            <span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>
-                            @endif
-                            {{$task->task_title}}
-                            </td>
+                            <tr rel="{{$task->id}}">
+                                <td><a href="{{$task->ekp_oid}}" name="view_on_erp"
+                                       rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                                <td>
+                                    {{$task->PRI}}
+                                </td>
+                                <td>
+                                    {{ Config('params.task_status')[$task->status] }}
+                                </td>
+                                <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
+                                    @if(stristr($task->ekp_task_type, 'BUG'))
+                                        <span class="label label-danger">B</span>
+                                    @elseif(stristr($task->ekp_task_type, '咨询'))
+                                        <span class="label label-info">咨</span>
+                                    @elseif(stristr($task->ekp_task_type, '需求'))
+                                        <span class="label label-success">需</span>
+                                    @else
+                                        <span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>
+                                    @endif
+                                    {{$task->task_title}}
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

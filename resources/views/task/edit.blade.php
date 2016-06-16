@@ -119,6 +119,7 @@
 </div>
 
 <script type="text/javascript">
+    //TODO::调整成不刷新页面，只刷新表格的模式（监控两者之间的性能差距）
     var task_detail = {
         getPageNameString:function(data){
             var year = (new Date()).getFullYear();

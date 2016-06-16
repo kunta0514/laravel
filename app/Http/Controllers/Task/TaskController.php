@@ -15,7 +15,6 @@ use Redirect, Input, Auth;
 use Cache;
 use Carbon\Carbon;
 use DB;
-use Excel;
 use Webpatser\Uuid\Uuid;
 use App\Models\CustomerDetail;
 
@@ -372,54 +371,7 @@ class TaskController extends Controller
         return view('task.history', ['theme' => 'default','tasks' => $tasks, 'type' => $type]);
     }
 
-    public function export($type)
-    {
-        $tasks = null;
-        $query = null;
-        $title = ['任务编号	','任务标题','客户名称','PM','工作流版本','开发人员','测试人员','备注','开发人员','测试人员'];
-        switch($type)
-        {
-            case 'year':
-                $query_begin = date("Y",mktime(0,0,0,date("m"),1,date("Y")));
-                $tasks = DB::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
-                    ->where('task_no','>',$query_begin)
-                    ->get();
-                break;
-            case 'month':
-                $query_begin = date("Ymd",mktime(0,0,0,date("m")-1,1,date("Y")));
-                $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
 
-                $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
-                    ->where('task_no','>',$query_begin)
-                    ->where('task_no','<',$query_end)
-                    ->get();
-                break;
-            case 'week':
-                $query_begin = date("Ymd",strtotime("-1 week Monday"));
-                $query_end = date("Ymd",strtotime("+0 week Monday"));
-                $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
-//            ->where('developer_workload',0)
-                    ->where('task_no','like',$query.'%')
-                    ->get();
-                break;
-            case 'yd':
-                $tasks = Task::select('ekp_task_type','task_type','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','comment')
-                    ->where('abu_pm','刘嵩')
-                    ->orderBy('task_no','DESC')
-                    ->get();
-                break;
-
-        }
-        $cellData = [];
-        $cellData = $tasks->toArray();
-//        print_r($tasks);
-
-        Excel::create('本周任务明细-2016-05',function($excel) use ($cellData){
-            $excel->sheet('score', function($sheet) use ($cellData){
-                $sheet->rows($cellData);
-            });
-        })->export('xls');
-    }
 
     public function sync_task()
     {

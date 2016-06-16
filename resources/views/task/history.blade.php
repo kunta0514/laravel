@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-8">
                 <div class="pull-right">
-                    <a href="/task/export/{{$type}}" class="btn btn-default" id="export"><i class="glyphicon glyphicon-export"></i></a>
+                    <a href="/excel/task/{{$type}}" class="btn btn-default" id="export"><i class="glyphicon glyphicon-export"></i></a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,8 @@
                 <thead>
                 <tr>
                     <th style="width: 100px">任务编号</th>
-                    <th style="width: 70px">状态(PRI)</th>
+                    <th >PRI</th>
+                    <th style="width: 60px">状态</th>
                     <th >任务标题</th>
                     <th style="width: 80px">客户</th>
                     <th style="width: 40px">PM</th>
@@ -55,8 +56,9 @@
                 @foreach($tasks as $k=>$task)
                     <tr rel="{{$task->id}}" >
                         <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                        <th >{{$task->PRI}}</th>
                         <td>
-                            {{ Config('params.task_status')[$task->status] }}({{$task->PRI}})
+                            {{ Config('params.task_status')[$task->status] }}
                         </td>
                         <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
                             @if(stristr($task->ekp_task_type, 'BUG'))
