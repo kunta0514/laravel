@@ -7,9 +7,6 @@
         .tr_doing{
             background-color: rgb(166, 220, 163);
         }
-        #example tr{
-            cursor: pointer;
-        }
         .or_doing{
             /*background-color:rgb(251, 243, 145);*/
             background-color: rgb(166, 220, 163);
@@ -42,7 +39,7 @@
                 <tr>
                     <th title="序号">#</th>
                     <th style="min-width: 90px;">任务编号</th>
-                    <th style="width: 60px">状态</th>
+                    <th style="width: 70px">状态(PRI)</th>
                     <th >任务标题</th>
                     <th style="width: 80px">客户</th>
                     <th style="width: 60px">PM</th>
@@ -59,7 +56,7 @@
                       <th scope="row" >{{$k+1}}</th>
                       <td><a href="#" name="view_on_erp" rel="{{$task->ekp_oid}}">{{$task->task_no}}</a></td>
                       <td>
-                          {{ Config('params.task_status')[$task->status] }}
+                          {{ Config('params.task_status')[$task->status] }}({{$task->PRI}})
                       </td>
                       <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
                           @if(stristr($task->ekp_task_type, 'BUG'))

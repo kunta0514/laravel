@@ -1,5 +1,5 @@
 <style type="text/css">
-    .mytt{
+    label{
         font-weight: 600;
         font-size: 16px;
         margin-left: 7px;

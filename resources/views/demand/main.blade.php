@@ -43,7 +43,7 @@
                         <thead>
                         <tr>
                             <th style="width: 100px">需求编号</th>
-                            <th style="width: 60px">状态</th>
+                            <th style="width: 70px">状态(PRI)</th>
                             <th >需求</th>
                         </tr>
                         </thead>
@@ -53,7 +53,7 @@
                             <tr rel="{{$demand->id}}" >
                                 <td>{{$demand->demand_no}}</td>
                                 <td>
-                                    {{ Config('params.task_status')[$demand->status] }}
+                                    {{ Config('params.task_status')[$demand->status] }}({{$demand->PRI}})
                                 </td>
                                 <td data-toggle="tooltip" data-placement="top" title="{{$demand->demand_name}}">
                                     {{$demand->demand_name}}
@@ -88,7 +88,7 @@
                         <thead>
                         <tr>
                             <th style="width: 100px">任务编号</th>
-                            <th style="width: 60px">状态</th>
+                            <th style="width: 70px">状态(PRI)</th>
                             <th >任务</th>
                         </tr>
                         </thead>
@@ -98,7 +98,7 @@
                             <tr rel="{{$task->id}}" >
                             <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
                             <td>
-                            {{ Config('params.task_status')[$task->status] }}
+                            {{ Config('params.task_status')[$task->status] }}({{$task->PRI}})
                             </td>
                             <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
                             @if(stristr($task->ekp_task_type, 'BUG'))
@@ -226,7 +226,7 @@
                 keyboard: true,
                 width:598,
                 minHeight:518,
-                remote: '/task/detail/' + $(this).attr('rel'),
+                remote: '/task/edit/' + $(this).attr('rel'),
                 okHide: function () {
                     // return false;
                 }

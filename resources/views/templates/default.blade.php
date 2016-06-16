@@ -42,6 +42,15 @@
         html body{
             font-family: Microsoft YaHei,Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif;
         }
+        label{
+            color: #555;
+        }
+        th{
+            color: #555;
+        }
+        table tr{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>

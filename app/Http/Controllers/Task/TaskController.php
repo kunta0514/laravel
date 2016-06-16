@@ -84,42 +84,81 @@ class TaskController extends Controller
 
 
     /**
-     * 任务指派功能
+     * Show the form for editing the specified resource.
      *
-     * @param  \illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
-        $task_id=$request->input("task_id");
-        $task = Task::find($task_id);
-        $task->ekp_expect = $request->input("date");
-        $task->comment = $request->input("comment");
-        $task->status = $request->input("status");
+//        $task = Task::find($id);
+//        return view('task.edit', ['theme' => 'default','task' => $task]);
+        $developers = Cache::get('developers',function(){
+            $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 0)->get();
+            Cache::forever('developers', $users);
+        });
 
-        //先删除
-        $old_work_details =TaskWorkload::where('task_id','=',$task_id);
-        $old_work_details->delete();
+        $testers = Cache::get('testers',function(){
+            $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 1)->get();
+            Cache::forever('testers', $users);
+        });
 
-        //新增开发
-        $work_details_dev = new TaskWorkload();
-        $work_details_dev->task_id = $task->id;
-        $work_details_dev->type = 0;
-        $work_details_dev->nick = $request->input("dev");
+        $task = Task::find($id);
 
-        //新增测试
-        $work_details_test = new TaskWorkload();
-        $work_details_test->task_id = $task->id;
-        $work_details_test->nick = $request->input("test");
-        $work_details_test->type = 1;
-
-        if ($task->save() && $work_details_dev->save() && $work_details_test->save()) {
-            return Redirect::to('task');
-        } else {
-            return Redirect::back()->withInput()->withErrors('保存失败！');
-        }
+        //TODO::人员下拉框可以提炼组件化
+        return view('task.edit', ['theme' => 'default', 'task' =>  $task, 'developers' => $developers, 'testers' => $testers]);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        if (!empty($request->path())) {
+            $query = [];
+            if(empty($request->ekp_oid)){
+                $solution=new SolutionController();
+                //TODO::oid保存的是herf地址，需要改造成只存OID，打开地址在配置中体现
+                $query['ekp_oid'] = str_replace('\"','',$solution->view_pd($request->task_no)[0]->attr['href']);
+            }
+            if(!empty($request->comment)){
+                $query['comment'] = $request->comment;
+            }
+            if(!empty($request->status)){
+                $query['status'] = $request->status;
+            }
+            if(!empty($request->developer)){
+                $query['developer'] = $request->developer;
+            }
+            if(!empty($request->developer_workload|| $request->developer_workload == 0)){
+                $query['developer_workload'] = $request->developer_workload;
+            }
+            if(!empty($request->tester)){
+                $query['tester'] = $request->tester;
+            }
+            if(!empty($request->tester_workload) || $request->tester_workload == 0){
+                $query['tester_workload'] = $request->tester_workload;
+            }
+            if(!empty($request->actual_finish_date)){
+                $query['actual_finish_date'] = $request->actual_finish_date;
+            }
+            if(!empty($request->task_type)){
+                $query['task_type'] = $request->task_type;
+            }
+            if(!empty($request->PRI|| $request->PRI == 0)){
+                $query['PRI'] = $request->PRI;
+            }
+            if(!empty($query)){
+                $result = DB::transaction(function () use ($request,$query) {
+                    DB::table('tasks')->where('id', $request->id)->update($query);
+                });
+            }
+        }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -188,77 +227,6 @@ class TaskController extends Controller
             'data' => $data,
         ];
         return json_encode($ret,JSON_UNESCAPED_UNICODE);
-    }
-
-    public function detail($id)
-    {
-        $developers = Cache::get('developers',function(){
-            $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 0)->get();
-            Cache::forever('developers', $users);
-        });
-
-        $testers = Cache::get('testers',function(){
-            $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 1)->get();
-            Cache::forever('testers', $users);
-        });
-
-        $task_detail = Task::find($id);
-
-        //TODO::人员下拉框可以提炼组件化
-        return view('task.details', ['theme' => 'default', 'task' =>  $task_detail, 'developers' => $developers, 'testers' => $testers]);
-    }
-
-    public function detail_edit(Request $request)
-    {
-        //按需更新
-
-//            $task_id = $request->id;
-//            $task = Task::find($task_id);
-//            $task->comment = $request->comment;
-//            $task->status = $request->status;
-        if (!empty($request->path())) {
-
-            $query = [];
-            if(empty($request->ekp_oid)){
-                $solution=new SolutionController();
-                //TODO::oid保存的是herf地址，需要改造成只存OID，打开地址在配置中体现
-                $query['ekp_oid'] = str_replace('\"','',$solution->view_pd($request->task_no)[0]->attr['href']);
-            }
-//            DB::table('tasks')->where('id', $request->id)->update(['comment' => $request->comment]);
-            if(!empty($request->comment)){
-                $query['comment'] = $request->comment;
-            }
-            if(!empty($request->status)){
-                $query['status'] = $request->status;
-            }
-            if(!empty($request->developer)){
-                $query['developer'] = $request->developer;
-            }
-            if(!empty($request->developer_workload)){
-                $query['developer_workload'] = $request->developer_workload;
-            }
-            if(!empty($request->tester)){
-                $query['tester'] = $request->tester;
-            }
-            if(!empty($request->tester_workload) || $request->tester_workload == 0){
-                $query['tester_workload'] = $request->tester_workload;
-            }
-            if(!empty($request->actual_finish_date)){
-                $query['actual_finish_date'] = $request->actual_finish_date;
-            }
-            if(!empty($request->task_type)){
-                $query['task_type'] = $request->task_type;
-            }
-//            print_r($query);
-//            $query['developer_workload'] = $request->developer_workload;
-//            $query['tester'] = $request->tester;
-//            $query['tester_workload'] = $request->tester_workload;
-            if(!empty($query)){
-                $result = DB::transaction(function () use ($request,$query) {
-                    DB::table('tasks')->where('id', $request->id)->update($query);
-                });
-            }
-        }
     }
 
     public function test_page()

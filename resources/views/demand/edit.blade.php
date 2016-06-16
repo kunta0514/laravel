@@ -1,5 +1,5 @@
 <style type="text/css">
-    .mytt{
+    label{
         font-weight: 600;
         font-size: 16px;
         margin-left: 7px;
@@ -14,8 +14,8 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <i class="fa fa-list-ul "></i>
-                    <label for="demand_name" class="mytt">需求</label>
-                    <textarea class="form-control" placeholder="@if(empty($demand->demand_name)) 请输入需求、故事描述... @else {{$demand->demand_name}} @endif" name="demand_name" id="demand_name">{{$demand->demand_name}}</textarea>
+                    <label for="demand_name">需求</label>
+                    <textarea class="form-control" rows="5" placeholder="@if(empty($demand->demand_name)) 请输入需求、故事描述... @else {{$demand->demand_name}} @endif" name="demand_name" id="demand_name">{{$demand->demand_name}}</textarea>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-list-ul "></i>
@@ -29,9 +29,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
+            {{--<div class="col-sm-12">--}}
+                {{--<div class="form-group">--}}
+                    {{--<label for="select_status" class="control-label">状态</label>--}}
+                    {{--<div>--}}
+                        {{--<select class="form-control" id="select_status" name="status">--}}
+                            {{--@foreach(Config('params.task_status') as $key=>$value)--}}
+                                {{--<option value="{{$key}}" @if ($key === $demand->status) selected @endif>{{$value}}</option>--}}
+                            {{--@endforeach--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+            <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="select_status" class="control-label">状态</label>
+                    <label for="select_status" class="mytt">状态</label>
                     <div>
                         <select class="form-control" id="select_status" name="status">
                             @foreach(Config('params.task_status') as $key=>$value)
@@ -40,7 +53,20 @@
                         </select>
                     </div>
                 </div>
+
             </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                    <label for="PRI" class="mytt">优先级</label>
+                    <div >
+                        <input type="text" id="PRI" class="form-control" placeholder="请输入" value="{{$demand->PRI}}">
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
     </form>

@@ -62,6 +62,7 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/', 'TaskController@index');
     Route::get('/detail/{id}','TaskController@detail');
+    Route::get('/edit/{id}', 'TaskController@edit');
     Route::get('/mobile','TaskController@mobile');
     Route::get('/wonder4','TaskController@wonder4');
     Route::get('/fast_handle/{id}', 'TaskController@fast_handle');
@@ -78,6 +79,7 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     Route::get('/history/{type}', 'TaskController@history');
     Route::get('/export/{type}','TaskController@export');
 
+    Route::post('/update/{id}', 'TaskController@update');
     Route::post('/detail_edit','TaskController@detail_edit');
 
     Route::resource('task', 'TaskController@index');

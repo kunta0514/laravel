@@ -82,6 +82,11 @@
                         <input type="text" id="actual_finish_date" value="@if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '-0001-11-30' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1900-01-01' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01') @else <?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?> @endif"
                                class="form-control" placeholder="实际完成时间" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
                     </div>
+
+                    <label for="PRI" class="control-label col-sm-2">优先级</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="PRI" class="form-control" placeholder="请输入" value="{{$task->PRI}}">
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,6 +135,7 @@
     $('#select_status').on('change',function(){
         if(this.value == '3' && $("#actual_finish_date").val() == ' '){
             $("#actual_finish_date").datepicker('setDate',new Date());
+            $("#PRI").val(0);
         }
 //        console.log(this.value);
 //        console.log($("#actual_finish_date").val());
@@ -144,14 +150,16 @@
         task.status = $('#select_status').val();
         task.actual_finish_date = $("#actual_finish_date").val();
         task.task_type = $("#select_task_type").val();
+        task.PRI = $("#PRI").val();
         console.log(task);
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',
             data: task,
-            url: '/task/detail_edit',
+            url: '/task/update/'+ $('#id').val(),
             success: function (data) {
 //                console.log(data);
+                location.reload();
             }
         })
     });
