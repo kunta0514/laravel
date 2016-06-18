@@ -121,7 +121,7 @@
     $(document).on('click', '#example tbody tr', function () {
             var data = $(this);
             $.modal({
-                keyboard: false,
+                keyboard: true,
                 width:598,
                 minHeight:518,
                 remote: '/task/edit/' + data.attr("rel"),

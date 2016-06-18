@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use Cache;
 
 class CustomerController extends Controller
 {
@@ -18,8 +19,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
-        return view('customer.main');
+        if (!Cache::has('customer')) {
+            Cache::forever('customer', Customer::all());
+        }
+        return view('customer.main',['theme' => 'default','data'=>Cache::get('customer')]);
     }
 
     /**
@@ -62,8 +65,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
-
+        $customer=Customer::find($id);
+        return view('customer.details',['theme'=>'default','customer'=>$customer]);
     }
 
     /**

@@ -12,27 +12,23 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="select_status" class="control-label col-sm-2">EKP名称</label>
+                    <label for="select_status" class="control-label col-sm-2" style="text-align: left">EKP名称</label>
                     <div class="col-sm-4">
                         <input type="text" id="package_name" class="form-control" value="{{$customer->ekp_latest_name}}" placeholder="EKP名称" >
                     </div>
                     <label for="select_task_type" class="control-label col-sm-2">代码地址</label>
                     <div class="col-sm-4">
                         <input type="text" id="package_name" class="form-control" value="{{$customer->path}}" placeholder="EKP名称" >
-
                     </div>
                 </div>
             </div>
         </div>
-
-
-
         <div class="row">
             <div class="col-sm-12">
-                个性化代码列表
+                <h5>个性化代码列表</h5>
             </div>
             <div class="col-sm-12">
-                <table class="table table-bordered table-hover" id="example">
+                <table class="table table-bordered table-hover" id="detail_example">
                     <thead>
                         <tr>
                             <th style="width: 100px">ERP</th>
@@ -63,8 +59,6 @@
 </div>
 
 <script type="text/javascript">
-
-
     $('#btnSubmit').on('click',function(){
 //        customer.comment = $('#comment').val();
 //        customer.developer = $('#select_dev').val();
@@ -86,5 +80,4 @@
 //        })
     });
     var customer = <?= $customer ?>;
-    $('#package_name').val(task_detail.getPageNameString(task));
 </script>

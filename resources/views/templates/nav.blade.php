@@ -55,7 +55,7 @@
                         @endforeach
                     </ul>
                 </li>
-                <li class="dropdown"><a href="/cst">客户台账</a></li>
+                <li class="dropdown"><a href="/customer">客户台账</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
