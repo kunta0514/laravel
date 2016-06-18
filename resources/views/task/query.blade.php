@@ -179,7 +179,7 @@
                 keyboard: true,
                 width:598,
                 minHeight:518,
-                remote: '/task/detail/' + data.id,
+                remote: '/task/edit/' + data.id,
                 okHide: function () {
 //                    alert(222);
                     // return false;
