@@ -39,15 +39,15 @@
             <table class="table table-bordered table-hover" id="example">
                 <thead>
                 <tr>
-                    <th style="width: 100px">任务编号</th>
-                    <th >PRI</th>
-                    <th style="width: 60px">状态</th>
+                    <th style="width: 85px">任务编号</th>
+                    <th style="width: 20px">PRI</th>
+                    <th style="width: 45px">状态</th>
                     <th >任务标题</th>
-                    <th style="width: 80px">客户</th>
+                    <th style="width: 60px">客户</th>
                     <th style="width: 40px">PM</th>
-                    <th style="width: 80px">开发</th>
-                    <th style="width: 80px">测试</th>
-                    <th style="width: 80px">完成时间</th>
+                    <th style="width: 60px">开发</th>
+                    <th style="width: 60px">测试</th>
+                    <th style="width: 60px">完成时间</th>
                     <th style="width: 300px">备注</th>
                 </tr>
                 </thead>
@@ -82,7 +82,6 @@
                             @else
                                 <?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?>
                             @endif
-
                         </td>
                         <td>{{$task->comment}}</td>
                     </tr>

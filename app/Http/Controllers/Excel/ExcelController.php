@@ -104,12 +104,12 @@ class ExcelController extends Controller
     {
         $tasks = null;
         $query = null;
-        $title = ['状态	','完成时间','任务编号','任务标题','客户名称','PM','工作流版本','开发人员','工作量','测试人员','工作量','EKP任务','实际任务','备注'];
+        $title = ['状态	','完成时间','PRI','任务编号','任务标题','客户名称','PM','工作流版本','开发人员','工作量','测试人员','工作量','EKP任务','实际任务','备注'];
         switch($type)
         {
             case 'year':
                 $query_begin = date("Y",mktime(0,0,0,date("m"),1,date("Y")));
-                $tasks = DB::select('status','actual_finish_date','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
+                $tasks = DB::select('status','actual_finish_date','PRI','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
                     ->where('task_no','>',$query_begin)
                     ->get();
                 break;
@@ -117,7 +117,7 @@ class ExcelController extends Controller
                 $query_begin = date("Ymd",mktime(0,0,0,date("m")-1,1,date("Y")));
                 $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
 
-                $tasks = Task::select('status','actual_finish_date','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
+                $tasks = Task::select('status','actual_finish_date','PRI','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
                     ->where('task_no','>',$query_begin)
                     ->where('task_no','<',$query_end)
                     ->get();
@@ -125,13 +125,13 @@ class ExcelController extends Controller
             case 'week':
                 $query_begin = date("Ymd",strtotime("-1 week Monday"));
                 $query_end = date("Ymd",strtotime("+0 week Monday"));
-                $tasks = Task::select('status','actual_finish_date','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
+                $tasks = Task::select('status','actual_finish_date','PRI','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
 //            ->where('developer_workload',0)
                     ->where('task_no','like',$query.'%')
                     ->get();
                 break;
             case 'yd':
-                $tasks = Task::select('status','actual_finish_date','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
+                $tasks = Task::select('status','actual_finish_date','PRI','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
                     ->where('abu_pm','刘嵩')
                     ->orderBy('task_no','DESC')
                     ->get();
@@ -144,7 +144,7 @@ class ExcelController extends Controller
         $cellData = $tasks->toArray();
 ////        print_r($tasks);
         foreach($cellData as $k=>$val){
-            if(date("Y-m-d", strtotime($val['actual_finish_date'])) === '1970-01-01'){
+            if(date("Y-m-d", strtotime($val['actual_finish_date'])) === '1970-01-01' || date("Y-m-d", strtotime($val['actual_finish_date'])) === '-0001-11-30'){
                 $cellData[$k]['actual_finish_date'] = "";
             }else
             {

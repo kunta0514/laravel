@@ -111,7 +111,7 @@
                 keyboard: true,
                 width:598,
                 minHeight:518,
-                remote: '/task/detail/' + $(this).attr('rel'),
+                remote: '/task/edit/' + $(this).attr('rel'),
                 okHide: function () {
                     // return false;
                 }
