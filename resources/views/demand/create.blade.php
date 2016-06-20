@@ -28,30 +28,50 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <i class="fa fa-list-ul "></i>
-                    <label for="demand_name" class="mytt">需求</label>
+                    <label for="demand_name" >需求</label>
                     <textarea class="form-control" placeholder="请输入需求、故事描述..." name="demand_name" id="demand_name"></textarea>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-list-ul "></i>
-                    <label for="acceptance" class="mytt">验收标准</label>
+                    <label for="acceptance" >验收标准</label>
                     <textarea class="form-control" placeholder="请输入验收标准..." name="acceptance" id="acceptance"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="comment" class="mytt">评论</label>
+                    <label for="comment" >评论</label>
                     <textarea class="form-control" placeholder="请输入备注、评论..." name="comment" id="comment"></textarea>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="select_status" class="control-label">状态</label>
+                    <label for="select_status">状态</label>
                     <div>
                         <select class="form-control" id="select_status" name="status">
                             @foreach(Config('params.task_status') as $key=>$value)
                                 <option value="{{$key}}">{{$value}}</option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                    <label for="PRI">优先级</label>
+                    <div >
+                        <input type="number" id="PRI" class="form-control" placeholder="请输入.." >
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="PRI">Sprint</label>
+                    <div>
+                        <input type="text" id="Sprint" class="form-control" placeholder="请输入.." >
                     </div>
                 </div>
             </div>

@@ -80,7 +80,7 @@
 
                     <label for="PRI" class="control-label col-sm-2">优先级</label>
                     <div class="col-sm-4">
-                        <input type="text" id="PRI" class="form-control" placeholder="请输入" value="0">
+                        <input type="number" id="PRI" class="form-control" placeholder="请输入" value="0">
                     </div>
                 </div>
             </div>

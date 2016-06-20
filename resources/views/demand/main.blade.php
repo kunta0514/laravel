@@ -163,7 +163,7 @@
             $.modal({
                 keyboard: true,
                 width:598,
-                minHeight:518,
+                minHeight:400,
                 remote: '/demand/edit/' + $(this).attr('rel'),
                 okHide: function () {
                     // return false;
@@ -175,7 +175,7 @@
             $.modal({
                 keyboard: true,
                 width:598,
-                minHeight:518,
+                minHeight:400,
                 remote: '/demand/create',
                 okHide: function () {
                     // return false;

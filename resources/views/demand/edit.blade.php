@@ -19,11 +19,11 @@
                 </div>
                 <div class="form-group">
                     <i class="fa fa-list-ul "></i>
-                    <label for="acceptance" class="mytt">验收标准</label>
+                    <label for="acceptance">验收标准</label>
                     <textarea class="form-control" placeholder="@if(empty($demand->acceptance)) 请输入验收标准... @else {{$demand->acceptance}} @endif" name="acceptance" id="acceptance">{{$demand->acceptance}}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="comment" class="mytt">评论</label>
+                    <label for="comment">评论</label>
                     <textarea class="form-control" placeholder="@if(empty($demand->comment)) 请输入备注、评论... @else {{$demand->comment}} @endif" name="comment" id="comment">{{$demand->comment}}</textarea>
                 </div>
             </div>
@@ -44,7 +44,7 @@
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="select_status" class="mytt">状态</label>
+                    <label for="select_status">状态</label>
                     <div>
                         <select class="form-control" id="select_status" name="status">
                             @foreach(Config('params.task_status') as $key=>$value)
@@ -59,14 +59,22 @@
             <div class="col-sm-6">
                 <div class="form-group">
 
-                    <label for="PRI" class="mytt">优先级</label>
+                    <label for="PRI">优先级</label>
                     <div >
-                        <input type="text" id="PRI" class="form-control" placeholder="请输入" value="{{$demand->PRI}}">
+                        <input type="number" id="PRI" class="form-control" placeholder="请输入.." value="{{$demand->PRI}}">
                     </div>
                 </div>
 
             </div>
 
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="PRI">Sprint</label>
+                    <div>
+                        <input type="text" id="Sprint" class="form-control" placeholder="请输入.." value="{{$demand->sprint_name}}">
+                    </div>
+                </div>
+            </div>
         </div>
 
     </form>

@@ -124,10 +124,11 @@ class TaskController extends Controller
                 //TODO::oid保存的是herf地址，需要改造成只存OID，打开地址在配置中体现
                 $query['ekp_oid'] = str_replace('\"','',$solution->view_pd($request->task_no)[0]->attr['href']);
             }
+            //TODO::保存校验加上数据存储还不够简练，写的很low
             if(!empty($request->comment)){
                 $query['comment'] = $request->comment;
             }
-            if(!empty($request->status)){
+            if(!empty($request->status || $request->status == 0)){
                 $query['status'] = $request->status;
             }
             if(!empty($request->developer)){

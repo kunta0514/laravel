@@ -77,7 +77,7 @@
         this.initOptions();
     };
 
-    Modal.COMPILEDTPL = $.template('' + '<div class="modal fade " tabindex="-1" role="dialog"  id="<%=id%>">' + '<div class="modal-dialog">' + '<div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + '<h5 class="modal-title"><%=title%></h5>' + '</div>' + '<div class="modal-body"><%=body%></div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-primary btn-sm" data-ok="modal"><%=okbtn%></button>' + '<button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><%=cancelbtn%></button>' + '</div>' + '</div>' + '</div>' + '</div>');
+    Modal.COMPILEDTPL = $.template('' + '<div class="modal fade " tabindex="-1" role="dialog"  id="<%=id%>">' + '<div class="modal-dialog">' + '<div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + '<h5 class="modal-title"><%=title%></h5>' + '</div>' + '<div class="modal-body"><%=body%></div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-default" data-dismiss="modal"><%=cancelbtn%></button>' + '<button type="button" class="btn btn-primary" data-ok="modal"><%=okbtn%></button>' + '</div>' + '</div>' + '</div>' + '</div>');
     Modal.TRANSITION_DURATION = 300;
     Modal.BACKDROP_TRANSITION_DURATION = 150;
 
