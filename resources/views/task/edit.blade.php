@@ -134,7 +134,7 @@
 
     //选到已完成，自动当前日期.
     $('#select_status').on('change',function(){
-        if(this.value == '3' && $("#actual_finish_date").val() == ' '){
+        if((this.value == '3' || this.value == '4')&& $("#actual_finish_date").val() == ' '){
             $("#actual_finish_date").datepicker('setDate',new Date());
             $("#PRI").val(0);
         }
@@ -160,7 +160,7 @@
             url: '/task/update/'+ $('#id').val(),
             success: function (data) {
 //                console.log(data);
-                location.reload();
+//                location.reload();
             }
         })
     });
