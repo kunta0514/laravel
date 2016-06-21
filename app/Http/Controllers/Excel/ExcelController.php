@@ -105,11 +105,12 @@ class ExcelController extends Controller
         $tasks = null;
         $query = null;
         $title = ['状态	','完成时间','PRI','任务编号','任务标题','客户名称','PM','工作流版本','开发人员','工作量','测试人员','工作量','EKP任务','实际任务','备注'];
+
         switch($type)
         {
             case 'year':
                 $query_begin = date("Y",mktime(0,0,0,date("m"),1,date("Y")));
-                $tasks = DB::select('status','actual_finish_date','PRI','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
+                $tasks = Task::select('status','actual_finish_date','PRI','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
                     ->where('task_no','>',$query_begin)
                     ->get();
                 break;
