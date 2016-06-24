@@ -111,7 +111,7 @@
                 keyboard: true,
                 width:698,
                 minHeight:318,
-                remote: '/customer/detail/' + data.attr("rel"),
+                remote: '/customer/edit/' + data.attr("rel"),
                 okHide: function () {
                     location.reload();
                 }

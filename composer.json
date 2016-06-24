@@ -24,7 +24,8 @@
         "stevenyangecho/laravel-u-editor": "~1.1",
 		"maatwebsite/excel": "~2.0.0",
         "FortAwesome/Font-Awesome": "*",
-		"webpatser/laravel-uuid": "2.*"
+		"webpatser/laravel-uuid": "2.*",
+		"vsn4ik/bootstrap-checkbox": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

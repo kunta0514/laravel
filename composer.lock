@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b32c1677559df2f39033161f3f0ae75b",
-    "content-hash": "6d321915519d588e510c1081b8021c1e",
+    "hash": "5c409ca67ec11f7a54fab2acbb5a7e93",
+    "content-hash": "ae54e7c278aad09c479b661e2c915490",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -2584,6 +2584,41 @@
             "time": "2015-05-30 15:59:26"
         },
         {
+            "name": "vsn4ik/bootstrap-checkbox",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vsn4ik/bootstrap-checkbox.git",
+                "reference": "73c7a45de05ccf03f3dc57d2a6a87ca637fbe6f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/vsn4ik/bootstrap-checkbox/73c7a45de05ccf03f3dc57d2a6a87ca637fbe6f1.zip",
+                "reference": "73c7a45de05ccf03f3dc57d2a6a87ca637fbe6f1",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vasily A.",
+                    "homepage": "https://github.com/vsn4ik"
+                }
+            ],
+            "description": "A checkbox component based on Bootstrap framework",
+            "homepage": "http://vsn4ik.github.io/bootstrap-checkbox",
+            "keywords": [
+                "bootstrap",
+                "checkbox",
+                "jquery-plugin",
+                "switch"
+            ],
+            "time": "2016-05-18 21:53:43"
+        },
+        {
             "name": "webpatser/laravel-uuid",
             "version": "2.0.1",
             "source": {
@@ -4139,7 +4174,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "overtrue/laravel-pinyin": 20,
-        "yuanchao/laravel-5-markdown-editor": 20
+        "yuanchao/laravel-5-markdown-editor": 20,
+        "vsn4ik/bootstrap-checkbox": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -158,13 +158,13 @@ Route::group(['prefix' => 'excel', 'namespace' => 'Excel'], function()
 
 Route::group(['prefix' => 'customer', 'namespace' => 'Customer'], function()
 {
-//    echo "OK";
-    Route::resource('customer', 'CustomerController@index');
-//
     Route::get('/','CustomerController@index');
-    Route::get('/detail/{id}','CustomerController@detail');
-    Route::get('/mapped/{task_id}','CustomerController@mapped');
+    Route::get('/create', 'CustomerController@create');
+    Route::get('/edit/{id}', 'CustomerController@edit');
+    Route::get('/test', 'CustomerController@test');
+    Route::post('/destroy/{id}', 'CustomerController@destroy');
+    Route::post('/store', 'CustomerController@store');
+    Route::post('/update/{id}', 'CustomerController@update');
 
-//    Route::get('excel/import','ExcelController@import');
 });
 
