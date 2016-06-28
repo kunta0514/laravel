@@ -24,28 +24,30 @@
                         <input type="text" id="package_name" class="form-control" value="{{$customer->path}}" placeholder="代码地址" >
                     </div>
                 </div>
-
             </div>
-            <div class="col-sm-12">
                 <div class="col-sm-5">
                     <div class="form-group">
                         <label>工作流版本信息</label>
                         <div class="check-demo-col">
                             <div class="check-line">
                                 <input type="checkbox" id="is_standard">
-                                <label class='inline' for="is_standard">标准版本</label>
+                                <label class='inline' for="is_standard">是否标准版本</label>
                             </div>
                             <div class="check-line">
-                                <input type="checkbox" id="is_update" name="is_update">
-                                <label class='inline' for="is_update">标准包升级</label>
+                                <input type="radio" id="is_update" name="is_update">
+                                <label class='inline' for="is_update">是否升级</label>
                             </div>
                             <div class="check-line">
-                                <input type="checkbox" id="is_update" name="is_update">
-                                <label class='inline' for="is_update">老客户手工包</label>
+                                <input type="radio" id="is_aop" name="is_aop">
+                                <label class='inline' for="is_aop">是否插件化</label>
                             </div>
                             <div class="check-line">
-                                <input type="checkbox" id="is_update" name="is_update">
-                                <label class='inline' for="is_update">ESB统一引擎</label>
+                                <input type="radio" id="update_type" name="update_type">
+                                <label class='inline' for="update_type">标准更新包升级</label>
+                            </div>
+                            <div class="check-line">
+                                <input type="radio" id="update_type" name="update_type">
+                                <label class='inline' for="update_type">手工包升级</label>
                             </div>
                         </div>
                     </div>
@@ -53,14 +55,14 @@
                 <div class="col-sm-7">
                     <div class="form-group">
                         <label for="update_reason">升级原因/背景</label>
-                        <textarea class="form-control" rows="4" placeholder="请描述升级相关的背景、故事..." name="update_reason" id="update_reason"></textarea>
+                        <textarea class="form-control" rows="5" placeholder="请描述升级相关的背景、故事..." name="update_reason" id="update_reason">{{$customer->update_reason}}</textarea>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="form-group">
-
+                    <label for="update_log">升级日志</label>
+                    <textarea class="form-control" rows="5" placeholder="请描述升级相关的记录..." name="update_reason" id="update_reason">{{$customer->update_log}}</textarea>
                 </div>
             </div>
         </div>
@@ -113,7 +115,7 @@
 
     $('input').on('ifChecked', function(event){
 //        alert(event.type + ' callback');
-        console.log(event.type + ' callback');
+//        console.log(event.type + ' callback');
     });
 
     $('#btnSubmit').on('click',function(){

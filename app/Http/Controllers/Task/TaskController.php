@@ -354,11 +354,12 @@ class TaskController extends Controller
                     ->get();
                 break;
             case 'week':
-                $query_begin = date("Ymd",strtotime("-1 week Monday"));
+                $query_begin = date("Ymd",strtotime("-2 week Monday"));
                 $query_end = date("Ymd",strtotime("+0 week Monday"));
                 $tasks = DB::table('tasks')
                     ->where('task_no','>',$query_begin)
                     ->where('task_no','<',$query_end)
+                    ->orWhere()
                     ->get();
                 break;
             case 'yd':
