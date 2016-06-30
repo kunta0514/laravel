@@ -48,23 +48,6 @@
                             <th >需求</th>
                         </tr>
                         </thead>
-                        {{--<tbody>--}}
-
-                        {{--@foreach($demands as $k=>$demand)--}}
-                            {{--<tr rel="{{$demand->id}}" >--}}
-                                {{--<td>{{$demand->demand_no}}</td>--}}
-                                {{--<td>--}}
-                                    {{--{{$demand->PRI}}--}}
-                                {{--</td>--}}
-                                {{--<td>--}}
-                                    {{--{{ Config('params.task_status')[$demand->status] }}--}}
-                                {{--</td>--}}
-                                {{--<td data-toggle="tooltip" data-placement="top" title="{{$demand->demand_name}}">--}}
-                                    {{--{{$demand->demand_name}}--}}
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                        {{--@endforeach--}}
-                        {{--</tbody>--}}
                     </table>
                 </div>
             </div>
@@ -105,6 +88,7 @@
 
 
     <script type="text/javascript">
+        var page_data=<?= $page_data ?>;
         var tb_demand = $('#tb_demand').DataTable({
             ajax:'/demand/get_todoList',
             columns:[
@@ -116,26 +100,7 @@
             "columnDefs": [
                 {
                     "render": function(data, type, row, meta) {
-                    switch (data)
-                    {
-                        case 0:
-                            return "待处理";
-                            break;
-                        case 1:
-                            return "开发中";
-                            break;
-                        case 2:
-                            return "测试中";
-                            break;
-                        case 3:
-                            return "已完成";
-                            break;
-                        case 4:
-                            return "项目终止";
-                            break;
-                        default :
-                            return "未知";
-                    }
+                        return page_data.task_status[data];
                 },
                     "targets": 2
                 },
@@ -235,26 +200,7 @@
                 },
                 {
                     "render": function(data, type, row, meta) {
-                        switch (data)
-                        {
-                            case 0:
-                                return "待处理";
-                                break;
-                            case 1:
-                                return "开发中";
-                                break;
-                            case 2:
-                                return "测试中";
-                                break;
-                            case 3:
-                                return "已完成";
-                                break;
-                            case 4:
-                                return "项目终止";
-                                break;
-                            default :
-                                return "未知";
-                        }
+                        return page_data.task_status[data];
                     },
                     "targets": 2
                 },
@@ -276,7 +222,6 @@
                             default:
                                 return '<span class="label label-primary">'+row.ekp_task_type.substring(0,1)+'</span>' + data + '</a>';
                         }
-
                     },
                     "targets": 3
                 },

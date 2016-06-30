@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\TaskWorkload;
+use Illuminate\Support\Facades\Config;
 use Redirect, Input, Auth;
 use Cache;
 use Carbon\Carbon;
@@ -32,8 +33,11 @@ class TaskController extends Controller
         if (!Cache::has('testers')) {
             Cache::forever('testers', User::where('role', 1)->get());
         }
-        return view('task.main', ['theme' => 'default']);
-
+        //TODO:调整为读取缓存
+        $page_data=array(
+            'task_status'=>Config('params.task_status'),
+        );
+        return view('task.main', ['theme' => 'default','page_data'=>json_encode($page_data,JSON_UNESCAPED_UNICODE)]);
     }
 
     /**

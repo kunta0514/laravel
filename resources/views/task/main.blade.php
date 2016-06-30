@@ -54,6 +54,7 @@
 </div>
 
 <script type="text/javascript">
+    var page_data=<?= $page_data ?>;
     var tt = $('#example').DataTable({
         ajax:'/task/get_todoList',
         columns:[
@@ -81,26 +82,7 @@
             },
             {
                 "render": function(data, type, row, meta) {
-                    switch (data)
-                    {
-                        case 0:
-                            return "待处理";
-                        break;
-                        case 1:
-                            return "开发中";
-                            break;
-                        case 2:
-                            return "测试中";
-                            break;
-                        case 3:
-                            return "已完成";
-                            break;
-                        case 4:
-                            return "项目终止";
-                            break;
-                        default :
-                            return "未知";
-                    }
+                    return page_data.task_status[data];
                 },
                 "targets": 2
             },
@@ -146,7 +128,17 @@
             },
         ],
         "createdRow": function ( row, data, index ) {
-               $(row).attr("rel",data.id);
+            $(row).attr("rel",data.id);
+            switch (data.status)
+            {
+                case 1:
+                    $(row).find("td:eq(6)").addClass("or_doing");
+                        break;
+                    case 2:
+                        $(row).find("td:eq(7)").addClass("or_doing");
+                    break;
+
+            }
         },
         lengthMenu: [15,30,45,60,75,90,"ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
         paging: true,//分页
@@ -207,7 +199,7 @@
                     if(data == 0){
 
                     }else {
-                        location.reload();
+                        tt.ajax.reload(null,false);
                     }
                 },
                 error:function(){

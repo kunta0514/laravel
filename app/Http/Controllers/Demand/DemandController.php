@@ -22,7 +22,10 @@ class DemandController extends Controller
      */
     public function index()
     {
-        return view('demand.main', ['theme' => 'default']);
+        $page_data=array(
+            'task_status'=>Config('params.task_status'),
+        );
+        return view('demand.main', ['theme' => 'default','page_data'=>json_encode($page_data,JSON_UNESCAPED_UNICODE)]);
     }
 
     public function get_todoList()
