@@ -152,12 +152,12 @@
         task.actual_finish_date = $("#actual_finish_date").val();
         task.task_type = $("#select_task_type").val();
         task.PRI = $("#PRI").val();
-        console.log(task);
+//        console.log(task);
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',
             data: task,
-            url: '/task/update/'+ $('#id').val(),
+            url: '/task/update/'+ $('input[name=id]').val(),
             success: function (data) {
 //                console.log(data);
 //                location.reload();
