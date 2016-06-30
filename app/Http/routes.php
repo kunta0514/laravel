@@ -61,6 +61,7 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
 
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/', 'TaskController@index');
+    Route::get('/get_todoList', 'TaskController@get_todo_taskList');
     Route::get('/detail/{id}','TaskController@detail');
     Route::get('/edit/{id}', 'TaskController@edit');
     Route::get('/mobile','TaskController@mobile');
@@ -90,6 +91,7 @@ Route::group(['prefix' => 'demand', 'namespace' => 'Demand'], function()
 
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/', 'DemandController@index');
+    Route::get('/get_todoList','DemandController@get_todoList');
     Route::get('/create', 'DemandController@create');
     Route::get('/edit/{id}', 'DemandController@edit');
     Route::get('/test', 'DemandController@test');
