@@ -32,26 +32,20 @@ class TaskController extends Controller
         if (!Cache::has('testers')) {
             Cache::forever('testers', User::where('role', 1)->get());
         }
-        $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
-        return view('task.main', ['theme' => 'default', 'tasks' => $task_list, 'developers' => Cache::get('developers'), 'testers' => Cache::get('testers')]);
+        return view('task.main', ['theme' => 'default']);
 
     }
 
     /**
-     * 获取任务详情
-     * @Date 2016年2月27日12:55:17
+     * 获取待处理任务列表
+     * @Date 2016年6月28日18:17:21
      * @Author  zhuangsd
-     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function get_details($id)
+    public function get_todo_taskList()
     {
-        $task_detail = Task::find($id);
-        echo '123';
-        die;
-        //TODO::改为打开新的页面
-        return $task_detail->toArray();
-//        return view('task.details',['details'=>$tasks]);
+        $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
+        return json_encode(Array('data'=>$task_list->toArray()));
     }
 
 
@@ -67,7 +61,13 @@ class TaskController extends Controller
         //
         // dd($task->id);
 //        echo date("Y-m-d",time());
-        (new CheckPersonalize())->get_code_lib('东方置地');
+//        $task_detail = Task::find($id);
+//
+//       echo($task_detail->build_mail_content());
+        $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
+//        return view('task.main', ['theme' => 'default', 'tasks' => array('data'=>$task_list->toArray()), 'developers' => Cache::get('developers'), 'testers' => Cache::get('testers')]);
+
+        return json_encode(Array('data'=>$task_list->toArray()));
     }
 
 

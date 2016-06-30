@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Console\Command;
 use Cache;
+use DB;
 
 class Task extends Model
 {
@@ -63,6 +64,7 @@ class Task extends Model
         $users = Cache::get('user',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->get();
             Cache::forever('user', $users);
+            return $users;
         });
 
         if(!empty($user_code)) {

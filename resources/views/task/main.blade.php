@@ -47,53 +47,109 @@
                     <th style="width: 60px">测试</th>
                     <th style="width: 60px">完成时间</th>
                     <th style="width: 300px">备注</th>
-                    {{--<th></th>--}}
                 </tr>
             </thead>
-            <tbody>
-              @foreach($tasks as $k=>$task)
-                  <tr rel="{{$task->id}}" >
-                      <td><a href="#" name="view_on_erp" rel="{{$task->ekp_oid}}">{{$task->task_no}}</a></td>
-                      <th scope="row" >{{$task->PRI}}</th>
-                      <td>
-                          {{ Config('params.task_status')[$task->status] }}
-                      </td>
-                      <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
-                          @if(stristr($task->ekp_task_type, 'BUG'))
-                              <span class="label label-danger">B</span>
-                          @elseif(stristr($task->ekp_task_type, '咨询'))
-                              <span class="label label-info">咨</span>
-                          @elseif(stristr($task->ekp_task_type, '需求'))
-                              <span class="label label-success">需</span>
-                          @else
-                              <span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>
-                          @endif
-                          {{$task->task_title}}
-                      </td>
-                      <td>{{$task->customer_name}}</td>
-                      <td>{{$task->abu_pm}}</td>
-                      <td class="@if($task->status=='1')or_doing @endif">{!! AppHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
-                      <td class="@if($task->status=='2')or_doing @endif">{!! AppHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
-                      <td>@if($task->ekp_expect) {{substr($task->ekp_expect,0,10)}} @endif</td>
-                      <td>{{$task->comment}}</td>
-                      {{--<td>--}}
-                          {{--<span name="chk_finish" data-toggle="tooltip" data-placement="top"--}}
-                                {{--class="glyphicon chk_finish @if($task->status == 1) glyphicon-pushpin @elseif($task->status == 2) glyphicon-check @else glyphicon-flag @endif"--}}
-                                {{--title="标记为{{config('params.task_status')[$task->status+1] }}..." rel="{{$task->id}}" status="{{$task->status}}">--}}
-                          {{--</span>--}}
-                      {{--</td>--}}
-                  </tr>
-              @endforeach
-            </tbody>
         </table>
     </div>
 </div>
 
 <script type="text/javascript">
-
     var tt = $('#example').DataTable({
-        lengthMenu: [50, 100, "ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
-        paging: false,//分页
+        ajax:'/task/get_todoList',
+        columns:[
+            {'data':"task_no"},
+            {'data':"PRI"},
+            {'data':"status"},
+            {'data':"task_title"},
+            {'data':"customer_name"},
+            {'data':"abu_pm"},
+            {'data':"dev_name"},
+            {'data':"tester_name"},
+            {'data':"ekp_expect"},
+            {'data':"comment"},
+        ],
+        "columnDefs": [
+            {
+//                "visible": false,
+//                "targets": [10]
+            },
+            {
+                "render": function(data, type, row, meta) {
+                    return '<a name="view_on_erp" rel="' + row.ekp_oid + '" target="_blank">' + data + '</a>';
+                },
+                "targets": 0
+            },
+            {
+                "render": function(data, type, row, meta) {
+                    switch (data)
+                    {
+                        case 0:
+                            return "待处理";
+                        break;
+                        case 1:
+                            return "开发中";
+                            break;
+                        case 2:
+                            return "测试中";
+                            break;
+                        case 3:
+                            return "已完成";
+                            break;
+                        case 4:
+                            return "项目终止";
+                            break;
+                        default :
+                            return "未知";
+                    }
+                },
+                "targets": 2
+            },
+            {
+                "render": function(data, type, row, meta) {
+                    switch (row.ekp_task_type){
+                        case "需求":
+                        case "升级-零星需求-一般":
+                        case "开发类-零星需求-一般":
+                            return '<span class="label label-success">需</span>' + data + '</a>';
+                            break;
+                        case "BUG":
+                        case "产品BUG":
+                        case "升级-BUG修改-一般":
+                        case "升级-BUG修改-紧急":
+                            return '<span class="label label-danger">B</span>' + data + '</a>';
+                        case "升级-咨询评估":
+                            return '<span class="label label-info">咨</span>' + data + '</a>';
+                        default:
+                            return '<span class="label label-primary">'+row.ekp_task_type.substring(0,1)+'</span>' + data + '</a>';
+                    }
+
+                },
+                "targets": 3
+            },
+            {
+                "render": function(data, type, row, meta) {
+                    return  (data)? data+'('+row.developer_workload+")":"";
+                },
+                "targets":6
+            },
+            {
+                "render": function(data, type, row, meta) {
+                    return  (data)? data+'('+row.tester_workload+")":"";
+                },
+                "targets":7
+            },
+            {
+                "render": function(data, type, row, meta) {
+                    return  data.substring(0,10);
+                },
+                "targets":8
+            },
+        ],
+        "createdRow": function ( row, data, index ) {
+               $(row).attr("rel",data.id);
+        },
+        lengthMenu: [15,30,45,60,75,90,"ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
+        paging: true,//分页
         ordering: true,//是否启用排序
 //        order: [ [ 0, 'asc' ]],
 //                searching: true,//搜索
@@ -124,39 +180,17 @@
                 keyboard: true,
                 width:598,
                 minHeight:518,
+                transition:true,
                 remote: '/task/edit/' + data.attr("rel"),
                 okHide: function () {
-                    location.reload();
+                    tt.ajax.reload(null,false);
                 }
             })
         } );
 
-
-        //标记按钮事件绑定
-//        $("span[name='chk_finish']").parent().unbind('click').bind('click',function(){
-//            var this_sapn=$(this).find("span:eq(0)");
-//            if(this_sapn.attr("status") == "2"){
-//                var value=confirm('确定要将**任务标记完成吗？');
-//                if(!value)return false;
-//            }
-//            $.ajax({
-//                type:'GET',
-//                url:'/task/fast_handle/'+this_sapn.attr("rel"),
-//                dataType:'json',
-//                success:function() {
-//                    location.reload();
-//                },
-//                error:function(){
-//                   location.reload();
-//                }
-//            });
-//            return false;
-//        });
-
         $('#example tbody').on('click',"td a[name='view_on_erp']",function(e){
             e.stopPropagation();
             e.preventDefault();
-//            console.log($(this).attr("rel"));
             if ($(this).attr("rel") != "") {
                 window.open("http://pd.mysoft.net.cn" + $(this).attr("rel"));
             }
@@ -185,10 +219,6 @@
         $(document).on("keypress", '.search-form[type="search"]', function (e) {
             if (e.keyCode == "13") {
                 var keyword = $(this).val();
-//                if(keyword === '') {
-//                    $.toast("请输入查找内容","info");
-//                    return false;
-//                }
                 tt.search(keyword).draw();
             }
         });
@@ -201,7 +231,5 @@
             }
             tt.search(keyword).draw();
         });
-
-
 </script>
 @stop

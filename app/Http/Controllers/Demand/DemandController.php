@@ -22,13 +22,14 @@ class DemandController extends Controller
      */
     public function index()
     {
-        //
-        $demands = Demand::where('id','>',0)->get();
-        $task = Task::where('status', '<', 3)->orderBy('task_no')->get();
-
-        return view('demand.main', ['theme' => 'default', 'demands' => $demands, 'tasks' =>$task]);
+        return view('demand.main', ['theme' => 'default']);
     }
 
+    public function get_todoList()
+    {
+        $demands = Demand::where('id','>',0)->get();
+        return json_encode(Array('data'=>$demands->toArray()));
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -103,7 +103,7 @@
             url: '/demand/store',
             success: function (data) {
 //                console.log(data);
-                location.reload();
+//                location.reload();
             }
         })
     });
