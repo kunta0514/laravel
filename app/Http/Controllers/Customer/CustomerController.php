@@ -84,6 +84,36 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (!empty($request->path()) && !empty($id)) {
+            $query = [];
+            if(!empty($request->ekp_latest_name)){
+                $query['ekp_latest_name'] = $request->ekp_latest_name;
+            }
+            if(!empty($request->area)){
+                $query['area'] = $request->area;
+            }
+
+            if(!empty($request->is_standard)){
+                $query['is_standard'] = $request->is_standard;
+            }
+            if(!empty($request->is_update)){
+                $query['is_update'] = $request->is_update;
+            }
+            if(!empty($request->is_aop)){
+                $query['is_aop'] = $request->is_aop;
+            }
+            if(!empty($request->update_type_standard)){
+                $query['update_type_standard'] = $request->update_type_standard;
+            }
+            if(!empty($request->update_type_standard)){
+                $query['update_reason'] = $request->update_reason;
+            }
+            if(!empty($query)){
+                $result = DB::transaction(function () use ($id,$query) {
+                    DB::table('customers')->where('id', $id)->update($query);
+                });
+            }
+        }
     }
 
     /**

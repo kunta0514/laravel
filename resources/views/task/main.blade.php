@@ -54,7 +54,9 @@
 </div>
 
 <script type="text/javascript">
-    var page_data=<?= $page_data ?>;
+    var data = <?= $page_data ?>;
+    var task_status = data.task_status;
+
     var tt = $('#example').DataTable({
         ajax:'/task/get_todoList',
         columns:[
@@ -82,7 +84,7 @@
             },
             {
                 "render": function(data, type, row, meta) {
-                    return page_data.task_status[data];
+                    return task_status[data];
                 },
                 "targets": 2
             },
@@ -141,7 +143,7 @@
             }
         },
         lengthMenu: [15,30,45,60,75,90,"ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
-        paging: true,//分页
+        paging: false,//分页
         ordering: true,//是否启用排序
 //        order: [ [ 0, 'asc' ]],
 //                searching: true,//搜索
@@ -223,5 +225,8 @@
             }
             tt.search(keyword).draw();
         });
+
+        var data = <?= $page_data ?>;
+        var task_status = data.task_status;
 </script>
 @stop

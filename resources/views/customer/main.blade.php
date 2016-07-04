@@ -110,10 +110,10 @@
             $.modal({
                 keyboard: true,
                 width:698,
-                minHeight:318,
+                minHeight:761,
                 remote: '/customer/edit/' + data.attr("rel"),
                 okHide: function () {
-                    location.reload();
+//                    location.reload();
                 }
             })
         } );
