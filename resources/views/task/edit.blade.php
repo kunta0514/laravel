@@ -26,9 +26,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="select_test" class="control-label col-sm-2">测试</label>
@@ -46,10 +44,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-
-        <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="select_status" class="control-label col-sm-2">状态</label>
@@ -60,6 +55,18 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <label for="select-date" class="control-label col-sm-2">完成时间</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="actual_finish_date" value="@if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '-0001-11-30' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1900-01-01' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01') @else <?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?> @endif"
+                               class="form-control" placeholder="实际完成时间" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
                     <label for="select_task_type" class="control-label col-sm-2">任务类型</label>
                     <div class="col-sm-4">
                         <select class="form-control" id="select_task_type" name="task_type">
@@ -69,29 +76,27 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="form-group">
-
-                    <label for="select-date" class="control-label col-sm-2">完成时间</label>
-                    <div class="col-sm-4">
-                        <input type="text" id="actual_finish_date" value="@if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '-0001-11-30' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1900-01-01' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01') @else <?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?> @endif"
-                               class="form-control" placeholder="实际完成时间" data-toggle="datepicker" data-rule-required="true" data-rule-date="true">
-                    </div>
-
                     <label for="PRI" class="control-label col-sm-2">优先级</label>
                     <div class="col-sm-4">
                         <input type="number" id="PRI" class="form-control" placeholder="请输入" value="{{$task->PRI}}">
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="package_name" class="control-label col-sm-2">任务分类</label>
+                    <div class="col-sm-10">
+                        <div class="check-line" style="padding-top: 7px">
+                            <input type="radio" id="no_update" name="update_type" @if($task->update_type == 0) checked @endif>
+                            <label class='inline' for="no_update" >一般任务</label>
+                            <input type="radio" id="update_type_standard" name="update_type" @if($task->update_type == 1) checked @endif>
+                            <label class='inline' for="update_type_standard" >标准升级处理</label>
+                            <input type="radio" id="update_type" name="update_type" @if($task->update_type == 2) checked @endif>
+                            <label class='inline' for="update_type" >手工升级处理</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="package_name" class="control-label col-sm-2">更新包</label>
@@ -107,6 +112,8 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
     </form>
 </div><!-- /.modal-content -->
@@ -117,8 +124,14 @@
         确定
     </button>
 </div>
-
+<link href="{{asset('vendor/css/icheck/all.css')}}" rel="stylesheet">
+<script src="{{asset('vendor/js/icheck/jquery.icheck.min.js')}}"></script>
 <script type="text/javascript">
+    $('input[type=radio]').iCheck({
+        checkboxClass: 'icheckbox_minimal-red',
+        radioClass: 'iradio_minimal-red',
+        increaseArea: '20%' // optional
+    });
     //TODO::调整成不刷新页面，只刷新表格的模式（监控两者之间的性能差距）
     var task_detail = {
         getPageNameString:function(data){
@@ -151,16 +164,20 @@
         task.status = $('#select_status').val();
         task.actual_finish_date = $("#actual_finish_date").val();
         task.task_type = $("#select_task_type").val();
+
+        if($('#no_update').is(':checked')) task.update_type = 0;
+        if($('#update_type_standard').is(':checked')) task.update_type = 1;
+        if($('#update_type').is(':checked')) task.update_type = 2;
+
         task.PRI = $("#PRI").val();
-//        console.log(task);
+        console.log(task.task_type);
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',
             data: task,
             url: '/task/update/'+ $('input[name=id]').val(),
             success: function (data) {
-//                console.log(data);
-//                location.reload();
+
             }
         })
     });

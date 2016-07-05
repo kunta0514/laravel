@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
-use App\TaskWorkload;
+use App\Models\CustomerUpdateLog;
 use Illuminate\Support\Facades\Config;
 use Redirect, Input, Auth;
 use Cache;
@@ -153,12 +153,33 @@ class TaskController extends Controller
             if(!empty($request->task_type)){
                 $query['task_type'] = $request->task_type;
             }
-            if(!empty($request->PRI|| $request->PRI == 0)){
+            if(!empty($request->PRI)|| $request->PRI == 0){
                 $query['PRI'] = $request->PRI;
             }
+            if(!empty($request->update_type )|| $request->update_type == 0){
+                $query['update_type'] = $request->update_type;
+            }
             if(!empty($query)){
-                $result = DB::transaction(function () use ($request,$query) {
+                $result = DB::transaction(function () use ($request,$query,$id) {
+                    //更新任务
                     DB::table('tasks')->where('id', $request->id)->update($query);
+                    //更新客户升级日志
+                    if($request->update_type != 0){
+                        $customers_update = [] ;
+                        $customers_update['update_type'] = $request->update_type;
+                        DB::table('customers')->where('uuid', $request->uuid)->update(['update_type'=>$query['update_type']]);
+                        if(empty(DB::table('customer_update_log')->where('task_no',$request->task_no)->get())){
+                            $customers_update_log = new CustomerUpdateLog();
+                            $customers_update_log->task_id = $id;
+                            $customers_update_log->task_no = $request->task_no;
+
+                            if(!empty($request->uuid)){
+                                $customers_update_log->uuid = $request->uuid;
+                            }
+                            $customers_update_log->remember_token = date("Ymd",strtotime("now")).'完成升级，任务编号：'.$request->task_no;
+                            $customers_update_log->save();
+                        }
+                    }
                 });
             }
         }
@@ -220,7 +241,7 @@ class TaskController extends Controller
         $query = $request->input('search')['value'];
         if(!empty($query)){
             $tasks = Task::where('task_no','like',$query.'%')
-                ->orWhere('customer_name','like','%'.$query.'%')
+                ->orWhere('task_title','like','%'.$query.'%')
                 ->orderBy('task_no', 'desc')
                 ->get();
             if(!empty($tasks)){
