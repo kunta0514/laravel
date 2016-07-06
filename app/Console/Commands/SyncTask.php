@@ -43,7 +43,7 @@ class SyncTask extends Command
     public function handle()
     {
         //sync
-        return $this->sync_task();
+//        return $this->sync_task();
 //        echo 'ok';
 //        return $this->sync_ekp_oid();
 //        return $this->sync_ekp_task_type();
@@ -176,8 +176,11 @@ class SyncTask extends Command
 
     protected function sync_workload()
     {
-        $query = '20160503-0041';//这之后的任务，没有用38服务器了
+        $query = '2013';//这之后的任务，没有用38服务器了
         $tasks =  DB::table('tasks')->where('task_no','like', $query.'%')->get();
+
+//        print_r($tasks);
+//        die;
 
         foreach($tasks as $task)
         {

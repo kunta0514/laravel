@@ -84,7 +84,7 @@
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="package_name" class="control-label col-sm-2">任务分类</label>
+                    <label for="package_name" class="control-label col-sm-2">升级相关</label>
                     <div class="col-sm-10">
                         <div class="check-line" style="padding-top: 7px">
                             <input type="radio" id="no_update" name="update_type" @if($task->update_type == 0) checked @endif>

@@ -230,7 +230,7 @@ class TaskController extends Controller
 //        print_r($task);
 //        $queries = DB::getQueryLog();
 //        print_r($queries);
-        return view('task.query', ['theme' => 'default', 'developers' => Cache::get('developers'),'tasks' => $tasks]);
+        return view('task.query', ['theme' => 'default','tasks' => $tasks]);
     }
 
     //TODO:根据查询条件查询结果
@@ -242,6 +242,7 @@ class TaskController extends Controller
         if(!empty($query)){
             $tasks = Task::where('task_no','like',$query.'%')
                 ->orWhere('task_title','like','%'.$query.'%')
+                ->orWhere('customer_name','like','%'.$query.'%')
                 ->orderBy('task_no', 'desc')
                 ->get();
             if(!empty($tasks)){
@@ -384,7 +385,6 @@ class TaskController extends Controller
                 $tasks = DB::table('tasks')
                     ->where('task_no','>',$query_begin)
                     ->where('task_no','<',$query_end)
-                    ->orWhere()
                     ->get();
                 break;
             case 'yd':

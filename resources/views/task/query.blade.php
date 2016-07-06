@@ -146,7 +146,6 @@
                     }else{
                         $('td:eq(6)', row).html(dd);
                     }
-
                 }
             });
 

@@ -27,6 +27,7 @@ class CreateCustomersTable extends Migration
             $table->string('ekp_latest_name')->nullable();     //EKP最新的名字
             $table->string('area')->nullable();     //区域
             $table->string('path')->nullable();
+            $table->Integer('is_app')->nullable();          //是否移动客户  0、不是，1、是
             $table->Integer('is_standard')->nullable();      //是否标准客户  0、不是，1、是    （非标准客户升级到标准数据如何表示）
             $table->Integer('is_update')->nullable();         //是否升级   0、不是，1、是
             $table->Integer('is_aop')->nullable();            //是否插件化   0、不是，1、是
