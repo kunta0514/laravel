@@ -43,7 +43,7 @@ class SyncTask extends Command
     public function handle()
     {
         //sync
-//        return $this->sync_task();
+        return $this->sync_task();
 //        echo 'ok';
 //        return $this->sync_ekp_oid();
 //        return $this->sync_ekp_task_type();
