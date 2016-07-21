@@ -121,7 +121,7 @@ class ExcelController extends Controller
                 $query_begin = date("Ymd",mktime(0,0,0,date("m")-1,1,date("Y")));
                 $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
 
-                $tasks = Task::select('status','actual_finish_date','PRI','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
+                $tasks = Task::select('status','actual_finish_date','task_no', 'task_title','customer_name','abu_pm','erp_version','developer','developer_workload','tester','tester_workload','ekp_task_type','task_type','comment')
                     ->where('task_no','>',$query_begin)
                     ->where('task_no','<',$query_end)
                     ->get();

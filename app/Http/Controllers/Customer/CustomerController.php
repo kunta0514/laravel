@@ -19,10 +19,18 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        if (!Cache::has('customer')) {
-            Cache::forever('customer', Customer::all());
-        }
-        return view('customer.main',['theme' => 'default','data'=>Cache::get('customer')]);
+//        if (!Cache::has('customer')) {
+//            Cache::forever('customer', Customer::all());
+//        }
+//        Cache::forget('customer');
+        $customers = Cache::get('customer',function(){
+            $customer = Customer::all();
+            Cache::forever('customer', $customer);
+        });
+
+//        print_r($customers);
+//        die;
+        return view('customer.main',['theme' => 'default','customer'=>Cache::get('customer')]);
     }
 
     /**
@@ -71,6 +79,7 @@ class CustomerController extends Controller
 
             $customer_details = DB::table('customer_details')->where('customer_uuid',$customer->uuid)->get();
         }
+//        print_r($customer);
         return view('customer.edit',['theme'=>'default','customer'=>$customer, 'customer_details' => $customer_details]);
     }
 
@@ -107,6 +116,9 @@ class CustomerController extends Controller
             }
             if(!empty($request->update_type_standard)){
                 $query['update_reason'] = $request->update_reason;
+            }
+            if(!empty($request->level)|| $request->level == 0){
+                $query['level'] = $request->level;
             }
             if(!empty($query)){
                 $result = DB::transaction(function () use ($id,$query) {

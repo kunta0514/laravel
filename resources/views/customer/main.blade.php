@@ -30,27 +30,32 @@
                 <tr>
                     <th>#</th>
                     <th style="min-width: 90px;">TFS名称</th>
-                    <th>别名</th>
-                    <th>代码库</th>
-                    <th>是否升级</th>
-                    <th>移动审批版本</th>
-                    <th>备注</th>
+                    <th style="min-width: 120px;">别名(code)</th>
+                    <th style="width: 100px;">ERP版本</th>
+                    <th style="width: 100px;">工作流版本</th>
+                    <th>升级</th>
+                    <th>来源</th>
+                    <th>级别</th>
+                    <th>移动审批</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $k=>$item)
+                @foreach($customer as $k=>$item)
                     <tr rel="{{$item->id}}" >
                         <th>{{$k+1}}</th>
                         <td>{{$item->name}}</td>
-                        <td>{{$item->ekp_latest_name}}</td>
-                        <td>
-                            @foreach($item->Details as $k=>$detail)
-                                <li style="list-style: none;line-height: 21px">[{{$k+1}}]. 版本: {{$detail['workflow_version']}}  <font style="font-size: 12px;color: rgb(201, 201, 221)">[{{$detail['erp_version']}}]</font></li>
-                            @endforeach
-                        </td>
-                        <td>2016年6月18日 <font color="red">升级</font></td>
-                        <td>104</td>
-                        <td>客户版本使用情况，移动审批服务版本</td>
+                        <td>{{$item->ekp_latest_name}}({{$item->ekp_code}})</td>
+                        <td>{{$item->erp_version}}</td>
+                        <td>{{$item->workflow_version}}</td>
+                        <td>{!! Config('params.customer_update_type')[$item->update_type] !!}</td>
+                            {{--@foreach($item->details as $k=>$detail)--}}
+                                {{--<li style="list-style: none;line-height: 21px">[{{$k+1}}]. 版本: {{$detail['workflow_version']}}  <font style="font-size: 12px;color: red">[{{$detail['erp_version']}}]</font></li>--}}
+                            {{--@endforeach--}}
+
+
+                        <td>{!! Config('params.customer_source')[$item->source] !!}</td>
+                        <td>{!! Config('params.customer_level')[$item->level] !!}</td>
+                        <td>{{$item->is_app}}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -60,14 +65,14 @@
     <script type="text/javascript">
 
         var tt = $('#example').DataTable({
-            lengthMenu: [15,30,45, 60,75, 90,"ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
+            lengthMenu: [50, 100,"ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
             paging: true,//分页
             ordering: true,//是否启用排序
 //        order: [ [ 0, 'asc' ]],
 //                searching: true,//搜索
             dom: "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
             language: {
-                lengthMenu: '每页<select class="form-control input-xsmall">' + '<option value="30">30</option>' + '<option value="30">30</option>' + '<option value="50">50</option>' + '<option value="100">100</option>' + '</select>条记录',//左上角的分页大小显示。
+                lengthMenu: '每页<select class="form-control input-xsmall">' + '<option value="50">50</option>' + '<option value="100">100</option>' + '</select>条记录',//左上角的分页大小显示。
                 search: '搜索：',//右上角的搜索文本，可以写html标签
                 paginate: {//分页的样式内容。
                     previous: "上一页",

@@ -27,16 +27,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-        if (!Cache::has('developers')) {
-            Cache::forever('developers', User::where('role', 0)->get());
-        }
-        if (!Cache::has('testers')) {
-            Cache::forever('testers', User::where('role', 1)->get());
-        }
         //TODO:调整为读取缓存
         $page_data=array(
             'task_status'=>Config('params.task_status'),
         );
+
         return view('task.main', ['theme' => 'default','page_data'=>json_encode($page_data,JSON_UNESCAPED_UNICODE)]);
     }
 
@@ -97,12 +92,12 @@ class TaskController extends Controller
 //        $task = Task::find($id);
 //        return view('task.edit', ['theme' => 'default','task' => $task]);
         $developers = Cache::get('developers',function(){
-            $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 0)->get();
+            $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 0)->where('is_out',0)->get();
             Cache::forever('developers', $users);
         });
 
         $testers = Cache::get('testers',function(){
-            $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 1)->get();
+            $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 1)->where('is_out',0)->get();
             Cache::forever('testers', $users);
         });
 

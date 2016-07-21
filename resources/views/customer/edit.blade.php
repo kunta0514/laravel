@@ -9,19 +9,31 @@
         <input type="hidden" id="id" name="id" value={{$customer->id}}>
         <input type="hidden" id="uuid" name="uuid" value={{$customer->uuid}}>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <div class="form-group">
-                    <label for="select_status">EKP合同客户名</label>
+                    <label for="ekp_latest_name">EKP合同客户名</label>
                     <div>
                         <input type="text" id="ekp_latest_name" class="form-control" value="{{$customer->ekp_latest_name}}" placeholder="EKP合同客户名" >
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="select_status">所属区域</label>
+                    <label for="area">所属区域</label>
                     <div>
                         <input type="text" id="area" class="form-control" value="{{$customer->area}}" placeholder="所属区域" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="select_status">重要客户{{$customer->level}}</label>
+                    <div>
+                        <select class="form-control" id="select_customer_level" name="select_customer_level">
+                            @foreach(Config('params.customer_level') as $k=>$value)
+                                <option value="{{$k}}" @if ($k === $customer->level) selected @endif>{{$value}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
@@ -158,6 +170,7 @@
         customer.ekp_latest_name = $('#ekp_latest_name').val();
         customer.area = $('#area').val();
         customer.update_reason = $('#update_reason').val();
+        customer.level = $('#select_customer_level').val();
         console.log(customer);
         //TODO::收集页面元素校验
         $.ajax({

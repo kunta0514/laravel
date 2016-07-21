@@ -72,8 +72,11 @@ class AppHelper
         return $tester;
     }
 
-    public static function status_name($status)
+    //直接使用{!! Config('params.customer_level')[$item->level] !!} 可以替代此功能
+    public static function customer_level($key)
     {
+        $customer_level = Config('params.customer_level');
 
+        return $customer_level[$key];
     }
 }

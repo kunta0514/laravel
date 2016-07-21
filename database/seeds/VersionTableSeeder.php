@@ -7,7 +7,7 @@
  */
 
 use Illuminate\Database\Seeder;
-use App\Version;
+use App\Models\Version;
 
 class VersionTableSeeder extends Seeder {
 
@@ -47,6 +47,10 @@ class VersionTableSeeder extends Seeder {
             'ERP3.0.7SP3'=>'3.5.8.40930',
             'ERP3.0.7SP4'=>'3.5.8.40930',
             'ERP3.0.8' => '3.5.9.50308',
+            'ERP3.0.8SP1' => '3.5.9.50308',
+            'ERP3.0.8SP2' => '3.5.9.50308',
+            'ERP3.5.1' => '3.5.9.50720',
+            'ERP4.0.1' => '3.6.1.10630',
             'ERP25_1128'=>'2.0.11228.0',
             'ERP25_1115'=>'2.0.11115.0',
             'ERP25_0623'=>'2.0.20623.0'
