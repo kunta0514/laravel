@@ -175,7 +175,7 @@
                 transition:true,
                 remote: '/task/edit/' + data.attr("rel"),
                 okHide: function () {
-                    tt.ajax.reload(null,false);
+
                 }
             })
         } );

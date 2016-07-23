@@ -170,14 +170,17 @@
         if($('#update_type').is(':checked')) task.update_type = 2;
 
         task.PRI = $("#PRI").val();
-        console.log(task.task_type);
+//        console.log(task.task_type);
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',
             data: task,
             url: '/task/update/'+ $('input[name=id]').val(),
             success: function (data) {
-
+                tt.ajax.reload(null,false);
+            },
+            error:function(){
+                $.toast("提交失败了，请刷新重试！","error");
             }
         })
     });
