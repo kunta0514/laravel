@@ -123,13 +123,50 @@ class TaskController extends Controller
                 //TODO::oid保存的是herf地址，需要改造成只存OID，打开地址在配置中体现
                 $query['ekp_oid'] = str_replace('\"','',$solution->view_pd($request->task_no)[0]->attr['href']);
             }
+            $old_task = Task::find($id);
             //TODO::保存校验加上数据存储还不够简练，写的很low
             if(!empty($request->comment)){
                 $query['comment'] = $request->comment;
             }
             if(!empty($request->status || $request->status == 0)){
                 $query['status'] = $request->status;
+                //待处理->开发中、测试中、已完成
+                if($query['status'] > 0 && $old_task->status == 0){
+                    $query['start'] = date("Y-m-d",strtotime("now"));
+                    switch($query['status']){
+                        case 1 : $query['developer_start']  = date("Y-m-d",strtotime("now"));
+                            break;
+                        case 2 : $query['developer_start']  = date("Y-m-d",strtotime("now"));
+                            $query['developer_end']  = date("Y-m-d",strtotime("now"));
+                            $query['tester_start']  = date("Y-m-d",strtotime("now"));
+                        case 3 :$query['developer_start']  = date("Y-m-d",strtotime("now"));
+                            $query['developer_end']  = date("Y-m-d",strtotime("now"));
+                            $query['tester_start']  = date("Y-m-d",strtotime("now"));
+                            $query['tester_end']  = date("Y-m-d",strtotime("now"));
+                    }
+                }
+                //开发中->测试中、已完成
+                if($query['status'] > 1 && $old_task->status == 1){
+                    switch($query['status']){
+                        case 2 : $query['developer_end']  = date("Y-m-d",strtotime("now"));
+                            $query['tester_start']  = date("Y-m-d",strtotime("now"));
+                        case 3 : $query['developer_end']  = date("Y-m-d",strtotime("now"));
+                            $query['tester_start']  = date("Y-m-d",strtotime("now"));
+                            $query['tester_end']  = date("Y-m-d",strtotime("now"));
+                    }
+                }
+                //测试中->已完成
+                if($query['status'] > 2 && $old_task->status == 2){
+                    switch($query['status']){
+                        case 3 : $query['tester_end']  = date("Y-m-d",strtotime("now"));
+                    }
+                }
             }
+            //完成时间不为空时，保存完成时间
+            if(!empty($request->actual_finish_date)){
+                $query['actual_finish_date'] = $request->actual_finish_date;
+            }
+
             if(!empty($request->developer)){
                 $query['developer'] = $request->developer;
             }
@@ -142,9 +179,7 @@ class TaskController extends Controller
             if(!empty($request->tester_workload) || $request->tester_workload == 0){
                 $query['tester_workload'] = $request->tester_workload;
             }
-            if(!empty($request->actual_finish_date)){
-                $query['actual_finish_date'] = $request->actual_finish_date;
-            }
+
             if(!empty($request->task_type)){
                 $query['task_type'] = $request->task_type;
             }

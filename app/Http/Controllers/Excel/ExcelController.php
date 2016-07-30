@@ -100,6 +100,55 @@ class ExcelController extends Controller
         //
     }
 
+    /**
+     * @param $type 季度、月、周
+     */
+    public function task_end_report($type)
+    {
+        $query_begin = null;
+        $query_end = null;
+        switch($type){
+            case 'month':
+                $query_begin = date("Y-m-d",mktime(0,0,0,date("m")-1,1,date("Y")));
+                $query_end = date("Y-m-d ",mktime(0,0,0,date("m")+1,1,date("Y")));
+                break;
+            case 'week':
+                $query_begin = date("Y-m-d",strtotime("-1 week Monday"));
+                $query_end = date("Y-m-d",strtotime("+0 week Monday"));
+                break;
+        }
+        //TODO:这里的条件，在团队数据和个人数据中是不一样的，团队的用actual_finish_date，个人的用dev、test_end_date
+        $tasks = Task::select('sum(developer_workload) + sum(tester_workload) as workload_all,
+        sum(developer_workload) as developer_workload_all,
+        sum(tester_workload) as tester_workload_all')
+                ->where('actual_finish_date','>',$query_begin)
+                ->where('actual_finish_date','<',$query_end)
+                -get();
+
+        $tasks_detail = Task::where('actual_finish_date','>',$query_begin)
+                ->where('actual_finish_date','<',$query_end)
+            -get();
+
+    }
+
+    public function task_report($type)
+    {
+        $file_name = '任务报表'.date("Ymd",strtotime("now"));
+        $query_begin = date("Ymd",mktime(0,0,0,date("m")-1,1,date("Y")));
+        $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
+        $tasks = Task::select('COUNT(1),sum(case when `status` = 0 then 1 ELSE 0 end) as todo,sum(case when `status` = 1 then 1 ELSE 0 end) as deving,sum(case when `status` = 2 then 1 ELSE 0 end) as testing,sum(case when `status` > 2 then 1 ELSE 0 end) as over')
+            ->where('task_no','>',$query_begin)
+            ->get();
+
+//        $cellData = $tasks->toArray();
+//        $title = ['总数	','待处理','开发中','测试中','任务标题','已完成'];
+//        Excel::create($file_name,function($excel) use ($cellData){
+//            $excel->sheet('score', function($sheet) use ($cellData){
+//                $sheet->rows($cellData);
+//            });
+//        })->export('xls');
+    }
+
     public function task($type)
     {
         $tasks = null;

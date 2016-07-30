@@ -42,9 +42,9 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="/task/history/week">任务-本周</a></li>
                         <li><a href="/task/history/month">任务-本月</a></li>
-                        <li><a href="/task/history/year">任务-本年</a></li>
+                        <li><a href="/task/history/year">任务-本年</a></li>re
                         <li><a href="/task/history/yd">任务-移动</a></li>
-                        <li><a href="/task/history/yd">常用报表</a></li>
+                        <li><a href="/report">常用报表</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

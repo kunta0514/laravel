@@ -141,6 +141,29 @@ class CustomerController extends Controller
 
     public function test()
     {
-        return view('customer.test',['theme'=>'default']);
+        $a = [
+            [
+                "id"=> "WF_PLDownload",
+                "parentnode" => "/configuration/system.web/httpHandlers/add",
+                "info" => [
+                    "path" => "WF_PLDownload.ashx",
+                    "type" => "MyWorkflow.WF_PLDownLoad, MyWorkflow",
+                    "verb" => "*"
+                ]
+            ],
+            [
+                "id"=> "WF_SilverLightUploder",
+                "parentnode" => "/configuration/system.web/httpHandlers/add",
+                "info" => [
+                    "path" => "/MyWorkflow/*/WF_SilverLightUploder.ashx",
+                    "type" => "MyWorkflow.WF_SilverLightUploder, MyWorkflow",
+                    "verb" => "*"
+                ]
+            ]
+        ];
+
+        print_r(json_encode($a,JSON_UNESCAPED_UNICODE));
+
+//        return view('customer.test',['theme'=>'default']);
     }
 }
