@@ -45,6 +45,7 @@ Route::group(['prefix' => 'report', 'namespace' => 'Report'], function()
     Route::resource('report', 'ReportController@index');
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/{type?}', 'ReportController@index');
+    Route::get('/task_report/{type}', 'ReportController@task_report');
 
 });
 

@@ -2,7 +2,6 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-md-6">
             <label for="tb_tasks_sum">本周团队任务情况（换饼图或者柱状图横向）:</label>
             <table class="table table-bordered table-hover" id="tb_tasks_sum">
