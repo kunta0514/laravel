@@ -31,75 +31,9 @@ class ReportController extends Controller
         return view('report.top10',['theme' => 'default','page_data'=>json_encode($page_data)]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function task_report($type)
     {
-        $type = 'week';
+//        $type = 'week';
         $query_begin = null;
         $query_end = null;
         switch($type){
@@ -122,8 +56,20 @@ class ReportController extends Controller
         $task_details = Task::where('actual_finish_date','>',$query_begin)
             ->where('actual_finish_date','<',$query_end)
             ->get();
+        $query_str="SELECT b.name,sum(CASE 'status' WHEN 0 THEN 1 ELSE 0 END ) AS todo,sum( CASE 'status' WHEN 1 THEN 1 ELSE 0 END ) AS doing,sum( CASE 'status' WHEN 1 THEN 2 ELSE 0 END ) AS testing,sum(CASE 'status' WHEN 3 THEN 1 ELSE 0 END ) AS dong,COUNT(1) AS totle FROM tasks a LEFT JOIN users b ON a.developer = b. CODE WHERE developer_end > :begin_time AND developer_end < :end_time  AND developer <> '' AND 'status' IN (0, 1, 2, 3) GROUP BY b. NAME UNION SELECT b. NAME,sum( CASE 'status' WHEN 0 THEN 1 ELSE 0 END ) AS todo,sum( CASE 'status' WHEN 1 THEN 1 ELSE 0 END ) AS doing, sum( CASE 'status' WHEN 2 THEN 1 ELSE 0 END ) AS testing,sum( CASE 'status' WHEN 3 THEN 1 ELSE 0 END ) AS dong,COUNT(1) AS totle FROM tasks a LEFT JOIN users b ON a.tester = b.CODE WHERE tester_end > :begin_time1 AND tester_end < :end_time1 AND tester <> '' AND tester <> 'xmabu' AND tester_workload <> '' AND 'status' IN (0, 1, 2, 3) GROUP BY b. NAME";
+//        $query_str=$query_str."UNION SELECT b. NAME,sum( CASE status WHEN 0 THEN 1 ELSE 0 END ) AS todo,sum( CASE status WHEN 1 THEN 1 ELSE 0 END ) AS doing, sum( CASE status WHEN 2 THEN 1 ELSE 0 END ) AS testing,sum( CASE status WHEN 3 THEN 1 ELSE 0 END ) AS dong,COUNT(1) AS totle FROM tasks a LEFT JOIN users b ON a.tester = b.CODE WHERE tester_end > :begin_time AND tester_end < :end_time AND tester <> '' AND tester <> 'xmabu' AND tester_workload <> '' AND status IN (0, 1, 2, 3) GROUP BY b. NAME";
 
-        return view('report.main_chart',['theme' => 'default','tasks_sum'=>$tasks_sum,'tasks_workload_sum'=>$tasks_workload_sum,'task_details'=>$task_details]);
+//       dd($query_str);die;
+        $person_workload_totle=DB::select($query_str, ['begin_time'=>$query_begin,'end_time'=>$query_end,'begin_time1'=>$query_begin,'end_time1'=>$query_end]);;
 
+//                             dd($person_workload_totle);die();
+        $page_data = array(
+            'mode'=>$type,
+            'tasks_sum'=>$tasks_sum,
+            'tasks_workload_sum'=>$tasks_workload_sum,
+            'task_details'=>$task_details,
+            'person_workload_totle'=>$person_workload_totle);
+        return view('report.main_chart',['theme' => 'default','page_data'=>json_encode($page_data),'tasks_workload_sum'=>$tasks_workload_sum,'task_details'=>$task_details]);
     }
+
 }
