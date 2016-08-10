@@ -4,10 +4,17 @@
     <script src="{{asset('vendor/js/datatables.js')}}"></script>
 <div class="container-fluid">
     <div class="row">
+        <div class="col-md-12" style="text-align: center;margin-bottom: 15px;">
+            <div class="btn-group" name="btn_type" role="group" aria-label="Large button group">
+                <button type="button" class="btn btn-default" rel="week">本周</button>
+                <button type="button" class="btn btn-default" rel="month">本月</button>
+                <button type="button" class="btn btn-default">本年度</button>
+            </div>
+        </div>
         <div class="col-md-5">
             <div id="pie_tasks_sum" style="width:90%;height:300px;"></div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7" style="text-align: center">
             <label for="echarts_person_tasks"><h4 style="margin: 0;margin-top:5px;font-weight: bold;font-family:Microsoft YaHei" >个人任务完成情况</h4></label>
             <div id="echarts_person_tasks" style="width:90%;height:450px;"></div>
         </div>
@@ -90,7 +97,6 @@
                                 <?= date("Y-m-d", strtotime("$task->actual_finish_date")) ?>
                             @endif
                         </td>
-                        {{--<td style="width: 500px">{{$task->comment}}</td>--}}
                     </tr>
                 @endforeach
                 </tbody>
@@ -274,6 +280,13 @@
         paging: false,//分页
         ordering: false,//是否启用排序
         dom: "<'row'<'col-sm-12'tr>>" + "<'row'>"
+    });
+
+    $(document).on("click","div[name='btn_type']",function(e){
+        e.cancelBubble=false;
+        e.preventDefault();
+        if(e.target.tagName!="BUTTON")return false;
+        window.location.href="/report/task_report/"+$(e.target).attr("rel");
     });
 </script>
 @stop
