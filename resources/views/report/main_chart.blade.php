@@ -1,18 +1,20 @@
 @extends('templates.reportnav')
 @section('content')
+    <link href="{{asset('vendor/css/datatables.css')}}" rel="stylesheet">
+    <script src="{{asset('vendor/js/datatables.js')}}"></script>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div id="pie_tasks_sum" style="width:90%;height:300px;"></div>
         </div>
-        <div class="col-md-6">
-            <label for="echarts_person_tasks">个人任务完成情况</label>
+        <div class="col-md-7">
+            <label for="echarts_person_tasks"><h4 style="margin: 0;margin-top:5px;font-weight: bold;font-family:Microsoft YaHei" >个人任务完成情况</h4></label>
             <div id="echarts_person_tasks" style="width:90%;height:450px;"></div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <label for="tb_tasks_workload_sum">本周团队任务完成情况（换饼图或者柱状图横向）:</label>
+        <div class="col-md-5">
+            <label for="tb_tasks_workload_sum">本周团队任务完成情况（单位:人/天）:</label>
             <table class="table table-bordered table-hover" id="tb_tasks_workload_sum">
                 <thead>
                 <tr>
@@ -21,18 +23,10 @@
                     <th>合计</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>{{$tasks_workload_sum->developer_workload_all}}</td>
-                    <td>{{$tasks_workload_sum->tester_workload_all}}</td>
-                    <td>{{$tasks_workload_sum->developer_workload_all + $tasks_workload_sum->tester_workload_all}}</td>
-                </tr>
-
-                </tbody>
             </table>
         </div>
-        <div class="col-md-6">
-            <label for="tb_tasks_sum">个人任务情况（换饼图或者柱状图横向）:</label>
+        <div class="col-md-7">
+            <label for="tb_tasks_sum">个人任务情况（单位:人/天）:</label>
             <table class="table table-bordered table-hover" id="tb_tasks_sum">
                 <thead>
                 <tr>
@@ -41,11 +35,9 @@
                     <th>开发中</th>
                     <th>测试中</th>
                     <th>已完成</th>
+                    <th>合计</th>
                 </tr>
                 </thead>
-                <tbody>
-
-                </tbody>
             </table>
         </div>
     </div>
@@ -54,7 +46,7 @@
             <label for="tb_task_details">本周团队任务完成明细（点击明细连接）:</label>
             <table class="table table-bordered table-hover" id="tb_task_details">
                 <thead>
-                <tr>
+                <tr style="cursor:hand">
                     <th>任务编号</th>
                     <th>状态</th>
                     <th>任务标题</th>
@@ -63,7 +55,7 @@
                     <th>开发</th>
                     <th>测试</th>
                     <th>完成时间</th>
-                    <th style="width: 300px">备注</th>
+                    {{--<th style="width: 300px">备注</th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -98,7 +90,7 @@
                                 <?= date("Y-m-d", strtotime("$task->actual_finish_date")) ?>
                             @endif
                         </td>
-                        <td style="width: 500px">{{$task->comment}}</td>
+                        {{--<td style="width: 500px">{{$task->comment}}</td>--}}
                     </tr>
                 @endforeach
                 </tbody>
@@ -160,7 +152,7 @@
         return item.name;
     });
     var person_workfload_todo= $.map(person_workflod_totle,function(item){
-                            return item.todo;
+        return item.todo;
     });
     var person_workfload_doing= $.map(person_workflod_totle,function(item){
         return item.doing;
@@ -183,8 +175,8 @@
             data: tasks_sum_legend
         },
         grid: {
-            left: '3%',
-            right: '4%',
+            left: '1%',
+            right: '1%',
             bottom: '3%',
             containLabel: true
         },
@@ -247,6 +239,42 @@
         ]
     };
     person_tasks.setOption(person_tasks_option);
+
+    //tb_tasks_sum
+    var tb_tasks_sum=$("#tb_tasks_sum").DataTable({
+        "data":page_data.person_workload_sum,
+        "columns": [
+            { "data": "NAME" },
+            { "data": "todo_workload" },
+            { "data": "deving_workload" },
+            { "data": "testing_workload" },
+            { "data": "dong_workload" },
+            { "data": "sum_workload" }
+        ],
+        paging: false,//分页
+        ordering: true,//是否启用排序
+        dom: "<'row'<'col-sm-12'tr>>" + "<'row'>",
+        order:[5,'desc']
+    });
+
+    //tb_tasks_workload_sum
+    var dev_sum_workload=0;
+    var test_sum_workload=0
+    $.each(page_data.person_workload_sum,function(n,value){
+        if(value.role)
+        {
+            test_sum_workload=test_sum_workload+value.sum_workload;
+        }    else {
+            dev_sum_workload=dev_sum_workload+    value.sum_workload
+        }
+    });
+    var mydata=Array(Array(dev_sum_workload,test_sum_workload,dev_sum_workload+test_sum_workload));
+    var tb_tasks_workload_sum=$("#tb_tasks_workload_sum").DataTable({
+        "data":mydata,
+        paging: false,//分页
+        ordering: false,//是否启用排序
+        dom: "<'row'<'col-sm-12'tr>>" + "<'row'>"
+    });
 </script>
 @stop
 

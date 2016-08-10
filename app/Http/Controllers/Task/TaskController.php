@@ -41,8 +41,9 @@ class TaskController extends Controller
      * @Author  zhuangsd
      * @return \Illuminate\Http\Response
      */
-    public function get_todo_taskList()
+    public function get_todo_taskList(Request $request)
     {
+//        dd($request->search);die;
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
         return json_encode(Array('data'=>$task_list->toArray()));
     }
@@ -89,16 +90,16 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-//        $task = Task::find($id);
-//        return view('task.edit', ['theme' => 'default','task' => $task]);
         $developers = Cache::get('developers',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 0)->where('is_out',0)->get();
             Cache::forever('developers', $users);
+            return $users;
         });
 
         $testers = Cache::get('testers',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 1)->where('is_out',0)->get();
             Cache::forever('testers', $users);
+            return $users;
         });
 
         $task = Task::find($id);
@@ -160,6 +161,11 @@ class TaskController extends Controller
                     switch($query['status']){
                         case 3 : $query['tester_end']  = date("Y-m-d",strtotime("now"));
                     }
+                }
+                //只指定人员，但是不指定状态
+                if($query['status']==0 && $old_task->status == 0 && (!empty($request->developer) || !empty($request->tester)))
+                {
+                    $query['developer_start']  = date("Y-m-d",strtotime("now"));
                 }
             }
             //完成时间不为空时，保存完成时间
