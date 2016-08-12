@@ -57,8 +57,8 @@ class ReportController extends Controller
         $tasks_workload_sum =  DB::table('tasks')->select(DB::raw('sum(developer_workload) as developer_workload_all'),DB::raw('sum(tester_workload) as tester_workload_all'))
             ->where('actual_finish_date','>',$query_begin)->where('actual_finish_date','<',$query_end)
             ->first();
-        $task_details = Task::where('actual_finish_date','>',$query_begin)
-            ->where('actual_finish_date','<',$query_end)
+        $task_details = Task::where('ekp_create_date','>',$query_begin)
+            ->where('ekp_create_date','<',$query_end)
             ->get();
         $query_str="SELECT b.name,sum(CASE `status` WHEN 0 THEN 1 ELSE 0 END ) AS todo,sum( CASE `status` WHEN 1 THEN 1 ELSE 0 END ) AS doing,sum( CASE `status` WHEN 2 THEN 1 ELSE 0 END ) AS testing,
                 sum(CASE `status` WHEN 3 THEN 1 ELSE 0 END ) AS dong,COUNT(1) AS totle FROM tasks a LEFT JOIN users b ON a.developer = b. CODE WHERE developer_start > :begin_time AND developer_start < :end_time  AND developer <> '' AND `status` IN (0, 1, 2, 3)
@@ -88,14 +88,34 @@ class ReportController extends Controller
 //        dd($query_str);die;
         $person_workload_sum=DB::select($query_str, $query_params);
 
+//        dd($person_workload_sum);die;
+
+
+        //计算团队工作量，前段js浮点运算有bug
+        $dev_workfloads=0;
+        $test_workload=0;
+        foreach($person_workload_sum as $key=>$value)
+        {
+           if($value->role) {
+               $dev_workfloads += $value->sum_workload;
+           }else{
+               $test_workload += $value->sum_workload;
+           }
+        }
+
         $page_data = array(
             'mode'=>$type,
             'tasks_sum'=>$tasks_sum,
             'tasks_workload_sum'=>$tasks_workload_sum,
             'task_details'=>$task_details,
             'person_workload_totle'=>$person_workload_totle,
-            'person_workload_sum'=>$person_workload_sum);
-        return view('report.main_chart',['theme' => 'default','page_data'=>json_encode($page_data),'tasks_workload_sum'=>$tasks_workload_sum,'task_details'=>$task_details]);
+            'person_workload_sum'=>array('data'=>$person_workload_sum,
+                                        'dev_workfloads'=>$dev_workfloads,
+                                        'test_workloads'=>$test_workload,
+                                        'total_workloads'=>$dev_workfloads+$test_workload,
+                                    ));
+//        dd($page_data);die;
+        return view('report.main_chart',['theme' => 'default','page_data'=>json_encode($page_data),'task_details'=>$task_details]);
     }
 
 }

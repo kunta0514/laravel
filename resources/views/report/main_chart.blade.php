@@ -2,6 +2,14 @@
 @section('content')
     <link href="{{asset('vendor/css/datatables.css')}}" rel="stylesheet">
     <script src="{{asset('vendor/js/datatables.js')}}"></script>
+    <script src="{{asset('vendor/js/underscore.js')}}"></script>
+    <link href="{{asset('vendor/css/modal.css')}}" rel="stylesheet">
+    <script src="{{asset('vendor/js/modal.js')}}"></script>
+    <style type="text/css">
+        table tr {
+            cursor: pointer;
+        }
+    </style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12" style="text-align: center;margin-bottom: 15px;">
@@ -67,9 +75,9 @@
                 </thead>
                 <tbody>
                 @foreach($task_details as $k=>$task)
-                    <tr rel="{{$task->id}}">
-                        <td><a href="{{$task->ekp_oid}}" name="view_on_erp"
-                               rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
+                    <tr rel="{{$task->id}}" rel="{{$task->ekp_oid}}">
+                        <td><a href="javascript:;" name="view_on_erp"
+                               rel="{{$task->ekp_oid}}">{{$task->task_no}}</a></td>
                         <td>
                             {{ Config('params.task_status')[$task->status] }}
                         </td>
@@ -105,6 +113,7 @@
     </div>
 </div>
 <script type="text/javascript">
+    //TODO:1、调整取数逻辑为异步；2、调整代码逻辑，现在写的太乱了。
     // 基于准备好的dom，初始化echarts实例
     var pie_tasks_sum = echarts.init(document.getElementById('pie_tasks_sum'));
     var tasks_sum_legend = Array('待处理','开发中','测试中','已完成');
@@ -133,10 +142,10 @@
                 radius : '55%',
                 center: ['50%', '60%'],
                 data:[
-                    {value:tasks_sum_data.todo,name:tasks_sum_legend[0]},
-                    {value:tasks_sum_data.deving,name:tasks_sum_legend[1]},
-                    {value:tasks_sum_data.testing,name:tasks_sum_legend[2]},
-                    {value:tasks_sum_data.over,name:tasks_sum_legend[3]},
+                    {value:tasks_sum_data.todo,name:tasks_sum_legend[0],rel:"todo"},
+                    {value:tasks_sum_data.deving,name:tasks_sum_legend[1],rel:"deving"},
+                    {value:tasks_sum_data.testing,name:tasks_sum_legend[2],rel:"testing"},
+                    {value:tasks_sum_data.over,name:tasks_sum_legend[3],rel:"over"},
                 ],
                 itemStyle: {
                     emphasis: {
@@ -150,6 +159,10 @@
     };
     // 使用刚指定的配置项和数据显示图表。
     pie_tasks_sum.setOption(pie_tasks_sum_option);
+
+    pie_tasks_sum.on("click",function(params){
+        tb_task_details.search(params.name).draw();
+    });
 
     //个人任务完成情况
     var person_tasks=echarts.init(document.getElementById('echarts_person_tasks'));
@@ -246,9 +259,12 @@
     };
     person_tasks.setOption(person_tasks_option);
 
+    person_tasks.on("click",function(params){
+        tb_task_details.search(params.name).draw();
+    });
     //tb_tasks_sum
     var tb_tasks_sum=$("#tb_tasks_sum").DataTable({
-        "data":page_data.person_workload_sum,
+        "data":page_data.person_workload_sum.data,
         "columns": [
             { "data": "NAME" },
             { "data": "todo_workload" },
@@ -262,19 +278,13 @@
         dom: "<'row'<'col-sm-12'tr>>" + "<'row'>",
         order:[5,'desc']
     });
-
-    //tb_tasks_workload_sum
-    var dev_sum_workload=0;
-    var test_sum_workload=0
-    $.each(page_data.person_workload_sum,function(n,value){
-        if(value.role)
-        {
-            test_sum_workload=test_sum_workload+value.sum_workload;
-        }    else {
-            dev_sum_workload=dev_sum_workload+    value.sum_workload
-        }
+    var tb_task_details=$("#tb_task_details").DataTable({
+        paging: false,//分页
+        ordering: true,//是否启用排序
+        dom: "<'row'<'col-sm-12'tr>>" + "<'row'>"
     });
-    var mydata=Array(Array(dev_sum_workload,test_sum_workload,dev_sum_workload+test_sum_workload));
+    //tb_tasks_workload_sum
+    var mydata=Array(Array(page_data.person_workload_sum.dev_workfloads,page_data.person_workload_sum.test_workloads,page_data.person_workload_sum.total_workloads));
     var tb_tasks_workload_sum=$("#tb_tasks_workload_sum").DataTable({
         "data":mydata,
         paging: false,//分页
@@ -282,11 +292,35 @@
         dom: "<'row'<'col-sm-12'tr>>" + "<'row'>"
     });
 
+    //切换筛选条件
     $(document).on("click","div[name='btn_type']",function(e){
         e.cancelBubble=false;
         e.preventDefault();
         if(e.target.tagName!="BUTTON")return false;
         window.location.href="/report/task_report/"+$(e.target).attr("rel");
+    });
+
+    //任务列表事件绑定
+    $(document).on('click', '#tb_task_details tbody tr', function () {
+        var data = $(this);
+        $.modal({
+            keyboard: true,
+            width:598,
+            minHeight:518,
+            transition:true,
+            remote: '/task/edit/' + data.attr("rel"),
+            okHide: function () {
+
+            }
+        })
+    } );
+
+    $('#tb_task_details tbody').on('click',"td a[name='view_on_erp']",function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        if ($(this).attr("rel") != "") {
+            window.open("http://pd.mysoft.net.cn" + $(this).attr("rel"));
+        }
     });
 </script>
 @stop
