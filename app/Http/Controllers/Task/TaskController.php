@@ -192,7 +192,7 @@ class TaskController extends Controller
             if(!empty($request->PRI)|| $request->PRI == 0){
                 $query['PRI'] = $request->PRI;
             }
-            if(!empty($request->update_type )|| $request->update_type == 0){
+            if(!empty($request->update_type )){
                 $query['update_type'] = $request->update_type;
             }
             if(!empty($query)){
@@ -208,6 +208,7 @@ class TaskController extends Controller
                             $customers_update_log = new CustomerUpdateLog();
                             $customers_update_log->task_id = $id;
                             $customers_update_log->task_no = $request->task_no;
+                            $customers_update_log->uuid = $request->uuid;
 
                             if(!empty($request->uuid)){
                                 $customers_update_log->uuid = $request->uuid;
@@ -217,6 +218,7 @@ class TaskController extends Controller
                         }
                     }
                 });
+                DB::commit();
             }
         }
     }
@@ -395,6 +397,15 @@ class TaskController extends Controller
 
     public function history($type)
     {
+        $page_data=array(
+            'task_status'=>Config('params.task_status'),
+            'type'=>$type
+        );
+        return view('task.history', ['theme' => 'default','page_data'=>json_encode($page_data,JSON_UNESCAPED_UNICODE),'type'=>$type]);
+    }
+
+    public function get_history_list($type)
+    {
         //本周、本月，本季度，上周，上月，上季度
         $tasks = null;
         $query = null;
@@ -431,10 +442,12 @@ class TaskController extends Controller
                 break;
 
         }
-        return view('task.history', ['theme' => 'default','tasks' => $tasks, 'type' => $type]);
+        $page_data=array(
+            'data'=>$tasks,
+//            'type'=>$type
+        );
+        return json_encode($page_data,JSON_UNESCAPED_UNICODE);
     }
-
-
 
     public function sync_task()
     {

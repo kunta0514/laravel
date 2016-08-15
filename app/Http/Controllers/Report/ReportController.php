@@ -92,14 +92,14 @@ class ReportController extends Controller
 
 
         //计算团队工作量，前段js浮点运算有bug
-        $dev_workfloads=0;
+        $dev_workload=0;
         $test_workload=0;
         foreach($person_workload_sum as $key=>$value)
         {
            if($value->role) {
-               $dev_workfloads += $value->sum_workload;
-           }else{
                $test_workload += $value->sum_workload;
+           }else{
+               $dev_workload += $value->sum_workload;
            }
         }
 
@@ -110,9 +110,9 @@ class ReportController extends Controller
             'task_details'=>$task_details,
             'person_workload_totle'=>$person_workload_totle,
             'person_workload_sum'=>array('data'=>$person_workload_sum,
-                                        'dev_workfloads'=>$dev_workfloads,
+                                        'dev_workloads'=>$dev_workload,
                                         'test_workloads'=>$test_workload,
-                                        'total_workloads'=>$dev_workfloads+$test_workload,
+                                        'total_workloads'=>$dev_workload+$test_workload,
                                     ));
 //        dd($page_data);die;
         return view('report.main_chart',['theme' => 'default','page_data'=>json_encode($page_data),'task_details'=>$task_details]);

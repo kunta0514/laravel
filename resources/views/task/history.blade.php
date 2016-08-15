@@ -51,57 +51,110 @@
                     <th style="width: 300px">备注</th>
                 </tr>
                 </thead>
-                <tbody>
-
-                @foreach($tasks as $k=>$task)
-                    <tr rel="{{$task->id}}" >
-                        <td><a href="{{$task->ekp_oid}}" name="view_on_erp" rel="{{$task->task_no}}">{{$task->task_no}}</a></td>
-                        <th >{{$task->PRI}}</th>
-                        <td>
-                            {{ Config('params.task_status')[$task->status] }}
-                        </td>
-                        <td data-toggle="tooltip" data-placement="top" title="{{$task->task_title}}">
-                            @if(stristr($task->ekp_task_type, 'BUG'))
-                                <span class="label label-danger">B</span>
-                            @elseif(stristr($task->ekp_task_type, '咨询'))
-                                <span class="label label-info">咨</span>
-                            @elseif(stristr($task->ekp_task_type, '需求'))
-                                <span class="label label-success">需</span>
-                            @else
-                                <span class="label label-primary">{{mb_substr($task->ekp_task_type,0,1)}}</span>
-                            @endif
-                            {{$task->task_title}}
-                        </td>
-                        <td><a name="view_on_cus" href="#" rel="{{$task->customer_uuid}}">{{$task->customer_name}}</a></td>
-                        <td>{{$task->abu_pm}}</td>
-                        <td>{!! AppHelper::user_name($task->developer) !!}({{$task->developer_workload}})</td>
-                        <td>{!! AppHelper::user_name($task->tester) !!}({{$task->tester_workload}})</td>
-                        <td>
-                            @if (date("Y-m-d",strtotime("$task->actual_finish_date")) == '-0001-11-30' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1900-01-01' || date("Y-m-d",strtotime("$task->actual_finish_date")) == '1970-01-01')
-                                <span></span>
-                            @else
-                                <?= date("Y-m-d",strtotime("$task->actual_finish_date")) ?>
-                            @endif
-                        </td>
-                        <td>{{$task->comment}}</td>
-                    </tr>
-                @endforeach
-                </tbody>
             </table>
         </div>
     </div>
 
 
     <script type="text/javascript">
+        var page_data = <?= $page_data ?>;
+        var task_status = page_data.task_status;
+        var type = page_data.type;
         var tt = $('#example').DataTable({
-            lengthMenu: [50, 100, "ALL"],//这里也可以设置分页，但是不能设置具体内容，只能是一维或二维数组的方式，所以推荐下面language里面的写法。
+            ajax:{
+                url: '/task/get_history_list/'+type,
+                type:"GET"
+            },
+            columns:[
+                {'data':"task_no"},
+                {'data':"PRI"},
+                {'data':"status"},
+                {'data':"task_title"},
+                {'data':"customer_name"},
+                {'data':"abu_pm"},
+                {'data':"dev_name"},
+                {'data':"tester_name"},
+                {'data':"ekp_expect"},
+                {'data':"comment"},
+            ],
+            "columnDefs": [
+                {
+//                "visible": false,
+//                "targets": [10]
+                },
+                {
+                    "render": function(data, type, row, meta) {
+                        return '<a name="view_on_erp" rel="' + row.ekp_oid + '" target="_blank">' + data + '</a>';
+                    },
+                    "targets": 0
+                },
+                {
+                    "render": function(data, type, row, meta) {
+                        return task_status[data];
+                    },
+                    "targets": 2
+                },
+                {
+                    "render": function(data, type, row, meta) {
+                        switch (row.ekp_task_type){
+                            case "需求":
+                            case "升级-零星需求-一般":
+                            case "开发类-零星需求-一般":
+                                return '<span class="label label-success">需</span>' + data + '</a>';
+                                break;
+                            case "BUG":
+                            case "产品BUG":
+                            case "升级-BUG修改-一般":
+                            case "升级-BUG修改-紧急":
+                                return '<span class="label label-danger">B</span>' + data + '</a>';
+                            case "升级-咨询评估":
+                                return '<span class="label label-info">咨</span>' + data + '</a>';
+                            default:
+                                return '<span class="label label-primary">'+row.ekp_task_type.substring(0,1)+'</span>' + data + '</a>';
+                        }
+
+                    },
+                    "targets": 3
+                },
+                {
+                    "render": function(data, type, row, meta) {
+                        return  (data)? data+'('+row.developer_workload+")":"";
+                    },
+                    "targets":6
+                },
+                {
+                    "render": function(data, type, row, meta) {
+                        return  (data)? data+'('+row.tester_workload+")":"";
+                    },
+                    "targets":7
+                },
+                {
+                    "render": function(data, type, row, meta) {
+                        return  data.substring(0,10);
+                    },
+                    "targets":8
+                },
+            ],
+            "createdRow": function ( row, data, index ) {
+                $(row).attr("rel",data.id);
+                switch (data.status)
+                {
+                    case 1:
+                        $(row).find("td:eq(6)").addClass("or_doing");
+                        break;
+                    case 2:
+                        $(row).find("td:eq(7)").addClass("or_doing");
+                        break;
+
+                }
+            },
             paging: false,//分页
             ordering: true,//是否启用排序
-            order: [ [ 0, 'desc' ]],
+//        order: [ [ 0, 'asc' ]],
 //                searching: true,//搜索
             dom: "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
             language: {
-                lengthMenu: '每页<select class="form-control input-xsmall">' + '<option value="15">15</option>' + '<option value="30">30</option>' + '<option value="50">50</option>' + '<option value="100">100</option>' + '</select>条记录',//左上角的分页大小显示。
+                lengthMenu: '每页<select class="form-control input-xsmall">' +  '<option value="50">50</option>' + '<option value="100">100</option>' + '</select>条记录',//左上角的分页大小显示。
                 search: '搜索：',//右上角的搜索文本，可以写html标签
                 paginate: {//分页的样式内容。
                     previous: "上一页",
@@ -111,69 +164,39 @@
                 },
                 zeroRecords: "没有找到相关内容",//table tbody内容为空时，tbody的内容。
                 //下面三者构成了总体的左下角的内容。
-                info: "总共_PAGES_ 页，显示第_START_ 到第 _END_ ，筛选之后得到 _TOTAL_ 条，初始_MAX_ 条 ",//左下角的信息显示，大写的词为关键字。
+                info: "显示第_START_ 到第 _END_ ，筛选之后得到 _TOTAL_ 条，初始 _MAX_ 条 ",//左下角的信息显示，大写的词为关键字。
                 infoEmpty: "0条记录",//筛选为空时左下角的显示。
                 infoFiltered: ""//筛选之后的左下角筛选提示，
             },
-            showRowNumber:true,
             bAutoWidth:false,
         });
 
         $(document).on('click', '#example tbody tr', function () {
-//            console.log($(this).attr('rel'));
+            var data = $(this);
             $.modal({
                 keyboard: true,
                 width:598,
                 minHeight:518,
-                remote: '/task/edit/' + $(this).attr('rel'),
+                transition:true,
+                remote: '/task/edit/' + data.attr("rel"),
                 okHide: function () {
-                    // return false;
 
                 }
             })
         } );
 
-        $(document).on('click', '#example tbody tr a[name=view_on_cus]', function () {
-            console.log($(this)[0].innerText);
-            console.log($(this).attr('rel'));
-            return false;
-//            $.modal({
-//                keyboard: true,
-//                width:598,
-//                minHeight:518,
-//                remote: '/customer/detail/' + $(this).attr('rel') + '?name=' + $(this)[0].innerText,
-//                okHide: function () {
-//                    // return false;
-//                }
-//            })
-        } );
-
-        $(document).on('click', '#example tbody tr a[name=view_on_erp]', function () {
-            var task_no = $(this)[0].innerText;
-            if($(this).attr("href")!="") {
-                window.open("http://pd.mysoft.net.cn"+ $(this).attr("href"));
-            }else{
-                $.ajax({
-                    type:'GET',
-                    url:'/task/view_pd/'+task_no,
-                    success:function(data) {
-                        window.open("http://pd.mysoft.net.cn"+data) ;
-                    },
-                    error:function(data){
-                        console.info(data);
-                    }
-                });
+        $(document).on('click',"a[name='view_on_erp']",function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            if ($(this).attr("rel") != "") {
+                window.open("http://pd.mysoft.net.cn" + $(this).attr("rel"));
             }
-            return false;
-        } );
+        });
+
 
         $(document).on("keypress", '.search-form[type="search"]', function (e) {
             if (e.keyCode == "13") {
                 var keyword = $(this).val();
-//                if(keyword === '') {
-//                    $.toast("请输入查找内容","info");
-//                    return false;
-//                }
                 tt.search(keyword).draw();
             }
         });

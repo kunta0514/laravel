@@ -284,7 +284,7 @@
         dom: "<'row'<'col-sm-12'tr>>" + "<'row'>"
     });
     //tb_tasks_workload_sum
-    var mydata=Array(Array(page_data.person_workload_sum.dev_workfloads,page_data.person_workload_sum.test_workloads,page_data.person_workload_sum.total_workloads));
+    var mydata=Array(Array(page_data.person_workload_sum.dev_workloads,page_data.person_workload_sum.test_workloads,page_data.person_workload_sum.total_workloads));
     var tb_tasks_workload_sum=$("#tb_tasks_workload_sum").DataTable({
         "data":mydata,
         paging: false,//分页

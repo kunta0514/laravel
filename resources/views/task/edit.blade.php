@@ -1,12 +1,13 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title">{{$task->task_title}}[<a href="#" rel="{{$task->ekp_oid}}" onclick="oprViewOnEKP(this)">{{$task->task_no}}</a>]</h4>
+    <h4 class="modal-title">{{$task->task_title}}[<a href="javascript:;" name="view_on_erp" rel="{{$task->ekp_oid}}">{{$task->task_no}}</a>]</h4>
 </div>
 <div class="modal-body">
     <form method="post" role="form" id="form_task" class="form-horizontal form-column form-bordered">
         {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
         <input type="hidden" name="id" value={{$task->id}}>
+        <input type="hidden" name="task_uuid" value={{$task->customer_uuid}}>
         <div class="row">
             {{--左侧--}}
             <div class="col-sm-12">
@@ -164,6 +165,7 @@
         task.status = $('#select_status').val();
         task.actual_finish_date = $("#actual_finish_date").val();
         task.task_type = $("#select_task_type").val();
+        task.uuid=$("input[name='task_uuid']").val();
 
         if($('#no_update').is(':checked')) task.update_type = 0;
         if($('#update_type_standard').is(':checked')) task.update_type = 1;
