@@ -19,18 +19,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-//        if (!Cache::has('customer')) {
-//            Cache::forever('customer', Customer::all());
-//        }
-//        Cache::forget('customer');
         $customers = Cache::get('customer',function(){
             $customer = Customer::all();
             Cache::forever('customer', $customer);
+            return   $customer;
         });
-
-//        print_r($customers);
-//        die;
-        return view('customer.main',['theme' => 'default','customer'=>Cache::get('customer')]);
+        return view('customer.main',['theme' => 'default','customer'=>$customers]);
     }
 
     /**

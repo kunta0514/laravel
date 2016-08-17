@@ -41,8 +41,9 @@ class TaskController extends Controller
      * @Author  zhuangsd
      * @return \Illuminate\Http\Response
      */
-    public function get_todo_taskList()
+    public function get_todo_taskList(Request $request)
     {
+//        dd($request->search);die;
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
         return json_encode(Array('data'=>$task_list->toArray()));
     }
@@ -89,17 +90,17 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-//        $task = Task::find($id);
-//        return view('task.edit', ['theme' => 'default','task' => $task]);
         $developers = Cache::get('developers',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 0)->where('is_out',0)->get();
             Cache::forever('developers', $users);
+            return $users;
         });
 
         //Cache::forget('testers');
         $testers = Cache::get('testers',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 1)->where('is_out',0)->get();
             Cache::forever('testers', $users);
+            return $users;
         });
 
         $task = Task::find($id);
@@ -163,6 +164,11 @@ class TaskController extends Controller
                         case 3 : $query['tester_end']  = date("Y-m-d",strtotime("now"));
                     }
                 }
+                //只指定人员，但是不指定状态
+                if($query['status']==0 && $old_task->status == 0 && (!empty($request->developer) || !empty($request->tester)))
+                {
+                    $query['developer_start']  = date("Y-m-d",strtotime("now"));
+                }
             }
             //完成时间不为空时，保存完成时间
             if(!empty($request->actual_finish_date)){
@@ -188,7 +194,7 @@ class TaskController extends Controller
             if(!empty($request->PRI)|| $request->PRI == 0){
                 $query['PRI'] = $request->PRI;
             }
-            if(!empty($request->update_type )|| $request->update_type == 0){
+            if(!empty($request->update_type )){
                 $query['update_type'] = $request->update_type;
             }
             if(!empty($query)){
@@ -204,6 +210,7 @@ class TaskController extends Controller
                             $customers_update_log = new CustomerUpdateLog();
                             $customers_update_log->task_id = $id;
                             $customers_update_log->task_no = $request->task_no;
+                            $customers_update_log->uuid = $request->uuid;
 
                             if(!empty($request->uuid)){
                                 $customers_update_log->uuid = $request->uuid;
@@ -213,6 +220,7 @@ class TaskController extends Controller
                         }
                     }
                 });
+                DB::commit();
             }
         }
     }
@@ -391,6 +399,15 @@ class TaskController extends Controller
 
     public function history($type)
     {
+        $page_data=array(
+            'task_status'=>Config('params.task_status'),
+            'type'=>$type
+        );
+        return view('task.history', ['theme' => 'default','page_data'=>json_encode($page_data,JSON_UNESCAPED_UNICODE),'type'=>$type]);
+    }
+
+    public function get_history_list($type)
+    {
         //本周、本月，本季度，上周，上月，上季度
         $tasks = null;
         $query = null;
@@ -427,10 +444,12 @@ class TaskController extends Controller
                 break;
 
         }
-        return view('task.history', ['theme' => 'default','tasks' => $tasks, 'type' => $type]);
+        $page_data=array(
+            'data'=>$tasks,
+//            'type'=>$type
+        );
+        return json_encode($page_data,JSON_UNESCAPED_UNICODE);
     }
-
-
 
     public function sync_task()
     {

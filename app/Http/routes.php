@@ -46,7 +46,6 @@ Route::group(['prefix' => 'report', 'namespace' => 'Report'], function()
     //get、post等按顺序，按分组些，不能穿插写
     Route::get('/{type?}', 'ReportController@index');
     Route::get('/task_report/{type}', 'ReportController@task_report');
-
 });
 
 Route::group(['prefix' => 'project', 'namespace' => 'Project'], function()
@@ -80,9 +79,11 @@ Route::group(['prefix' => 'task', 'namespace' => 'Task'], function()
     Route::get('/test_page', 'TaskController@test_page');
     Route::get('/history/{type}', 'TaskController@history');
     Route::get('/export/{type}','TaskController@export');
+    Route::get('/get_history_list/{type}','TaskController@get_history_list');
 
     Route::post('/update/{id}', 'TaskController@update');
     Route::post('/detail_edit','TaskController@detail_edit');
+    Route::post('/get_todoList', 'TaskController@get_todo_taskList');
 
     Route::resource('task', 'TaskController@index');
 });
