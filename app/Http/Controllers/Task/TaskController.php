@@ -96,6 +96,7 @@ class TaskController extends Controller
             Cache::forever('developers', $users);
         });
 
+        //Cache::forget('testers');
         $testers = Cache::get('testers',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->where('role', 1)->where('is_out',0)->get();
             Cache::forever('testers', $users);
@@ -139,6 +140,7 @@ class TaskController extends Controller
                         case 2 : $query['developer_start']  = date("Y-m-d",strtotime("now"));
                             $query['developer_end']  = date("Y-m-d",strtotime("now"));
                             $query['tester_start']  = date("Y-m-d",strtotime("now"));
+                            break;
                         case 3 :$query['developer_start']  = date("Y-m-d",strtotime("now"));
                             $query['developer_end']  = date("Y-m-d",strtotime("now"));
                             $query['tester_start']  = date("Y-m-d",strtotime("now"));

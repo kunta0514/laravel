@@ -184,6 +184,15 @@ class SyncCustomer extends Command
         }
     }
 
+    //补充分析新客户
+    protected function sync_ekp_customer_add()
+    {
+        $csts = DB::select('select * from customer_ekp where `code` not in (select CASE when ekp_code is null then \'\' else ekp_code END from customers)');
+
+        $black_list = [''];
+
+    }
+
     //ekp客户初始化的在Init文件中，这里只管更新规则
     protected function sync_ekp_customer()
     {

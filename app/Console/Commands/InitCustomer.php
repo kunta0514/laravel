@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\Customer_ekp;
 
 class InitCustomer extends Command
 {
@@ -38,7 +39,7 @@ class InitCustomer extends Command
     public function handle()
     {
         //
-//        $this->init_ekp_customer();
+        $this->init_ekp_customer();
     }
 
     protected function init_ekp_customer()
@@ -80,11 +81,12 @@ class InitCustomer extends Command
             $customer=$value->children(1)->find('div[class*=customer-item] a');
             foreach($customer as $k=>$value)
             {
-                $customer=new Customer();
+                $customer=new Customer_ekp();
                 $customer->name=$value->attr['title'];
                 $customer->code=$value->attr['code'];
                 $customer->area_id=$area_id;
                 $customer->save();
+                $this->print_log("同步客户： $customer->name ，code：$customer->code 区域：$customer->area_id ");
             }
 //            dd($customer[0]->attr);die;
 //            $customer_area=new CustomerArea();
@@ -95,5 +97,10 @@ class InitCustomer extends Command
             //$customer_area->save();
         }
         return 'ok';
+    }
+
+    protected function print_log($context)
+    {
+        echo iconv('utf-8','gbk',$context).chr(10);
     }
 }

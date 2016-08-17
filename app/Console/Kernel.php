@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\InitCustomer::class,
         \App\Console\Commands\InitProject::class,
         \App\Console\Commands\InitTask::class,
         \App\Console\Commands\SyncProject::class,
