@@ -34,17 +34,17 @@
 
             <ul class="nav navbar-nav navbar-right">
                 {{--<li class="dropdown"><a href="/panel">面板模式</a></li>--}}
-                .<li class="dropdown"><a href="/demand">需求集</a></li>
+                .<li class="dropdown"><a href="/task/query">需求查询</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">任务查询<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/task/query">需求查询</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/task/history/week">任务-本周</a></li>
                         <li><a href="/task/history/month">任务-本月</a></li>
                         <li><a href="/task/history/year">任务-本年</a></li>
                         <li><a href="/task/history/yd">任务-移动</a></li>
                         <li><a href="/report/task_report/week">常用报表</a></li>
+                        <li><a href="/demand">需求集</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
