@@ -118,4 +118,23 @@ class ReportController extends Controller
         return view('report.main_chart',['theme' => 'default','page_data'=>json_encode($page_data),'task_details'=>$task_details]);
     }
 
+//  TODO::个性化客户的典型包统计
+//    #已经出包的
+//select DISTINCT cst.* from customers cst
+//INNER JOIN tasks t on cst.uuid = t.customer_uuid
+//where t.abu_pm in ('刘嵩','胡洁（武汉移动）','胡洁') or (t.abu_pm = '汪海疆' and t.task_title like '%微助手%')
+//or t.update_type > 0
+//
+//#还未出包的
+//select * from customers where uuid not in (select DISTINCT cst.uuid from customers cst
+//INNER JOIN tasks t on cst.uuid = t.customer_uuid
+//where (t.abu_pm in ('刘嵩','胡洁（武汉移动）','胡洁') or (t.abu_pm = '汪海疆' and t.task_title like '%微助手%' ) or (t.update_type > 0) ) and cst.source = 0) and source = 0
+//and (erp_version < 'ERP3.0.6'  or erp_version is null)
+
+//select COUNT(1),
+//sum(case when `status` = 0 then 1 ELSE 0 end) as todo,
+//sum(case when `status` = 1 then 1 ELSE 0 end) as deving,
+//sum(case when `status` = 2 then 1 ELSE 0 end) as testing,
+//sum(case when `status` > 2 then 1 ELSE 0 end) as over
+//from tasks where task_no > '201609'
 }

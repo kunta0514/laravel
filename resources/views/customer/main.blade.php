@@ -44,7 +44,7 @@
                     <tr rel="{{$item->id}}" >
                         <th>{{$k+1}}</th>
                         <td>{{$item->name}}</td>
-                        <td>{{$item->ekp_latest_name}}({{$item->ekp_code}})</td>
+                        <td>{{$item->ekp_latest_name}}(<a href="#" name="view_on_ekp" rel="{{$item->ekp_code}}">{{$item->ekp_code}}</a>)</td>
                         <td>{{$item->erp_version}}</td>
                         <td>{{$item->workflow_version}}</td>
                         <td>{!! Config('params.customer_update_type')[$item->update_type] !!}</td>
@@ -122,6 +122,15 @@
                 }
             })
         } );
+
+        $('#example tbody').on('click',"td a[name='view_on_ekp']",function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            //console.log($(this).attr("rel"));
+            if ($(this).attr("rel") != "") {
+                window.open("http://cm.mysoft.net.cn/Dashboard/" + $(this).attr("rel"));
+            }
+        });
 
     </script>
     @stop

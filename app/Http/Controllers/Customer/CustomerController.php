@@ -19,11 +19,14 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        //Cache::pull('customer');
         $customers = Cache::get('customer',function(){
             $customer = Customer::all();
             Cache::forever('customer', $customer);
             return   $customer;
         });
+//        print_r($customers);
+//        die;
         return view('customer.main',['theme' => 'default','customer'=>$customers]);
     }
 
@@ -35,6 +38,7 @@ class CustomerController extends Controller
     public function create()
     {
         //
+        Cache::pull('customer');
     }
 
     /**
@@ -91,6 +95,9 @@ class CustomerController extends Controller
             $query = [];
             if(!empty($request->ekp_latest_name)){
                 $query['ekp_latest_name'] = $request->ekp_latest_name;
+            }
+            if(!empty($request->ekp_code)){
+                $query['ekp_code'] = $request->ekp_code;
             }
             if(!empty($request->area)){
                 $query['area'] = $request->area;

@@ -39,6 +39,24 @@
             </div>
             <div class="col-sm-5">
                 <div class="form-group">
+                    <label for="ekp_code">EKP客户编码</label>
+                    <div>
+                        <input type="text" id="ekp_code" class="form-control" value="{{$customer->ekp_code}}" placeholder="EKP客户编码" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="form-group">
+                    <label for="select_task_type">代码地址</label>
+                    <div >
+                        <input type="text" id="path" class="form-control" value="{{$customer->path}}" placeholder="代码地址" readonly >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
                     <label>工作流版本信息</label>
                     <div class="check-demo-col">
                         <div class="check-line">
@@ -77,14 +95,7 @@
                     <textarea class="form-control" rows="3" placeholder="请描述升级相关的记录..." name="update_reason" id="update_reason">{{$customer->update_log}}</textarea>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    <label for="select_task_type">代码地址</label>
-                    <div >
-                        <input type="text" id="path" class="form-control" value="{{$customer->path}}" placeholder="代码地址" >
-                    </div>
-                </div>
-            </div>
+
         </div>
 
         <div class="row">
@@ -171,6 +182,7 @@
         customer.area = $('#area').val();
         customer.update_reason = $('#update_reason').val();
         customer.level = $('#select_customer_level').val();
+        customer.ekp_code = $('#ekp_code').val();
         console.log(customer);
         //TODO::收集页面元素校验
         $.ajax({
