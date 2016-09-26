@@ -88,15 +88,8 @@ class InitCustomer extends Command
                 $customer->save();
                 $this->print_log("同步客户： $customer->name ，code：$customer->code 区域：$customer->area_id ");
             }
-//            dd($customer[0]->attr);die;
-//            $customer_area=new CustomerArea();
-//            $customer_area->area_name=$area_name;
-//            $customer_area->area_code=$arae_code;
-//            $customer_area->area_id=$area_id;
-
-            //$customer_area->save();
         }
-        return 'ok';
+        $this->print_log("初始化同步客户完成");
     }
 
     protected function print_log($context)

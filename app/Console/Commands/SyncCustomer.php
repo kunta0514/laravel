@@ -45,9 +45,9 @@ class SyncCustomer extends Command
         //
 //        $this->sync_customer();
 //        $this->sync_app_customer();
-//        $this->sync_customer_uuid();
+        $this->sync_customer_uuid();
 //        $this->sync_ekp_customer();
-        $this->sync_customer_version();
+//        $this->sync_customer_version();
     }
 
     //第一次初始化用，不要在使用！
@@ -121,26 +121,28 @@ class SyncCustomer extends Command
         }
     }
 
+    //TODO：思路有问题，不要启用
     //同步移动用户
     protected function sync_app_customer()
     {
-        $tasks = DB::table('tasks')
-            ->where('customer_uuid',null)
-            ->where('abu_pm','刘嵩')
-            ->get();
-        foreach($tasks as $task){
-            $customers = DB::table('customers')->where('name','like','%'.$task->customer_name.'%')
-                ->orWhere('ekp_latest_name','like','%'.$task->customer_name.'%')
-                ->get();
-            if(empty($customers)){
-                $customer = new Customer();
-                $customer->name = $task->customer_name;
-                $customer->uuid = Uuid::generate();
-                $customer->is_app = 1;
-                $customer->is_standard = 1;
-                $customer->save();
-            }
-        }
+
+//        $tasks = DB::table('tasks')
+//            ->where('customer_uuid',null)
+//            ->where('abu_pm','刘嵩')
+//            ->get();
+//        foreach($tasks as $task){
+//            $customers = DB::table('customers')->where('name','like','%'.$task->customer_name.'%')
+//                ->orWhere('ekp_latest_name','like','%'.$task->customer_name.'%')
+//                ->get();
+//            if(empty($customers)){
+//                $customer = new Customer();
+//                $customer->name = $task->customer_name;
+//                $customer->uuid = Uuid::generate();
+//                $customer->is_app = 1;
+//                $customer->is_standard = 1;
+//                $customer->save();
+//            }
+//        }
     }
 
     protected function sync_customer_uuid(){
@@ -184,17 +186,32 @@ class SyncCustomer extends Command
         }
     }
 
+    protected function sync_ekp_customer()
+    {
+//        $this->sync_ekp_customer_init();
+        $this->sync_ekp_customer_add();
+    }
     //补充分析新客户
     protected function sync_ekp_customer_add()
     {
-        $csts = DB::select('select * from customer_ekp where `code` not in (select CASE when ekp_code is null then \'\' else ekp_code END from customers)');
+        $csts = DB::select('select a.*,b.area_name from customer_ekp a INNER JOIN customer_area_ekp b on a.area_id = b.area_id where `code` not in (select `code` from customer_ekp_copy_160805)');
 
-        $black_list = [''];
+        foreach($csts as $cst){
+            if(!empty($cst)){
+                $customer = new Customer();
+                $customer->name = $cst->name;
+                $customer->uuid = Uuid::generate();
+                $customer->ekp_code = $cst->code;
+                $customer->area = $cst->area_name;
+                $customer->source = 1;
+                $customer->save();
+            }
+        }
 
     }
 
     //ekp客户初始化的在Init文件中，这里只管更新规则
-    protected function sync_ekp_customer()
+    protected function sync_ekp_customer_init()
     {
         //更新没有code客户
         //update customers a inner join customer b on a.`name` = b.`name` set a.ekp_code = b.`code` where a.ekp_code is null

@@ -112,10 +112,13 @@ class CustomerController extends Controller
             if(!empty($request->is_aop)){
                 $query['is_aop'] = $request->is_aop;
             }
+            if(!empty($request->update_type)){
+                $query['update_type'] = $request->update_type;
+            }
             if(!empty($request->update_type_standard)){
                 $query['update_type_standard'] = $request->update_type_standard;
             }
-            if(!empty($request->update_type_standard)){
+            if(!empty($request->update_reason)){
                 $query['update_reason'] = $request->update_reason;
             }
             if(!empty($request->level)|| $request->level == 0){
