@@ -112,6 +112,12 @@
             },
             {
                 "render": function(data, type, row, meta) {
+                    return '<a href="#" name="view_on_ekp" rel="' + row.ekp_code + '" target="_blank">' + data + '</a>';
+                },
+                "targets": 4
+            },
+            {
+                "render": function(data, type, row, meta) {
                     return  (data)? data+'('+row.developer_workload+")":"";
                 },
                 "targets":6
@@ -185,6 +191,14 @@
             e.preventDefault();
             if ($(this).attr("rel") != "") {
                 window.open("http://pd.mysoft.net.cn" + $(this).attr("rel"));
+            }
+        });
+
+        $('#example tbody').on('click',"td a[name='view_on_ekp']",function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            if ($(this).attr("rel") != "") {
+                window.open("http://cm.mysoft.net.cn/Dashboard/" + $(this).attr("rel"));
             }
         });
 

@@ -45,7 +45,16 @@ class TaskController extends Controller
     {
 //        dd($request->search);die;
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
-        return json_encode(Array('data'=>$task_list->toArray()));
+        $task_list_new = DB::table('tasks')->join('customers','tasks.customer_uuid','=','customers.uuid')
+            ->select('tasks.*','customers.ekp_code')
+            ->where('status', '<', 3)->orderBy('task_no')
+            ->get();
+
+//        print_r(json_encode(Array('data'=>$task_list->toArray())));
+
+
+        return json_encode(Array('data'=>$task_list_new));
+//        return json_encode($task_list);
     }
 
 
@@ -394,7 +403,26 @@ class TaskController extends Controller
 ////            ->orWhere('customer_name','like','%'.$query.'%')
 //            ->get();
 //        return view('task.test', ['theme' => 'default', 'tasks' => $tasks]);
-        $this->my_time();
+//        $ekp_code = Task::where('task_no','20161009-0123')->get();
+
+//        $task_list = DB::table('tasks')->join('customers','tasks.customer_uuid','=','customers.uuid')
+//            ->select('tasks.*','customers.ekp_code')
+//            ->where('tasks.task_no','20161009-0123')
+//            ->get();
+
+        //        dd($request->search);die;
+        $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
+        $task_list_new = DB::table('tasks')->join('customers','tasks.customer_uuid','=','customers.uuid')
+            ->select('tasks.*','customers.ekp_code')
+            ->get();
+
+        print_r(json_encode(Array('data'=>$task_list_new)));
+
+
+//        return json_encode(Array('data'=>$task_list->toArray()));
+//        return json_encode($task_list);
+
+//        print_r($task_list);
     }
 
     public function history($type)
