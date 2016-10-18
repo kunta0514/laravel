@@ -46,12 +46,16 @@ class TaskController extends Controller
 //        dd($request->search);die;
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
         $task_list_new = DB::table('tasks')->join('customers','tasks.customer_uuid','=','customers.uuid')
-            ->select('tasks.*','customers.ekp_code')
+//            ->join('users','tasks.developer','=','users.code')
+            ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
             ->where('status', '<', 3)->orderBy('task_no')
             ->get();
 
 //        print_r(json_encode(Array('data'=>$task_list->toArray())));
-
+        foreach($task_list_new as $val){
+            $val->dev_name = $this->get_userName($val->developer);
+            $val->tester_name = $this->get_userName($val->tester);
+        }
 
         return json_encode(Array('data'=>$task_list_new));
 //        return json_encode($task_list);
@@ -413,13 +417,20 @@ class TaskController extends Controller
         //        dd($request->search);die;
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
         $task_list_new = DB::table('tasks')->join('customers','tasks.customer_uuid','=','customers.uuid')
-            ->select('tasks.*','customers.ekp_code')
+            ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
+            ->where('status', '<', 3)->orderBy('task_no')
             ->get();
 
-        print_r(json_encode(Array('data'=>$task_list_new)));
+        foreach($task_list_new as $val){
+            $val->dev_name = $this->get_userName($val->developer);
+            $val->tester_name = $this->get_userName($val->tester);
+        }
 
 
-//        return json_encode(Array('data'=>$task_list->toArray()));
+//        print_r(json_encode(Array('data'=>$task_list_new)));
+
+
+        return json_encode(Array('data'=>$task_list->toArray()));
 //        return json_encode($task_list);
 
 //        print_r($task_list);
@@ -485,45 +496,6 @@ class TaskController extends Controller
         return $result;
     }
 
-
-    private function get_userName($user_code)
-    {
-//        Cache::pull('user');
-        $users = Cache::get('user',function(){
-            $users = DB::table('users')->select('code', 'name','role','admin')->get();
-            Cache::forever('user', $users);
-        });
-
-        if(!empty($user_code)) {
-            $arr_user_code = explode(',',$user_code);
-            $user_name = [];
-            if(count($arr_user_code) > 1){
-                //循环数组，输出名字
-                foreach($arr_user_code as $val) {
-                    foreach($users as $user){
-                        if($user->code == $val){
-                            $user_name[$val] = $user->name;
-                        }
-                    }
-                    if(empty($user_name[$val])){
-                        $user_name[$val] = '未知1';
-                    }
-                }
-            }
-            else{
-                foreach($users as $user) {
-                    if($user->code == $user_code) {
-                        $user_name[$user_code] = $user->name;
-                    }
-                }
-                if(empty($user_name[$user_code])){
-                    $user_name[$user_code] = '未知2';
-                }
-            }
-            return join(',',$user_name);
-        }
-    }
-
     protected function object_array($array)
     {
         if(is_object($array))
@@ -551,5 +523,48 @@ class TaskController extends Controller
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
         return view('task.index', ['theme' => 'default', 'tasks' => $task_list, 'developers' => Cache::get('developers'), 'testers' => Cache::get('testers')]);
 
+    }
+
+    private function get_userName($user_code)
+    {
+        //Cache::pull('user');
+
+        $users = Cache::get('user',function(){
+            $users = DB::table('users')->select('code', 'name','role','admin')->get();
+            Cache::forever('user', $users);
+            return $users;
+        });
+
+//        print_r($users);
+//        die;
+
+        if(!empty($user_code)) {
+            $arr_user_code = explode(',',$user_code);
+            $user_name = [];
+            if(count($arr_user_code) > 1){
+                //循环数组，输出名字
+                foreach($arr_user_code as $val) {
+                    foreach($users as $user){
+                        if($user->code == $val){
+                            $user_name[$val] = $user->name;
+                        }
+                    }
+                    if(empty($user_name[$val])){
+                        $user_name[$val] = '未知(多人)';
+                    }
+                }
+            }
+            else{
+                foreach($users as $user) {
+                    if($user->code == $user_code) {
+                        $user_name[$user_code] = $user->name;
+                    }
+                }
+                if(empty($user_name[$user_code])){
+                    $user_name[$user_code] = '未知(单人)';
+                }
+            }
+            return join(',',$user_name);
+        }
     }
 }

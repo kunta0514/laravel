@@ -45,7 +45,7 @@
                     <th style="width: 40px">PM</th>
                     <th style="width: 60px">开发</th>
                     <th style="width: 60px">测试</th>
-                    <th style="width: 60px">完成时间</th>
+                    <th style="width: 60px">EKP时间</th>
                     <th style="width: 300px">备注</th>
                 </tr>
             </thead>
@@ -112,12 +112,14 @@
             },
             {
                 "render": function(data, type, row, meta) {
+
                     return '<a href="#" name="view_on_ekp" rel="' + row.ekp_code + '" target="_blank">' + data + '</a>';
                 },
                 "targets": 4
             },
             {
                 "render": function(data, type, row, meta) {
+                    console.log(row)
                     return  (data)? data+'('+row.developer_workload+")":"";
                 },
                 "targets":6

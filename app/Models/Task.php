@@ -61,11 +61,16 @@ class Task extends Model
      */
     private function get_userName($user_code)
     {
+        Cache::pull('user');
+
         $users = Cache::get('user',function(){
             $users = DB::table('users')->select('code', 'name','role','admin')->get();
             Cache::forever('user', $users);
             return $users;
         });
+
+//        print_r($users);
+//        die;
 
         if(!empty($user_code)) {
             $arr_user_code = explode(',',$user_code);
