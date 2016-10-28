@@ -45,7 +45,7 @@ class TaskController extends Controller
     {
 //        dd($request->search);die;
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
-        $task_list_new = DB::table('tasks')->join('customers','tasks.customer_uuid','=','customers.uuid')
+        $task_list_new = DB::table('tasks')->leftjoin('customers','tasks.customer_uuid','=','customers.uuid')
 //            ->join('users','tasks.developer','=','users.code')
             ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
             ->where('status', '<', 3)->orderBy('task_no')
