@@ -36,7 +36,7 @@
                 {{--<li class="dropdown"><a href="/panel">面板模式</a></li>--}}
                 .<li class="dropdown"><a href="/task/query">需求查询</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">任务查询<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">快捷查询<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li role="separator" class="divider"></li>
                         <li><a href="/task/history/week">任务-本周</a></li>

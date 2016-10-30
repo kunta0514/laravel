@@ -77,6 +77,28 @@
                             @endforeach
                         </select>
                     </div>
+                    <label for="select_workflow_version_scope" class="control-label col-sm-2">范围</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="select_workflow_version_scope" name="workflow_version_scope">
+                            <option value="" >请选择</option>
+                            @foreach(Config('params.scope') as $value)
+                                <option value="{{$value}}" @if ($value === $task->workflow_version_scope) selected @endif>{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    {{--TODO::换成色卡与标签--}}
+                    <label for="select_urgency" class="control-label col-sm-2">紧急程度</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="select_urgency" name="urgency">
+                            @foreach(Config('params.urgency') as $k=>$value)
+                                <option value="{{$k}}" @if ($value === $task->urgency) selected @endif>{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <label for="PRI" class="control-label col-sm-2">优先级</label>
                     <div class="col-sm-4">
                         <input type="number" id="PRI" class="form-control" placeholder="请输入" value="{{$task->PRI}}">
@@ -156,6 +178,20 @@
 //        console.log($("#actual_finish_date").val());
     })
 
+    //根据紧急程度调整PRI.
+    $('#select_urgency').on('change',function(){
+//        if((this.value == '3' || this.value == '4')&& $("#actual_finish_date").val() == ' '){
+//            $("#actual_finish_date").datepicker('setDate',new Date());
+//            $("#PRI").val(0);
+//        }
+        if(!($('#select_status option:selected').text() === '已完成' || $('#select_status option:selected').text() === '项目终止')){
+            $("#PRI").val(this.value);
+        }
+
+    })
+
+
+
     $('#btnSubmit').on('click',function(){
         task.comment = $('#comment').val();
         task.developer = $('#select_dev').val();
@@ -165,6 +201,12 @@
         task.status = $('#select_status').val();
         task.actual_finish_date = $("#actual_finish_date").val();
         task.task_type = $("#select_task_type").val();
+        task.workflow_version_scope = $("#select_workflow_version_scope").val();
+        task.urgency = $("#select_urgency option:selected").text();
+
+//        console.log(task);
+//        return;
+
         task.uuid=$("input[name='task_uuid']").val();
 
         if($('#no_update').is(':checked')) task.update_type = 0;
@@ -172,7 +214,7 @@
         if($('#update_type').is(':checked')) task.update_type = 2;
 
         task.PRI = $("#PRI").val();
-//        console.log(task.task_type);
+
         //TODO::收集页面元素校验
         $.ajax({
             type: 'POST',

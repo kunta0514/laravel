@@ -47,11 +47,12 @@ class CreateTasksTable extends Migration
             $table->string('comment');
             $table->string('ekp_task_type');        //EKP任务类型
             $table->string('task_type');
-            $table->string('workflow_version');
+            $table->string('workflow_version_scope');   //工作流版本范围
             $table->tinyInteger('update_type')->default(0);
             $table->tinyInteger('source')->default(0);  //来源，任务系统（0），一线反馈，产品需求（1）
             $table->Integer('tag_id');              //标签ID
             $table->Integer('PRI');                 //优先级
+            $table->string('urgency');      //紧急程度
             $table->tinyInteger('is_sla');
             $table->tinyInteger('is_sensitive');
             $table->tinyInteger('priority');

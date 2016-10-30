@@ -45,19 +45,19 @@ class TaskController extends Controller
     {
 //        dd($request->search);die;
         $task_list = Task::where('status', '<', 3)->orderBy('task_no')->get();
-        $task_list_new = DB::table('tasks')->leftjoin('customers','tasks.customer_uuid','=','customers.uuid')
+        $task_list = DB::table('tasks')->leftjoin('customers','tasks.customer_uuid','=','customers.uuid')
 //            ->join('users','tasks.developer','=','users.code')
             ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
             ->where('status', '<', 3)->orderBy('task_no')
             ->get();
 
 //        print_r(json_encode(Array('data'=>$task_list->toArray())));
-        foreach($task_list_new as $val){
+        foreach($task_list as $val){
             $val->dev_name = $this->get_userName($val->developer);
             $val->tester_name = $this->get_userName($val->tester);
         }
 
-        return json_encode(Array('data'=>$task_list_new));
+        return json_encode(Array('data'=>$task_list));
 //        return json_encode($task_list);
     }
 
@@ -203,6 +203,12 @@ class TaskController extends Controller
 
             if(!empty($request->task_type)){
                 $query['task_type'] = $request->task_type;
+            }
+            if(!empty($request->workflow_version_scope)){
+                $query['workflow_version_scope'] = $request->workflow_version_scope;
+            }
+            if(!empty($request->urgency)){
+                $query['urgency'] = $request->urgency;
             }
             if(!empty($request->PRI)|| $request->PRI == 0){
                 $query['PRI'] = $request->PRI;
@@ -455,14 +461,19 @@ class TaskController extends Controller
             case 'year':
                 $query_begin = date("Y",mktime(0,0,0,date("m"),1,date("Y")));
                 $query_end = null;
-                $tasks = DB::table('tasks')
+                $tasks = DB::table('tasks')->leftjoin('customers','tasks.customer_uuid','=','customers.uuid')
+                    ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
                     ->where('task_no','>',$query_begin)
                     ->get();
+//                $tasks = DB::table('tasks')
+//                    ->where('task_no','>',$query_begin)
+//                    ->get();
                 break;
             case 'month':
                 $query_begin = date("Ymd",mktime(0,0,0,date("m")-1,1,date("Y")));
                 $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
-                $tasks = DB::table('tasks')
+                $tasks = DB::table('tasks')->leftjoin('customers','tasks.customer_uuid','=','customers.uuid')
+                    ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
                     ->where('task_no','>',$query_begin)
                     ->where('task_no','<',$query_end)
                     ->get();
@@ -470,18 +481,24 @@ class TaskController extends Controller
             case 'week':
                 $query_begin = date("Ymd",strtotime("-2 week Monday"));
                 $query_end = date("Ymd",strtotime("+0 week Monday"));
-                $tasks = DB::table('tasks')
+                $tasks = DB::table('tasks')->leftjoin('customers','tasks.customer_uuid','=','customers.uuid')
+                    ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
                     ->where('task_no','>',$query_begin)
                     ->where('task_no','<',$query_end)
                     ->get();
                 break;
             case 'yd':
-                $tasks = DB::table('tasks')
+                $tasks = DB::table('tasks')->leftjoin('customers','tasks.customer_uuid','=','customers.uuid')
+                    ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
                     ->where('abu_pm','刘嵩')
                     ->orderBy('task_no','DESC')
                     ->get();
                 break;
 
+        }
+        foreach($tasks as $val){
+            $val->dev_name = $this->get_userName($val->developer);
+            $val->tester_name = $this->get_userName($val->tester);
         }
         $page_data=array(
             'data'=>$tasks,

@@ -119,7 +119,6 @@
             },
             {
                 "render": function(data, type, row, meta) {
-                    console.log(row)
                     return  (data)? data+'('+row.developer_workload+")":"";
                 },
                 "targets":6
