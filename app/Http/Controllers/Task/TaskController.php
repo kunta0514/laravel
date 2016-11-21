@@ -470,7 +470,7 @@ class TaskController extends Controller
 //                    ->get();
                 break;
             case 'month':
-                $query_begin = date("Ymd",mktime(0,0,0,date("m")-1,1,date("Y")));
+                $query_begin = date("Ymd",mktime(0,0,0,date("m")-2,1,date("Y")));
                 $query_end = date("Ymd ",mktime(0,0,0,date("m")+1,1,date("Y")));
                 $tasks = DB::table('tasks')->leftjoin('customers','tasks.customer_uuid','=','customers.uuid')
                     ->select('tasks.*','customers.ekp_code','developer as dev_name','tester as tester_name')
