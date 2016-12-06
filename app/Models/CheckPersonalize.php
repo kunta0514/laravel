@@ -82,7 +82,7 @@ class CheckPersonalize extends Model
      */
     private function  get_task_history($key)
     {
-        $url = 'http://pd.mysoft.net.cn/AjaxRequirement/GetAllRequirementList.cspx?KeyValue=&ManagerName=&PMName=&TeamMembers=&Status=&Source=&XqType=&CustomerType=&CustomerArea=&HandlerToRequirementType=&CreatedOnType=&RecordDateBegin=&RecordDateEnd=&DevelopEndTimeType=&FinishiDateBegin=&FinishiDateEnd=&TechReLmtType=&RechDateBegin=&RechDateEnd=&TaskDoneLmtType=&DcDateBegin=&DcDateEnd=&IsHaveTestDoc=&OrderSeq=&PageSize=100';
+        $url = 'http://pd.mingyuanyun.com/AjaxRequirement/GetAllRequirementList.cspx?KeyValue=&ManagerName=&PMName=&TeamMembers=&Status=&Source=&XqType=&CustomerType=&CustomerArea=&HandlerToRequirementType=&CreatedOnType=&RecordDateBegin=&RecordDateEnd=&DevelopEndTimeType=&FinishiDateBegin=&FinishiDateEnd=&TechReLmtType=&RechDateBegin=&RechDateEnd=&TaskDoneLmtType=&DcDateBegin=&DcDateEnd=&IsHaveTestDoc=&OrderSeq=&PageSize=100';
         $cur_page = 1;
         $params = "&Customerchn=$key&PageIndex=$cur_page";
 
@@ -111,7 +111,7 @@ class CheckPersonalize extends Model
      */
     private  function  get_configEn($key)
     {
-        $url='http://pd.mysoft.net.cn/AjaxConfigLibList/GetConfigEnvironment.cspx?PageIndex=1&state=true';
+        $url='http://pd.mingyuanyun.com/AjaxConfigLibList/GetConfigEnvironment.cspx?PageIndex=1&state=true';
         $params='&KeyValue='.$key;
 
         $content =  PickHtml::get_html_content($url,$params,'');
