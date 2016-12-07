@@ -58,7 +58,7 @@ class SyncTask extends Command
     protected function sync_task()
     {
         $url = 'http://pd.mingyuanyun.com/AjaxRequirement/GetAllRequirementList.cspx?KeyValue=&ManagerName=&TeamMembers=&Status=0%2C1%2C2%2C3%2C4%2C5&Source=&XqType=&CustomerType=&CustomerArea=&HandlerToRequirementType=&CreatedOnType=&DevelopEndTimeType=&TechReLmtType=&TaskDoneLmtType=&OrderSeq=';
-        $pm = '万堃';
+        $pm = '胡杰';
         $cur_page = 1;
         $params = "&PMName=$pm&PageIndex=$cur_page";
         $url = $url .$params;

@@ -191,7 +191,7 @@
             e.stopPropagation();
             e.preventDefault();
             if ($(this).attr("rel") != "") {
-                window.open("http://pd.mysoft.net.cn" + $(this).attr("rel"));
+                window.open("http://pd.mingyuanyun.com" + $(this).attr("rel"));
             }
         });
 

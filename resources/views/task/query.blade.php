@@ -190,7 +190,7 @@
         $(document).on('click', '#example tbody tr a[name=view_on_erp] ', function () {
 //            console.log($(this));
             if($(this).attr("href")!="") {
-                window.open("http://pd.mysoft.net.cn"+ $(this).attr("href"));
+                window.open("http://pd.mingyuanyun.com"+ $(this).attr("href"));
             }
             return false;
         } );
